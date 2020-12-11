@@ -1,10 +1,8 @@
-@import url(http://db.onlinewebfonts.com/c/d365bd25dab9cb26c8171719170dfe81?family=Brandon+Text);
-@import url(http://db.onlinewebfonts.com/c/749ba57b431f4eba8b31eb57d5aab83e?family=Brandon+Text+Medium);
-@import url(http://db.onlinewebfonts.com/c/47b83f8dbd3bf93e0df5674b32c6a7e4?family=BrandonTextWeb-Regular);
-
 body {
   margin: 0;
-  font-family: "BrandonTextWeb-Regular" !important;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
