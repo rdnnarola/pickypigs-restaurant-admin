@@ -1,0 +1,241 @@
+@import url(http://db.onlinewebfonts.com/c/d365bd25dab9cb26c8171719170dfe81?family=Brandon+Text);
+@import url(http://db.onlinewebfonts.com/c/749ba57b431f4eba8b31eb57d5aab83e?family=Brandon+Text+Medium);
+@import url(http://db.onlinewebfonts.com/c/47b83f8dbd3bf93e0df5674b32c6a7e4?family=BrandonTextWeb-Regular);
+
+html,
+body {
+    font-family: "BrandonTextWeb-Regular" !important;
+    height: 100%;
+}
+
+body {
+    color: #232323 !important;
+}
+
+.brandon-regular {
+    font-family: "BrandonTextWeb-Regular" !important;
+}
+
+.brandon-Medium {
+    font-family: "Brandon Text Medium" !important;
+}
+
+.brandon-Bold {
+    font-family: "Brandon Text" !important;
+}
+
+.pink-txt {
+    color: #cb007b !important;
+}
+
+.outline-none {
+    outline: none;
+}
+
+.h-100 {
+    height: 100vh;
+}
+
+.w-170{
+    width: 170px;
+}
+
+.gray-hr {
+    border-color: #c8c7cc;
+}
+
+// Pink Button css start
+.pinkline-btn {
+    border: 1px solid #cb007b !important;
+    color: #cb007b !important;
+    height: 40px;
+    min-width: 160px;
+    transition: all 0.2s;
+    &:hover {
+        background: #cb007b;
+        color: #fff !important;
+        border: 1px solid #fb6bb5 !important;
+    }
+    &:hover span{
+        padding-left: 25px;
+        &::after{
+            opacity: 1;
+            left: 0;
+        }
+    }
+    
+    span {
+        cursor: pointer;
+        display: inline-block;
+        position: relative;
+        transition:all 0.2s;
+        &::after{
+            content: '+';
+            font-size: 20px;
+            position: absolute;
+            opacity: 0;
+            top: -4px;
+            left: -15px;
+            transition:all 0.2s;
+        }
+      }
+      
+    &:focus {
+        box-shadow: 0 0 0 0.2rem #d00b812e !important;
+    }
+}
+
+// Pink Button css end
+
+// Pink CheckBox Css start
+.pink-checkbox {
+    .custom-control-input {
+        width: 20px;
+        height: 20px;
+        &:checked {
+            ~ .custom-control-label {
+                &::before {
+                    border-color: #cb007b;
+                    background-color: #cb007b;
+                }
+            }
+        }
+        &:focus {
+            ~ .custom-control-label {
+                &::before {
+                    box-shadow: 0 0 0 0.2rem #cb007b1f;
+                }
+            }
+            &:not(:checked) {
+                ~ .custom-control-label {
+                    &::before {
+                        border: 1px solid #cb007b1f;
+                    }
+                }
+            }
+        }
+    }
+    .custom-control-label::before,
+    .custom-control-label::after {
+        border: 1px solid #919191;
+        width: 20px;
+        height: 20px;
+        top: 1px;
+    }
+    .custom-control-label::after {
+        border: none;
+    }
+    .custom-control-label {
+        padding-left: 10px;
+    }
+}
+// Pink CheckBox Css end
+
+// select actiondropdown css start
+select {
+    &.actiondropdown-btn {
+        border: 1px solid #c8c7cc;
+        border-radius: 6px;
+        width: 120px;
+        max-height: 40px;
+        padding: 0px 25px 0px 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 40px;
+        appearance: none;
+        outline: none;
+        background-image: url("../../assets/images/down-arrow.svg");
+        background-position: 85%;
+        background-size: 10px;
+        background-repeat: no-repeat;
+
+        // &:after{
+        //     content: '';
+        //     position: absolute;
+        //     width: 10px;
+        //     height: 10px;
+        //     right: 0;
+        //     background-image:url('../../assets/images/down-arrow.svg') ;
+        //     background-position: center;
+        //     background-size: cover;
+        // }
+    }
+}
+
+// select actiondropdown css end
+
+.input-search {
+    .form-control {
+        max-width: 255px;
+        width: 100%;
+        min-width: 255px;
+        border-color: #919191;
+        font-size: 14px;
+        min-height: 40px;
+        &:focus {
+            box-shadow: 0 0 0 0.2rem #e4e4e4;
+            border-color: #919191;
+        }
+        &::placeholder{
+            color: #919191;
+        }
+    }
+}
+
+.main-content {
+    padding: 125px 50px 25px 130px;
+}
+
+.page-heading {
+    border-bottom: 1px solid #c8c7cc;
+    padding-bottom: 28px;
+    h4 {
+        font-size: 28px;
+        color: #2e482b;
+        small {
+            font-size: 20px;
+            color: #919191;
+            font-weight: 400;
+        }
+    }
+}
+
+.sub-heading {
+    font-size: 18px;
+    color: #919191 !important;
+    text-decoration: none;
+}
+
+.my_custom_table {
+    border-radius: 20px;
+    box-shadow: 0px 1px 20px 0px #00000018;
+    table {
+        margin-bottom: 0px;
+        &.table-main {
+            tr {
+                th {
+                    border-top: none;
+                    height: 75px;
+                    vertical-align: middle;
+                    font-size: 14px;
+                    color: #232323;
+                    padding: 0.75rem 2rem;
+                }
+                td {
+                    height: 60px;
+                    vertical-align: middle;
+                    font-size: 15px;
+                    color: #232323;
+                    padding: 0.75rem 2rem;
+                }
+                &:nth-of-type(even) {
+                    background-color: #fafafa;
+                }
+                &:nth-of-type(odd) {
+                    background-color: transparent;
+                }
+            }
+        }
+    }
+}

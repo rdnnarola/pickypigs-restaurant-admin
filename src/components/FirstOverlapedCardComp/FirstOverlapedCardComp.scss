@@ -1,0 +1,28 @@
+.first_overlap_container{
+  .parent {
+    position: relative;
+    margin-bottom: 300px;
+  }
+  .shadow_1{
+    box-shadow : 0px 5px 12px 0px #00000014;
+    background-color: #ffffff;
+    border-radius: 10px;
+
+  }
+  .child-1 {
+    width:40%;
+    padding:10px;
+    z-index:1;
+    position: relative;
+    top:80px;
+  }
+
+  .child-2 {
+    width:80%;
+    position: absolute;
+    right: 0px;
+
+
+  }
+}
+    

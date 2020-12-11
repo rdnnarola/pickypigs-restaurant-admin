@@ -1,0 +1,108 @@
+.signin_signup_container{
+    .signup_left{
+        .pinkline-btn {
+            border: 1px solid #cb007b;
+            color: #cb007b;
+            height: 50px;
+            &:hover {
+                background: linear-gradient(2deg, #cb007b, #ff75ba);
+                color: #fff;
+                border: 1px solid #fb6bb5 !important;
+            }
+        
+            &:focus {
+                box-shadow: 0 0 0 0.2rem #d00b812e !important;
+            }
+        }
+    }
+    .signIn_Form{
+        max-width    : calc(100% - 30px);
+        margin       : auto;
+        padding      : 5rem 4rem;
+        background   : #fff;
+        border-radius: 10px;
+        box-shadow   : 0px 5px 12px 0px #00000014;
+        position     : relative;
+        
+            .pinkline-btn {
+                border: 1px solid #cb007b;
+                color: #cb007b;
+            
+                &:hover {
+                    background: linear-gradient(2deg, #cb007b, #ff75ba);
+                    color: #fff;
+                    border: 1px solid #fb6bb5 !important;
+                }
+            
+                &:focus {
+                    box-shadow: 0 0 0 0.2rem #d00b812e !important;
+                }
+            }
+            .trans_button{
+                background-color: transparent;
+                border: none;
+                padding:0px
+            }
+            .trans_button:focus{
+                outline: none;
+            }
+            .trans_button:hover{
+                text-decoration: underline;
+            }
+            form {
+                .form-group {
+                    .signup-input {
+                        height: calc(1.5em + .75rem + 9px);
+                        border: none;
+                        border-bottom: 2px solid #919191;
+                        border-radius: 0px;
+                        padding-left: 0;
+                        outline: none !important;
+                        box-shadow: none !important;
+                        font-size: 15px;
+                        position: relative;
+    
+                        &:focus {
+                            border-color: #FF75BA;
+                        }
+                    }
+    
+                    .signup-btn {
+                        height: 50px;
+                    }
+    
+                    .showpassword-block {
+                        position: absolute;
+                        top: 0px;
+                        right: 0;
+                        margin-top: 10px;
+                        margin-right: 10px;
+                        background: #fff;
+                        padding-left: 10px;
+                        cursor: pointer;
+    
+                        &.show {
+                            &:before {
+                                content: '';
+                                position: absolute;
+                                top: 0px;
+                                right: 0px;
+                                width: 21px;
+                                height: 1.5px;
+                                background: #232323;
+                                transform: rotate(45deg);
+                                margin-top: 12.5px;
+                                margin-right: -4px;
+                            }
+                        }
+                    }
+                }
+                .forgot-block{
+                    .forgot-link{
+                        color: #000000;
+                        text-decoration: underline;
+                    }
+                }
+            }
+    }
+}

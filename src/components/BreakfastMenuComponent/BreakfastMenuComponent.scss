@@ -1,0 +1,27 @@
+.my_custom_table{
+    tr.hide-table-padding td {
+        // padding: 0 !important;
+        // height: 0px !important;
+      }
+      
+      .expand-button {
+          position: relative;
+      }
+      
+      .accordion-toggle .expand-button:after
+      {
+        position: absolute;
+        left:.75rem;
+        top: 50%;
+        left: 50%;
+        transform: translate(0, -50%);
+        content: '-';
+        font-size: 35px;
+      }
+      .accordion-toggle.collapsed .expand-button:after
+      {
+        content: '+';
+        font-size: 25px;
+
+      }
+}
