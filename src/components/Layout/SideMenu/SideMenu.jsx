@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import manageicon from "../../../assets/images/manage-icon.svg";
+import menu_icon from "../../../assets/images/menus_icon.svg";
+import category_icon from "../../../assets/images/categories_icon.svg";
+import setting_icon from "../../../assets/images/Settings_icon.svg";
 import pinkrightarrow from "../../../assets/images/pink-rightarrow.svg";
 import './SideMenu.scss';
 
@@ -34,7 +37,7 @@ const SideMenu = () => {
 
                         <div className="menu-list d-flex align-items-center">
                             <div className="menu-icon">
-                                <img src={manageicon} className="img-fluid" alt="icon"  />
+                                <img src={menu_icon} className="img-fluid" alt="icon"  />
                             </div>
                             <button className="btn btn-none text-primary menu-name">
                                 Menus
@@ -42,7 +45,7 @@ const SideMenu = () => {
                         </div>
                         <div className="menu-list d-flex align-items-center">
                             <div className="menu-icon">
-                                <img src={manageicon} className="img-fluid" alt="icon"  />
+                                <img src={category_icon} className="img-fluid" alt="icon"  />
                             </div>
                             <button className="btn btn-none text-primary menu-name">
                                 Categories
@@ -52,7 +55,7 @@ const SideMenu = () => {
                     <div className="aside-footer">
                         <div className="menu-list d-flex align-items-center">
                             <div className="menu-icon">
-                                <img src={manageicon} className="img-fluid" alt="icon"/>
+                                <img src={setting_icon} className="img-fluid" alt="icon"/>
                             </div>
                             <button className="btn btn-none text-primary menu-name">
                                 Settings

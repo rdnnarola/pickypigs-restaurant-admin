@@ -4,7 +4,7 @@ import DonutChart from "../../components/DonutChart/DonutChart";
 import "./DashboardPage.scss";
 
 const DashboardPage = () => {
-    const data1 = [{ name: 'Group A', value: 10 }, { name: 'Group B', value: 15 },
+    const data1 = [{ name: 'Nuts', value: 10 }, { name: 'Group B', value: 15 },
     { name: 'Group C', value: 25 }, { name: 'Group D', value: 50 }];
     const COLORS1 = ['#d1b2f5', '#91eddb', '#e376b8', '#f8e3e9'];
 

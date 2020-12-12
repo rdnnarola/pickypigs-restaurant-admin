@@ -3,8 +3,9 @@
 // @import url(http://db.onlinewebfonts.com/c/47b83f8dbd3bf93e0df5674b32c6a7e4?family=BrandonTextWeb-Regular);
 
 /*-------BrandonTextWeb-Bold-------------*/
-@font-face {font-family: "Brandon Text";
-    src: url("../../assets/font-family/Brandon_Text.ttf") format("truetype"), /* chrome firefox opera Safari, Android, iOS 4.2+*/
+@font-face {
+    font-family: "Brandon Text";
+    src: url("../../assets/font-family/Brandon_Text.ttf") format("truetype"); /* chrome firefox opera Safari, Android, iOS 4.2+*/
     // src: url("http://db.onlinewebfonts.com/t/d365bd25dab9cb26c8171719170dfe81.eot"); /* IE9*/
     // src: url("http://db.onlinewebfonts.com/t/d365bd25dab9cb26c8171719170dfe81.eot?#iefix") format("embedded-opentype"), /* IE6-IE8 */
     // url("http://db.onlinewebfonts.com/t/d365bd25dab9cb26c8171719170dfe81.woff2") format("woff2"), /* chrome firefox */
@@ -13,18 +14,20 @@
 }
 
 /*-------BrandonTextWeb-Medium-------------*/
-@font-face {font-family: "Brandon Text Medium";
+@font-face {
+    font-family: "Brandon Text Medium";
     // src: url("http://db.onlinewebfonts.com/t/749ba57b431f4eba8b31eb57d5aab83e.eot"); /* IE9*/
     // src: url("http://db.onlinewebfonts.com/t/749ba57b431f4eba8b31eb57d5aab83e.eot?#iefix") format("embedded-opentype"), /* IE6-IE8 */
     // url("http://db.onlinewebfonts.com/t/749ba57b431f4eba8b31eb57d5aab83e.woff2") format("woff2"), /* chrome firefox */
     // url("http://db.onlinewebfonts.com/t/749ba57b431f4eba8b31eb57d5aab83e.woff") format("woff"), /* chrome firefox */
     // url("http://db.onlinewebfonts.com/t/749ba57b431f4eba8b31eb57d5aab83e.svg#Brandon Text Medium") format("svg"); /* iOS 4.1- */
-    src: url("../../assets/font-family/Brandon_Medium.ttf") format("truetype"), /* chrome firefox opera Safari, Android, iOS 4.2+*/
+    src: url("../../assets/font-family/Brandon_Medium.ttf") format("truetype"); /* chrome firefox opera Safari, Android, iOS 4.2+*/
 }
 
 /*-------BrandonTextWeb-Regular-------------*/
-@font-face {font-family: "BrandonTextWeb-Regular";
-    src: url("../../assets/font-family/Brandon_Bold.ttf") format("truetype"), /* chrome firefox opera Safari, Android, iOS 4.2+*/
+@font-face {
+    font-family: "BrandonTextWeb-Regular";
+    src: url("../../assets/font-family/Brandon_Bold.ttf") format("truetype"); /* chrome firefox opera Safari, Android, iOS 4.2+*/
     // src: url("http://db.onlinewebfonts.com/t/47b83f8dbd3bf93e0df5674b32c6a7e4.eot"); /* IE9*/
     // src: url("http://db.onlinewebfonts.com/t/47b83f8dbd3bf93e0df5674b32c6a7e4.eot?#iefix") format("embedded-opentype"), /* IE6-IE8 */
     // url("http://db.onlinewebfonts.com/t/47b83f8dbd3bf93e0df5674b32c6a7e4.woff2") format("woff2"), /* chrome firefox */
@@ -66,7 +69,7 @@ body {
     height: 100vh;
 }
 
-.w-170{
+.w-170 {
     width: 170px;
 }
 
@@ -86,30 +89,30 @@ body {
         color: #fff !important;
         border: 1px solid #fb6bb5 !important;
     }
-    &:hover span{
+    &:hover span {
         padding-left: 25px;
-        &::after{
+        &::after {
             opacity: 1;
             left: 0;
         }
     }
-    
+
     span {
         cursor: pointer;
         display: inline-block;
         position: relative;
-        transition:all 0.2s;
-        &::after{
-            content: '+';
+        transition: all 0.2s;
+        &::after {
+            content: "+";
             font-size: 20px;
             position: absolute;
             opacity: 0;
             top: -4px;
             left: -15px;
-            transition:all 0.2s;
+            transition: all 0.2s;
         }
-      }
-      
+    }
+
     &:focus {
         box-shadow: 0 0 0 0.2rem #d00b812e !important;
     }
@@ -126,20 +129,23 @@ body {
             ~ .custom-control-label {
                 &::before {
                     border-color: #cb007b;
-                    background-color: #cb007b;
+                    background-color: #ffffff;
+                }
+                &::after {
+                    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='9.898' height='7.014' viewBox='0 0 9.898 7.014'%3E%3Cpath id='Path_411' data-name='Path 411' d='M-8.169-3.752l5.362-5.362.826.826L-8.169-2.1l-3.71-3.71.826-.826Z' transform='translate(11.879 9.114)' fill='%23cb007b'/%3E%3C/svg%3E%0A") !important;
                 }
             }
         }
         &:focus {
             ~ .custom-control-label {
                 &::before {
-                    box-shadow: 0 0 0 0.2rem #cb007b1f;
+                    box-shadow: none;
                 }
             }
             &:not(:checked) {
                 ~ .custom-control-label {
                     &::before {
-                        border: 1px solid #cb007b1f;
+                        border: 1px solid #919191;
                     }
                 }
             }
@@ -207,7 +213,7 @@ select {
             box-shadow: 0 0 0 0.2rem #e4e4e4;
             border-color: #919191;
         }
-        &::placeholder{
+        &::placeholder {
             color: #919191;
         }
     }
