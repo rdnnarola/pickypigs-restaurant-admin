@@ -24,6 +24,18 @@ const ManageEasyAddDishComp = () => {
     const [restaurant, setRestaurant] = useState([]); 
     const [cooking, setCooking] = useState([]); 
 
+    const handleAllergy=(e)=>{
+        e.preventDefault();
+        if(alergy.indexOf(e.target.id) !== -1){
+            var Index = alergy.indexOf(e.target.id);
+            if(Index>-1){
+                setAlergy(alergy.filter(myallergy=>myallergy!==e.target.id));
+            }
+        }else{
+            setAlergy([...alergy,e.target.id]);
+        }
+    }
+
     const handleDietaryPreference=(e)=>{
         e.preventDefault();
         if(dietary.indexOf(e.target.id) !== -1){
@@ -139,6 +151,29 @@ const ManageEasyAddDishComp = () => {
                                 </tr>
                             </tfoot>
                         </table>
+                    </div>
+                </div>
+            </div>
+
+            <div className="row">
+                <div className="col-sm-12">
+                    <p>ALLERGEN INFORMATION</p>
+                    <div>
+                        {alergy_information&&alergy_information.map((data,index)=>{
+                            return(
+                                <React.Fragment key={index}>
+                                    <button  id= {data.name} 
+                                    onClick={handleAllergy} 
+                                    className={`btn filter-subwrapper ${alergy.indexOf(data.name)!==-1 && "active btn btn-primary"}`}
+                                    >
+                                        <div className="filter-icon">
+                                            <img src={data.image} className="img-fluid" />
+                                        </div>
+                                        <p  className="mt-1 text-dark text-link f-14">{data.name}</p>
+                                    </button>
+                                </React.Fragment>
+                            )
+                        })}
                     </div>
                 </div>
             </div>
