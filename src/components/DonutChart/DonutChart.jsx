@@ -3,6 +3,24 @@ import { PieChart, Pie, Sector, Cell, Tooltip } from 'recharts';
 import "./DonutChart.scss";
 
 
+ class CustomTooltip extends React.Component{
+ 
+    render() {
+      const { active } = this.props;
+  
+      if (active) {
+        const { payload, label } = this.props;
+        return (
+          <div className="bg-white p-2 rounded my_shadow">
+            <p className="mb-0 brandon-Medium">{`${payload[0].name} ${payload[0].value}%`}</p>
+          </div>
+        );
+      }
+  
+      return null;
+    }
+  };
+
 const DonutChart = (props) => {
     // const data = [{name: 'Group A', value: 10}, {name: 'Group B', value: 15},
     //               {name: 'Group C', value: 25}, {name: 'Group D', value: 50}];
@@ -32,7 +50,7 @@ const DonutChart = (props) => {
                             }
 
                         </Pie>
-                        <Tooltip />
+                        <Tooltip content={<CustomTooltip/>}/>
                     </PieChart>
                 </div>
                 <div className="chartdata-txt">

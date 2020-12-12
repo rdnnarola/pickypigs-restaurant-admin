@@ -4,16 +4,16 @@ import DonutChart from "../../components/DonutChart/DonutChart";
 import "./DashboardPage.scss";
 
 const DashboardPage = () => {
-    const data1 = [{ name: 'Nuts', value: 10 }, { name: 'Group B', value: 15 },
-    { name: 'Group C', value: 25 }, { name: 'Group D', value: 50 }];
+    const data1 = [{ name: 'Nuts', value: 10 }, { name: 'Milk', value: 15 },
+    { name: 'Celery', value: 25 }, { name: 'Other', value: 50 }];
     const COLORS1 = ['#d1b2f5', '#91eddb', '#e376b8', '#f8e3e9'];
 
-    const data2 = [{ name: 'Group A', value: 20 }, { name: 'Group B', value: 30 },
-    { name: 'Group C', value: 25 }, { name: 'Group D', value: 12 }, { name: 'Group E', value: 13 }];
+    const data2 = [{ name: 'Nuts', value: 20 }, { name: 'Milk', value: 30 },
+    { name: 'Celery', value: 25 }, { name: 'Other', value: 12 }, { name: 'Group E', value: 13 }];
     const COLORS2 = ['#91eddb', '#d44fa0', '#d6f5ef', '#9e6be1', '#eedc81'];
 
-    const data3 = [{ name: 'Group A', value: 10 }, { name: 'Group B', value: 15 },
-    { name: 'Group C', value: 25 }, { name: 'Group D', value: 50 }];
+    const data3 = [{ name: 'Nuts', value: 10 }, { name: 'Milk', value: 15 },
+    { name: 'Celery', value: 25 }, { name: 'Other', value: 50 }];
     const COLORS3 = ['#d1b2f5', '#91eddb', '#e376b8', '#f8e3e9'];
     return (
         <>

@@ -25,22 +25,22 @@ const AllDishesComponent=()=>{
                         <div className="col-sm-12 mt-4 mb-4">
                             <div className="d-flex justify-content-between align-items-center flex-wrap">
                                 <div className="left-formgroup d-flex align-items-center">
-                                    <div className="input-search form-group mr-4 mb-0">
-                                        <label>Search</label>
-                                        <input className="form-control" type="text" placeholder="Name" />
+                                    <div className="input-search form-group mr-4 mb-0 minwidth-260">
+                                        <label className="gray-txt f-15">Search</label>
+                                        <input className="form-control lightgray-border" type="text" placeholder="Name" />
                                     </div>
-                                    <div className="input-search form-group mr-4 mb-0">
-                                        <label>Category</label>
-                                        <select class="form-control" aria-label="Default select example">
+                                    <div className="custom-drodown form-group mr-4 mb-0">
+                                        <label className="gray-txt f-15">Category</label>
+                                        <select class="form-control lightgray-border selectdropdown-btn minwidth-260" aria-label="Default select example">
                                             <option selected>All</option>
                                             <option value="1">One</option>
                                             <option value="2">Two</option>
                                             <option value="3">Three</option>
                                         </select>
                                     </div>
-                                    <div className="input-search form-group mr-4 mb-0">
-                                        <label>Menu</label>
-                                        <select class="form-control" aria-label="Default select example">
+                                    <div className="custom-drodown form-group mr-4 mb-0">
+                                        <label className="gray-txt f-15">Menu</label>
+                                        <select class="form-control lightgray-border selectdropdown-btn minwidth-260" aria-label="Default select example">
                                             <option selected>All</option>
                                             <option value="1">One</option>
                                             <option value="2">Two</option>
@@ -63,6 +63,7 @@ const AllDishesComponent=()=>{
                                     <th className="brandon-Bold " scope="col">AVAILABLE</th>
                                     <th className="brandon-Bold " scope="col">TOTAL ITEMS</th>
                                     <th className="brandon-Bold " scope="col">LATEST MODIFIED</th>
+                                    <th className="brandon-Bold text-right" scope="col">Actions</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -77,7 +78,7 @@ const AllDishesComponent=()=>{
                                                 <td>{data.total_item}</td>
                                                 <td>{data.modified}</td>
                                                 <td className="pt-0 pb-0">
-                                                    <select class="form-select actiondropdown-btn" aria-label="Default select example">
+                                                    <select class="form-select actiondropdown-btn ml-auto" aria-label="Default select example">
                                                         <option selected>Action</option>
                                                         <option value="1">One</option>
                                                         <option value="2">Two</option>
