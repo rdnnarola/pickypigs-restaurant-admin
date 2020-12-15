@@ -1,0 +1,36 @@
+.RestaurantFeaturesComp-container{
+        margin-bottom: 32px;
+    .form-control-plaintext{
+        &:focus{
+            outline: none;
+        }
+    }
+    .form-control-inputtext{
+        display: block;
+        width: 100%;
+        padding: .375rem 0;
+        margin-bottom: 0;
+        font-size: 1rem;
+        line-height: 1.5;
+        color: #212529;
+        background-color: transparent;
+        border: solid transparent;
+        border-bottom:2px  solid black;
+        border-width: 1px 0;
+        &:focus{
+            outline: none;
+        }
+    }
+    .accordion-button .expand-button:after{
+        position: absolute;
+        right: 42px;
+        transform: translate(0, -80%) ;
+        content: '-';
+        font-size: 35px;
+    }
+    .accordion-button.collapsed .expand-button:after{
+        content: '+';
+        font-size: 25px;
+    
+    }
+}

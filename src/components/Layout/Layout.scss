@@ -182,6 +182,7 @@ body {
     }
     .custom-control-label {
         padding-left: 10px;
+        cursor: pointer;
     }
 }
 // Pink CheckBox Css end
@@ -336,4 +337,15 @@ select {
             }
         }
     }
+}
+.custom_edit_button {
+    border: none;
+    border-bottom: 2px solid #919191;
+    background: transparent;
+    color: #919191;
+    font-size: 14px;
+    font-weight: bold;
+    text-transform: uppercase;
+    padding: 0;
+    outline: none;
 }

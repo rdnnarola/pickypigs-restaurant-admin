@@ -1,4 +1,5 @@
 import React from "react";
+import AddEditMenuModalComp from "../AddEditMenuModalComp/AddEditMenuModalComp";
 import './ManageMenuComponent.scss';
 const datas1 = [
     { menu: "Breakfast", day: "Everyday", time: "7:30 AM - 10:00 AM ", available: "Yes", total_item: "13", modified: "2:45 PM" },
@@ -10,6 +11,7 @@ const datas1 = [
 
 const ManageMenuComponent = () => {
 
+    const [addMenuModalShow, setAddMenuModalShow] = React.useState(false);
 
     return (
         <>
@@ -28,12 +30,15 @@ const ManageMenuComponent = () => {
                             <div className="input-search form-group mr-4 mb-0">
                                 <input className="form-control" type="text" placeholder="Search" />
                             </div>
-                            <div class="custom-control custom-checkbox pink-checkbox">
-                                <input type="checkbox" class="custom-control-input" id="customCheck1" />
-                                <label class="custom-control-label" for="customCheck1">Show deleted menus</label>
+                            <div className="custom-control custom-checkbox pink-checkbox">
+                                <input type="checkbox" className="custom-control-input" id="customCheck1" />
+                                <label className="custom-control-label" htmlFor="customCheck1">Show deleted menus</label>
                             </div>
                         </div>
-                        <button className="btn pinkline-btn text-uppercase rounded-pill mr-3"><span> ADD MENU</span></button>
+                        <button className="btn pinkline-btn text-uppercase rounded-pill mr-3" onClick={() => setAddMenuModalShow(true)}><span> ADD MENU</span></button>
+                    </div>
+                    <div>
+                        <AddEditMenuModalComp  show={addMenuModalShow} onHide={() => setAddMenuModalShow(false)}/>
                     </div>
                 </div>
             </div>
@@ -66,8 +71,8 @@ const ManageMenuComponent = () => {
                                                 <td className="">{data.total_item}</td>
                                                 <td className="">{data.modified}</td>
                                                 <td className="pt-0 pb-0">
-                                                    <select class="form-select actiondropdown-btn" aria-label="Default select example">
-                                                        <option selected>Action</option>
+                                                    <select className="form-select actiondropdown-btn" aria-label="Default select example">
+                                                        <option defaultValue>Action</option>
                                                         <option value="1">One</option>
                                                         <option value="2">Two</option>
                                                         <option value="3">Three</option>

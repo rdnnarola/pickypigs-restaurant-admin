@@ -1,0 +1,99 @@
+.lastedit-txt {
+    font-weight: 400;
+    font-size: 15px;
+    span {
+        color: #919191;
+    }
+}
+
+span.recipe-msg {
+    background: #fff1f5;
+    padding: 9px 10px;
+    border: 1px solid #ffd5e2;
+    border-radius: 6px;
+    display: inline-block;
+    font-size: 15px;
+    color: #71154d;
+}
+
+.easydish-input {
+    &.dishname-input {
+        max-width: 360px;
+        flex: 0 0 360px;
+        width: 100%;
+    }
+    &.makes-input {
+        max-width: 180px;
+        flex: 0 0 180px;
+        width: 100%;
+        .makesserving-wrapper {
+            position: relative;
+            span {
+                &.serving-txt {
+                    position: absolute;
+                    top: 2px;
+                    right: 2px;
+                    display: flex;
+                    min-height: 36px;
+                    align-items: center;
+                    justify-content: center;
+                    font-size: 15px;
+                    color: #c8c7cc;
+                    padding-right: 10px;
+                    padding-left: 10px;
+                    background: #fff;
+                    &:before {
+                        content: "";
+                        position: absolute;
+                        left: 0;
+                        width: 1px;
+                        height: 25px;
+                        background: #c8c7cc;
+                    }
+                }
+            }
+        }
+    }
+    &.price-input {
+        max-width: 140px;
+        flex: 0 0 140px;
+        width: 100%;
+    }
+    &.gross-input {
+        max-width: 125px;
+        flex: 0 0 125px;
+        width: 100%;
+    }
+    .form-control {
+        border-color: #c8c7cc;
+        min-height: 40px;
+        border-radius: 6px;
+        font-size: 15px;
+        color: #232323;
+        &:focus {
+            box-shadow: 0 0 0 0.2rem #c8c7cc47;
+        }
+    }
+}
+
+.add-description-wrapper {
+    .add-description-btn {
+        max-width: 740px;
+        height: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 15px;
+        box-shadow: 0px 0px 10px 0px #0000000f;
+        background: #fff;
+        outline: none;
+        font-size: 14px;
+        color: #232323;
+        
+        span{
+            font-size: 24px;
+        }
+    }
+}

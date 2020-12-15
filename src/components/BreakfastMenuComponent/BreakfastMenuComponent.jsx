@@ -30,9 +30,9 @@ const BreakfastMenuComponent = () => {
             <div className="row">
                 <div className="col-sm-12 mt-4 mb-4">
                     <div className="d-flex justify-content-between align-items-center flex-wrap">
-                        <div class="custom-control custom-checkbox pink-checkbox">
-                            <input type="checkbox" class="custom-control-input" id="customCheck1" />
-                            <label class="custom-control-label" for="customCheck1">Show description</label>
+                        <div className="custom-control custom-checkbox pink-checkbox">
+                            <input type="checkbox" className="custom-control-input" id="customCheck1" />
+                            <label className="custom-control-label" htmlFor="customCheck1">Show description</label>
                         </div>
                         <button className="btn pinkline-btn text-uppercase rounded-pill">EDIT MENU</button>
                     </div>
@@ -61,9 +61,9 @@ const BreakfastMenuComponent = () => {
                                                 <td className="text-right">&#36; {data.stockcost}</td>
                                                 <td className="text-right">&#36; {data.saleprice}</td>
                                                 <td className="text-center">
-                                                    <div class="custom-control custom-checkbox pink-checkbox">
-                                                        <input type="checkbox" class="custom-control-input" id="customCheck0" />
-                                                        <label class="custom-control-label" for="customCheck0"></label>
+                                                    <div className="custom-control custom-checkbox pink-checkbox">
+                                                        <input type="checkbox" className="custom-control-input" id="customCheck0" />
+                                                        <label className="custom-control-label" htmlFor="customCheck0"></label>
                                                     </div>
                                                 </td>
                                             </tr>
@@ -98,9 +98,9 @@ const BreakfastMenuComponent = () => {
                                                 <td className="text-right">&#36; {data.stockcost}</td>
                                                 <td className="text-right">&#36; {data.saleprice}</td>
                                                 <td className="text-center">
-                                                    <div class="custom-control custom-checkbox pink-checkbox">
-                                                        <input type="checkbox" class="custom-control-input" id="customCheck0" />
-                                                        <label class="custom-control-label" for="customCheck0"></label>
+                                                    <div className="custom-control custom-checkbox pink-checkbox">
+                                                        <input type="checkbox" className="custom-control-input" id="customCheck0" />
+                                                        <label className="custom-control-label" htmlFor="customCheck0"></label>
                                                     </div>
                                                 </td>
                                             </tr>

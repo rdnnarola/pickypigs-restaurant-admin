@@ -6,7 +6,7 @@ const FirstOverlapedCardComp=(props)=>{
         <>
         <section className="first_overlap_container">
             <div className="row parent">
-                <div class=" shadow_1 child-1">
+                <div className=" shadow_1 child-1">
                     <h3>{props.heading}</h3>
                     <ul>
                         {props.detail&& props.detail.map((data,index)=>{
@@ -19,7 +19,7 @@ const FirstOverlapedCardComp=(props)=>{
                     </ul>
                 </div>
 
-                <div class="shadow_1 child-2 ">
+                <div className="shadow_1 child-2 ">
                     <img src={props.img}  className="img-fluid w-100" alt="icon"  />
                 </div>
             </div>

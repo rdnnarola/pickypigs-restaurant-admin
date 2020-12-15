@@ -31,8 +31,8 @@ const AllDishesComponent=()=>{
                                     </div>
                                     <div className="custom-drodown form-group mr-4 mb-0">
                                         <label className="gray-txt f-15">Category</label>
-                                        <select class="form-control lightgray-border selectdropdown-btn minwidth-260" aria-label="Default select example">
-                                            <option selected>All</option>
+                                        <select className="form-control lightgray-border selectdropdown-btn minwidth-260" aria-label="Default select example">
+                                            <option defaultValue>All</option>
                                             <option value="1">One</option>
                                             <option value="2">Two</option>
                                             <option value="3">Three</option>
@@ -40,8 +40,8 @@ const AllDishesComponent=()=>{
                                     </div>
                                     <div className="custom-drodown form-group mr-4 mb-0">
                                         <label className="gray-txt f-15">Menu</label>
-                                        <select class="form-control lightgray-border selectdropdown-btn minwidth-260" aria-label="Default select example">
-                                            <option selected>All</option>
+                                        <select className="form-control lightgray-border selectdropdown-btn minwidth-260" aria-label="Default select example">
+                                            <option defaultValue>All</option>
                                             <option value="1">One</option>
                                             <option value="2">Two</option>
                                             <option value="3">Three</option>
@@ -78,8 +78,8 @@ const AllDishesComponent=()=>{
                                                 <td>{data.total_item}</td>
                                                 <td>{data.modified}</td>
                                                 <td className="pt-0 pb-0">
-                                                    <select class="form-select actiondropdown-btn ml-auto" aria-label="Default select example">
-                                                        <option selected>Action</option>
+                                                    <select className="form-select actiondropdown-btn ml-auto" aria-label="Default select example">
+                                                        <option defaultValue>Action</option>
                                                         <option value="1">One</option>
                                                         <option value="2">Two</option>
                                                         <option value="3">Threeaaaaaaaaaaaa</option>

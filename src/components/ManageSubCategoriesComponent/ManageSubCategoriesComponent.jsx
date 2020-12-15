@@ -1,4 +1,5 @@
 import React from "react";
+import AddEditSubCategoryModalComp from "../AddEditSubCategoryModalComp/AddEditSubCategoryModalComp";
 import './ManageSubCategoriesComponent.scss';
 const datas1 = [
     { name: "Sub Category - 1", available: "Yes", total_item: "13", modified: "2:45 PM" },
@@ -10,6 +11,8 @@ const datas1 = [
 
 
 const ManageSubCategoriesComponent = () => {
+    const [addSubCategoryModalShow, setAddSubCategoryModalShow] = React.useState(false);
+
     return (
         <>
             <div className="row">
@@ -27,7 +30,10 @@ const ManageSubCategoriesComponent = () => {
                                 <input className="form-control" type="text" placeholder="Search" />
                             </div>
                         </div>
-                        <button className="btn pinkline-btn text-uppercase rounded-pill mr-3"><span>Add New</span></button>
+                        <button className="btn pinkline-btn text-uppercase rounded-pill mr-3" onClick={() => setAddSubCategoryModalShow(true)}><span>Add New</span></button>
+                    </div>
+                    <div>
+                        <AddEditSubCategoryModalComp show={addSubCategoryModalShow} onHide={() => setAddSubCategoryModalShow(false)}/>
                     </div>
                 </div>
             </div>
@@ -61,8 +67,8 @@ const ManageSubCategoriesComponent = () => {
                                         <td>{data.total_item}</td>
                                         <td>{data.modified}</td>
                                         <td className="pt-0 pb-0">
-                                            <select class="form-select actiondropdown-btn" aria-label="Default select example">
-                                                <option selected>Action</option>
+                                            <select className="form-select actiondropdown-btn" aria-label="Default select example">
+                                                <option defaultValue>Action</option>
                                                 <option value="1">One</option>
                                                 <option value="2">Two</option>
                                                 <option value="3">Three</option>

@@ -1,4 +1,5 @@
 import React from "react";
+import AddEditCategoryModalComp from "../AddEditCategoryModalComp/AddEditCategoryModalComp";
 import './ManageCategoriesComponent.scss';
 const datas1 = [
     { name: "Grilled", available: "Yes", total_item: "13", modified: "2:45 PM" },
@@ -13,6 +14,8 @@ const datas1 = [
 
 
 const ManageCategoriesComponent = () => {
+    const [addCategoryModalShow, setAddCategoryModalShow] = React.useState(false);
+
     return (
         <>
 
@@ -32,7 +35,10 @@ const ManageCategoriesComponent = () => {
                                 <input className="form-control" type="text" placeholder="Search" />
                             </div>
                         </div>
-                        <button className="btn pinkline-btn text-uppercase rounded-pill mr-3 w-170"><span>Add Category</span></button>
+                        <button className="btn pinkline-btn text-uppercase rounded-pill mr-3 w-170" onClick={() => setAddCategoryModalShow(true)}><span>Add Category</span></button>
+                    </div>
+                    <div>
+                        <AddEditCategoryModalComp show={addCategoryModalShow} onHide={() => setAddCategoryModalShow(false)}/>
                     </div>
                 </div>
             </div>
@@ -66,8 +72,8 @@ const ManageCategoriesComponent = () => {
                                         <td>{data.total_item}</td>
                                         <td>{data.modified}</td>
                                         <td className="pt-0 pb-0">
-                                            <select class="form-select actiondropdown-btn" aria-label="Default select example">
-                                                <option selected>Action</option>
+                                            <select className="form-select actiondropdown-btn" aria-label="Default select example">
+                                                <option defaultValue>Action</option>
                                                 <option value="1">One</option>
                                                 <option value="2">Two</option>
                                                 <option value="3">Three</option>

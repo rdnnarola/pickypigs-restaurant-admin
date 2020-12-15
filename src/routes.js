@@ -9,6 +9,8 @@ const ManageCategoriesComponent = lazy(() => import("./components/ManageCategori
 const ManageSubCategoriesComponent = lazy(() => import("./components/ManageSubCategoriesComponent/ManageSubCategoriesComponent"));
 const AllDishesComponent = lazy(() => import("./components/AllDishesComponent/AllDishesComponent"));
 const ManageEasyAddDishComp = lazy(() => import("./components/ManageEasyAddDishComp/ManageEasyAddDishComp"));
+const SingleAllergyDetailPage = lazy(() => import("./view/SingleAllergyDetailPage/SingleAllergyDetailPage"));
+const RestaurantDetailPage = lazy(() => import("./view/RestaurantDetailPage/RestaurantDetailPage"));
 
 // const Verify = lazy(() => import("./view/Signup/verify"));
 
@@ -20,6 +22,8 @@ export const routesCode = [
     { path: "/manage_subcategories", exact: true, component: ManageSubCategoriesComponent },
     { path: "/all_dishes", exact: true, component: AllDishesComponent },
     { path: "/manage_dishes", exact: true, component: ManageEasyAddDishComp },
+    { path: "/allergy_detail", exact: true, component: SingleAllergyDetailPage },
+    { path: "/restaurant_detail", exact: true, component: RestaurantDetailPage },
 
     // { path: "/verify/:token", exact: true, component: Verify }
     // { path: "*", component: 404Page },
