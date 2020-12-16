@@ -86,14 +86,115 @@ span.recipe-msg {
         padding: 10px 20px;
         border: none;
         border-radius: 15px;
-        box-shadow: 0px 0px 10px 0px #0000000f;
+        box-shadow: 0px 3px 10px 0px #0000000f;
         background: #fff;
         outline: none;
         font-size: 14px;
         color: #232323;
-        
-        span{
+
+        span {
             font-size: 24px;
         }
     }
+
+    .add-description-subwrapper {
+        max-width: 740px;
+        border-radius: 25px;
+        box-shadow: 0px 9px 24px 0px #0000000d;
+        overflow: hidden;
+
+        .add-description-head {
+            height: 76px;
+            padding: 30px 20px;
+            border-bottom: 1px solid #c8c7cc;
+            h6 {
+                font-size: 14px;
+            }
+            .add-description-inputbtn {
+                .cancel-btn {
+                    width: 120px;
+                    height: 40px;
+                    display: inline-flex;
+                    align-items: center;
+                    justify-content: center;
+                    border-radius: 25px;
+                    background: #fff;
+                    color: #919191;
+                    border: 1px solid transparent;
+                    text-transform: uppercase;
+                    font-size: 14px;
+                    outline: none;
+                    transition: ease 0.25s;
+                    &:hover {
+                        background: #919191;
+                        color: #fff;
+                    }
+                }
+                .save-btn {
+                    width: 120px;
+                    height: 40px;
+                    display: inline-flex;
+                    align-items: center;
+                    justify-content: center;
+                    border-radius: 25px;
+                    background: #fff;
+                    color: #919191;
+                    border: 1px solid #c8c7cc;
+                    text-transform: uppercase;
+                    font-size: 14px;
+                    outline: none;
+                    &:hover {
+                        background: #919191;
+                        color: #fff;
+                    }
+                }
+            }
+        }
+
+        textarea {
+            &.add-description-textarea {
+                border: none !important;
+                padding: 18px 24px;
+                border-bottom-left-radius: 15px;
+                border-bottom-right-radius: 15px;
+                box-shadow: none !important;
+                outline: none !important;
+            }
+        }
+    }
+}
+
+.add-dish-table {
+    table {
+        tr {
+            &.item-cost {
+                td {
+                    height: 86px;
+                    padding: 1.75rem 2rem;
+                }
+                .itemsplus-icon {
+                    color: #cb007b;
+                    font-size: 25px;
+                    font-weight: 100;
+                    line-height: 1;
+                }
+                .additems-btn {
+                    background: #fff;
+                    color: #cb007b;
+                    border: none;
+                    outline: none;
+                    text-decoration: none !important;
+                    border-bottom: 1px solid #cb007b;
+                    padding: 0px;
+                    margin-left: 5px;
+                    font-size: 15px;
+                }
+            }
+        }
+    }
+}
+
+.allergen-info{
+    font-size: 14px;
+    color: #2E482B;
 }

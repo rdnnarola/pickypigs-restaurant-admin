@@ -2,11 +2,11 @@ import React from "react";
 import AddEditCategoryModalComp from "../AddEditCategoryModalComp/AddEditCategoryModalComp";
 import './ManageCategoriesComponent.scss';
 const datas1 = [
-    { name: "Grilled", available: "Yes", total_item: "13", modified: "2:45 PM" },
-    { name: "Gyoza", available: "Yes", total_item: "27", modified: "Yesterday, 11:25 AM" },
-    { name: "Fries", available: "Yes", total_item: "32", modified: "5th Thur, Nov-2020" },
-    { name: "Co4ee", available: "Yes", total_item: "13", modified: "4th Wed, Nov-2020" },
-    { name: "Lemonades", available: "Yes", total_item: "27", modified: "Yesterday, 11:25 AM" },
+    { "name": "Grilled", "available": "Yes", "total_item": "13", "modified": "2:45 PM" },
+    { "name": "Gyoza", "available": "Yes", "total_item": "27", "modified": "Yesterday, 11:25 AM" },
+    { "name": "Fries", "available": "Yes", "total_item": "32", "modified": "5th Thur, Nov-2020" },
+    { "name": "Co4ee", "available": "Yes", "total_item": "13", "modified": "4th Wed, Nov-2020" },
+    { "name": "Lemonades", "available": "Yes", "total_item": "27", "modified": "Yesterday, 11:25 AM" },
 ]
 
 
@@ -26,6 +26,7 @@ const ManageCategoriesComponent = () => {
                     </div>
                 </div>
             </div>
+            
 
             <div className="row">
                 <div className="col-sm-12 mt-4 mb-4">

@@ -92,6 +92,9 @@ body {
 .minwidth-260{
     min-width: 260px !important;
 }
+.no_minwidth{
+    min-width: auto !important;
+}
 .my_shadow{
     box-shadow: 0px 1px 20px 0px #00000018;
 }

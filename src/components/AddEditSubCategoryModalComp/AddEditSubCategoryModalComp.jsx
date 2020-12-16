@@ -10,7 +10,7 @@ const AddEditSubCategoryModalComp=(props)=>{
                 <div>
                     <Modal
                         {...props}
-                        size="lg"
+                        size="md"
                         aria-labelledby="contained-modal-title-vcenter"
                         centered
                     >
@@ -22,12 +22,30 @@ const AddEditSubCategoryModalComp=(props)=>{
                             </Modal.Title>
                         </Modal.Header>
                         <Modal.Body>
-                            <h4>Centered Modal</h4>
-                            <p>
-                            Cras mattis consectetur purus sit amet fermentum. Cras justo odio,
-                            dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac
-                            consectetur ac, vestibulum at eros.
-                            </p>
+                            <div>
+                                <div className="form-group easydish-input dishname-input w-100">
+                                    <label className="gray-txt f-15">Sub Category Name</label>
+                                    <input className="form-control" type="text" placeholder="Enter here" />
+                                </div>
+                                <div className="custom-drodown form-group ">
+                                    <label className="gray-txt f-15">Category</label>
+                                    <select className="form-control lightgray-border selectdropdown-btn " aria-label="Default select example">
+                                        <option defaultValue>Select</option>
+                                        <option value="1">One</option>
+                                        <option value="2">Two</option>
+                                        <option value="3">Three</option>
+                                    </select>
+                                </div>
+                                <div className="custom-drodown form-group ">
+                                    <label className="gray-txt f-15">Menu</label>
+                                    <select className="form-control lightgray-border selectdropdown-btn " aria-label="Default select example">
+                                        <option defaultValue>Select</option>
+                                        <option value="1">One</option>
+                                        <option value="2">Two</option>
+                                        <option value="3">Three</option>
+                                    </select>
+                                </div>
+                            </div>
                         </Modal.Body>
                         <Modal.Footer>
                             <button onClick={props.onHide}>Close</button>

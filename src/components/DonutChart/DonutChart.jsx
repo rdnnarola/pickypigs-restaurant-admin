@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { PieChart, Pie, Sector, Cell, Tooltip } from 'recharts';
 import "./DonutChart.scss";
 
@@ -63,7 +64,7 @@ const DonutChart = (props) => {
                     <div className="d-flex justify-content-between ">
                         <p className="chartdata-count">Celery</p> <p className="chartdata-count">10 %</p>
                     </div>
-                    <button className="chartview-btn">View All</button>
+                    <Link to="/allergy_detail" className="chartview-btn" style={{textDecoration:"none"}}>View All</Link>
                 </div>
             </div>
         </>

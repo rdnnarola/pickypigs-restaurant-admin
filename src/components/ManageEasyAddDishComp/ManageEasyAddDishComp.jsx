@@ -17,6 +17,7 @@ const dietary_preference = ["Gluten Free", "Dairy Free", "Meat Lover", "Fodmap",
 const lifestyle_choice = ["Pregnant", "Vegan", "Halal", "Kosher", "Organic", "Locally Sourced"];
 const restaurant_features = ["Pet Friendly", "Child friendly", "Live music", "Outside sitting", "Disabled access", "Reservations needed", "Bring your own", "Large parties accepted", "Private dining room", "Table service", "Bar service", "Holding bar", "R20", "Take away"];
 const cooking_method = ["Grilling", "Steaming", "Barbecue", "Braising", "Roasting", "RBaking", "Frying", "Smoking"];
+const menu_options = ['Option 1', 'Option 2','Option 3', 'Option 4','Option 5', 'Option 6','Option 7', 'Option 8'];
 
 
 const ManageEasyAddDishComp = () => {
@@ -27,6 +28,11 @@ const ManageEasyAddDishComp = () => {
     const [cooking, setCooking] = useState([]);
     const [descModal, setDescModal] = useState(false);
     const [caloriesModalShow, setCaloriesModalShow] = React.useState(false);
+
+    const [menuValue, setMenuValue] = useState([])
+    const clearMenugy=()=>{
+        setMenuValue([])
+    }
 
     const handleAllergy = (e) => {
         e.preventDefault();
@@ -142,7 +148,8 @@ const ManageEasyAddDishComp = () => {
                         <div className="d-flex mb-4">
                             <div className="custom-drodown form-group mr-4 mb-0">
                                 <label className="gray-txt f-15">Category</label>
-                                <CheckBoxAutoCompleteComp />
+                                <CheckBoxAutoCompleteComp placeholder={"menu_options"} clearAll={clearMenugy} options={menu_options} value={menuValue} onChangeData={setMenuValue}/>
+
                             </div>
                             <div className="custom-drodown form-group mr-4 mb-0">
                                 <label className="gray-txt f-15">Category</label>
@@ -168,10 +175,10 @@ const ManageEasyAddDishComp = () => {
                             {descModal &&
                                 <div className="my_shadow mb-3 bg-white w-100 add-description-subwrapper" style={{ position: 'absolute', top: 0, left: 0, zIndex: 1 }}>
                                     <div className="d-flex add-description-head justify-content-between align-items-center">
-                                        <h6>Add Description</h6>
+                                        <h6 className="brandon-Bold text-uppercase">Add Description</h6>
                                         <div className="add-description-inputbtn">
-                                            <button onClick={handleDescModal}>Cancel</button>
-                                            <button>Save</button>
+                                            <button className="cancel-btn" onClick={handleDescModal}>Cancel</button>
+                                            <button className="save-btn ml-3">Save</button>
                                         </div>
                                     </div>
                                     <textarea className="form-control add-description-textarea" id="exampleFormControlTextarea1" rows="5" placeholder="Type Here" />
@@ -189,9 +196,9 @@ const ManageEasyAddDishComp = () => {
             </div>
 
 
-            <div className="row">
+            <div className="row mb-4 pb-2">
                 <div className="col-sm-12">
-                    <div className="table-responsive my_custom_table mb-4">
+                    <div className="table-responsive my_custom_table mb-4 add-dish-table">
                         <table className="table table-striped table-main">
                             <thead>
                                 <tr>
@@ -228,13 +235,18 @@ const ManageEasyAddDishComp = () => {
                                 })}
                             </tbody>
                             <tfoot>
-                                <tr>
-                                    <td><button>+ Click to add item</button></td>
+                                <tr className="item-cost">
+                                    <td>
+                                        <span className="d-flex align-items-center">
+                                            <span className="itemsplus-icon">+</span>
+                                            <button className="additems-btn">Click to add item</button>
+                                        </span>
+                                    </td>
                                     <td className=""></td>
                                     <td className=""></td>
                                     <td className=""></td>
                                     <td className="text-right">Estimated Cost</td>
-                                    <td className="text-right">$4.10</td>
+                                    <td className="text-right brandon-Bold">$4.10</td>
                                     <td className="text-center"></td>
                                 </tr>
                             </tfoot>
@@ -245,8 +257,8 @@ const ManageEasyAddDishComp = () => {
 
             <div className="row">
                 <div className="col-sm-12">
-                    <p>ALLERGEN INFORMATION</p>
-                    <div>
+                    <p className="text-uppercase allergen-info">ALLERGEN INFORMATION</p>
+                    <div class="d-flex flex-wrap">
                         {alergy_information && alergy_information.map((data, index) => {
                             return (
                                 <React.Fragment key={index}>

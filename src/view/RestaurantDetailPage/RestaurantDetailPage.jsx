@@ -6,6 +6,7 @@ import RestaurantInfoComp from "../../components/RestaurantInfoComp/RestaurantIn
 import RestaurantFeaturesComp from "../../components/RestaurantFeaturesComp/RestaurantFeaturesComp";
 import RestaurantUserDetailComp from "../../components/RestaurantUserDetailComp/RestaurantUserDetailComp";
 import RestaurantSecurityComp from "../../components/RestaurantSecurityComp/RestaurantSecurityComp";
+import RestaurantAddAddressComp from "../../components/RestaurantAddAddressComp/RestaurantAddAddressComp";
 
 
 const RestaurantDetailPage = () => {
@@ -68,6 +69,7 @@ const RestaurantDetailPage = () => {
                             {tabs.tab1 ?
                                 <section>
                                     <RestaurantInfoComp/>
+                                    <RestaurantAddAddressComp/>
                                     <RestaurantSecurityComp/>
                                     <RestaurantFeaturesComp/>
                                 </section>
