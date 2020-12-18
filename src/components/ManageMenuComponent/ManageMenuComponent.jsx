@@ -12,6 +12,12 @@ const datas1 = [
 const ManageMenuComponent = () => {
 
     const [addMenuModalShow, setAddMenuModalShow] = React.useState(false);
+    const [inputValue,setInputValue]=React.useState("");
+
+    const search=(datas)=>{
+        const columns=datas[0]&&Object.keys(datas[0]);
+        return datas.filter((data)=>columns.some((column)=>data[column].toString().toLowerCase().indexOf(inputValue.toLowerCase())>-1));
+    }
 
     return (
         <>
@@ -28,14 +34,14 @@ const ManageMenuComponent = () => {
                     <div className="d-flex justify-content-between align-items-center flex-wrap">
                         <div className="left-formgroup d-flex align-items-center">
                             <div className="input-search form-group mr-4 mb-0">
-                                <input className="form-control" type="text" placeholder="Search" />
+                                <input className="form-control" type="text" onChange={(e)=>{setInputValue(e.target.value)}} placeholder="Search" />
                             </div>
                             <div className="custom-control custom-checkbox pink-checkbox">
                                 <input type="checkbox" className="custom-control-input" id="customCheck1" />
                                 <label className="custom-control-label" htmlFor="customCheck1">Show deleted menus</label>
                             </div>
                         </div>
-                        <button className="btn pinkline-btn text-uppercase rounded-pill mr-3" onClick={() => setAddMenuModalShow(true)}><span> ADD MENU</span></button>
+                        <button className="btn pinkline-btn text-uppercase rounded-pill mr-3 f-15" onClick={() => setAddMenuModalShow(true)}><span className="add-icon"> ADD MENU</span></button>
                     </div>
                     <div>
                         <AddEditMenuModalComp  show={addMenuModalShow} onHide={() => setAddMenuModalShow(false)}/>
@@ -60,7 +66,7 @@ const ManageMenuComponent = () => {
                                 </tr>
                             </thead>
                             <tbody>
-                                {datas1 && datas1.map((data, index) => {
+                                {search(datas1) && search(datas1).map((data, index) => {
                                     return (
                                         <React.Fragment key={index}>
                                             <tr >

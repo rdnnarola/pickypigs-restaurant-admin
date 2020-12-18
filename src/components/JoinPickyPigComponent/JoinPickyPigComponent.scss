@@ -1,0 +1,40 @@
+.joinpicky-wrapper {
+    padding: 40px 50px;
+    background: #cb007b;
+    border-radius: 10px 40px;
+
+    .joinpicky-list-wrapper {
+        max-width: 450px;
+        position: relative;
+
+        .joinlist-head {
+            .joinlist-icon {
+                width: 48px;
+                height: 48px;
+                background: #ffd5e22e;
+                border-radius: 25px;
+            }
+            h4 {
+                font-size: 16px;
+            }
+        }
+
+        &:after {
+            content: "";
+            position: absolute;
+            width: 1px;
+            height: 100%;
+            background: #ffffff1f;
+            top: 0;
+            right: 0;
+            margin-right: -4rem;
+        }
+
+        &.features-list {
+            padding-left: 75px;
+            &:after{
+                display: none;
+            }
+        }
+    }
+}

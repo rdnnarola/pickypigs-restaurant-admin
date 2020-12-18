@@ -27,8 +27,8 @@ const RestaurantDetailPage = () => {
                                     <div className="userprofile-select">
                                         <img src={dishimg1} alt="" width="300px" className="img-fluid img-thumbnil" />
                                         <form>
-                                            <div class="form-group">
-                                                <input type="file" class="form-control-file userprofile-control" id="exampleFormControlFile1" />
+                                            <div className="form-group">
+                                                <input type="file" className="form-control-file userprofile-control" id="exampleFormControlFile1" />
                                             </div>
                                         </form>
                                     </div>
@@ -44,9 +44,9 @@ const RestaurantDetailPage = () => {
                             <button className="btn pinkline-btn text-uppercase rounded-pill mr-3" ><span> Edit Profile</span></button>
                         </div>
                     </div>
-                    <div className="p-5 my_shadow  ">
+                    <div className="my_shadow border-radius-15 about_section_style">
                         <div className="d-flex justify-content-between align-items-center">
-                            <h1>ABOUT</h1>
+                            <h5 className="about_header mb-0">ABOUT</h5>
                             <button className="custom_edit_button">EDIT</button>
                         </div>
                         <div className="row">
@@ -60,19 +60,19 @@ const RestaurantDetailPage = () => {
                         <div className="col-sm-12">
                             <div className="rstab-subhead d-flex justify-content-between align-items-center flex-wrap">
                                 <div className="rstab-lists d-flex flex-wrap align-items-center">
-                                    <button className={`rstab-btn mr-5 brandon-Bold text-uppercase ${tabs.tab1 ? 'active' : null}`} onClick={() => { setTabs({ tab1: true, tab2: false, tab3: false }) }}>Restaurant info </button>
-                                    <button className={`rstab-btn mr-5 brandon-Bold text-uppercase ${tabs.tab2 ? 'active' : null}`} onClick={() => { setTabs({ tab1: false, tab2: true, tab3: false }) }}>Restaurants</button>
-                                    <button className={`rstab-btn mr-5 brandon-Bold text-uppercase ${tabs.tab3 ? 'active' : null}`} onClick={() => { setTabs({ tab1: false, tab2: false, tab3: true }) }}>Subscription</button>
+                                    <button className={`rstab-btn mr-5 brandon-regular ${tabs.tab1 ? 'active' : null}`} onClick={() => { setTabs({ tab1: true, tab2: false, tab3: false }) }}>Restaurant info </button>
+                                    <button className={`rstab-btn mr-5 brandon-regular ${tabs.tab2 ? 'active' : null}`} onClick={() => { setTabs({ tab1: false, tab2: true, tab3: false }) }}>Restaurants</button>
+                                    <button className={`rstab-btn mr-5 brandon-regular ${tabs.tab3 ? 'active' : null}`} onClick={() => { setTabs({ tab1: false, tab2: false, tab3: true }) }}>Subscription</button>
                                 </div>
                             </div>
                             <br></br>
                             {tabs.tab1 ?
-                                <section>
+                                <div>
                                     <RestaurantInfoComp/>
                                     <RestaurantAddAddressComp/>
                                     <RestaurantSecurityComp/>
                                     <RestaurantFeaturesComp/>
-                                </section>
+                                </div>
                                 :
                             tabs.tab2 ?
                                 <section><RestaurantUserDetailComp/></section>

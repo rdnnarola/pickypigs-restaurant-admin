@@ -27,7 +27,6 @@ const ManageEasyAddDishComp = () => {
     const [restaurant, setRestaurant] = useState([]);
     const [cooking, setCooking] = useState([]);
     const [descModal, setDescModal] = useState(false);
-    const [caloriesModalShow, setCaloriesModalShow] = React.useState(false);
 
     const [menuValue, setMenuValue] = useState([])
     const clearMenugy=()=>{
@@ -119,7 +118,7 @@ const ManageEasyAddDishComp = () => {
                                 <label className="gray-txt f-15">Makes</label>
                                 <div className="makesserving-wrapper">
                                     <input className="form-control" type="text" placeholder="Search" />
-                                    <span class="serving-txt">Serving</span>
+                                    <span className="serving-txt">Serving</span>
                                 </div>
                             </div>
                             <div className="col-md-3 form-group mb-0 easydish-input price-input">
@@ -188,8 +187,8 @@ const ManageEasyAddDishComp = () => {
 
                     </div>
                     <div className="col-md-3">
-                        <div class="mb-3">
-                            <input class="form-control" type="file" id="formFile" />
+                        <div className="mb-3">
+                            <input className="form-control" type="file" id="formFile" />
                         </div>
                     </div>
                 </div>
@@ -258,7 +257,7 @@ const ManageEasyAddDishComp = () => {
             <div className="row">
                 <div className="col-sm-12">
                     <p className="text-uppercase allergen-info">ALLERGEN INFORMATION</p>
-                    <div class="d-flex flex-wrap">
+                    <div className="d-flex flex-wrap">
                         {alergy_information && alergy_information.map((data, index) => {
                             return (
                                 <React.Fragment key={index}>
@@ -342,8 +341,7 @@ const ManageEasyAddDishComp = () => {
             </div>
             <div className="row">
                 <div className="col-sm-12">
-                    <button onClick={() => setCaloriesModalShow(true)}>Calories & Macros</button>
-                    <CaloriesMacrosModalComp show={caloriesModalShow} onHide={() => setCaloriesModalShow(false)} />
+                    <CaloriesMacrosModalComp />
                 </div>
             </div>
             <div className="row">

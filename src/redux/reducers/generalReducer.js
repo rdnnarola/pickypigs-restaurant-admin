@@ -14,10 +14,12 @@ const initialState = {
           isLoading :true,
         };
       case "GET_LOGIN_SUCCESS":
+        localStorage.setItem('access_token',payload.token);
         return {
           ...state,
           isLoading:false,
           login_Data:payload,
+
         };   
       case "GET_LOGIN_FAILURE":
         return {
@@ -25,7 +27,14 @@ const initialState = {
           isLoading:false,
           errorMessage:payload
         };
-      
+
+      //logout user
+      case "LOGOUT_USER_REQUEST":
+        localStorage.removeItem('access_token');
+         return{
+            ...state,
+            isLoading:false,
+         } 
 
       default:
         return state;

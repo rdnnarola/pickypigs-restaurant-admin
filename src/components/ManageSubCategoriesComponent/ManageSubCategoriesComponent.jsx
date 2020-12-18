@@ -30,7 +30,7 @@ const ManageSubCategoriesComponent = () => {
                                 <input className="form-control" type="text" placeholder="Search" />
                             </div>
                         </div>
-                        <button className="btn pinkline-btn text-uppercase rounded-pill mr-3" onClick={() => setAddSubCategoryModalShow(true)}><span>Add New</span></button>
+                        <button className="btn pinkline-btn text-uppercase rounded-pill mr-3 f-15" onClick={() => setAddSubCategoryModalShow(true)}><span className="add-icon">Add New</span></button>
                     </div>
                     <div>
                         <AddEditSubCategoryModalComp show={addSubCategoryModalShow} onHide={() => setAddSubCategoryModalShow(false)}/>

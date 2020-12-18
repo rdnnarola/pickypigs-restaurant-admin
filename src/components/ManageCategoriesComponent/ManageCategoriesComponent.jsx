@@ -36,7 +36,7 @@ const ManageCategoriesComponent = () => {
                                 <input className="form-control" type="text" placeholder="Search" />
                             </div>
                         </div>
-                        <button className="btn pinkline-btn text-uppercase rounded-pill mr-3 w-170" onClick={() => setAddCategoryModalShow(true)}><span>Add Category</span></button>
+                        <button className="btn pinkline-btn text-uppercase rounded-pill mr-3 w-170 f-15" onClick={() => setAddCategoryModalShow(true)}><span className="add-icon">Add Category</span></button>
                     </div>
                     <div>
                         <AddEditCategoryModalComp show={addCategoryModalShow} onHide={() => setAddCategoryModalShow(false)}/>
@@ -75,9 +75,8 @@ const ManageCategoriesComponent = () => {
                                         <td className="pt-0 pb-0">
                                             <select className="form-select actiondropdown-btn" aria-label="Default select example">
                                                 <option defaultValue>Action</option>
-                                                <option value="1">One</option>
-                                                <option value="2">Two</option>
-                                                <option value="3">Three</option>
+                                                <option value="1">Update</option>
+                                                <option value="2">Delete</option>
                                             </select>
                                         </td>
                                     </tr>

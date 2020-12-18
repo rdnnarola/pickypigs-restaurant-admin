@@ -28,10 +28,10 @@ const RestaurantFeaturesComp=()=>{
         <>
         <section className="RestaurantFeaturesComp-container">
             <div>
-                <div class="p-4 my_shadow accordion" id="accordionExample">
-                    <div class="accordion-item">
-                        <div class="d-flex justify-content-between align-items-center accordion-header" id="headingOne">
-                            <div class="w-100 accordion-button  " type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                <div className="p-4 my_shadow accordion" id="accordionExample">
+                    <div className="accordion-item">
+                        <div className="d-flex justify-content-between align-items-center accordion-header" id="headingOne">
+                            <div className="w-100 accordion-button  " type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
                                 <div className="">
                                     <h5 className="brandon-Medium mb-0">RESTAURANT FEATURES</h5>
                                 </div>
@@ -42,14 +42,14 @@ const RestaurantFeaturesComp=()=>{
                                 ?
                                 <button className="custom_edit_button mr-5" onClick={()=>{setEditForm(false)}}>EDIT</button>
                                 :
-                                <div  class="d-flex justify-content-between align-items-center mr-5">
+                                <div  className="d-flex justify-content-between align-items-center mr-5">
                                     <button onClick={handleCancleEdit}>cancle</button>
                                     <button>Save</button>
                                 </div>
                                 }
                         </div>
-                        <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-                            <div class="accordion-body ">
+                        <div id="collapseOne" className="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                            <div className="accordion-body ">
                                 <div className="row">
                                     <div className="col-sm-12">
                                         <hr className="gray-hr"></hr>

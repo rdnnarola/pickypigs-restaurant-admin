@@ -34,7 +34,7 @@ const BreakfastMenuComponent = () => {
                             <input type="checkbox" className="custom-control-input" id="customCheck1" />
                             <label className="custom-control-label" htmlFor="customCheck1">Show description</label>
                         </div>
-                        <button className="btn pinkline-btn text-uppercase rounded-pill">EDIT MENU</button>
+                        <button className="btn pinkline-btn text-uppercase rounded-pill f-15"><span className="edit-icon">EDIT MENU</span></button>
                     </div>
                 </div>
             </div>
@@ -116,7 +116,7 @@ const BreakfastMenuComponent = () => {
                 <div className="col-sm-12">
                     <div className="table-responsive my_custom_table mb-4">
                         <table className="table table-striped table-main">
-                            <thead className="accordion-toggle collapsed mt-2 ml-5 " id="accordion1" data-toggle="collapse" data-parent="#accordion1" href="#collapseOne">
+                            <thead >
                                 <tr>
                                     <th className="brandon-Bold" scope="col">GYOZA</th>
                                     <th className="brandon-Bold text-center" scope="col">ALLERGIES</th>
@@ -127,7 +127,7 @@ const BreakfastMenuComponent = () => {
                             </thead>
                             <tbody>
                                 <React.Fragment>
-                                    <tr >
+                                    <tr className="accordion-toggle collapsed mt-2 ml-5 " id="accordion1" data-toggle="collapse" data-parent="#accordion1" href="#collapseOne">
                                         <td scope="col">SUB CATEGORY - 1</td>
                                         <td scope="col"></td>
                                         <td scope="col"></td>
@@ -139,6 +139,31 @@ const BreakfastMenuComponent = () => {
                                         return (
                                             <React.Fragment key={index}>
                                                 <tr id="collapseOne" className="collapse in p-3 hide-table-padding">
+                                                    <td>{data.item}</td>
+                                                    <td className="text-center">{data.allergy === "" ? "-" : data.allergy}</td>
+                                                    <td className="text-right">&#36; {data.stockcost}</td>
+                                                    <td className="text-right">&#36; {data.saleprice}</td>
+                                                    <td className="text-center">
+                                                        <input type="checkbox" />
+                                                    </td>
+                                                </tr>
+                                            </React.Fragment>
+                                        )
+                                    })}
+                                </React.Fragment>
+                                <React.Fragment>
+                                    <tr className="bg-primary accordion-toggle collapsed mt-2 ml-5 " id="accordion2" data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo">
+                                        <td scope="col">SUB CATEGORY - 1</td>
+                                        <td scope="col"></td>
+                                        <td scope="col"></td>
+                                        <td scope="col"> </td>
+                                        <td scope="col" className="expand-button"></td>
+                                    </tr>
+
+                                    {datas3 && datas3.map((data, index) => {
+                                        return (
+                                            <React.Fragment key={index}>
+                                                <tr id="collapseTwo" className="collapse in p-3 hide-table-padding">
                                                     <td>{data.item}</td>
                                                     <td className="text-center">{data.allergy === "" ? "-" : data.allergy}</td>
                                                     <td className="text-right">&#36; {data.stockcost}</td>

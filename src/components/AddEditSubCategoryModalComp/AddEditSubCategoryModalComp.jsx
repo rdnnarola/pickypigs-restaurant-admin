@@ -1,10 +1,10 @@
 import React from "react";
 import './AddEditSubCategoryModalComp.scss';
-import { Modal,Button} from 'react-bootstrap';
+import { Modal, Button } from 'react-bootstrap';
 
 
-const AddEditSubCategoryModalComp=(props)=>{
-    return(
+const AddEditSubCategoryModalComp = (props) => {
+    return (
         <>
             <section >
                 <div>
@@ -12,24 +12,23 @@ const AddEditSubCategoryModalComp=(props)=>{
                         {...props}
                         size="md"
                         aria-labelledby="contained-modal-title-vcenter"
+                        className="mainmodal-wrapper"
                         centered
                     >
-                        <Modal.Header closeButton>
-                            <Modal.Title id="contained-modal-title-vcenter">
-                                <div className="brandon-Medium">
-                                    <h4>Add / Edit Sub Category</h4>
-                                </div>
+                        <Modal.Header className="align-items-center">
+                            <Modal.Title className="brandon-Medium" id="contained-modal-title-vcenter">
+                                Add / Edit Sub Category
                             </Modal.Title>
                         </Modal.Header>
                         <Modal.Body>
                             <div>
-                                <div className="form-group easydish-input dishname-input w-100">
+                                <div className="form-group easydish-input dishname-input w-100 custom-lightinputbox">
                                     <label className="gray-txt f-15">Sub Category Name</label>
-                                    <input className="form-control" type="text" placeholder="Enter here" />
+                                    <input className="form-control f-15" type="text" placeholder="Enter here" />
                                 </div>
                                 <div className="custom-drodown form-group ">
                                     <label className="gray-txt f-15">Category</label>
-                                    <select className="form-control lightgray-border selectdropdown-btn " aria-label="Default select example">
+                                    <select className="form-control lightgray-border selectdropdown-btn gray-txt f-15" aria-label="Default select example">
                                         <option defaultValue>Select</option>
                                         <option value="1">One</option>
                                         <option value="2">Two</option>
@@ -38,7 +37,7 @@ const AddEditSubCategoryModalComp=(props)=>{
                                 </div>
                                 <div className="custom-drodown form-group ">
                                     <label className="gray-txt f-15">Menu</label>
-                                    <select className="form-control lightgray-border selectdropdown-btn " aria-label="Default select example">
+                                    <select className="form-control lightgray-border selectdropdown-btn gray-txt f-15" aria-label="Default select example">
                                         <option defaultValue>Select</option>
                                         <option value="1">One</option>
                                         <option value="2">Two</option>
@@ -47,14 +46,14 @@ const AddEditSubCategoryModalComp=(props)=>{
                                 </div>
                             </div>
                         </Modal.Body>
-                        <Modal.Footer>
-                            <button onClick={props.onHide}>Close</button>
-                            <button className="btn pinkline-btn text-uppercase rounded-pill" onClick={props.onHide}>Add</button>
+                        <Modal.Footer className="border-top-0 pt-0">
+                            <button className="btn lightgraynoline-btn text-uppercase border-radius-25 min-width-120" onClick={props.onHide}>Close</button>
+                            <button className="btn pinkline-btn text-uppercase border-radius-25 min-width-120" onClick={props.onHide}>Add</button>
                         </Modal.Footer>
                     </Modal>
                 </div>
             </section>
-            
+
         </>
     )
 }
