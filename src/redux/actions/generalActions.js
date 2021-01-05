@@ -1,4 +1,5 @@
 import Axios from './axios';
+import axios from "axios";
 import {setAlert} from './alertAction';
 
 
@@ -17,6 +18,8 @@ export const getLogin=(data,history)=>{
           dispatch({type:"GET_LOGIN_SUCCESS",payload:response.data});
           await dispatch(setAlert('LogIn Success', 'success'));
           history.push('/');
+          const token = localStorage.getItem("access_token");
+          if (token) axios.defaults.headers.common = { "x-access-token": token };
       }
       catch(error){
         dispatch({type:"GET_LOGIN_FAILURE",payload:error});
@@ -58,6 +61,29 @@ export const forgotPassword=(data)=>{
       catch(error){
         dispatch({type:"FORGOT_PASSWORD_FAILURE",payload:error});
         await dispatch(setAlert('Something Went Wrong', 'error'));
+      }
+  }
+};
+
+export const resetPassword=(data,history)=>{
+  console.log(data);
+  return async(dispatch)=>{
+      try{
+          dispatch({type:"RESET_PASSWORD_REQUEST"});
+          let config= {
+              headers:{
+               "Content-Type":"application/json"
+               }
+           }
+          let dataURL=`/auth/reset_password`
+          let response = await Axios.post(dataURL,JSON.stringify(data),config );
+          dispatch({type:"RESET_PASSWORD_SUCCESS",payload:response.data});
+          await dispatch(setAlert(`${response.data.message}`, 'success'));
+          history.push('/');
+      }
+      catch(error){
+        dispatch({type:"RESET_PASSWORD_FAILURE",payload:error});
+        await dispatch(setAlert(`${error.response.data.message}`, 'error'));
       }
   }
 };
