@@ -1,6 +1,5 @@
 import axios from "axios";
 
-const token = localStorage.getItem("access_token");
 
 if (window.location.host === "localhost:3000") {
   axios.defaults.baseURL = "https://pickypigsapi.herokuapp.com";
@@ -10,5 +9,7 @@ if (window.location.host === "localhost:3000") {
   axios.defaults.baseURL = "https://pickypigsapi.herokuapp.com";
 }
 
+const token = localStorage.getItem("access_token");
 if (token) axios.defaults.headers.common = { "x-access-token": token };
+
 export default axios;

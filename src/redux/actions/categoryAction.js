@@ -1,6 +1,8 @@
 import Axios from './axios';
+import axios from "axios";
 import {setAlert} from './alertAction';
-
+const token = localStorage.getItem("access_token");
+if (token) axios.defaults.headers.common = { "x-access-token": token };
 export const getAllCategoryData=(data)=>{
     return async(dispatch)=>{
         try{
