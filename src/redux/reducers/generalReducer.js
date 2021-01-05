@@ -3,6 +3,8 @@
 const initialState = {
   isLoading : false,
   errorMessage:'',
+  login_Data:{},
+  forgot_Password:{}
   };
   
   const generalReducer = (state = initialState, { type, payload }) => {
@@ -19,8 +21,8 @@ const initialState = {
           ...state,
           isLoading:false,
           login_Data:payload,
-
         };   
+
       case "GET_LOGIN_FAILURE":
         return {
           ...state,
@@ -35,6 +37,29 @@ const initialState = {
             ...state,
             isLoading:false,
          } 
+
+      //hhhhhh
+      case "FORGOT_PASSWORD_REQUEST":    
+          return {
+            ...state,
+            isLoading :true,
+          };
+
+      case "FORGOT_PASSWORD_SUCCESS":
+        // localStorage.setItem('access_token',payload.token);
+        return {
+          ...state,
+          isLoading:false,
+          forgot_Password:payload,
+        };    
+
+      case "FORGOT_PASSWORD_FAILURE":
+        return {
+          ...state,
+          isLoading:false,
+          forgot_Password:{},
+          errorMessage:payload
+        };     
 
       default:
         return state;

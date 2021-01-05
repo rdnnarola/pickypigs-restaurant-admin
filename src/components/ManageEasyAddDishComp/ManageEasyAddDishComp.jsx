@@ -147,7 +147,7 @@ const ManageEasyAddDishComp = () => {
                         <div className="d-flex mb-4">
                             <div className="custom-drodown form-group mr-4 mb-0">
                                 <label className="gray-txt f-15">Category</label>
-                                <CheckBoxAutoCompleteComp placeholder={"menu_options"} clearAll={clearMenugy} options={menu_options} value={menuValue} onChangeData={setMenuValue}/>
+                                <CheckBoxAutoCompleteComp className="minwidth-260" placeholder={"menu_options"} clearAll={clearMenugy} options={menu_options} value={menuValue} onChangeData={setMenuValue}/>
 
                             </div>
                             <div className="custom-drodown form-group mr-4 mb-0">

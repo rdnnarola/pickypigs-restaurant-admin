@@ -2,7 +2,7 @@
   .rightlist-subwrapper {
     position: absolute;
     right: 0;
-    top: 60px;
+    // top: 60px;
     z-index: 1;
     max-width: 520px;
     border-radius: 10px;
@@ -31,6 +31,9 @@
           }
         }
       }
+    }
+    &.works-list{
+      padding: 50px 60px;
     }
   }
   .rightimg-subwrapper {

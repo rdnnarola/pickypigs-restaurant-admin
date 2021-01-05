@@ -4,21 +4,26 @@ import './App.css';
 import Routes from './routes';
 import PrivateRoute from './PrivateRoute';
 import PublicRoute from './PublicRoute';
-
+import AlertSystemPage from './view/AlertSystemPage/AlertSystemPage'
 const LoginPage = lazy(() => import('./view/LoginPage/LoginPage'));
 // const Signup = lazy(() => import('./view/Signup/Signup'));
 
 function App() {
   return (
+    <React.Fragment>
     <Suspense fallback={<div></div>}>
-      <Switch>
-        <Route exact path="/" render={(props) => <LoginPage {...props} />} />
+        <div>
+          <AlertSystemPage/>
+        </div>
+      <Switch> 
+        <Route exact path="/login" render={(props) => <LoginPage {...props} />} />
         {/* <Route exact path="/signup" render={(props) => <Signup {...props} />} /> */}
         <PrivateRoute>
           <Routes />
         </PrivateRoute>
       </Switch>
     </Suspense>
+    </React.Fragment>
   );
 }
 

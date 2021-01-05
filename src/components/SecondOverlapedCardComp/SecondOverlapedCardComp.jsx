@@ -5,12 +5,12 @@ import './SecondOverlapedCardComp.scss';
 const SecondOverlapedCardComp = (props) => {
     return (
         <>
-            <div className="row workus-wrapper position-relative justify-content-start">
+            <div className="row workus-wrapper position-relative justify-content-start align-items-center">
                 <div className="rightimg-subwrapper">
                     <img src={props.img} className="img-fluid w-100" alt="icon" />
                 </div>
 
-                <div className="shadow_1 rightlist-subwrapper">
+                <div className={`shadow_1 rightlist-subwrapper ${props.workslist}`}>
                     <h3 className="brandon-Bold mb-3">{props.heading}</h3>
                     <ul className="list-wrapper pl-0 mb-0">
                         {props.detail && props.detail.map((data, index) => {
@@ -26,7 +26,6 @@ const SecondOverlapedCardComp = (props) => {
             <br />  
             <br />
             <br />  
-            <br />
             <br />
         </>
     )

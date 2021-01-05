@@ -2,14 +2,14 @@ import React from "react";
 import DonutChart from "../../components/DonutChart/DonutChart";
 import "./SingleAllergyDetailPage.scss";
 const datas1 = [
-    {item: "Nuts", qty: "87"},
-    {item: "Milk", qty: "47"},
-    {item: "Celery", qty: "10"},
-    {item: "Fish", qty: "20"},
-    {item: "Peanuts", qty: "10"},
-    {item: "Lupin", qty: "40"},
-    {item: "Sesame", qty: "7"},
-    {item: "Mustard", qty: "3"},
+    { item: "Nuts", qty: "87" },
+    { item: "Milk", qty: "47" },
+    { item: "Celery", qty: "10" },
+    { item: "Fish", qty: "20" },
+    { item: "Peanuts", qty: "10" },
+    { item: "Lupin", qty: "40" },
+    { item: "Sesame", qty: "7" },
+    { item: "Mustard", qty: "3" },
 ]
 
 const SingleAllergyDetailPage = () => {
@@ -32,15 +32,11 @@ const SingleAllergyDetailPage = () => {
                     <p className="text-uppercase sub-heading brandon-Medium mt-5">ALLERGIES</p>
                 </div>
             </div>
-            <div className="row mt-3 pt-2 mb-5 pb-2">
-                <div className="col-sm-12 col-md-12 col-lg-3 col-xl-3">
-                    <div className="row">
-                        <div className="col-md-12">
-                            <DonutChart data={data1} COLORS={COLORS1} />
-                        </div>
-                    </div>
+            <div className="row mt-3 pt-2 mb-5 pb-2 dashboard1-wrapper">
+                <div className="col-sm-12 col-md-12 col-lg-3 col-xl-3 dashboard1-left">
+                    <DonutChart data={data1} COLORS={COLORS1} />
                 </div>
-                <div className="col-sm-12 col-md-12 col-lg-9 col-xl-9">
+                <div className="col-sm-12 col-md-12 col-lg-9 col-xl-9 dashboard1-right">
                     <div className="table-responsive my_custom_table mb-4">
                         <table className="table table-striped table-main">
                             <thead>

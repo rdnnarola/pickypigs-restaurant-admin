@@ -1,0 +1,10 @@
+.dashboard1-wrapper{
+    .dashboard1-left{
+        max-width: 330px;
+        flex:0 0 330px
+    }
+    .dashboard1-right{
+        max-width: calc(100% - 330px);
+        flex:0 0 calc(100% - 330px)
+    }
+}

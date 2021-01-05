@@ -4,8 +4,8 @@ import './FirstOverlapedCardComp.scss';
 const FirstOverlapedCardComp = (props) => {
     return (
         <>
-            <div className="row workus-wrapper position-relative justify-content-end">
-                <div className="shadow_1 leftlist-subwrapper">
+            <div className="row workus-wrapper position-relative justify-content-end align-items-center">
+                <div className={`shadow_1 leftlist-subwrapper ${props.workslist}`}>
                     <h3 className="brandon-Bold mb-3">{props.heading}</h3>
                     <ul className="list-wrapper pl-0 mb-0">
                         {props.detail && props.detail.map((data, index) => {
@@ -25,8 +25,7 @@ const FirstOverlapedCardComp = (props) => {
             <br />  
             <br />
             <br />   
-            <br />  
-            <br />     
+            <br />      
         </>
     )
 }

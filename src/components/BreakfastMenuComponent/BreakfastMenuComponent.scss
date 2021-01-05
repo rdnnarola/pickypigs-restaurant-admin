@@ -1,27 +1,112 @@
-.my_custom_table{
-    tr.hide-table-padding td {
-        // padding: 0 !important;
-        // height: 0px !important;
-      }
-      
-      .expand-button {
-          position: relative;
-      }
-      
-      .accordion-toggle .expand-button:after
-      {
-        position: absolute;
-        left:.75rem;
-        top: 50%;
-        left: 50%;
-        transform: translate(0, -50%);
-        content: '-';
-        font-size: 35px;
-      }
-      .accordion-toggle.collapsed .expand-button:after
-      {
-        content: '+';
-        font-size: 25px;
+.my_custom_table {
+  tr.hide-table-padding td {
+    // padding: 0 !important;
+    // height: 0px !important;
+  }
 
+  .expand-button {
+    position: relative;
+  }
+
+  .accordion-toggle .expand-button:after {
+    position: absolute;
+    content: "";
+    background-image: url('../../assets/images/down-arrow.svg');
+    background-size: cover;
+    background-position: center;
+    width: 15px;
+    height: 8px;
+    transition: ease 0.25s;
+    margin-left: 15px;
+    transform: rotate(180deg);
+  }
+  .accordion-toggle.collapsed .expand-button:after {
+    transform: rotate(0deg);
+  }
+
+  &.table-accordion {
+    table {
+      &.table-main {
+        thead {
+          tr {
+            background-color: #ffffff !important;
+            th {
+              &:nth-child(1) {
+                width: 22%;
+                max-width: 22%;
+              }
+              &:nth-child(2),
+              &:nth-child(3),
+              &:nth-child(4),
+              &:nth-child(5) {
+                max-width: 21%;
+                width: 21%;
+              }
+            }
+          }
+        }
+        tbody {
+          border-bottom: 15px solid #FFF;
+          .table-accordion-open {
+            td {
+              padding: 15px 20px 0px 20px;
+              .sub-category-data {
+                border: 1px solid #c8c7cc;
+                border-radius: 10px;
+                overflow: hidden;
+                table {
+                  thead {
+                    tr {
+                      th {
+                        height: 60px;
+                        font-size: 15px;
+                        padding: 0.75rem;
+                        border-bottom: 0px solid #dee2e6;
+                        &:nth-child(1) {
+                          width: 22%;
+                          max-width: 22%;
+                        }
+                        &:nth-child(2),
+                        &:nth-child(3),
+                        &:nth-child(4),
+                        &:nth-child(5) {
+                          max-width: 21%;
+                          width: 21%;
+                        }
+                      }
+                    }
+                  }
+
+                  tr {
+                    &:nth-of-type(odd) {
+                      background-color: #fafafa;
+                    }
+                    &:nth-of-type(even) {
+                      background-color: #ffffff;
+                    }
+                    &.accordion-toggle {
+                      background-color: #ffffff;
+                    }
+                    td {
+                      &:nth-child(1) {
+                        width: 22%;
+                        max-width: 22%;
+                      }
+                      &:nth-child(2),
+                      &:nth-child(3),
+                      &:nth-child(4),
+                      &:nth-child(5) {
+                        max-width: 21%;
+                        width: 21%;
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
       }
+    }
+  }
 }

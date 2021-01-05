@@ -22,7 +22,7 @@ const Header = () => {
         <>
             <nav className="navbar fixed-top navbar-expand-lg navbar-light bg-white navbar-admin p-0">
                 <div className="logo-navbar d-flex align-items-center justify-content-center position-relative">
-                    <NavLink className="navbar-brand mr-0 outline-none" to="/dashboard">
+                    <NavLink className="navbar-brand mr-0 outline-none" to="/">
                         <img src={logo} className="img-fluid" alt="icon" />
                     </NavLink>
                 </div>
@@ -33,7 +33,7 @@ const Header = () => {
                 <div className="collapse navbar-collapse nav-collapse  align-items-center" id="navbarSupportedContent">
                     <ul className="navbar-nav mr-auto">
                         <li className="nav-item ">
-                            <NavLink className="nav-link" to="/dashboard">DASHBOARD <span className="sr-only">(current)</span></NavLink>
+                            <NavLink className="nav-link" to="/">DASHBOARD <span className="sr-only">(current)</span></NavLink>
                         </li>
                         <li className="nav-item">
                             <NavLink className="nav-link" to="/reports">REPORTS</NavLink>

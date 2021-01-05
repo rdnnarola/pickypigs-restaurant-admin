@@ -1,5 +1,119 @@
-.heading-content{
+.gradient-bg{
+    background: linear-gradient(220deg, #EFFFF7 -70%, white 100%);
+}
+.heading-content {
     font-size: 48px;
-    color: #2E482B;
+    color: #2e482b;
     text-transform: uppercase;
+}
+
+.waiting-section {
+    padding: 70px 0px;
+    .waiting-wrapper {
+        border-radius: 90px;
+        padding: 35px 0px !important;
+        min-height: 180px;
+        .waiting-container {
+            max-width: 910px !important;
+            .what-waiting-wrapper {
+                max-width: 500px;
+                h4 {
+                    font-size: 26px;
+                }
+            }
+        }
+    }
+}
+
+.plan-section {
+    .plan-wrapper {
+        border-top-left-radius: 20px;
+        border-bottom-left-radius: 20px;
+        border-top-right-radius: 10px;
+        border-bottom-right-radius: 10px;
+        box-shadow: 0px 7px 20px 0px #00000014;
+        height: 920px;
+        position: relative;
+        z-index: 1;
+
+        .plan-details-wrapper {
+            max-width: 315px;
+            flex: 0 0 315px;
+            .plan-details {
+                background: #ffd5e2;
+                .plan-head {
+                    min-height: 120px;
+                    border-bottom: 1px solid #0000001a;
+                    h5 {
+                        font-size: 20px;
+                    }
+                }
+                .plan-listing {
+                    ul {
+                        padding-left: 0;
+                        list-style: none;
+                        li {
+                            padding: 0px 40px 0px 50px;
+                            min-height: 70px;
+                            border-bottom: 1px solid #0000001a;
+                        }
+                    }
+                    .plan-footer {
+                        min-height: 170px;
+                        .price-label {
+                            font-size: 20px;
+                            span {
+                                &.month-label {
+                                    font-size: 15px;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            &.plan-month-wrapper {
+                max-width: 300px;
+                flex: 0 0 300px;
+                &.active-view {
+                    max-width: 270px;
+                    flex: 0 0 270px;
+                    margin-top: -20px;
+                    border: 1px solid #cb007b;
+                    border-radius: 10px;
+                    overflow: hidden;
+                    box-shadow: 0px 6px 18px 0px #00000017;
+                    position: relative;
+                    z-index: 11;
+
+                    .plan-head {
+                        min-height: 140px;
+                        background: #CB007B;
+                        h5, p {
+                            color: #fff !important;
+                        }
+                    }
+                    .plan-footer {
+                        min-height: 191px;
+                    }
+                }
+            }
+            &:nth-child(1) {
+                .plan-details {
+                    border-top-left-radius: 20px;
+                    border-bottom-left-radius: 20px;
+                }
+            }
+            &:nth-child(4) {
+                .plan-details {
+                    border-top-right-radius: 10px;
+                    border-bottom-right-radius: 10px;
+                }
+            }
+        }
+    }
+}
+
+.patternimg-wrapper {
+    max-width: 710px;
+    margin: -6.5% auto 0px;
 }

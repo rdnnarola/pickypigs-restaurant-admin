@@ -56,13 +56,11 @@ body {
 .brandon-Bold {
     font-family: "Brandon Text" !important;
 }
-.bg-pink{
+.bg-pink {
     background-color: #cb007b !important;
-
 }
-.bg-light-pink{
+.bg-light-pink {
     background-color: #fabed1 !important;
-
 }
 .pink-txt {
     color: #cb007b !important;
@@ -70,6 +68,10 @@ body {
 
 .gray-txt {
     color: #919191 !important;
+}
+
+.darkgray-txt {
+    color: #666666 !important;
 }
 
 .outline-none {
@@ -84,12 +86,13 @@ body {
     width: 170px;
 }
 
-.gray-hr {
-    border-color: #c8c7cc;
-}
-
+.gray-hr,
 .lightgray-border {
     border-color: #c8c7cc !important;
+}
+
+.light-white-hr {
+    border-color: #ffffff30;
 }
 
 .f-16 {
@@ -98,6 +101,14 @@ body {
 
 .f-15 {
     font-size: 15px !important;
+}
+
+.f-14 {
+    font-size: 14px !important;
+}
+
+.f-13 {
+    font-size: 13px !important;
 }
 
 .minwidth-260 {
@@ -121,11 +132,20 @@ body {
 .min-width-120 {
     min-width: 120px;
 }
-.top-0{
+.top-0 {
     top: 0;
 }
-.right-0{
+.right-0 {
     right: 0;
+}
+.line-height-1_75 {
+    line-height: 1.75;
+}
+
+@media screen and (min-width: 1200px) {
+    .container {
+        max-width: 1170px !important;
+    }
 }
 
 // Gray line Button  Css start
@@ -135,6 +155,7 @@ body {
     height: 40px;
     min-width: 120px;
     transition: all 0.2s;
+    font-size: 15px !important;
 
     &:hover {
         background: #c8c7cc;
@@ -151,12 +172,47 @@ body {
 // Gray line Button  Css end
 
 // Pink Button css start
+.pinkbg-btn {
+    border: 1px solid #cb007b !important;
+    color: #fff !important;
+    height: 40px;
+    min-width: 160px;
+    transition: all 0.2s;
+    background: linear-gradient(2deg, #cb007b, #ff75ba);
+
+    &:hover {
+        background: #fff;
+        color: #cb007b !important;
+        border: 1px solid #fb6bb5 !important;
+    }
+
+    &:focus {
+        box-shadow: 0 0 0 0.2rem #d00b812e !important;
+    }
+    &.min-width-120 {
+        min-width: 120px;
+    }
+    &.min-width-270 {
+        min-width: 270px;
+    }
+    &.min-height-50 {
+        height: 50px;
+    }
+    &.shadow-light {
+        box-shadow: 0px 7px 10px 0px #0000000f;
+    }
+}
+
+// Pink Button css end
+
+// Pink Button css start
 .pinkline-btn {
     border: 1px solid #cb007b !important;
     color: #cb007b !important;
     height: 40px;
     min-width: 160px;
     transition: all 0.2s;
+    font-size: 15px;
 
     .add-icon {
         cursor: pointer;
@@ -215,6 +271,12 @@ body {
     &.min-width-120 {
         min-width: 120px;
     }
+    &.min-height-50 {
+        height: 50px;
+    }
+    &.min-width-170 {
+        width: 170px;
+    }
 }
 
 // Pink Button css end
@@ -232,6 +294,11 @@ body {
                 }
                 &::after {
                     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='9.898' height='7.014' viewBox='0 0 9.898 7.014'%3E%3Cpath id='Path_411' data-name='Path 411' d='M-8.169-3.752l5.362-5.362.826.826L-8.169-2.1l-3.71-3.71.826-.826Z' transform='translate(11.879 9.114)' fill='%23cb007b'/%3E%3C/svg%3E%0A") !important;
+                }
+            }
+            ~ .gray-control-label {
+                &::before {
+                    border-color: #919191;
                 }
             }
         }
@@ -267,39 +334,68 @@ body {
 }
 // Pink CheckBox Css end
 
-// select actiondropdown css start
-select {
-    &.actiondropdown-btn {
-        border: 1px solid #c8c7cc;
-        border-radius: 6px;
-        width: 120px;
-        max-height: 40px;
-        padding: 0px 25px 0px 10px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        min-height: 40px;
-        appearance: none;
-        outline: none;
-        background-image: url("../../assets/images/down-arrow.svg");
-        background-position: 85%;
-        background-size: 10px;
-        background-repeat: no-repeat;
+// actiondropdown css start
+.actiondropdown-btn {
+    border: 1px solid #c8c7cc !important;
+    border-radius: 6px !important;
+    width: 120px;
+    max-height: 40px;
+    padding: 0px 25px 0px 10px !important;
+    display: flex !important;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 40px;
+    -webkit-appearance: none !important;
+    appearance: none !important;
+    outline: none;
+    background-image: url("../../assets/images/down-arrow.svg");
+    background-position: 85%;
+    background-size: 10px;
+    background-repeat: no-repeat;
+    background-color: #fff !important;
+    color: #232323 !important;
+    box-shadow: none !important;
 
-        // &:after{
-        //     content: '';
-        //     position: absolute;
-        //     width: 10px;
-        //     height: 10px;
-        //     right: 0;
-        //     background-image:url('../../assets/images/down-arrow.svg') ;
-        //     background-position: center;
-        //     background-size: cover;
-        // }
+    &:after {
+        display: none !important;
+    }
+
+    &:hover {
+        background-color: #ffd5e2 !important;
+        color: #cb007b !important;
+        border-color: #ffd5e2 !important;
+    }
+
+    // &:after{
+    //     content: '';
+    //     position: absolute;
+    //     width: 10px;
+    //     height: 10px;
+    //     right: 0;
+    //     background-image:url('../../assets/images/down-arrow.svg') ;
+    //     background-position: center;
+    //     background-size: cover;
+    // }
+}
+
+.actiondropdown-list {
+    min-width: 120px !important;
+    li {
+        button {
+            &.dropdown-item {
+                padding: 0.25rem 0.85rem;
+                outline: none;
+                &:hover,
+                &:active {
+                    background: #ffd5e2;
+                    color: #cb007b;
+                }
+            }
+        }
     }
 }
 
-// select actiondropdown css end
+// actiondropdown css end
 
 // selectdropdown-btn css start
 select {
@@ -476,6 +572,7 @@ select {
                     h5 {
                         font-size: 16px;
                         word-break: break-all;
+                        text-transform: uppercase;
                     }
                 }
                 .custom_edit_button {
@@ -501,16 +598,34 @@ select {
                 background-position: center;
                 background-repeat: no-repeat;
                 transition: ease 0.25s;
-            }
-            .accordion-button.collapsed .expand-button:after {
                 transform: rotate(180deg);
             }
-            .accordion-collapse{
-                h5{
-                    &.accordion-label{
-                        font-size: 13px;
-                        color: #919191;
-                        text-transform: uppercase;
+            .accordion-button.collapsed .expand-button:after {
+                transform: rotate(0deg);
+            }
+            .accordion-collapse {
+                .rs-info-block {
+                    min-height: 60px;
+                    h5 {
+                        &.accordion-label {
+                            font-size: 13px;
+                            color: #919191;
+                            text-transform: uppercase;
+                        }
+                    }
+                    .form-control-inputtext {
+                        padding-left: 0;
+                        border: none;
+                        border-bottom: 1px solid #c8c7cc;
+                        border-radius: 0px;
+                        box-shadow: none;
+                        outline: none;
+                        &:focus {
+                            border-bottom: 1px solid#CB007B;
+                        }
+                    }
+                    .form-control-plaintext {
+                        outline: none;
                     }
                 }
             }
@@ -518,3 +633,133 @@ select {
     }
 }
 // Accordion Css end
+
+// Custom Time Picker CSS Start
+.custom-timepicker {
+    .MuiFormControl-root {
+        .MuiOutlinedInput-root {
+            border-radius: 6px;
+            .MuiOutlinedInput-input {
+                padding: 10.5px 14px;
+                color: #919191;
+                font-size: 15px;
+                &::placeholder {
+                    color: #919191;
+                    opacity: 1;
+                    font-weight: normal;
+                }
+            }
+            .MuiOutlinedInput-notchedOutline {
+                border-color: #c8c7cc !important;
+            }
+            &.Mui-focus {
+                .MuiOutlinedInput-notchedOutline {
+                    box-shadow: 0 0 0 0.2rem #e4e4e4 !important;
+                    border-color: #919191 !important;
+                }
+            }
+            .MuiInputAdornment-root {
+                .MuiIconButton-root {
+                    outline: none;
+                    padding: 4px;
+                    color: #919191;
+                }
+            }
+        }
+    }
+}
+// Custom Time Picker CSS End
+
+// TimePicker Modal Custom Design CSS Start
+.MuiDialog-root {
+    .MuiDialog-container {
+        .MuiPickersModal-dialogRoot {
+            .MuiPickersModal-dialog {
+                .MuiPickersBasePicker-container {
+                    .MuiPickersToolbar-toolbar {
+                        background-color: #ffd5e2;
+                        .MuiPickersTimePickerToolbar-hourMinuteLabel {
+                            .MuiPickersToolbarButton-toolbarBtn {
+                                outline: none;
+                                span {
+                                    &.MuiButton-label {
+                                        .MuiPickersToolbarText-toolbarTxt {
+                                            color: #cb007b73;
+                                        }
+                                        .MuiPickersToolbarText-toolbarBtnSelected {
+                                            color: #cb007b;
+                                        }
+                                    }
+                                }
+                            }
+                            .MuiPickersToolbarText-toolbarTxt {
+                                color: #cb007b73;
+                            }
+                        }
+                        .MuiPickersTimePickerToolbar-ampmSelection {
+                            .MuiPickersToolbarButton-toolbarBtn {
+                                outline: none;
+                                span.MuiButton-label {
+                                    .MuiPickersToolbarText-toolbarTxt {
+                                        color: #cb007b73;
+                                    }
+                                    .MuiPickersToolbarText-toolbarBtnSelected {
+                                        color: #cb007b;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    .MuiPickersBasePicker-pickerView {
+                        .MuiPickersClock-container {
+                            .MuiPickersClock-clock {
+                                background-color: #ffd5e2;
+                                .MuiPickersClock-pin {
+                                    background-color: #cb007b;
+                                }
+                                .MuiPickersClockPointer-pointer {
+                                    background-color: #cb007b;
+                                }
+                                .MuiPickersClockPointer-thumb {
+                                    border-color: #cb007b;
+                                }
+                                .MuiPickersClockPointer-noPoint {
+                                    background-color: #cb007b;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            .MuiDialogActions-root {
+                .MuiButton-textPrimary {
+                    &:nth-child(1) {
+                        color: #919191;
+                        outline: none !important;
+                        border: 1px solid transparent;
+                        border-radius: 25px;
+                        transition: ease 0.25s;
+                        &:hover{
+                            border: 1px solid #919191;
+                            background-color:#919191;
+                            color: #fff;
+                        }
+                    }
+                    &:nth-child(2) {
+                        color: #cb007b;
+                        outline: none !important;
+                        border: 1px solid #cb007b;
+                        border-radius: 25px;
+                        transition: ease 0.25s;
+                        &:hover{
+                            border: 1px solid #cb007b;
+                            background-color:#cb007b;
+                            color: #fff;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+// TimePicker Modal Custom Design CSS End
