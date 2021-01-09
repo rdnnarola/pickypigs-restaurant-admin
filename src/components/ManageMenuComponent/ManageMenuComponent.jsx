@@ -26,9 +26,9 @@ const ManageMenuComponent = () => {
         return datas.filter((data)=>columns.some((column)=>data[column].toString().toLowerCase().indexOf(inputValue.toLowerCase())>-1));
     }
 
-    // useEffect(()=>{
-    //     dispatch(getAllMenuData({search:inputValue,start:0,type:"menu",delete:showDeleted?"1":'0'}));
-    // },[dispatch,inputValue,showDeleted]);
+    useEffect(()=>{
+        dispatch(getAllMenuData({search:inputValue,start:0,type:"menu",delete:showDeleted?"1":'0'}));
+    },[dispatch,inputValue,showDeleted]);
 
     let menuData = useSelector((state)=>{
         return state.menu
