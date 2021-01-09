@@ -5,6 +5,7 @@ import AddEditSubMenuModalComp from "../AddEditSubMenuModalComp/AddEditSubMenuMo
 import DeleteSubMenuModalComp from "../DeleteSubMenuModalComp/DeleteSubMenuModalComp";
 import moment from "moment";
 import './ManageSubMenuComponent.scss';
+import daycalculate from "../FormikExample/daycalculate";
 
 
 
@@ -47,6 +48,7 @@ const ManageSubMenuComponent = () => {
                 <div className="col-sm-12">
                     <div className="page-heading brandon-Medium">
                         <h4>Manage Sub Menus</h4>
+                        {/* {newArray.sort().join()} */}
                     </div>
                 </div>
             </div>
@@ -108,7 +110,7 @@ const ManageSubMenuComponent = () => {
                                                         <React.Fragment key={index}>
                                                             <tr >
                                                                 <td className="text-capitalize">{data.name}</td>
-                                                                <td className="">{data.day?data.day:"-"}</td>
+                                                                <td className="">{data.availability?daycalculate(data.availability):"-"}</td>
                                                                 <td className="">{tConv24(data.timeFrom)} - {tConv24(data.timeTo)}</td>
                                                                 <td className="">{data.available?"Yes":"No"}</td>
                                                                 <td className="">{data.dishesDetail.length}</td>

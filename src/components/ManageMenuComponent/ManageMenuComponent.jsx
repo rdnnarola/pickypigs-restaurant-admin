@@ -5,9 +5,13 @@ import AddEditMenuModalComp from "../AddEditMenuModalComp/AddEditMenuModalComp";
 import DeleteMenuModalComp from "../DeleteMenuModalComp/DeleteMenuModalComp";
 import moment from "moment";
 import './ManageMenuComponent.scss';
-import FormikExample from "../FormikExample/FormikExample";
+import daycalculate from "../FormikExample/daycalculate";
 
-
+const datas1 = [
+    { menu: "Breakfast", day: "Everyday", time: "7:30 AM - 10:00 AM ", available: "Yes", total_item: "13", modified: "2:45 PM" },
+    { menu: "Lunch", day: "Everyday", time: "12:30 PM - 2:00 PM", available: "Yes", total_item: "27", modified: "Yesterday, 11:25 AM" },
+    { menu: "Dinner", day: "Everyday", time: "7:30 PM - 10:00 PM ", available: "Yes", total_item: "32", modified: "2:45 PM" },
+]
 
 const ManageMenuComponent = () => {
     const dispatch=useDispatch();
@@ -17,14 +21,14 @@ const ManageMenuComponent = () => {
     const [menuId,setMenuId]=useState('')
     const [showDeleted, setShowDeleted] = useState(false);
 
-    // const search=(datas)=>{
-    //     const columns=datas[0]&&Object.keys(datas[0]);
-    //     return datas.filter((data)=>columns.some((column)=>data[column].toString().toLowerCase().indexOf(inputValue.toLowerCase())>-1));
-    // }
+    const search=(datas)=>{
+        const columns=datas[0]&&Object.keys(datas[0]);
+        return datas.filter((data)=>columns.some((column)=>data[column].toString().toLowerCase().indexOf(inputValue.toLowerCase())>-1));
+    }
 
-    useEffect(()=>{
-        dispatch(getAllMenuData({search:inputValue,start:0,type:"menu",delete:showDeleted?"1":'0'}));
-    },[dispatch,inputValue,showDeleted]);
+    // useEffect(()=>{
+    //     dispatch(getAllMenuData({search:inputValue,start:0,type:"menu",delete:showDeleted?"1":'0'}));
+    // },[dispatch,inputValue,showDeleted]);
 
     let menuData = useSelector((state)=>{
         return state.menu
@@ -109,7 +113,7 @@ const ManageMenuComponent = () => {
                                                         <React.Fragment key={index}>
                                                             <tr >
                                                                 <td className="text-capitalize">{data.name}</td>
-                                                                <td className="">{data.day?data.day:"-"}</td>
+                                                                <td className="">{data.availability?daycalculate(data.availability):"-"}</td>
                                                                 <td className="">{tConv24(data.timeFrom)} - {tConv24(data.timeTo)}</td>
                                                                 <td className="">{data.available?"Yes":"No"}</td>
                                                                 <td className="">{data.dishesDetail.length}</td>
@@ -140,6 +144,7 @@ const ManageMenuComponent = () => {
                                     </React.Fragment>
                                 }
                             </tbody>
+                            
                         </table>
                         <DeleteMenuModalComp show={deleteModalShow} onHide={() => setDeleteModalShow(false)} selectedid={menuId}/>
 

@@ -86,6 +86,7 @@ const AddEditMenuModalComp = (props) => {
         <>
             <Modal
                 {...props}
+                backdrop="static"
                 size="md"
                 aria-labelledby="contained-modal-title-vcenter"
                 centered

@@ -85,6 +85,7 @@ const SignUpModalComp=(props)=>{
             <div >
                 <Modal className="signup-modal"
                 {...props}
+                backdrop="static"
                 size="lg"
                 aria-labelledby="contained-modal-title-vcenter"
                 centered

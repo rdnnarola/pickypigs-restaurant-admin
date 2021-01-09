@@ -18,6 +18,7 @@ const DeleteSubMenuModalComp = (props) => {
                 <div>
                     <Modal
                         {...props}
+                        backdrop="static"
                         size="md"
                         aria-labelledby="contained-modal-title-vcenter"
                         className="mainmodal-wrapper"
