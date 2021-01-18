@@ -1,4 +1,5 @@
 import Axios from './axios';
+import {setAlert} from './alertAction';
 
 
 export const getAllSubMenuData=(data)=>{
@@ -17,6 +18,11 @@ export const getAllSubMenuData=(data)=>{
         }
         catch(error){
           dispatch({type:"GET_ALLSUBMENU_FAILURE",payload:error});
+          if (error.response) {
+            dispatch(setAlert(`${error.response.data.message}`, 'error'));
+          } else {
+            dispatch(setAlert('Something wwnt wrong!', 'error'));
+          }
         }
     }
   };
@@ -34,10 +40,16 @@ export const getAllSubMenuData=(data)=>{
             let response = await Axios.post(dataURL,JSON.stringify(data),config );
             dispatch({type:"ADD_SUBMENU_SUCCESS",payload:response.data});
             await dispatch(getAllSubMenuData());
+            await dispatch(setAlert('Sub-Menu Added Successfuly', 'success'));
 
         }
         catch(error){
           dispatch({type:"ADD_SUBMENU_FAILURE",payload:error});
+          if (error.response) {
+            dispatch(setAlert(`${error.response.data.message}`, 'error'));
+          } else {
+            dispatch(setAlert('Something wwnt wrong!', 'error'));
+          }
         }
     }
   };
@@ -81,10 +93,16 @@ export const updateSubMenuForm = (key , value) => {
             let response = await Axios.put(dataURL,JSON.stringify(data),config );
             dispatch({type:"UPDATE_SUBMENU_SUCCESS",payload:response.data});
             await dispatch(getAllSubMenuData());
+            await dispatch(setAlert('Sub-Menu Updated Successfuly', 'success'));
 
         }
         catch(error){
           dispatch({type:"UPDATE_SUBMENU_FAILURE",payload:error});
+          if (error.response) {
+            dispatch(setAlert(`${error.response.data.message}`, 'error'));
+          } else {
+            dispatch(setAlert('Something wwnt wrong!', 'error'));
+          }
         }
     }
   };
@@ -96,9 +114,16 @@ export const updateSubMenuForm = (key , value) => {
             let response = await Axios.delete(`/restaurant_admin/menus/${subMenuId}`)
             dispatch({type:"DELETE_SUBMENU_SUCCESS",payload:response.data});
             await dispatch(getAllSubMenuData());
+            await dispatch(setAlert('sub-Menu Deleted Successfuly', 'warning'));
+
         }
         catch(error){
             dispatch({type:"DELETE_SUBMENU_FAILURE",payload:error});
+            if (error.response) {
+              dispatch(setAlert(`${error.response.data.message}`, 'error'));
+            } else {
+              dispatch(setAlert('Something wwnt wrong!', 'error'));
+            }
         }
     }
   }

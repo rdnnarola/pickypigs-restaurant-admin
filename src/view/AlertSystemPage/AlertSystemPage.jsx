@@ -49,7 +49,6 @@ const AlertSystemPage=()=>{
                                         <Snackbar  anchorOrigin={{ vertical: 'top', horizontal: 'right'}} open={open}  onClose={handleClose}  key={"top" + "right"}>
                                             <Alert severity={alert.color}> {alert.message}  </Alert>                                               
                                         </Snackbar>
-                                        
                                     </React.Fragment>
                                     
                                 )

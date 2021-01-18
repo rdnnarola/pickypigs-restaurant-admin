@@ -1,15 +1,55 @@
-import React from "react";
+import React,{useState,useEffect} from "react";
+import { useDispatch,useSelector } from "react-redux";
+import { getAllDishesData } from "../../redux/actions/dishesAction";
+import moment from "moment";
 import './AllDishesComponent.scss';
-const datas1=[
-            {name:"Sub Category - 1",available:"Yes",total_item:"13",modified:"2:45 PM"},
-            {name:"Sub Category - 2",available:"Yes",total_item:"27",modified:"Yesterday, 11:25 AM"},
-            {name:"Sub Category - 3",available:"Yes",total_item:"32",modified:"5th Thur, Nov-2020"},
-            {name:"Sub Category - 4",available:"Yes",total_item:"13",modified:"4th Wed, Nov-2020"},
-            {name:"Sub Category - 5",available:"Yes",total_item:"27",modified:"Yesterday, 11:25 AM"},
-        ]
-               
+import { getAllMenuData } from "../../redux/actions/menuAction";
+import { getCategoryListOfSelectedMenu} from "../../redux/actions/categoryAction";
+
+    
 
 const AllDishesComponent=()=>{
+    const dispatch=useDispatch();
+    const [inputValue,setInputValue]=useState("");
+    const [menuId,setmenuId]=useState("");
+    const [categoryId,setCategoryId]=useState("");
+
+    useEffect(()=>{
+        dispatch(getAllDishesData({search:inputValue,start:0,category:categoryId,menu:menuId}));
+    },[dispatch,inputValue,menuId,categoryId]);
+
+    useEffect(()=>{
+        dispatch(getAllMenuData({start:0}));
+    },[]);
+
+    let dishesData = useSelector((state)=>{
+        return state.dishes
+    });
+    let {isLoading,dishes_Data}=dishesData;
+
+    let menuData = useSelector((state)=>{
+        return state.menu.menu_Data
+    });
+    let categoryData = useSelector((state)=>{
+        return state.category.selectedMenuCategoryList
+    });
+    const handleMenuChange=(value)=>{
+        setmenuId(value);
+        setCategoryId('')
+        if(value !==""){
+            dispatch(getCategoryListOfSelectedMenu({menuId:[value]}));
+        }else{
+            dispatch(getCategoryListOfSelectedMenu({menuId:[]}));
+        }
+    }
+   
+    const handleCategoryChange=(e)=>{
+        if(menuId !==""){
+            setCategoryId(e.target.value)
+        }else{
+            setCategoryId('')
+        }
+    }
     return(
         <>
             <section >
@@ -27,24 +67,32 @@ const AllDishesComponent=()=>{
                                 <div className="left-formgroup d-flex align-items-center">
                                     <div className="input-search form-group mr-4 mb-0 minwidth-260">
                                         <label className="gray-txt f-15">Search</label>
-                                        <input className="form-control lightgray-border" type="text" placeholder="Name" />
+                                        <input className="form-control lightgray-border" type="text"  onChange={(e)=>{setInputValue(e.target.value)}} placeholder="Name" />
                                     </div>
                                     <div className="custom-drodown form-group mr-4 mb-0">
                                         <label className="gray-txt f-15">Category</label>
-                                        <select className="form-control lightgray-border selectdropdown-btn minwidth-260" aria-label="Default select example">
-                                            <option defaultValue>All</option>
-                                            <option value="1">One</option>
-                                            <option value="2">Two</option>
-                                            <option value="3">Three</option>
+                                        <select onChange={handleCategoryChange} className="form-control lightgray-border selectdropdown-btn minwidth-260" aria-label="Default select example">
+                                            <option value="">Select</option>
+                                            {categoryData && categoryData.map((data, index)=>{
+                                                return(
+                                                    <React.Fragment key={index}>
+                                                        <option value={data._id}>{data.name}</option>
+                                                    </React.Fragment>
+                                                )
+                                            })}
                                         </select>
                                     </div>
                                     <div className="custom-drodown form-group mr-4 mb-0">
                                         <label className="gray-txt f-15">Menu</label>
-                                        <select className="form-control lightgray-border selectdropdown-btn minwidth-260" aria-label="Default select example">
-                                            <option defaultValue>All</option>
-                                            <option value="1">One</option>
-                                            <option value="2">Two</option>
-                                            <option value="3">Three</option>
+                                        <select onChange={(e)=>{handleMenuChange(e.target.value)}} className="form-control lightgray-border selectdropdown-btn minwidth-260" aria-label="Default select example">
+                                                <option value="">Select</option>
+                                                {menuData && menuData.menuDetails.map((data, index)=>{
+                                                    return(
+                                                        <React.Fragment key={index}>
+                                                            <option value={data._id}>{data.name}</option>
+                                                        </React.Fragment>
+                                                    )
+                                                })}
                                         </select>
                                     </div>
                                 </div>
@@ -67,28 +115,57 @@ const AllDishesComponent=()=>{
                                 </tr>
                             </thead>
                             <tbody>
-                                {datas1 && datas1.map((data, index) => {
-                                    return (
-                                        <React.Fragment key={index}>
-                                            <tr >
-                                                <td>{data.name}</td>
-                                                <td>&nbsp;</td>
-                                                <td>&nbsp;</td>
-                                                <td>{data.available}</td>
-                                                <td>{data.total_item}</td>
-                                                <td>{data.modified}</td>
-                                                <td className="pt-0 pb-0">
-                                                    <select className="form-select actiondropdown-btn ml-auto" aria-label="Default select example">
-                                                        <option defaultValue>Action</option>
-                                                        <option value="1">One</option>
-                                                        <option value="2">Two</option>
-                                                        <option value="3">Threeaaaaaaaaaaaa</option>
-                                                    </select>
-                                                </td>
-                                            </tr>
-                                        </React.Fragment>
-                                    )
-                                })}
+                                {
+                                    isLoading
+                                    ?
+                                    <tr>
+                                        <td colSpan="9" className="text-center" >
+                                            <div className="spinner-border m-3" role="status"></div>
+                                            <div className="visually-hidden">Please Wait Loading...</div>
+                                        </td>
+                                    </tr>
+                                    :
+                                    <React.Fragment>
+                                        {
+                                            dishes_Data && dishes_Data.dishDetails.length>0
+                                            ?
+                                            <React.Fragment>
+                                                {dishes_Data && dishes_Data.dishDetails.map((data, index) => {
+                                                    return (
+                                                        <React.Fragment key={index}>
+                                                            <tr >
+                                                                <td>{data.name}</td>
+                                                                <td>&nbsp;</td>
+                                                                <td>{data.allergenId}</td>
+                                                                <td>{data.available?"Yes":"No"}</td>
+                                                                <td>{data.menuDetail&&data.menuDetail.length}</td>
+                                                                <td>{data.updatedAt ?moment(data.updatedAt).format(" Do MMMM, YYYY"): "-" }</td>
+                                                                <td className="pt-0 pb-0">
+                                                                    <div className="dropdown">
+                                                                        <button className="btn btn-secondary dropdown-toggle actiondropdown-btn" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                                                                        Action
+                                                                        </button>
+                                                                        <ul className="dropdown-menu actiondropdown-list" aria-labelledby="dropdownMenuButton">
+                                                                            <li><button className="dropdown-item"  >Update</button></li>
+                                                                            <li><button className="dropdown-item" >Delete</button></li>
+                                                                        </ul>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                        </React.Fragment>
+                                                    )
+                                                })}
+                                            </React.Fragment>
+                                            :
+                                            <React.Fragment>
+                                                <tr >
+                                                    <td colSpan="9" className="text-center">No Data Available</td>
+                                                </tr>
+                                            </React.Fragment>
+                                        }
+                                    </React.Fragment>
+                                }
+                                
                             </tbody>
                         </table>
                     </div>

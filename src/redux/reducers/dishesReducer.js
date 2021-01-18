@@ -3,15 +3,15 @@
 const initialState = {
     isLoading : false,
     errorMessage:'',
-    category_Data:null,
+    dishes_Data:null,
     selectedCategory:{},
-    selectedMenuCategoryList:null
+    selectedMenuCategoryList:[]
     };
     
-    const categoryReducer = (state = initialState, { type, payload }) => {
+    const dishesReducer = (state = initialState, { type, payload }) => {
       switch (type) {
         
-        case "GET_ALLCATEGORY_REQUEST":
+        case "GET_ALLDISHES_REQUEST":
         case "ADD_CATEGORY_REQUEST":
         case "GET_SELECTEDCATEGORY_REQUEST":
         case "UPDATE_CATEGORY_REQUEST":
@@ -21,11 +21,11 @@ const initialState = {
                 ...state,
                 isLoading :true,
             };
-        case "GET_ALLCATEGORY_SUCCESS":
+        case "GET_ALLDISHES_SUCCESS":
             return {
                 ...state,
                 isLoading:false,
-            category_Data:payload,
+            dishes_Data:payload,
     
             };
         case "ADD_CATEGORY_SUCCESS":
@@ -66,7 +66,7 @@ const initialState = {
                 selectedMenuCategoryList:payload.data,
     
             };        
-        case "GET_ALLCATEGORY_FAILURE":
+        case "GET_ALLDISHES_FAILURE":
         case "ADD_CATEGORY_FAILURE":
         case "GET_SELECTEDCATEGORY_FAILURE":  
         case "UPDATE_CATEGORY_FAILURE":  
@@ -85,5 +85,5 @@ const initialState = {
       }
     };
     
-    export default categoryReducer;
+    export default dishesReducer;
     

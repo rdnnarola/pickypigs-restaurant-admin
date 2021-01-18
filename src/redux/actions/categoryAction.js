@@ -17,7 +17,11 @@ export const getAllCategoryData=(data)=>{
         }
         catch(error){
           dispatch({type:"GET_ALLCATEGORY_FAILURE",payload:error});
-          dispatch(setAlert('Unable To Fetch Data', 'error'));
+         if (error.response) {
+            dispatch(setAlert(`${error.response.data.message}`, 'error'));
+          } else {
+            dispatch(setAlert('Something wwnt wrong!', 'error'));
+          }
 
         }
     }
@@ -36,13 +40,17 @@ export const getAllCategoryData=(data)=>{
             let dataURL=`/restaurant_admin/category`
             let response = await Axios.post(dataURL,JSON.stringify(data),config );
             dispatch({type:"ADD_CATEGORY_SUCCESS",payload:response.data});
-            await dispatch(setAlert('Registration is Success', 'success'));
+            await dispatch(setAlert('Category Added Successfuly', 'success'));
             await dispatch(getAllCategoryData());
 
         }
         catch(error){
           dispatch({type:"ADD_CATEGORY_FAILURE",payload:error});
-          await dispatch(setAlert('Something Went Wrong', 'danger'));
+          if (error.response) {
+            dispatch(setAlert(`${error.response.data.message}`, 'error'));
+          } else {
+            dispatch(setAlert('Something wwnt wrong!', 'error'));
+          }
         }
     }
   };
@@ -86,11 +94,17 @@ export const updateCategoryForm = (key , value) => {
             let dataURL=`/restaurant_admin/category/${categoryId}`
             let response = await Axios.put(dataURL,JSON.stringify(data),config );
             dispatch({type:"UPDATE_CATEGORY_SUCCESS",payload:response.data});
+            await dispatch(setAlert('Category Updated Successfuly', 'success'));
             await dispatch(getAllCategoryData());
 
         }
         catch(error){
           dispatch({type:"UPDATE_CATEGORY_FAILURE",payload:error});
+          if (error.response) {
+            dispatch(setAlert(`${error.response.data.message}`, 'error'));
+          } else {
+            dispatch(setAlert('Something wwnt wrong!', 'error'));
+          }
         }
     }
   };
@@ -101,11 +115,16 @@ export const updateCategoryForm = (key , value) => {
             dispatch({type:"DELETE_CATEGORY_REQUEST"});
             let response = await Axios.delete(`/restaurant_admin/category/${categoryId}`)
             dispatch({type:"DELETE_CATEGORY_SUCCESS",payload:response.data});
-            await dispatch(setAlert('Data Deleted Successfuly', 'success'));
+            await dispatch(setAlert('Category Deleted Successfuly', 'warning'));
             await dispatch(getAllCategoryData());
         }
         catch(error){
             dispatch({type:"DELETE_CATEGORY_FAILURE",payload:error});
+            if (error.response) {
+              dispatch(setAlert(`${error.response.data.message}`, 'error'));
+            } else {
+              dispatch(setAlert('Something wwnt wrong!', 'error'));
+            }
         }
     }
   }

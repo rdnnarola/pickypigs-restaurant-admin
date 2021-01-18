@@ -1,4 +1,5 @@
 import Axios from './axios';
+import {setAlert} from './alertAction';
 
 
 export const getAllSubCategoryData=(data)=>{
@@ -16,6 +17,11 @@ export const getAllSubCategoryData=(data)=>{
         }
         catch(error){
           dispatch({type:"GET_ALLSUBCATEGORY_FAILURE",payload:error});
+          if (error.response) {
+            dispatch(setAlert(`${error.response.data.message}`, 'error'));
+          } else {
+            dispatch(setAlert('Something wwnt wrong!', 'error'));
+          }
         }
     }
   };
@@ -34,10 +40,17 @@ export const getAllSubCategoryData=(data)=>{
             let response = await Axios.post(dataURL,JSON.stringify(data),config );
             dispatch({type:"ADD_SUBCATEGORY_SUCCESS",payload:response.data});
             await dispatch(getAllSubCategoryData());
+            await dispatch(setAlert('Sub-Category Added Successfuly', 'success'));
+
 
         }
         catch(error){
           dispatch({type:"ADD_SUBCATEGORY_FAILURE",payload:error});
+          if (error.response) {
+            dispatch(setAlert(`${error.response.data.message}`, 'error'));
+          } else {
+            dispatch(setAlert('Something wwnt wrong!', 'error'));
+          }
         }
     }
   };
@@ -82,10 +95,16 @@ export const updateSubCategoryForm = (key , value) => {
             let response = await Axios.put(dataURL,JSON.stringify(data),config );
             dispatch({type:"UPDATE_SUBCATEGORY_SUCCESS",payload:response.data});
             await dispatch(getAllSubCategoryData());
+            await dispatch(setAlert('Sub-Category Updated Successfuly', 'success'));
 
         }
         catch(error){
           dispatch({type:"UPDATE_SUBCATEGORY_FAILURE",payload:error});
+          if (error.response) {
+            dispatch(setAlert(`${error.response.data.message}`, 'error'));
+          } else {
+            dispatch(setAlert('Something wwnt wrong!', 'error'));
+          }
         }
     }
   };
@@ -97,9 +116,16 @@ export const updateSubCategoryForm = (key , value) => {
             let response = await Axios.delete(`/restaurant_admin/subcategory/${subCategoryId}`)
             dispatch({type:"DELETE_SUBCATEGORY_SUCCESS",payload:response.data});
             await dispatch(getAllSubCategoryData());
+            await dispatch(setAlert('Sub-Category Deleted Successfuly', 'warning'));
+
         }
         catch(error){
             dispatch({type:"DELETE_SUBCATEGORY_FAILURE",payload:error});
+            if (error.response) {
+              dispatch(setAlert(`${error.response.data.message}`, 'error'));
+            } else {
+              dispatch(setAlert('Something wwnt wrong!', 'error'));
+            }
         }
     }
   }

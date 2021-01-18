@@ -1,4 +1,5 @@
 import Axios from './axios';
+import {setAlert} from './alertAction';
 
 
 export const getAllMenuData=(data)=>{
@@ -16,6 +17,11 @@ export const getAllMenuData=(data)=>{
         }
         catch(error){
           dispatch({type:"GET_ALLMENU_FAILURE",payload:error});
+          if (error.response) {
+            dispatch(setAlert(`${error.response.data.message}`, 'error'));
+          } else {
+            dispatch(setAlert('Something wwnt wrong!', 'error'));
+          }
         }
     }
   };
@@ -33,11 +39,17 @@ export const getAllMenuData=(data)=>{
             let dataURL=`/restaurant_admin/menus`
             let response = await Axios.post(dataURL,JSON.stringify(data),config );
             dispatch({type:"ADD_MENU_SUCCESS",payload:response.data});
+            await dispatch(setAlert('Menu Added Successfuly', 'success'));
             await dispatch(getAllMenuData());
 
         }
         catch(error){
           dispatch({type:"ADD_MENU_FAILURE",payload:error});
+          if (error.response) {
+            dispatch(setAlert(`${error.response.data.message}`, 'error'));
+          } else {
+            dispatch(setAlert('Something wwnt wrong!', 'error'));
+          }
         }
     }
   };
@@ -81,10 +93,16 @@ export const updateMenuForm = (key , value) => {
             let response = await Axios.put(dataURL,JSON.stringify(data),config );
             dispatch({type:"UPDATE_MENU_SUCCESS",payload:response.data});
             await dispatch(getAllMenuData());
+            await dispatch(setAlert('Menu Updated Successfuly', 'success'));
 
         }
         catch(error){
           dispatch({type:"UPDATE_MENU_FAILURE",payload:error});
+          if (error.response) {
+            dispatch(setAlert(`${error.response.data.message}`, 'error'));
+          } else {
+            dispatch(setAlert('Something wwnt wrong!', 'error'));
+          }
         }
     }
   };
@@ -96,9 +114,15 @@ export const updateMenuForm = (key , value) => {
             let response = await Axios.delete(`/restaurant_admin/menus/${categoryId}`)
             dispatch({type:"DELETE_MENU_SUCCESS",payload:response.data});
             await dispatch(getAllMenuData());
+            await dispatch(setAlert('Menu Deleted Successfuly', 'warning'));
         }
         catch(error){
             dispatch({type:"DELETE_MENU_FAILURE",payload:error});
+            if (error.response) {
+              dispatch(setAlert(`${error.response.data.message}`, 'error'));
+            } else {
+              dispatch(setAlert('Something wwnt wrong!', 'error'));
+            }
         }
     }
   }

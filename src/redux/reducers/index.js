@@ -5,6 +5,7 @@ import subcategoryReducer from "./subcategoryReducer";
 import menuReducer from "./menuReducer";
 import submenuReducer from "./submenuReducer";
 import alertReducer from "./alertReducer";
+import dishesReducer from "./dishesReducer";
 
 export default combineReducers({
  
@@ -14,5 +15,6 @@ export default combineReducers({
   menu:menuReducer,
   submenu:submenuReducer,
   alert:alertReducer,
+  dishes:dishesReducer,
 
 });

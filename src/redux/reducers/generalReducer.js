@@ -19,6 +19,7 @@ const initialState = {
         };
       case "GET_LOGIN_SUCCESS":
         localStorage.setItem('access_token',payload.token);
+        localStorage.setItem('role','restaurant_admin');
         return {
           ...state,
           isLoading:false,
@@ -35,6 +36,8 @@ const initialState = {
       //logout user
       case "LOGOUT_USER_REQUEST":
         localStorage.removeItem('access_token');
+        localStorage.removeItem('role');
+
          return{
             ...state,
             isLoading:false,
