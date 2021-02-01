@@ -41,8 +41,11 @@ const AddEditCategoryModalComp = (props) => {
 
     let initialValues2={
         name:selectedCategoryData.name,
-        menuId:selectedCategoryData.menuId,
+        menuId:menuData && menuData.menuDetails.find(o => o._id === selectedCategoryData.menuId)?selectedCategoryData.menuId:'',
+        // menuId:selectedCategoryData.menuId,
     }
+    // console.log(initialValues2);
+
 
     const onSubmit=(fields, { setStatus })=>{
         setStatus();
@@ -93,7 +96,7 @@ const AddEditCategoryModalComp = (props) => {
                                 <Form>
                                     <div>
                                         <div className="form-group easydish-input dishname-input w-100 custom-lightinputbox">
-                                            <label className="gray-txt f-15">Sub Category Name</label>
+                                            <label className="gray-txt f-15">Category Name</label>
                                             <Field name="name"  placeholder="Enter here" className="form-control f-15" />
                                             {touched.name && errors.name && <div className="error pink-txt f-11">{errors.name}</div>}
                                         </div>

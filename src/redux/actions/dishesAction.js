@@ -28,3 +28,55 @@ export const getAllDishesData=(data)=>{
         }
     }
   };
+
+
+  export const addDishesData=(data,history)=>{
+    return async(dispatch)=>{
+        try{
+            dispatch({type:"ADD_DISHES_REQUEST"});
+            let config= {
+                headers:{
+                 "Content-Type":"application/json"
+                 }
+             }
+            let dataURL=`/restaurant_admin/dish`
+            let response = await Axios.post(dataURL,JSON.stringify(data),config );
+            dispatch({type:"ADD_DISHES_SUCCESS",payload:response.data});
+            await dispatch(setAlert('Dishes Added Successfuly', 'success'));
+            history.push('/all_dishes');
+            await dispatch(getAllDishesData());
+
+
+        }
+        catch(error){
+          dispatch({type:"ADD_DISHES_FAILURE",payload:error});
+          if (error.response) {
+            dispatch(setAlert(`${error.response.data.message}`, 'error'));
+          } else {
+            dispatch(setAlert('Something wwnt wrong!', 'error'));
+          }
+        }
+    }
+  };
+
+
+
+  export const deleteSelectedDishesData=(selectedId)=>{
+    return async(dispatch)=>{
+        try{
+            dispatch({type:"DELETE_DISHES_REQUEST"});
+            let response = await Axios.delete(`/restaurant_admin/dish/${selectedId}`)
+            dispatch({type:"DELETE_DISHES_SUCCESS",payload:response.data});
+            await dispatch(setAlert('Dishes Deleted Successfuly', 'warning'));
+            await dispatch(getAllDishesData());
+        }
+        catch(error){
+            dispatch({type:"DELETE_DISHES_FAILURE",payload:error});
+            if (error.response) {
+              dispatch(setAlert(`${error.response.data.message}`, 'error'));
+            } else {
+              dispatch(setAlert('Something went wrong!', 'error'));
+            }
+        }
+    }
+  }

@@ -56,6 +56,11 @@ body {
 .brandon-Bold {
     font-family: "Brandon Text" !important;
 }
+
+.border-separate {
+    border: 1px solid #ccc;
+}
+
 .bg-pink {
     background-color: #cb007b !important;
 }
@@ -739,9 +744,9 @@ select {
                         border: 1px solid transparent;
                         border-radius: 25px;
                         transition: ease 0.25s;
-                        &:hover{
+                        &:hover {
                             border: 1px solid #919191;
-                            background-color:#919191;
+                            background-color: #919191;
                             color: #fff;
                         }
                     }
@@ -751,9 +756,9 @@ select {
                         border: 1px solid #cb007b;
                         border-radius: 25px;
                         transition: ease 0.25s;
-                        &:hover{
+                        &:hover {
                             border: 1px solid #cb007b;
-                            background-color:#cb007b;
+                            background-color: #cb007b;
                             color: #fff;
                         }
                     }

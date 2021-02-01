@@ -22,7 +22,7 @@ const AddEditSubCategoryModalComp = (props) => {
     }
     
     const validationSchema  = Yup.object().shape({
-        name: Yup.string().required('Title is required'),
+        name: Yup.string().required('Name is required'),
         categoryId: Yup.string().required('Category is required'),
         menuId: Yup.string().required('Menu is required'),
     });
@@ -84,8 +84,8 @@ const AddEditSubCategoryModalComp = (props) => {
 
     let initialValues2={
         name:selectedSubCategoryData.name,
-        categoryId:selectedSubCategoryData.categoryId,
-        menuId:selectedSubCategoryData.menuId,
+        categoryId:categoryData && categoryData.find(o => o._id === selectedSubCategoryData.categoryId)?selectedSubCategoryData.categoryId:'',
+        menuId:menuData && menuData.menuDetails.find(o => o._id === selectedSubCategoryData.menuId)?selectedSubCategoryData.menuId:'',
     }
     
     return (

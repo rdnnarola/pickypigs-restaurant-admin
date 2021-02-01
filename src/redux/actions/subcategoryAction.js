@@ -129,3 +129,22 @@ export const updateSubCategoryForm = (key , value) => {
         }
     }
   }
+
+  export const getSubCategoryListOfSelectedCategory=(selectedId)=>{
+    return async(dispatch)=>{
+        try{
+            dispatch({type:"GET_SELECTEDSUBCATEGORYLIST_REQUEST"});
+            let config= {
+                headers:{
+                 "Content-Type":"application/json"
+                 }
+             }
+            let dataURL=`/restaurant_admin/subcategory/categoryOfSubcategory/${selectedId}`
+            let response = await Axios.get(dataURL,config );
+            dispatch({type:"GET_SELECTEDSUBCATEGORYLIST_SUCCESS",payload:response.data});
+        }
+        catch(error){
+          dispatch({type:"GET_SELECTEDSUBCATEGORYLIST_FAILURE",payload:error});
+        }
+    }
+  };

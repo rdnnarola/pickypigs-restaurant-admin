@@ -12,10 +12,10 @@ const initialState = {
       switch (type) {
         
         case "GET_ALLDISHES_REQUEST":
-        case "ADD_CATEGORY_REQUEST":
+        case "ADD_DISHES_REQUEST":
         case "GET_SELECTEDCATEGORY_REQUEST":
         case "UPDATE_CATEGORY_REQUEST":
-        case "DELETE_CATEGORY_REQUEST":
+        case "DELETE_DISHES_REQUEST":
         case "GET_MENUCATEGORYLIST_REQUEST":
             return {
                 ...state,
@@ -28,7 +28,7 @@ const initialState = {
             dishes_Data:payload,
     
             };
-        case "ADD_CATEGORY_SUCCESS":
+        case "ADD_DISHES_SUCCESS":
             return{
                 ...state,
                 isLoading:false,
@@ -54,7 +54,7 @@ const initialState = {
                 isLoading:false
             }   
 
-        case "DELETE_CATEGORY_SUCCESS":            
+        case "DELETE_DISHES_SUCCESS":            
             return{
                 ...state,
                 isLoading:false
@@ -67,10 +67,10 @@ const initialState = {
     
             };        
         case "GET_ALLDISHES_FAILURE":
-        case "ADD_CATEGORY_FAILURE":
+        case "ADD_DISHES_FAILURE":
         case "GET_SELECTEDCATEGORY_FAILURE":  
         case "UPDATE_CATEGORY_FAILURE":  
-        case "DELETE_CATEGORY_FAILURE": 
+        case "DELETE_DISHES_FAILURE": 
         case "GET_MENUCATEGORYLIST_FAILURE":    
             return {
                 ...state,

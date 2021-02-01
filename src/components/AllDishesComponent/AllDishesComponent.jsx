@@ -5,6 +5,8 @@ import moment from "moment";
 import './AllDishesComponent.scss';
 import { getAllMenuData } from "../../redux/actions/menuAction";
 import { getCategoryListOfSelectedMenu} from "../../redux/actions/categoryAction";
+import { Link } from "react-router-dom";
+import DeleteDishesModalComp from "../DeleteDishesModalComp/DeleteDishesModalComp";
 
     
 
@@ -13,6 +15,9 @@ const AllDishesComponent=()=>{
     const [inputValue,setInputValue]=useState("");
     const [menuId,setmenuId]=useState("");
     const [categoryId,setCategoryId]=useState("");
+
+    const [deleteModalShow, setDeleteModalShow] = React.useState(false);
+    const [dishesId,setDishesId]=useState('')
 
     useEffect(()=>{
         dispatch(getAllDishesData({search:inputValue,start:0,category:categoryId,menu:menuId}));
@@ -86,6 +91,8 @@ const AllDishesComponent=()=>{
                                         <label className="gray-txt f-15">Menu</label>
                                         <select onChange={(e)=>{handleMenuChange(e.target.value)}} className="form-control lightgray-border selectdropdown-btn minwidth-260" aria-label="Default select example">
                                                 <option value="">Select</option>
+                                                {menuData && menuData.menuDetails?
+                                                <React.Fragment>
                                                 {menuData && menuData.menuDetails.map((data, index)=>{
                                                     return(
                                                         <React.Fragment key={index}>
@@ -93,10 +100,12 @@ const AllDishesComponent=()=>{
                                                         </React.Fragment>
                                                     )
                                                 })}
+                                                </React.Fragment>
+                                                :null}
                                         </select>
                                     </div>
                                 </div>
-                                <button className="btn pinkline-btn text-uppercase rounded-pill mr-3">Add New</button>
+                                <Link to="/manage_dishes" className="btn pinkline-btn text-uppercase rounded-pill mr-3 w-170 f-15" style={{display:'flex',justifyContent:'center',alignItems:'center'}} ><span className="add-icon">Add New</span></Link>
                             </div>
                         </div>
                     </div>
@@ -147,7 +156,7 @@ const AllDishesComponent=()=>{
                                                                         </button>
                                                                         <ul className="dropdown-menu actiondropdown-list" aria-labelledby="dropdownMenuButton">
                                                                             <li><button className="dropdown-item"  >Update</button></li>
-                                                                            <li><button className="dropdown-item" >Delete</button></li>
+                                                                            <li><button className="dropdown-item" onClick={() => {setDeleteModalShow(true);setDishesId(data._id)}}>Delete</button></li>
                                                                         </ul>
                                                                     </div>
                                                                 </td>
@@ -168,6 +177,7 @@ const AllDishesComponent=()=>{
                                 
                             </tbody>
                         </table>
+                        <DeleteDishesModalComp show={deleteModalShow} onHide={() => setDeleteModalShow(false)}  selectedid={dishesId}/>
                     </div>
                 </div>
             </section>

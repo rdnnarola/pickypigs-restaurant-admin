@@ -1,16 +1,18 @@
-import React, { useState } from "react";
+import React, { useState,useEffect} from "react";
 import './ManageEasyAddDishComp.scss';
 import Nonveg_icon from "../../assets/images/filterfeature/Nonveg_icon.svg"
 import CaloriesMacrosModalComp from "../CaloriesMacrosModalComp/CaloriesMacrosModalComp";
 import CheckBoxAutoCompleteComp from "../CheckBoxAutoCompleteComp/CheckBoxAutoCompleteComp";
+import { JsonWebTokenError } from "jsonwebtoken";
+import { addDishesData } from "../../redux/actions/dishesAction";
+import { useDispatch,useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
+import { getAllMenuData } from "../../redux/actions/menuAction";
+import CheckBoxAutoCompleteSecondComp from "../CheckBoxAutoCompleteSecondComp/CheckBoxAutoCompleteSecondComp";
+import { getCategoryListOfSelectedMenu } from "../../redux/actions/categoryAction";
+import { getSubCategoryListOfSelectedCategory } from "../../redux/actions/subcategoryAction";
 
 
-const datas1 = [
-    { name: "Kina Cream", qty: "0.016", unit: "Kilo ", allergies: "Milk", total_unit: "Milk", recipe_cost: "28.30" },
-    { name: "Crayfish Chowder", qty: "5.000", unit: "Kilo", allergies: "Celery", total_unit: "Milk", recipe_cost: "4.00" },
-    { name: "Gyoza Pastry", qty: "0.100", unit: "Each", allergies: "Gluten", total_unit: "60 Pack", recipe_cost: "33.90" },
-    { name: "Gyoza Pastry", qty: "0.100", unit: "Each", allergies: "Gluten", total_unit: "60 Pack", recipe_cost: "33.90" },
-]
 
 const alergy_information = [{ name: "Egg", image: Nonveg_icon }, { name: "Milk", image: Nonveg_icon }, { name: "Celery", image: Nonveg_icon }, { name: "Mustard", image: Nonveg_icon }, { name: "Lupin", image: Nonveg_icon }, { name: "Nuts", image: Nonveg_icon }, { name: "Peanuts", image: Nonveg_icon }, { name: "Sesame", image: Nonveg_icon }, { name: "Molluscs", image: Nonveg_icon }, { name: "Crustaceans", image: Nonveg_icon }, { name: "Fish", image: Nonveg_icon }, { name: "Cereals (Wheat)", image: Nonveg_icon }, { name: "Soya", image: Nonveg_icon }, { name: "Sulphur dioxide", image: Nonveg_icon }];
 const dietary_preference = ["Gluten Free", "Dairy Free", "Meat Lover", "Fodmap", "Low Sugar", "Low Carb", "Plant Based", "Vegetarian", "Pescatarian", "Keto"];
@@ -21,14 +23,54 @@ const menu_options = ['Option 1', 'Option 2','Option 3', 'Option 4','Option 5', 
 
 
 const ManageEasyAddDishComp = () => {
+    const dispatch=useDispatch();
+    const history = useHistory();
+    const [menuValue, setMenuValue] = useState([])
+    const [dishesData,setDishesData]=useState({
+        name: "",
+        makes: '',
+        price: '',
+        grossProfit: '',
+        image: "image-url",
+        favorite: true,
+        new: true,
+        available: false,
+        menuId: [],
+        restaurantId: "5ff9373ce5dd68114cdf654b",
+        categoryId: "",
+        subcategoryId: "",
+        description: "",
+        allergenId: [],
+        dietaryId: [],
+        lifestyleId: [],
+        instructions: "",
+        customisable: true,
+        createNewVersion: false,
+        ingredientSection: {
+            total: '',
+            ingredient: []
+        },
+        caloriesAndMacros: {
+            "fat": {
+                "items": []
+            },
+            "TotalCarbohydrate": {
+                "items": []
+            },
+            "Protien": {
+                "items": []
+            }
+        }
+    });
     const [alergy, setAlergy] = useState([]);
     const [dietary, setDietary] = useState([]);
     const [lifestyle, setLifestyle] = useState([]);
     const [restaurant, setRestaurant] = useState([]);
     const [cooking, setCooking] = useState([]);
     const [descModal, setDescModal] = useState(false);
+    const [addItem, setAddItem] = useState(false);
 
-    const [menuValue, setMenuValue] = useState([])
+    const [allergyValue, setAllergyValue] = useState([])
     const clearMenugy=()=>{
         setMenuValue([])
     }
@@ -83,8 +125,91 @@ const ManageEasyAddDishComp = () => {
         setDescModal(!descModal);
     }
 
+    //--------- Adding Items And Creating ingredientSection-------//
+    const [datas2,setDatas2] = useState([]);
+    const [datas3,setDatas3] = useState({
+        total:'',
+        ingredient:[],
+    });
+    const [items,setItems] = useState({
+        item:'',
+        allergeies:[],
+        qty:'',
+        customisable: true
+    });
+
+    const addToDatas=(e)=>{
+        e.preventDefault();
+         setDatas2([...datas2,{...items,allergeies:allergyValue}]);
+         setDatas3({...datas3,ingredient:[...datas2,{...items,allergeies:allergyValue}],total:[...datas2,{...items,allergeies:allergyValue}].length,})
+    }
+    //--------- Adding Items And Creating ingredientSection Ends-------//
+
+    const handleItemCheckBox=()=>{
+
+    }
+
+    //--------- Getting All Menu Data -------//
+    useEffect(()=>{
+        dispatch(getAllMenuData({start:0}));
+    },[dispatch]);
+
+    let menuData = useSelector((state)=>{
+        return state.menu.menu_Data
+    });
+    //--------- Getting All Menu Data Ends -------//
+
+
+    //--------- Getting All Category Data -------//
+    useEffect(()=>{
+        if(menuValue !==""){
+            dispatch(getCategoryListOfSelectedMenu({menuId:menuValue}));
+        }else{
+            dispatch(getCategoryListOfSelectedMenu({menuId:[]}));
+        }
+    },[dispatch,menuValue]);
+    let categoryData = useSelector((state)=>{
+        return state.category.selectedMenuCategoryList
+    });
+    //--------- Getting All Category Data Ends -------//
+
+
+    //--------- Getting All Sub-Category Data -------//
+    let subcategoryData = useSelector((state)=>{
+        return state.subcategory.selectedCategorySubcategoryList
+    });
+    useEffect(()=>{
+        
+        if(dishesData.categoryId ===""){
+            dispatch(getSubCategoryListOfSelectedCategory("5fb6137b358d872b7cce1404"));
+        }else{
+            dispatch(getSubCategoryListOfSelectedCategory(dishesData.categoryId));
+        }
+    },[dispatch,dishesData.categoryId]);
+    //--------- Getting All Sub-Category Data Ends-------//
+
+
+    const handleManageAddDish=(e)=>{
+        setDishesData({
+            ...dishesData,
+            [e.target.name] : e.target.value
+        });
+        
+    }
+    const handleSubmit=(e)=>{
+        e.preventDefault();
+        dispatch(addDishesData(
+            {...dishesData,menuId:menuValue.map(({_id}) => _id),
+            ingredientSection:datas3,
+            allergenId:alergy,
+            dietaryId:dietary,
+            lifestyleId:lifestyle},
+            history));
+    }
+
     return (
         <>
+        {JSON.stringify(dishesData)}
             <div className="row">
                 <div className="col-sm-12">
                     <div className="page-heading brandon-Medium d-flex justify-content-between align-items-center">
@@ -112,60 +237,76 @@ const ManageEasyAddDishComp = () => {
                         <div className="row mb-4 pb-2">
                             <div className="col-md-4 form-group mb-0 easydish-input dishname-input">
                                 <label className="gray-txt f-15">Dish name</label>
-                                <input className="form-control" type="text" placeholder="Search" />
+                                <input name="name" onChange={handleManageAddDish} className="form-control" type="text" placeholder="Dish name" />
                             </div>
-                            <div className="col-md-3 form-group mb-0 easydish-input makes-input">
+                            <div className="col-md-3 form-group mb-0 easydish-serving-input makes-input">
                                 <label className="gray-txt f-15">Makes</label>
                                 <div className="makesserving-wrapper">
-                                    <input className="form-control" type="text" placeholder="Search" />
+                                    <input name="makes" onChange={handleManageAddDish} type="number" className="form-control"  placeholder="1.000" />
                                     <span className="serving-txt">Serving</span>
                                 </div>
                             </div>
-                            <div className="col-md-3 form-group mb-0 easydish-input price-input">
+                            
+                            <div className="col-md-3 form-group mb-0 easydish-select-input price-input">
                                 <label className="gray-txt f-15">Price</label>
-                                <input className="form-control" type="text" placeholder="Search" />
+                                <div className="d-flex border rounded">
+                                    <select className="form-control border border-white ">
+                                        <option value="1" >$</option>
+                                        <option value="2">Two</option>
+                                        <option value="3">Three</option>
+                                    </select>
+                                    |
+                                    <input name="price" onChange={handleManageAddDish} className="form-control border border-white" type="text" placeholder="0.00" />
+                                </div>
                             </div>
                             <div className="col-md-2 form-group mb-0 easydish-input gross-input">
                                 <label className="gray-txt f-15">Gross Profit</label>
-                                <input className="form-control" type="text" placeholder="Search" />
+                                <input name="grossProfit" onChange={handleManageAddDish} className="form-control" type="text" placeholder="0%" />
                             </div>
                         </div>
                         <div className="d-flex flex-wrap mb-4">
                             <div className="custom-control custom-checkbox pink-checkbox mr-5 pr-5">
-                                <input type="checkbox" className="custom-control-input" id="customCheck1" />
+                                <input name="favorite" onChange={(e)=>{setDishesData({...dishesData,favorite:e.target.checked})}} type="checkbox" className="custom-control-input" id="customCheck1"  />
                                 <label className="custom-control-label" htmlFor="customCheck1">Favorite</label>
                             </div>
                             <div className="custom-control custom-checkbox pink-checkbox mr-5 pr-5">
-                                <input type="checkbox" className="custom-control-input" id="customCheck2" />
+                                <input name="new" onChange={(e)=>{setDishesData({...dishesData,new:e.target.checked})}} type="checkbox" className="custom-control-input" id="customCheck2" />
                                 <label className="custom-control-label" htmlFor="customCheck2">New</label>
                             </div>
                             <div className="custom-control custom-checkbox pink-checkbox mr-5 pr-5">
-                                <input type="checkbox" className="custom-control-input" id="customCheck3" />
+                                <input name="available" onChange={(e)=>{setDishesData({...dishesData,available:e.target.checked})}} type="checkbox" className="custom-control-input" id="customCheck3" />
                                 <label className="custom-control-label" htmlFor="customCheck3">Available</label>
                             </div>
                         </div>
                         <div className="d-flex mb-4">
                             <div className="custom-drodown form-group mr-4 mb-0">
-                                <label className="gray-txt f-15">Category</label>
-                                <CheckBoxAutoCompleteComp className="minwidth-260" placeholder={"menu_options"} clearAll={clearMenugy} options={menu_options} value={menuValue} onChangeData={setMenuValue}/>
-
+                                <label className="gray-txt f-15">Menu</label>
+                                <CheckBoxAutoCompleteSecondComp className="minwidth-260" placeholder={"menu_options"} clearAll={clearMenugy} options={menuData&&menuData.menuDetails} value={menuValue} onChangeData={setMenuValue}/>
                             </div>
                             <div className="custom-drodown form-group mr-4 mb-0">
                                 <label className="gray-txt f-15">Category</label>
-                                <select className="form-control lightgray-border selectdropdown-btn minwidth-260" aria-label="Default select example">
-                                    <option defaultValue>All</option>
-                                    <option value="1">One</option>
-                                    <option value="2">Two</option>
-                                    <option value="3">Three</option>
+                                <select name="categoryId" onChange={handleManageAddDish} className="form-control lightgray-border selectdropdown-btn minwidth-260" aria-label="Default select example">
+                                    <option value="">Select</option>
+                                    {categoryData && categoryData.map((data, index)=>{
+                                        return(
+                                            <React.Fragment key={index}>
+                                                <option value={data._id}>{data.name}</option>
+                                            </React.Fragment>
+                                        )
+                                    })}
                                 </select>
                             </div>
                             <div className="custom-drodown form-group mr-4 mb-0">
-                                <label className="gray-txt f-15">Category</label>
-                                <select className="form-control lightgray-border selectdropdown-btn minwidth-260" aria-label="Default select example">
-                                    <option defaultValue>All</option>
-                                    <option value="1">One</option>
-                                    <option value="2">Two</option>
-                                    <option value="3">Three</option>
+                                <label className="gray-txt f-15">Sub-Category</label>
+                                <select name="subcategoryId" onChange={handleManageAddDish} value={dishesData.subcategoryId} className="form-control lightgray-border selectdropdown-btn minwidth-260" aria-label="Default select example">
+                                    <option value="">Select</option>
+                                    {subcategoryData && subcategoryData.map((data, index)=>{
+                                        return(
+                                            <React.Fragment key={index}>
+                                                <option value={data._id}>{data.name}</option>
+                                            </React.Fragment>
+                                        )
+                                    })}
                                 </select>
                             </div>
                         </div>
@@ -180,7 +321,7 @@ const ManageEasyAddDishComp = () => {
                                             <button className="save-btn ml-3">Save</button>
                                         </div>
                                     </div>
-                                    <textarea className="form-control add-description-textarea" id="exampleFormControlTextarea1" rows="5" placeholder="Type Here" />
+                                    <textarea value={dishesData.description} name="description" onChange={handleManageAddDish} className="form-control add-description-textarea" id="exampleFormControlTextarea1" rows="5" placeholder="Type Here" />
                                 </div>
                             }
                         </div>
@@ -193,8 +334,9 @@ const ManageEasyAddDishComp = () => {
                     </div>
                 </div>
             </div>
+            {/* {JSON.stringify(datas2)} */}
 
-
+                            {JSON.stringify(datas3)}
             <div className="row mb-4 pb-2">
                 <div className="col-sm-12">
                     <div className="table-responsive my_custom_table mb-4 add-dish-table">
@@ -202,57 +344,98 @@ const ManageEasyAddDishComp = () => {
                             <thead>
                                 <tr>
                                     <th className="brandon-Bold" scope="col">ITEM</th>
-                                    <th className="brandon-Bold " scope="col">QTY</th>
-                                    <th className="brandon-Bold " scope="col">UNIT</th>
+                                    <th className="brandon-Bold " scope="col"></th>
                                     <th className="brandon-Bold " scope="col">ALLERGIES</th>
-                                    <th className="brandon-Bold text-right" scope="col">STOCK UNIT</th>
-                                    <th className="brandon-Bold text-right" scope="col">RECIPE COST ($)</th>
-                                    <th className="brandon-Bold " scope="col">CUSTOMISABLE</th>
+                                    <th className="brandon-Bold text-right" scope="col"></th>
+                                    <th className="brandon-Bold text-right" scope="col">QTY</th>
+                                    <th className="brandon-Bold text-right" scope="col">CUSTOMISABLE</th>
 
                                 </tr>
                             </thead>
                             <tbody>
-                                {datas1 && datas1.map((data, index) => {
+                                {datas2 && datas2.map((data, index) => {
                                     return (
                                         <React.Fragment key={index}>
                                             <tr >
-                                                <td>{data.name}</td>
-                                                <td className="">{data.qty}</td>
-                                                <td className="">{data.unit}</td>
-                                                <td className="">{data.allergies}</td>
-                                                <td className="text-right">{data.total_unit}</td>
-                                                <td className="text-right">${data.recipe_cost}</td>
-                                                <td className="text-center">
+                                                <td>{data.item}</td>
+                                                <td className=""></td>
+                                                <td className="">{data.allergeies.join(", ")}</td>
+                                                <td className="text-right"></td>
+                                                <td className="text-right">{data.qty} %</td>
+                                                <td className="text-right">
                                                     <div className="custom-control custom-checkbox pink-checkbox">
-                                                        <input type="checkbox" className="custom-control-input" id="customCheck0" />
-                                                        <label className="custom-control-label" htmlFor="customCheck0"></label>
+                                                        <input type="checkbox" className="custom-control-input" id={index} defaultChecked={data.customisable}/>
+                                                        <label className="custom-control-label" htmlFor={index}></label>
                                                     </div>
                                                 </td>
                                             </tr>
                                         </React.Fragment>
                                     )
                                 })}
+
+                                {
+                                    addItem
+                                    ?
+                                    <React.Fragment>
+                                        <tr>
+                                            <td>
+                                                <label className="gray-txt f-15">Item Name </label>
+                                                <input value={items.item} onChange={(e)=>{setItems({...items,item:e.target.value})}} className="form-control" type="text" placeholder="Search" />
+                                            </td>
+                                            <td></td>
+                                            <td>
+                                                <label className="gray-txt f-15">Select Allergy</label>
+                                                <CheckBoxAutoCompleteComp  placeholder={"Allergy Values"} clearAll={clearMenugy} options={menu_options} value={allergyValue} onChangeData={setAllergyValue}/>
+                                            </td>
+                                            <td></td>
+                                            <td className="text-right">
+                                                <label className="gray-txt f-15">Quantity</label>
+                                                <input  name="qty" value={items.qty} onChange={(e)=>{setItems({...items,qty:e.target.value})}}   className="form-control" type="number" placeholder="Search" />
+                                            </td>
+                                            <td className="text-right">
+                                                <label className="gray-txt f-15">CUSTOMISABLE</label>
+                                                <div className="custom-control custom-checkbox pink-checkbox">
+                                                    <input type="checkbox" className="custom-control-input" id="ssss" name="customisable" value={items.customisable} onChange={(e)=>{setItems({...items,customisable:e.target.checked})}} />
+                                                    <label className="custom-control-label" htmlFor="ssss"></label>
+                                                </div>
+                                               
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colSpan="6">
+                                                <div className="text-right">
+                                                    <button  onClick={addToDatas}>Add</button>
+                                                    <button type="reset" onClick={()=>{setAddItem(false)}}>Cancle</button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </React.Fragment>
+                                    :
+                                    null
+                                }
+                                
+                                
                             </tbody>
                             <tfoot>
                                 <tr className="item-cost">
                                     <td>
                                         <span className="d-flex align-items-center">
                                             <span className="itemsplus-icon">+</span>
-                                            <button className="additems-btn">Click to add item</button>
+                                            <button className="additems-btn" onClick={()=>{setAddItem(true)}}>Click to add item</button>
                                         </span>
                                     </td>
                                     <td className=""></td>
                                     <td className=""></td>
-                                    <td className=""></td>
                                     <td className="text-right">Estimated Cost</td>
-                                    <td className="text-right brandon-Bold">$4.10</td>
+                                    <td className="text-right brandon-Bold">{datas2.reduce((prev,next) => prev+JSON.parse(next.qty),0)}%</td>
                                     <td className="text-center"></td>
                                 </tr>
                             </tfoot>
                         </table>
-                    </div>
+                    </div>  
                 </div>
             </div>
+            {alergy}
 
             <div className="row">
                 <div className="col-sm-12">
@@ -276,7 +459,7 @@ const ManageEasyAddDishComp = () => {
                     </div>
                 </div>
             </div>
-
+            
             <div className="row">
                 <div className="col-sm-12">
                     <p>DIETARY PREFERENCES</p>
@@ -350,7 +533,7 @@ const ManageEasyAddDishComp = () => {
                         <div className="d-flex justify-content-between align-items-center">
                             <h2>INSTRUCTIONS</h2>
                         </div>
-                        <textarea className="form-control" id="exampleFormControlTextarea1" rows="7" placeholder="Type Here" />
+                        <textarea  name="instructions" onChange={handleManageAddDish} className="form-control" id="exampleFormControlTextarea1" rows="7" placeholder="Type Here" />
                     </div>
                 </div>
             </div>
@@ -366,7 +549,7 @@ const ManageEasyAddDishComp = () => {
                         <label className="custom-control-label" htmlFor="customCheck6">Create New Version</label>
                     </div>
                     <button className="btn pinkline-btn text-uppercase rounded-pill ml-3">CANCLE</button>
-                    <button className="btn pinkline-btn text-uppercase rounded-pill ml-3">CALCULATE</button>
+                    <button className="btn pinkline-btn text-uppercase rounded-pill ml-3" onClick={handleSubmit}>Save</button>
                 </div>
             </div>
 

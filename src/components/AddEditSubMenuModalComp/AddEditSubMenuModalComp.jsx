@@ -33,12 +33,12 @@ const AddEditSubMenuModalComp = (props) => {
     }
 
     const validationSchema  = Yup.object().shape({
-        name:Yup.string().required('Title is required'),
-        timeFrom:Yup.date().nullable().required('Required'),
-        timeTo:Yup.date().nullable().required('Required'),
-        availability:Yup.array().required('Title is required'),
-        styleOfmenu:Yup.string().required('Title is required'),
-        parentMenu:Yup.string().required('Title is required'),
+        name:Yup.string().required('Name is required'),
+        timeFrom:Yup.date().nullable().required('Time Is Required'),
+        timeTo:Yup.date().nullable().required('Time Is Required'),
+        availability:Yup.array().required('Please Select Availablity'),
+        styleOfmenu:Yup.string().required('Please Select Menu Style'),
+        parentMenu:Yup.string().required('Please Select Menu'),
 
     });
 
@@ -66,8 +66,9 @@ const AddEditSubMenuModalComp = (props) => {
         availability:subMenuData.availability,
         type: "submenu",
         styleOfmenu:subMenuData.styleOfmenu,
-        parentMenu: subMenuData.parentMenu
+        parentMenu: menuData && menuData.menuDetails.find(o => o._id === subMenuData.parentMenu)?subMenuData.parentMenu:'',
     }
+    
 
     const onSubmit=(fields, { setStatus })=>{
         setStatus();

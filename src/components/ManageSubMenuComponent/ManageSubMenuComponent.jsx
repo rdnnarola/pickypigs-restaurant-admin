@@ -62,7 +62,7 @@ const ManageSubMenuComponent = () => {
                             </div>
                             <div className="custom-control custom-checkbox pink-checkbox">
                                 <input type="checkbox" checked={showDeleted} onChange={(e)=>{setShowDeleted(e.target.checked)}} className="custom-control-input" id="customCheck1" />
-                                <label className="custom-control-label" htmlFor="customCheck1">Show deleted menus</label>
+                                <label className="custom-control-label" htmlFor="customCheck1">Show deleted SubMenus</label>
                             </div>
                         </div>
                         <button className="btn pinkline-btn text-uppercase rounded-pill mr-3 f-15" onClick={() => {setAddSubMenuModalShow(true);setSubMenuId(null)}}><span className="add-icon"> ADD SUB MENU</span></button>

@@ -36,7 +36,7 @@ class Routes extends React.PureComponent {
     render() {
         return (
             <Layout>
-                <div>
+                    <div>
                        <AlertSystemPage/>
                    </div>
                 {routesCode.map((route, i) =>

@@ -8,18 +8,20 @@ import './SignUpSignInComponent.scss';
 import SignUpModalComp from "../SignUpModalComp/SignUpModalComp";
 import { useHistory } from "react-router-dom";
 
+const passwordRegExp = RegExp(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,24})/);
 
 const validationSchemaForLogin = Yup.object().shape({
-    email: Yup.string().email().required('Required'),
-    password: Yup
+    email: Yup.string().email('Email must be a valid email').required('Email Required'),
+    password:Yup
         .string()
         .label('Password')
-        .required('Required')
-        .min(4, 'Seems a bit short...')
-        .max(15, 'We prefer insecure system, try a shorter password.')
+        .required('Password Required')
+        .min(8, 'Seems a bit short(Min 8 characters)...')
+        .max(24, 'Please try a shorter password(Max 24 characters)...).')
+        .matches(passwordRegExp, 'Password should Have 1 Uppercase,1 Lowercase,1 digit,1 special characte'),  
 });
 const validationSchemaForForgotPassword = Yup.object().shape({
-    email: Yup.string().email().required('Required'),        
+    email: Yup.string().email('Email must be a valid email').required('Email Required'),      
 });
 const SignUpSignInComponent = () => {
 
@@ -60,6 +62,11 @@ const SignUpSignInComponent = () => {
     let forgotPasswordData = useSelector((state)=>{
         return state.general.forgot_Password
     });
+    let loading = useSelector((state)=>{
+        return state.general.isLoading
+    });
+
+
 
     return (
         <>
@@ -91,8 +98,9 @@ const SignUpSignInComponent = () => {
                         </div>
                     </div>
                 </div>
+     
                 <div className="col-md-6">
-                    <div className="signin-form">
+                    <div className="signin-form " >
                         {isLoginPage?
                         <div>
                         <h5 className="text-center signindash-heading brandon-Bold mb-4">SIGN IN TO YOUR DASHBOARD</h5>
@@ -129,11 +137,23 @@ const SignUpSignInComponent = () => {
                                                     <span>Forgot Password ?</span>
                                                 </button>
                                             </div>
-                                            <div className="form-group text-center">
-                                                <button className="min-width-270 pinkline-btn signup-btn btn mt-4 text-uppercase rounded-pill" type="submit" >
-                                                    Sign in
-                                                            </button>
-                                            </div>
+                                            {
+                                                 loading&&loading
+                                                 ?
+                                                 <tr>
+                                                     <td colSpan="7" className="text-center" >
+                                                         <div className="spinner-border m-3" role="status"></div>
+                                                         <div className="visually-hidden">Please Wait Loading...</div>
+                                                     </td>
+                                                 </tr>
+                                                 :
+                                                 <div className="form-group text-center">
+                                                    <button className="min-width-270 pinkline-btn signup-btn btn mt-4 text-uppercase rounded-pill" type="submit" >
+                                                        Sign in
+                                                    </button>
+                                                </div>
+                                            }
+                                            
 
                                         </div>
                                     </div>

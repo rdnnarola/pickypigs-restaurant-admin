@@ -5,6 +5,7 @@ const initialState = {
     errorMessage:'',
     subCategory_Data:null,
     selectedSubCategory:{},
+    selectedCategorySubcategoryList:null,
     };
     
     const subcategoryReducer = (state = initialState, { type, payload }) => {
@@ -15,6 +16,7 @@ const initialState = {
         case "GET_SELECTEDSUBCATEGORY_REQUEST":
         case "UPDATE_SUBCATEGORY_REQUEST":
         case "DELETE_SUBCATEGORY_REQUEST":
+        case "GET_SELECTEDSUBCATEGORYLIST_REQUEST":
             return {
                 ...state,
                 isLoading :true,
@@ -51,16 +53,24 @@ const initialState = {
                 isLoading:false
             }   
 
-       case "DELETE_SUBCATEGORY_SUCCESS":            
+        case "DELETE_SUBCATEGORY_SUCCESS":            
             return{
                 ...state,
                 isLoading:false
             }   
+        case "GET_SELECTEDSUBCATEGORYLIST_SUCCESS":
+            return {
+                ...state,
+                isLoading:false,
+                selectedCategorySubcategoryList:payload.data,
+    
+            };    
         case "GET_ALLSUBCATEGORY_FAILURE":
         case "ADD_SUBCATEGORY_FAILURE":
         case "GET_SELECTEDSUBCATEGORY_FAILURE":  
         case "UPDATE_SUBCATEGORY_FAILURE":  
         case "DELETE_SUBCATEGORY_FAILURE":  
+        case "GET_SELECTEDSUBCATEGORYLIST_FAILURE":  
             return {
                 ...state,
                 isLoading:false,
