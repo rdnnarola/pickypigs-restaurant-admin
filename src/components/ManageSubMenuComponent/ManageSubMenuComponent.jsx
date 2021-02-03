@@ -1,6 +1,6 @@
 import React,{useState,useEffect} from "react";
 import {useDispatch,useSelector} from "react-redux";
-import {getAllSubMenuData} from "../../redux/actions/submenuAction"
+import {getAllSubMenuData,hideSelectedSubMenuData,duplicateSelectedSubMenuData} from "../../redux/actions/submenuAction"
 import AddEditSubMenuModalComp from "../AddEditSubMenuModalComp/AddEditSubMenuModalComp";
 import DeleteSubMenuModalComp from "../DeleteSubMenuModalComp/DeleteSubMenuModalComp";
 import moment from "moment";
@@ -23,7 +23,11 @@ const ManageSubMenuComponent = () => {
     // }
 
     useEffect(()=>{
-        dispatch(getAllSubMenuData({search:inputValue,start:0,type:"submenu",delete:showDeleted?"1":'0'}));
+        if(showDeleted){
+            dispatch(getAllSubMenuData({search:inputValue,start:0,type:"submenu"}));
+        }else{
+            dispatch(getAllSubMenuData({search:inputValue,start:0,type:"submenu",delete:0}));
+        }
     },[dispatch,inputValue,showDeleted]);
 
     let subMenuData = useSelector((state)=>{
@@ -68,7 +72,7 @@ const ManageSubMenuComponent = () => {
                         <button className="btn pinkline-btn text-uppercase rounded-pill mr-3 f-15" onClick={() => {setAddSubMenuModalShow(true);setSubMenuId(null)}}><span className="add-icon"> ADD SUB MENU</span></button>
                     </div>
                     <div>
-                        <AddEditSubMenuModalComp  show={addSubMenuModalShow} onHide={() => setAddSubMenuModalShow(false)} submenuid={subMenuId}/>
+                        <AddEditSubMenuModalComp  show={addSubMenuModalShow} onHide={() => setAddSubMenuModalShow(false)} submenuid={subMenuId} showDeleted={showDeleted}/>
                     </div>
                 </div>
             </div>
@@ -108,7 +112,7 @@ const ManageSubMenuComponent = () => {
                                                 {subMenu_Data&& subMenu_Data.menuDetails.map((data, index) => {
                                                     return (
                                                         <React.Fragment key={index}>
-                                                            <tr >
+                                                            <tr className={`${!data.isActive&&"bg-warning"}`}>
                                                                 <td className="text-capitalize">{data.name}</td>
                                                                 <td className="">{data.availability?daycalculate(data.availability):"-"}</td>
                                                                 <td className="">{tConv24(data.timeFrom)} - {tConv24(data.timeTo)}</td>
@@ -122,7 +126,13 @@ const ManageSubMenuComponent = () => {
                                                                         </button>
                                                                         <ul className="dropdown-menu actiondropdown-list" aria-labelledby="dropdownMenuButton">
                                                                             <li><button className="dropdown-item" onClick={() => {setAddSubMenuModalShow(true);setSubMenuId(data._id)}} >Update</button></li>
-                                                                            <li><button className="dropdown-item" onClick={() => {setDeleteModalShow(true);setSubMenuId(data._id)}}>Delete</button></li>
+                                                                            {data.isDeleted===0?
+                                                                                <li><button className="dropdown-item" onClick={() => {setDeleteModalShow(true);setSubMenuId(data._id)}}>Delete</button></li>
+                                                                            :
+                                                                                <li><button className="dropdown-item" >Restore Menu</button></li>
+                                                                            }
+                                                                            <li><button className="dropdown-item" onClick={()=>{dispatch(hideSelectedSubMenuData(data._id,{isActive:!data.isActive},showDeleted))}}>{data.isActive?"Hide":"UnHide"}</button></li>
+                                                                            <li><button className="dropdown-item" onClick={()=>{dispatch(duplicateSelectedSubMenuData(data._id,{},showDeleted))}}>Duplicate</button></li>
                                                                         </ul>
                                                                     </div>
                                                                 </td>
@@ -142,7 +152,7 @@ const ManageSubMenuComponent = () => {
                                 }
                             </tbody>
                         </table>
-                        <DeleteSubMenuModalComp show={deleteModalShow} onHide={() => setDeleteModalShow(false)} selectedid={subMenuId}/>
+                        <DeleteSubMenuModalComp show={deleteModalShow} onHide={() => setDeleteModalShow(false)} selectedid={subMenuId} showDeleted={showDeleted}/>
 
                     </div>
                 </div>

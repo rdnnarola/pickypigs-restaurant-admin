@@ -26,7 +26,7 @@ export const getAllMenuData=(data)=>{
     }
   };
 
-  export const addMenuData=(data)=>{
+  export const addMenuData=(data,showDeleted)=>{
 
     return async(dispatch)=>{
         try{
@@ -40,7 +40,11 @@ export const getAllMenuData=(data)=>{
             let response = await Axios.post(dataURL,JSON.stringify(data),config );
             dispatch({type:"ADD_MENU_SUCCESS",payload:response.data});
             await dispatch(setAlert('Menu Added Successfuly', 'success'));
-            await dispatch(getAllMenuData());
+            if(showDeleted){
+              await dispatch(getAllMenuData());
+            }else{
+              await dispatch(getAllMenuData({delete:0}));
+            }
 
         }
         catch(error){
@@ -80,7 +84,7 @@ export const updateMenuForm = (key , value) => {
   }
 };
 
-  export const updateSelectedMenuData=(menuId,data)=>{
+  export const updateSelectedMenuData=(menuId,data,showDeleted)=>{
     return async(dispatch)=>{
         try{
             dispatch({type:"UPDATE_MENU_REQUEST"});
@@ -92,7 +96,11 @@ export const updateMenuForm = (key , value) => {
             let dataURL=`/restaurant_admin/menus/${menuId}`
             let response = await Axios.put(dataURL,JSON.stringify(data),config );
             dispatch({type:"UPDATE_MENU_SUCCESS",payload:response.data});
-            await dispatch(getAllMenuData());
+            if(showDeleted){
+              await dispatch(getAllMenuData());
+            }else{
+              await dispatch(getAllMenuData({delete:0}));
+            }
             await dispatch(setAlert('Menu Updated Successfuly', 'success'));
 
         }
@@ -107,14 +115,17 @@ export const updateMenuForm = (key , value) => {
     }
   };
   
-  export const deleteSelectedMenuData=(categoryId)=>{
+  export const deleteSelectedMenuData=(selectedId,showDeleted)=>{
     return async(dispatch)=>{
         try{
             dispatch({type:"DELETE_MENU_REQUEST"});
-            let response = await Axios.delete(`/restaurant_admin/menus/${categoryId}`)
+            let response = await Axios.delete(`/restaurant_admin/menus/${selectedId}`)
             dispatch({type:"DELETE_MENU_SUCCESS",payload:response.data});
-            await dispatch(getAllMenuData());
-            await dispatch(setAlert('Menu Deleted Successfuly', 'warning'));
+            if(showDeleted){
+              await dispatch(getAllMenuData());
+            }else{
+              await dispatch(getAllMenuData({delete:0}));
+            }            await dispatch(setAlert('Menu Deleted Successfuly', 'warning'));
         }
         catch(error){
             dispatch({type:"DELETE_MENU_FAILURE",payload:error});
@@ -126,6 +137,68 @@ export const updateMenuForm = (key , value) => {
         }
     }
   }
+
+  export const hideSelectedMenuData=(selectedId,data,showDeleted)=>{
+    return async(dispatch)=>{
+        try{
+            dispatch({type:"HIDE_MENU_REQUEST"});
+            let config= {
+                headers:{
+                 "Content-Type":"application/json"
+                 }
+             }
+            let dataURL=`/restaurant_admin/menus/active_inactive/${selectedId}`
+            let response = await Axios.put(dataURL,JSON.stringify(data),config );
+            dispatch({type:"HIDE_MENU_SUCCESS",payload:response.data});
+            if(showDeleted){
+              await dispatch(getAllMenuData());
+            }else{
+              await dispatch(getAllMenuData({delete:0}));
+            }
+            await dispatch(setAlert(`Menu ${data.isActive?"UnHide":"Hide"} Successfuly`, 'success'));
+
+        }
+        catch(error){
+          dispatch({type:"HIDE_MENU_FAILURE",payload:error});
+          if (error.response) {
+            dispatch(setAlert(`${error.response.data.message}`, 'error'));
+          } else {
+            dispatch(setAlert('Something wwnt wrong!', 'error'));
+          }
+        }
+    }
+  };
+
+  export const duplicateSelectedMenuData=(selectedId,data,showDeleted)=>{
+    return async(dispatch)=>{
+        try{
+            dispatch({type:"DUPLICATE_MENU_REQUEST"});
+            let config= {
+                headers:{
+                 "Content-Type":"application/json"
+                 }
+             }
+            let dataURL=`/restaurant_admin/menus/duplicate/${selectedId}`
+            let response = await Axios.put(dataURL,JSON.stringify(data),config );
+            dispatch({type:"DUPLICATE_MENU_SUCCESS",payload:response.data});
+            if(showDeleted){
+              await dispatch(getAllMenuData());
+            }else{
+              await dispatch(getAllMenuData({delete:0}));
+            }
+            await dispatch(setAlert('Menu Duplicated Successfuly', 'success'));
+
+        }
+        catch(error){
+          dispatch({type:"DUPLICATE_MENU_FAILURE",payload:error});
+          if (error.response) {
+            dispatch(setAlert(`${error.response.data.message}`, 'error'));
+          } else {
+            dispatch(setAlert('Something wwnt wrong!', 'error'));
+          }
+        }
+    }
+  };
 
   
 

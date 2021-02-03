@@ -54,7 +54,7 @@ const AddEditSubCategoryModalComp = (props) => {
             }
         }
         if (props.show) {
-            dispatch(getAllMenuData({start:0}));
+            dispatch(getAllMenuData({start:0,delete:0}));
         }
     }, [dispatch,props.show,props.subcategoryid]);
 

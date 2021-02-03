@@ -1,7 +1,7 @@
 import React,{useState,useEffect} from "react";
 import {useDispatch,useSelector} from "react-redux";
 import moment from "moment";
-import {deleteSelectedSubCategoryData, getAllSubCategoryData } from "../../redux/actions/subcategoryAction";
+import {getAllSubCategoryData,hideSelectedSubCategoryData,duplicateSelectedSubCategoryData} from "../../redux/actions/subcategoryAction";
 import AddEditSubCategoryModalComp from "../AddEditSubCategoryModalComp/AddEditSubCategoryModalComp";
 import './ManageSubCategoriesComponent.scss';
 import DeleteSubCategoryModalComp from "../DeleteSubCategoryModalComp/DeleteSubCategoryModalComp";
@@ -83,7 +83,7 @@ const ManageSubCategoriesComponent = () => {
                                         {subCategory_Data && subCategory_Data.menuDetails.map((data, index) => {
                                             return (
                                                 <React.Fragment key={index}>
-                                                    <tr >
+                                                    <tr className={`${!data.isActive&&"bg-warning"}`}>
                                                         <td className="text-capitalize">{data.name}</td>
                                                         <td>&nbsp;</td>
                                                         <td>&nbsp;</td>
@@ -100,6 +100,8 @@ const ManageSubCategoriesComponent = () => {
                                                                 <ul className="dropdown-menu actiondropdown-list" aria-labelledby="dropdownMenuButton">
                                                                     <li><button className="dropdown-item" onClick={() => {setAddSubCategoryModalShow(true);setSubCategoryId(data._id)}} >Update</button></li>
                                                                     <li><button className="dropdown-item" onClick={() => {setDeleteModalShow(true);setSubCategoryId(data._id)}}>Delete</button></li>
+                                                                    <li><button className="dropdown-item" onClick={()=>{dispatch(hideSelectedSubCategoryData(data._id,{isActive:!data.isActive}))}}>{data.isActive?"Hide":"UnHide"}</button></li>
+                                                                    <li><button className="dropdown-item" onClick={()=>{dispatch(duplicateSelectedSubCategoryData(data._id))}}>Duplicate</button></li>
                                                                 </ul>
                                                             </div>
                                                         </td>

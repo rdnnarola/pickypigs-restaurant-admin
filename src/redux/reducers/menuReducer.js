@@ -15,6 +15,8 @@ const initialState = {
         case "GET_SELECTEDMENU_REQUEST":
         case "UPDATE_MENU_REQUEST":
         case "DELETE_MENU_REQUEST":
+        case "HIDE_MENU_REQUEST":
+        case "DUPLICATE_MENU_REQUEST":
             return {
                 ...state,
                 isLoading :true,
@@ -57,20 +59,31 @@ const initialState = {
                 ...state,
                 isLoading:false
             }  
+
+        case "HIDE_MENU_SUCCESS":
+            return{
+                ...state,
+                isLoading:false,
+            };
+        case "DUPLICATE_MENU_SUCCESS":
+            return{
+                ...state,
+                isLoading:false,
+            };         
              
         case "GET_ALLMENU_FAILURE":
         case "ADD_MENU_FAILURE":
         case "GET_SELECTEDMENU_FAILURE":  
         case "UPDATE_MENU_FAILURE":  
         case "DELETE_MENU_FAILURE": 
+        case "HIDE_MENU_FAILURE": 
+        case "DUPLICATE_MENU_FAILURE": 
             return {
                 ...state,
                 isLoading:false,
                 errorMessage:payload
             };
   
-    
-
         default:
           return state;
       }

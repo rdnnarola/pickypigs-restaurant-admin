@@ -47,7 +47,7 @@ const AddEditSubMenuModalComp = (props) => {
             if (!isAddMode) {
                 dispatch(getSelectedSubMenuData(props.submenuid));
             }
-            dispatch(getAllMenuData({start:0}));
+            dispatch(getAllMenuData({start:0,delete:0}));
         }
     }, [dispatch,props.show,props.submenuid]);
 
@@ -81,12 +81,12 @@ const AddEditSubMenuModalComp = (props) => {
 
     function createSubMenuRequest(fields) {
       
-        dispatch(addSubMenuData({...fields,timeFrom:moment(fields.timeFrom).format( 'HH:mm'),timeTo:moment(fields.timeTo).format( 'HH:mm')}));
+        dispatch(addSubMenuData({...fields,timeFrom:moment(fields.timeFrom).format( 'HH:mm'),timeTo:moment(fields.timeTo).format( 'HH:mm')},props.showDeleted));
         props.onHide();
     }
 
     function updateSubMenuRequest(id,fields) {
-        dispatch(updateSelectedSubMenuData(id,{...fields,timeFrom:moment(fields.timeFrom).format( 'HH:mm'),timeTo:moment(fields.timeTo).format( 'HH:mm')}));
+        dispatch(updateSelectedSubMenuData(id,{...fields,timeFrom:moment(fields.timeFrom).format( 'HH:mm'),timeTo:moment(fields.timeTo).format( 'HH:mm')},props.showDeleted));
         props.onHide();
     }
 

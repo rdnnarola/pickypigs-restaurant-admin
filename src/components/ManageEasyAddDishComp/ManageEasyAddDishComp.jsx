@@ -151,7 +151,7 @@ const ManageEasyAddDishComp = () => {
 
     //--------- Getting All Menu Data -------//
     useEffect(()=>{
-        dispatch(getAllMenuData({start:0}));
+        dispatch(getAllMenuData({start:0,delete:0}));
     },[dispatch]);
 
     let menuData = useSelector((state)=>{

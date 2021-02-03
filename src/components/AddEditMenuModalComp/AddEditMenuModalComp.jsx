@@ -70,17 +70,14 @@ const AddEditMenuModalComp = (props) => {
 
     function createMenuRequest(fields) {
       
-        dispatch(addMenuData({...fields,timeFrom:moment(fields.timeFrom).format( 'HH:mm'),timeTo:moment(fields.timeTo).format( 'HH:mm')}));
+        dispatch(addMenuData({...fields,timeFrom:moment(fields.timeFrom).format( 'HH:mm'),timeTo:moment(fields.timeTo).format( 'HH:mm')},props.showDeleted));
         props.onHide();
     }
 
     function updateMenuRequest(id,fields) {
-        dispatch(updateSelectedMenuData(id,{...fields,timeFrom:moment(fields.timeFrom).format( 'HH:mm'),timeTo:moment(fields.timeTo).format( 'HH:mm')}));
+        dispatch(updateSelectedMenuData(id,{...fields,timeFrom:moment(fields.timeFrom).format( 'HH:mm'),timeTo:moment(fields.timeTo).format( 'HH:mm')},props.showDeleted));
         props.onHide();
     }
-
-    
-
 
     return (
         <>

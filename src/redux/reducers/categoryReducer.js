@@ -17,6 +17,9 @@ const initialState = {
         case "UPDATE_CATEGORY_REQUEST":
         case "DELETE_CATEGORY_REQUEST":
         case "GET_MENUCATEGORYLIST_REQUEST":
+        case "HIDE_CATEGORY_REQUEST":
+        case "DUPLICATE_CATEGORY_REQUEST":
+
             return {
                 ...state,
                 isLoading :true,
@@ -64,14 +67,25 @@ const initialState = {
                 ...state,
                 isLoading:false,
                 selectedMenuCategoryList:payload.data,
-    
             };        
+        case "HIDE_CATEGORY_SUCCESS":
+            return{
+                ...state,
+                isLoading:false,
+            };
+        case "DUPLICATE_CATEGORY_SUCCESS":
+            return{
+                ...state,
+                isLoading:false,
+            };     
         case "GET_ALLCATEGORY_FAILURE":
         case "ADD_CATEGORY_FAILURE":
         case "GET_SELECTEDCATEGORY_FAILURE":  
         case "UPDATE_CATEGORY_FAILURE":  
         case "DELETE_CATEGORY_FAILURE": 
-        case "GET_MENUCATEGORYLIST_FAILURE":    
+        case "HIDE_CATEGORY_FAILURE": 
+        case "DELETE_CATEGORY_FAILURE": 
+        case "DUPLICATE_CATEGORY_FAILURE":    
             return {
                 ...state,
                 isLoading:false,

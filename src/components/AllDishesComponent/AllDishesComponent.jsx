@@ -24,7 +24,7 @@ const AllDishesComponent=()=>{
     },[dispatch,inputValue,menuId,categoryId]);
 
     useEffect(()=>{
-        dispatch(getAllMenuData({start:0}));
+        dispatch(getAllMenuData({start:0,delete:0}));
     },[]);
 
     let dishesData = useSelector((state)=>{

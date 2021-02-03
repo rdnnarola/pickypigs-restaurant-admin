@@ -17,7 +17,7 @@ const AddEditCategoryModalComp = (props) => {
         menuId:'',
     }
     const validationSchema  = Yup.object().shape({
-        name: Yup.string().required('Title is required'),
+        name: Yup.string().required('Name is required'),
         menuId: Yup.string().required('Menu is required'),
     });
 
@@ -26,7 +26,7 @@ const AddEditCategoryModalComp = (props) => {
             if (!isAddMode) {
                 dispatch(getSelectedCategoryData(props.categoryid));
             }
-            dispatch(getAllMenuData({start:0}));
+            dispatch(getAllMenuData({start:0,delete:0}));
         }
        
     }, [dispatch,props.show,props.categoryid]);
@@ -44,7 +44,7 @@ const AddEditCategoryModalComp = (props) => {
         menuId:menuData && menuData.menuDetails.find(o => o._id === selectedCategoryData.menuId)?selectedCategoryData.menuId:'',
         // menuId:selectedCategoryData.menuId,
     }
-    // console.log(initialValues2);
+    // console.log(menuData && menuData.menuDetails.find(o => o._id === selectedCategoryData.menuId));
 
 
     const onSubmit=(fields, { setStatus })=>{
@@ -86,7 +86,7 @@ const AddEditCategoryModalComp = (props) => {
             >
                 <Modal.Header className="align-items-center">
                     <Modal.Title className="brandon-Medium" id="contained-modal-title-vcenter">
-                        Add / Edit Category
+                        Add / Edit Category{JSON.stringify( menuData && menuData.menuDetails.find(o => o._id === selectedCategoryData&&selectedCategoryData.menuId))}
                     </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>

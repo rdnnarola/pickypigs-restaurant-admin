@@ -1,6 +1,6 @@
 import React,{useState,useEffect} from "react";
 import {useDispatch,useSelector} from "react-redux";
-import {getAllMenuData} from "../../redux/actions/menuAction"
+import {getAllMenuData, hideSelectedMenuData,duplicateSelectedMenuData} from "../../redux/actions/menuAction"
 import AddEditMenuModalComp from "../AddEditMenuModalComp/AddEditMenuModalComp";
 import DeleteMenuModalComp from "../DeleteMenuModalComp/DeleteMenuModalComp";
 import moment from "moment";
@@ -27,7 +27,12 @@ const ManageMenuComponent = () => {
     }
 
     useEffect(()=>{
-        dispatch(getAllMenuData({search:inputValue,start:0,type:"menu",delete:showDeleted?"1":'0'}));
+        if(showDeleted){
+            dispatch(getAllMenuData({search:inputValue,start:0,type:"menu"}));
+        }
+        else{
+            dispatch(getAllMenuData({search:inputValue,start:0,type:"menu",delete:0}));
+        }
     },[dispatch,inputValue,showDeleted]);
 
     let menuData = useSelector((state)=>{
@@ -71,7 +76,7 @@ const ManageMenuComponent = () => {
                         <button className="btn pinkline-btn text-uppercase rounded-pill mr-3 f-15" onClick={() => {setAddMenuModalShow(true);setMenuId(null)}}><span className="add-icon"> ADD MENU</span></button>
                     </div>
                     <div>
-                        <AddEditMenuModalComp  show={addMenuModalShow} onHide={() => setAddMenuModalShow(false)} menuid={menuId}/>
+                        <AddEditMenuModalComp  show={addMenuModalShow} onHide={() => setAddMenuModalShow(false)} menuid={menuId} showDeleted={showDeleted}/>
                     </div>
                 </div>
             </div>
@@ -111,7 +116,7 @@ const ManageMenuComponent = () => {
                                                 {menu_Data&& menu_Data.menuDetails.map((data, index) => {
                                                     return (
                                                         <React.Fragment key={index}>
-                                                            <tr >
+                                                            <tr className={`${!data.isActive&&"bg-warning"}`}>
                                                                 <td className="text-capitalize">{data.name}</td>
                                                                 <td className="">{data.availability?daycalculate(data.availability):"-"}</td>
                                                                 <td className="">{tConv24(data.timeFrom)} - {tConv24(data.timeTo)}</td>
@@ -125,7 +130,13 @@ const ManageMenuComponent = () => {
                                                                         </button>
                                                                         <ul className="dropdown-menu actiondropdown-list" aria-labelledby="dropdownMenuButton">
                                                                             <li><button className="dropdown-item" onClick={() => {setAddMenuModalShow(true);setMenuId(data._id)}} >Update</button></li>
-                                                                            <li><button className="dropdown-item" onClick={() => {setDeleteModalShow(true);setMenuId(data._id)}}>Delete</button></li>
+                                                                            {data.isDeleted===0?
+                                                                                <li><button className="dropdown-item" onClick={() => {setDeleteModalShow(true);setMenuId(data._id)}}>Delete</button></li>
+                                                                            :
+                                                                                <li><button className="dropdown-item" >Restore Menu</button></li>
+                                                                            }
+                                                                            <li><button className="dropdown-item" onClick={()=>{dispatch(hideSelectedMenuData(data._id,{isActive:!data.isActive},showDeleted))}}>{data.isActive?"Hide":"UnHide"}</button></li>
+                                                                            <li><button className="dropdown-item" onClick={()=>{dispatch(duplicateSelectedMenuData(data._id,{},showDeleted))}}>Duplicate</button></li>
                                                                         </ul>
                                                                     </div>
                                                                 </td>
@@ -146,7 +157,7 @@ const ManageMenuComponent = () => {
                             </tbody>
                             
                         </table>
-                        <DeleteMenuModalComp show={deleteModalShow} onHide={() => setDeleteModalShow(false)} selectedid={menuId}/>
+                        <DeleteMenuModalComp show={deleteModalShow} onHide={() => setDeleteModalShow(false)} selectedid={menuId} showDeleted={showDeleted}/>
 
                     </div>
                 </div>

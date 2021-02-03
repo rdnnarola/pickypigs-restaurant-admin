@@ -33,9 +33,9 @@ const DonutChart = (props) => {
             <div className="chart-main">
                 <div className="position-relative">
                     <h5 className="chart-datalabel">
-                        <span className="brandon-Bold">120</span>
+                        <span className="brandon-Bold">{props.length}</span>
                         <br />
-                        <small>allergies</small>
+                        <small>{props.name}</small>
                     </h5>
                     <PieChart width={240} height={240}>
                         <Pie
@@ -55,16 +55,17 @@ const DonutChart = (props) => {
                     </PieChart>
                 </div>
                 <div className="chartdata-txt">
-                    <div className="d-flex justify-content-between ">
-                        <p className="chartdata-count">Nuts</p>  <p className="chartdata-count">87 %</p>
-                    </div>
-                    <div className="d-flex justify-content-between ">
-                        <p className="chartdata-count">Milk</p> <p className="chartdata-count">47 %</p>
-                    </div>
-                    <div className="d-flex justify-content-between ">
-                        <p className="chartdata-count">Celery</p> <p className="chartdata-count">10 %</p>
-                    </div>
-                    <Link to="/allergy_detail" className="chartview-btn" style={{textDecoration:"none"}}>View All</Link>
+                    {props.data&&props.data.slice(0, 3).map((data,index)=>{
+                        return(
+                            <React.Fragment key={index}>
+                                <div className="d-flex justify-content-between ">
+                                    <p className="chartdata-count">{data.name}</p>  <p className="chartdata-count">{data.value}%</p>
+                                </div>
+                            </React.Fragment>
+                        )
+                    })}
+                   
+                    <Link to={`/allergy_detail/${props.name}`} className="chartview-btn" style={{textDecoration:"none"}}>View All</Link>
                 </div>
             </div>
         </>

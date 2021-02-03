@@ -25,7 +25,7 @@ export const routesCode = [
     { path: "/manage_subcategories", exact: true, component: ManageSubCategoriesComponent },
     { path: "/all_dishes", exact: true, component: AllDishesComponent },
     { path: "/manage_dishes", exact: true, component: ManageEasyAddDishComp },
-    { path: "/allergy_detail", exact: true, component: SingleAllergyDetailPage },
+    { path: "/allergy_detail/:id", exact: true, component: SingleAllergyDetailPage },
     { path: "/restaurant_detail", exact: true, component: RestaurantDetailPage },
 
     // { path: "/verify/:token", exact: true, component: Verify }

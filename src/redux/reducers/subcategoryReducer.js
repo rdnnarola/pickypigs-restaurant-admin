@@ -17,6 +17,8 @@ const initialState = {
         case "UPDATE_SUBCATEGORY_REQUEST":
         case "DELETE_SUBCATEGORY_REQUEST":
         case "GET_SELECTEDSUBCATEGORYLIST_REQUEST":
+        case "HIDE_SUBCATEGORY_REQUEST":
+        case "DUPLICATE_SUBCATEGORY_REQUEST":
             return {
                 ...state,
                 isLoading :true,
@@ -63,14 +65,25 @@ const initialState = {
                 ...state,
                 isLoading:false,
                 selectedCategorySubcategoryList:payload.data,
-    
             };    
+        case "HIDE_SUBCATEGORY_SUCCESS":
+            return{
+                ...state,
+                isLoading:false,
+            };
+        case "DUPLICATE_SUBCATEGORY_SUCCESS":
+            return{
+                ...state,
+                isLoading:false,
+            };     
         case "GET_ALLSUBCATEGORY_FAILURE":
         case "ADD_SUBCATEGORY_FAILURE":
         case "GET_SELECTEDSUBCATEGORY_FAILURE":  
         case "UPDATE_SUBCATEGORY_FAILURE":  
         case "DELETE_SUBCATEGORY_FAILURE":  
         case "GET_SELECTEDSUBCATEGORYLIST_FAILURE":  
+        case "DELETE_SUBCATEGORY_FAILURE": 
+        case "DUPLICATE_SUBCATEGORY_FAILURE":
             return {
                 ...state,
                 isLoading:false,

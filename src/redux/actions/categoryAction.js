@@ -147,3 +147,61 @@ export const updateCategoryForm = (key , value) => {
         }
     }
   };
+
+
+
+  export const hideSelectedCategoryData=(categoryId,data)=>{
+    return async(dispatch)=>{
+        try{
+            dispatch({type:"HIDE_CATEGORY_REQUEST"});
+            let config= {
+                headers:{
+                 "Content-Type":"application/json"
+                 }
+             }
+            let dataURL=`/restaurant_admin/category/active_inactive/${categoryId}`
+            let response = await Axios.put(dataURL,JSON.stringify(data),config );
+            dispatch({type:"HIDE_CATEGORY_SUCCESS",payload:response.data});
+            await dispatch(getAllCategoryData());
+            await dispatch(setAlert(`Category ${data.isActive?"UnHide":"Hide"} Successfuly`, 'success'));
+
+
+        }
+        catch(error){
+          dispatch({type:"HIDE_CATEGORY_FAILURE",payload:error});
+          if (error.response) {
+            dispatch(setAlert(`${error.response.data.message}`, 'error'));
+          } else {
+            dispatch(setAlert('Something wwnt wrong!', 'error'));
+          }
+        }
+    }
+  };
+
+
+  export const duplicateSelectedCategoryData=(categoryId,data)=>{
+    return async(dispatch)=>{
+        try{
+            dispatch({type:"DUPLICATE_CATEGORY_REQUEST"});
+            let config= {
+                headers:{
+                 "Content-Type":"application/json"
+                 }
+             }
+            let dataURL=`/restaurant_admin/category/duplicate/${categoryId}`
+            let response = await Axios.put(dataURL,JSON.stringify(data),config );
+            dispatch({type:"DUPLICATE_CATEGORY_SUCCESS",payload:response.data});
+            await dispatch(getAllCategoryData());
+            await dispatch(setAlert('Category Duplicated Successfuly', 'success'));
+
+        }
+        catch(error){
+          dispatch({type:"DUPLICATE_CATEGORY_FAILURE",payload:error});
+          if (error.response) {
+            dispatch(setAlert(`${error.response.data.message}`, 'error'));
+          } else {
+            dispatch(setAlert('Something wwnt wrong!', 'error'));
+          }
+        }
+    }
+  };

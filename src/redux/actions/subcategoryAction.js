@@ -148,3 +148,61 @@ export const updateSubCategoryForm = (key , value) => {
         }
     }
   };
+
+
+
+  export const hideSelectedSubCategoryData=(selectedId,data)=>{
+    return async(dispatch)=>{
+        try{
+            dispatch({type:"HIDE_SUBCATEGORY_REQUEST"});
+            let config= {
+                headers:{
+                 "Content-Type":"application/json"
+                 }
+             }
+            let dataURL=`/restaurant_admin/subcategory/active_inactive/${selectedId}`
+            let response = await Axios.put(dataURL,JSON.stringify(data),config );
+            dispatch({type:"HIDE_SUBCATEGORY_SUCCESS",payload:response.data});
+            await dispatch(getAllSubCategoryData());
+            await dispatch(setAlert(`Category ${data.isActive?"UnHide":"Hide"} Successfuly`, 'success'));
+
+
+        }
+        catch(error){
+          dispatch({type:"HIDE_SUBCATEGORY_FAILURE",payload:error});
+          if (error.response) {
+            dispatch(setAlert(`${error.response.data.message}`, 'error'));
+          } else {
+            dispatch(setAlert('Something wwnt wrong!', 'error'));
+          }
+        }
+    }
+  };
+
+
+  export const duplicateSelectedSubCategoryData=(selectedId,data)=>{
+    return async(dispatch)=>{
+        try{
+            dispatch({type:"DUPLICATE_SUBCATEGORY_REQUEST"});
+            let config= {
+                headers:{
+                 "Content-Type":"application/json"
+                 }
+             }
+            let dataURL=`/restaurant_admin/subcategory/duplicate/${selectedId}`
+            let response = await Axios.put(dataURL,JSON.stringify(data),config );
+            dispatch({type:"DUPLICATE_SUBCATEGORY_SUCCESS",payload:response.data});
+            await dispatch(getAllSubCategoryData());
+            await dispatch(setAlert('Category Duplicated Successfuly', 'success'));
+
+        }
+        catch(error){
+          dispatch({type:"DUPLICATE_SUBCATEGORY_FAILURE",payload:error});
+          if (error.response) {
+            dispatch(setAlert(`${error.response.data.message}`, 'error'));
+          } else {
+            dispatch(setAlert('Something wwnt wrong!', 'error'));
+          }
+        }
+    }
+  };

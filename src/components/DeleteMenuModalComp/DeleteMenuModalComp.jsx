@@ -9,7 +9,7 @@ import './DeleteMenuModalComp.scss';
 const DeleteMenuModalComp = (props) => {
   const dispatch=useDispatch();
     const handleDelete=()=>{
-        dispatch(deleteSelectedMenuData(props.selectedid));
+        dispatch(deleteSelectedMenuData(props.selectedid,props.showDeleted));
         props.onHide();
     }
     return (

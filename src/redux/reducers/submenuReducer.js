@@ -15,6 +15,8 @@ const initialState = {
         case "GET_SELECTEDSUBMENU_REQUEST":
         case "UPDATE_SUBMENU_REQUEST":
         case "DELETE_SUBMENU_REQUEST":
+        case "HIDE_SUBMENU_REQUEST":
+        case "DUPLICATE_SUBMENU_REQUEST":    
             return {
                 ...state,
                 isLoading :true,
@@ -57,12 +59,24 @@ const initialState = {
                 ...state,
                 isLoading:false
             }  
+        case "HIDE_SUBMENU_SUCCESS":
+            return{
+                ...state,
+                isLoading:false,
+            };
+        case "DUPLICATE_SUBMENU_SUCCESS":
+            return{
+                ...state,
+                isLoading:false,
+            };     
              
         case "GET_ALLSUBMENU_FAILURE":
         case "ADD_SUBMENU_FAILURE":
         case "GET_SELECTEDSUBMENU_FAILURE":  
         case "UPDATE_SUBMENU_FAILURE":  
         case "DELETE_SUBMENU_FAILURE": 
+        case "HIDE_SUBMENU_FAILURE": 
+        case "DUPLICATE_SUBMENU_FAILURE":
             return {
                 ...state,
                 isLoading:false,

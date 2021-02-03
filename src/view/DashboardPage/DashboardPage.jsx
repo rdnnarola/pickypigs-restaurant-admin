@@ -8,12 +8,12 @@ const DashboardPage = () => {
     { name: 'Celery', value: 25 }, { name: 'Other', value: 50 }];
     const COLORS1 = ['#d1b2f5', '#91eddb', '#e376b8', '#f8e3e9'];
 
-    const data2 = [{ name: 'Nuts', value: 20 }, { name: 'Milk', value: 30 },
-    { name: 'Celery', value: 25 }, { name: 'Other', value: 12 }, { name: 'Group E', value: 13 }];
+    const data2 = [{ name: 'Vegetarian', value: 87 }, { name: 'Plant Base', value: 47 },
+    { name: 'Halal', value: 10 }, { name: 'Other', value: 12 }, { name: 'Group E', value: 13 }];
     const COLORS2 = ['#91eddb', '#d44fa0', '#d6f5ef', '#9e6be1', '#eedc81'];
 
-    const data3 = [{ name: 'Nuts', value: 10 }, { name: 'Milk', value: 15 },
-    { name: 'Celery', value: 25 }, { name: 'Other', value: 50 }];
+    const data3 = [{ name: 'Pregnant', value: 87 }, { name: 'Vegan', value: 47 },
+    { name: 'Organic', value: 10 }, { name: 'Other', value: 50 }];
     const COLORS3 = ['#d1b2f5', '#91eddb', '#e376b8', '#f8e3e9'];
     return (
         <>
@@ -41,13 +41,13 @@ const DashboardPage = () => {
                     </div>
                     <div className="row">
                         <div className="col-md-4">
-                            <DonutChart data={data1} COLORS={COLORS1} />
+                            <DonutChart length="120" name="Allergies" data={data1} COLORS={COLORS1} />
                         </div>
                         <div className="col-md-4">
-                            <DonutChart data={data2} COLORS={COLORS2} />
+                            <DonutChart length="20" name="Dietaries" data={data2} COLORS={COLORS2} />
                         </div>
                         <div className="col-md-4">
-                            <DonutChart data={data3} COLORS={COLORS3} />
+                            <DonutChart length="10" name="Lifestyle" data={data3} COLORS={COLORS3} />
                         </div>
                     </div>
                 </div>
