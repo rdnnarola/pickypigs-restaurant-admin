@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import { Field, Form, Formik } from 'formik';
 import * as Yup from 'yup';
-import { useDispatch} from "react-redux";
+import { useDispatch, useSelector} from "react-redux";
 import showpassword from "../../assets/images/eye_icon.svg";
 import {resetPassword } from "../../redux/actions/generalActions";
 import './ResetPasswordComp.scss';
 import { useHistory, useParams } from "react-router-dom";
+import CustomLoadingComp from "../CustomLoadingComp/CustomLoadingComp";
 
 
 const phoneRegExp = /^(?=.*\d)(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
@@ -66,8 +67,13 @@ const ResetPasswordComp = () => {
             setConfirmType("password")
         }
     }
+    let loading = useSelector((state)=>{
+        return state.general.isLoading
+    });
+
     return (
         <>
+            
             <section>
             <br />
             <br />
@@ -93,6 +99,10 @@ const ResetPasswordComp = () => {
                 </div>
                 <div className="col-md-6">
                     <div className="signin-form">
+                        <React.Fragment>
+                        {loading&&loading?
+                        <CustomLoadingComp/>
+                        :
                         <div>
                         <h5 className="text-center signindash-heading brandon-Bold mb-4">RESET PASSWORD</h5>
                         <Formik
@@ -140,7 +150,8 @@ const ResetPasswordComp = () => {
                             )}
                         </Formik>
                         </div>
-                      
+                       }
+                       </React.Fragment>
                    
                     </div>
                 </div>
@@ -151,6 +162,7 @@ const ResetPasswordComp = () => {
             <br />
             <br />
             </section>
+           
         </>
     )
 }

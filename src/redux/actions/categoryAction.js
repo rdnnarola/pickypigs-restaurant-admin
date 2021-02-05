@@ -40,8 +40,8 @@ export const getAllCategoryData=(data)=>{
             let dataURL=`/restaurant_admin/category`
             let response = await Axios.post(dataURL,JSON.stringify(data),config );
             dispatch({type:"ADD_CATEGORY_SUCCESS",payload:response.data});
-            await dispatch(setAlert('Category Added Successfuly', 'success'));
-            await dispatch(getAllCategoryData());
+            dispatch(getAllCategoryData());
+            dispatch(setAlert('Category Added Successfuly', 'success'));
 
         }
         catch(error){
@@ -94,8 +94,8 @@ export const updateCategoryForm = (key , value) => {
             let dataURL=`/restaurant_admin/category/${categoryId}`
             let response = await Axios.put(dataURL,JSON.stringify(data),config );
             dispatch({type:"UPDATE_CATEGORY_SUCCESS",payload:response.data});
-            await dispatch(setAlert('Category Updated Successfuly', 'success'));
             await dispatch(getAllCategoryData());
+            await dispatch(setAlert('Category Updated Successfuly', 'success'));
 
         }
         catch(error){
@@ -115,8 +115,8 @@ export const updateCategoryForm = (key , value) => {
             dispatch({type:"DELETE_CATEGORY_REQUEST"});
             let response = await Axios.delete(`/restaurant_admin/category/${categoryId}`)
             dispatch({type:"DELETE_CATEGORY_SUCCESS",payload:response.data});
-            await dispatch(setAlert('Category Deleted Successfuly', 'warning'));
-            await dispatch(getAllCategoryData());
+            dispatch(setAlert('Category Deleted Successfuly', 'warning'));
+            dispatch(getAllCategoryData());
         }
         catch(error){
             dispatch({type:"DELETE_CATEGORY_FAILURE",payload:error});
@@ -162,8 +162,8 @@ export const updateCategoryForm = (key , value) => {
             let dataURL=`/restaurant_admin/category/active_inactive/${categoryId}`
             let response = await Axios.put(dataURL,JSON.stringify(data),config );
             dispatch({type:"HIDE_CATEGORY_SUCCESS",payload:response.data});
-            await dispatch(getAllCategoryData());
-            await dispatch(setAlert(`Category ${data.isActive?"UnHide":"Hide"} Successfuly`, 'success'));
+            dispatch(getAllCategoryData());
+            dispatch(setAlert(`Category ${data.isActive?"UnHide":"Hide"} Successfuly`, 'success'));
 
 
         }
@@ -191,8 +191,8 @@ export const updateCategoryForm = (key , value) => {
             let dataURL=`/restaurant_admin/category/duplicate/${categoryId}`
             let response = await Axios.put(dataURL,JSON.stringify(data),config );
             dispatch({type:"DUPLICATE_CATEGORY_SUCCESS",payload:response.data});
-            await dispatch(getAllCategoryData());
-            await dispatch(setAlert('Category Duplicated Successfuly', 'success'));
+            dispatch(getAllCategoryData());
+            dispatch(setAlert('Category Duplicated Successfuly', 'success'));
 
         }
         catch(error){

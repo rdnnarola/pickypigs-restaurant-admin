@@ -40,11 +40,11 @@ export const getAllSubMenuData=(data)=>{
             let response = await Axios.post(dataURL,JSON.stringify(data),config );
             dispatch({type:"ADD_SUBMENU_SUCCESS",payload:response.data});
             if(showDeleted){
-              await dispatch(getAllSubMenuData());
+              dispatch(getAllSubMenuData());
             }else{
-              await dispatch(getAllSubMenuData({delete:0}));
+              dispatch(getAllSubMenuData({delete:0}));
             }
-            await dispatch(setAlert('Sub-Menu Added Successfuly', 'success'));
+            dispatch(setAlert('Sub-Menu Added Successfuly', 'success'));
 
         }
         catch(error){
@@ -97,11 +97,11 @@ export const updateSubMenuForm = (key , value) => {
             let response = await Axios.put(dataURL,JSON.stringify(data),config );
             dispatch({type:"UPDATE_SUBMENU_SUCCESS",payload:response.data});
             if(showDeleted){
-              await dispatch(getAllSubMenuData());
+              dispatch(getAllSubMenuData());
             }else{
-              await dispatch(getAllSubMenuData({delete:0}));
+              dispatch(getAllSubMenuData({delete:0}));
             }
-            await dispatch(setAlert('Sub-Menu Updated Successfuly', 'success'));
+            dispatch(setAlert('Sub-Menu Updated Successfuly', 'success'));
 
         }
         catch(error){
@@ -122,11 +122,11 @@ export const updateSubMenuForm = (key , value) => {
             let response = await Axios.delete(`/restaurant_admin/menus/${subMenuId}`)
             dispatch({type:"DELETE_SUBMENU_SUCCESS",payload:response.data});
             if(showDeleted){
-              await dispatch(getAllSubMenuData());
+              dispatch(getAllSubMenuData());
             }else{
-              await dispatch(getAllSubMenuData({delete:0}));
+              dispatch(getAllSubMenuData({delete:0}));
             }
-            await dispatch(setAlert('sub-Menu Deleted Successfuly', 'warning'));
+            dispatch(setAlert('sub-Menu Deleted Successfuly', 'warning'));
 
         }
         catch(error){
@@ -153,11 +153,11 @@ export const updateSubMenuForm = (key , value) => {
             let response = await Axios.put(dataURL,JSON.stringify(data),config );
             dispatch({type:"HIDE_SUBMENU_SUCCESS",payload:response.data});
             if(showDeleted){
-              await dispatch(getAllSubMenuData());
+              dispatch(getAllSubMenuData());
             }else{
-              await dispatch(getAllSubMenuData({delete:0}));
+              dispatch(getAllSubMenuData({delete:0}));
             }
-            await dispatch(setAlert(`Menu ${data.isActive?"UnHide":"Hide"} Successfuly`, 'success'));
+            dispatch(setAlert(`Menu ${data.isActive?"UnHide":"Hide"} Successfuly`, 'success'));
 
         }
         catch(error){
@@ -184,11 +184,11 @@ export const updateSubMenuForm = (key , value) => {
             let response = await Axios.put(dataURL,JSON.stringify(data),config );
             dispatch({type:"DUPLICATE_SUBMENU_SUCCESS",payload:response.data});
             if(showDeleted){
-              await dispatch(getAllSubMenuData());
+              dispatch(getAllSubMenuData());
             }else{
-              await dispatch(getAllSubMenuData({delete:0}));
+              dispatch(getAllSubMenuData({delete:0}));
             }
-            await dispatch(setAlert('Menu Duplicated Successfuly', 'success'));
+            dispatch(setAlert('Menu Duplicated Successfuly', 'success'));
 
         }
         catch(error){

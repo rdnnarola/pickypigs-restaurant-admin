@@ -13,7 +13,7 @@ export const getAllDishesData=(data)=>{
             let dataURL=`/restaurant_admin/dish/list`
             let response = await Axios.post(dataURL,JSON.stringify(data),config );
             dispatch({type:"GET_ALLDISHES_SUCCESS",payload:response.data});
-            // await dispatch(setAlert('Success', 'success'));
+            // dispatch(setAlert('Success', 'success'));
 
 
         }
@@ -42,11 +42,9 @@ export const getAllDishesData=(data)=>{
             let dataURL=`/restaurant_admin/dish`
             let response = await Axios.post(dataURL,JSON.stringify(data),config );
             dispatch({type:"ADD_DISHES_SUCCESS",payload:response.data});
-            await dispatch(setAlert('Dishes Added Successfuly', 'success'));
             history.push('/all_dishes');
-            await dispatch(getAllDishesData());
-
-
+            dispatch(getAllDishesData());
+            dispatch(setAlert('Dishes Added Successfuly', 'success'));
         }
         catch(error){
           dispatch({type:"ADD_DISHES_FAILURE",payload:error});

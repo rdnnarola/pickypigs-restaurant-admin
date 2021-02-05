@@ -39,8 +39,8 @@ export const getAllSubCategoryData=(data)=>{
             let dataURL=`/restaurant_admin/subcategory`
             let response = await Axios.post(dataURL,JSON.stringify(data),config );
             dispatch({type:"ADD_SUBCATEGORY_SUCCESS",payload:response.data});
-            await dispatch(getAllSubCategoryData());
-            await dispatch(setAlert('Sub-Category Added Successfuly', 'success'));
+            dispatch(getAllSubCategoryData());
+            dispatch(setAlert('Sub-Category Added Successfuly', 'success'));
 
 
         }
@@ -94,8 +94,8 @@ export const updateSubCategoryForm = (key , value) => {
             let dataURL=`/restaurant_admin/subcategory/${subCategoryId}`
             let response = await Axios.put(dataURL,JSON.stringify(data),config );
             dispatch({type:"UPDATE_SUBCATEGORY_SUCCESS",payload:response.data});
-            await dispatch(getAllSubCategoryData());
-            await dispatch(setAlert('Sub-Category Updated Successfuly', 'success'));
+            dispatch(getAllSubCategoryData());
+            dispatch(setAlert('Sub-Category Updated Successfuly', 'success'));
 
         }
         catch(error){
@@ -115,8 +115,8 @@ export const updateSubCategoryForm = (key , value) => {
             dispatch({type:"DELETE_SUBCATEGORY_REQUEST"});
             let response = await Axios.delete(`/restaurant_admin/subcategory/${subCategoryId}`)
             dispatch({type:"DELETE_SUBCATEGORY_SUCCESS",payload:response.data});
-            await dispatch(getAllSubCategoryData());
-            await dispatch(setAlert('Sub-Category Deleted Successfuly', 'warning'));
+            dispatch(getAllSubCategoryData());
+            dispatch(setAlert('Sub-Category Deleted Successfuly', 'warning'));
 
         }
         catch(error){
@@ -163,8 +163,8 @@ export const updateSubCategoryForm = (key , value) => {
             let dataURL=`/restaurant_admin/subcategory/active_inactive/${selectedId}`
             let response = await Axios.put(dataURL,JSON.stringify(data),config );
             dispatch({type:"HIDE_SUBCATEGORY_SUCCESS",payload:response.data});
-            await dispatch(getAllSubCategoryData());
-            await dispatch(setAlert(`Category ${data.isActive?"UnHide":"Hide"} Successfuly`, 'success'));
+            dispatch(getAllSubCategoryData());
+            dispatch(setAlert(`Category ${data.isActive?"UnHide":"Hide"} Successfuly`, 'success'));
 
 
         }
@@ -192,8 +192,8 @@ export const updateSubCategoryForm = (key , value) => {
             let dataURL=`/restaurant_admin/subcategory/duplicate/${selectedId}`
             let response = await Axios.put(dataURL,JSON.stringify(data),config );
             dispatch({type:"DUPLICATE_SUBCATEGORY_SUCCESS",payload:response.data});
-            await dispatch(getAllSubCategoryData());
-            await dispatch(setAlert('Category Duplicated Successfuly', 'success'));
+            dispatch(getAllSubCategoryData());
+            dispatch(setAlert('Category Duplicated Successfuly', 'success'));
 
         }
         catch(error){

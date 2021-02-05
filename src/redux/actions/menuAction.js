@@ -39,12 +39,12 @@ export const getAllMenuData=(data)=>{
             let dataURL=`/restaurant_admin/menus`
             let response = await Axios.post(dataURL,JSON.stringify(data),config );
             dispatch({type:"ADD_MENU_SUCCESS",payload:response.data});
-            await dispatch(setAlert('Menu Added Successfuly', 'success'));
             if(showDeleted){
-              await dispatch(getAllMenuData());
+              dispatch(getAllMenuData());
             }else{
-              await dispatch(getAllMenuData({delete:0}));
+              dispatch(getAllMenuData({delete:0}));
             }
+            dispatch(setAlert('Menu Added Successfuly', 'success'));
 
         }
         catch(error){
@@ -97,11 +97,11 @@ export const updateMenuForm = (key , value) => {
             let response = await Axios.put(dataURL,JSON.stringify(data),config );
             dispatch({type:"UPDATE_MENU_SUCCESS",payload:response.data});
             if(showDeleted){
-              await dispatch(getAllMenuData());
+              dispatch(getAllMenuData());
             }else{
-              await dispatch(getAllMenuData({delete:0}));
+              dispatch(getAllMenuData({delete:0}));
             }
-            await dispatch(setAlert('Menu Updated Successfuly', 'success'));
+            dispatch(setAlert('Menu Updated Successfuly', 'success'));
 
         }
         catch(error){
@@ -122,10 +122,11 @@ export const updateMenuForm = (key , value) => {
             let response = await Axios.delete(`/restaurant_admin/menus/${selectedId}`)
             dispatch({type:"DELETE_MENU_SUCCESS",payload:response.data});
             if(showDeleted){
-              await dispatch(getAllMenuData());
+              dispatch(getAllMenuData());
             }else{
-              await dispatch(getAllMenuData({delete:0}));
-            }            await dispatch(setAlert('Menu Deleted Successfuly', 'warning'));
+              dispatch(getAllMenuData({delete:0}));
+            }            
+            dispatch(setAlert('Menu Deleted Successfuly', 'warning'));
         }
         catch(error){
             dispatch({type:"DELETE_MENU_FAILURE",payload:error});
@@ -151,11 +152,11 @@ export const updateMenuForm = (key , value) => {
             let response = await Axios.put(dataURL,JSON.stringify(data),config );
             dispatch({type:"HIDE_MENU_SUCCESS",payload:response.data});
             if(showDeleted){
-              await dispatch(getAllMenuData());
+              dispatch(getAllMenuData());
             }else{
-              await dispatch(getAllMenuData({delete:0}));
+              dispatch(getAllMenuData({delete:0}));
             }
-            await dispatch(setAlert(`Menu ${data.isActive?"UnHide":"Hide"} Successfuly`, 'success'));
+            dispatch(setAlert(`Menu ${data.isActive?"UnHide":"Hide"} Successfuly`, 'success'));
 
         }
         catch(error){
@@ -182,11 +183,11 @@ export const updateMenuForm = (key , value) => {
             let response = await Axios.put(dataURL,JSON.stringify(data),config );
             dispatch({type:"DUPLICATE_MENU_SUCCESS",payload:response.data});
             if(showDeleted){
-              await dispatch(getAllMenuData());
+              dispatch(getAllMenuData());
             }else{
-              await dispatch(getAllMenuData({delete:0}));
+              dispatch(getAllMenuData({delete:0}));
             }
-            await dispatch(setAlert('Menu Duplicated Successfuly', 'success'));
+            dispatch(setAlert('Menu Duplicated Successfuly', 'success'));
 
         }
         catch(error){
