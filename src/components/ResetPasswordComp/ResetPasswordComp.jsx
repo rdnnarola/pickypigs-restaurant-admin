@@ -99,10 +99,7 @@ const ResetPasswordComp = () => {
                 </div>
                 <div className="col-md-6">
                     <div className="signin-form">
-                        <React.Fragment>
-                        {loading&&loading?
-                        <CustomLoadingComp/>
-                        :
+                        
                         <div>
                         <h5 className="text-center signindash-heading brandon-Bold mb-4">RESET PASSWORD</h5>
                         <Formik
@@ -141,7 +138,14 @@ const ResetPasswordComp = () => {
                                             <div className="form-group text-center">
                                                 <button className="min-width-270 pinkline-btn signup-btn btn mt-4 text-uppercase rounded-pill" type="submit" >
                                                     Save Password
-                                                            </button>
+                                                </button>
+                                                <React.Fragment>
+                                                    {loading&&loading?
+                                                        <CustomLoadingComp/>
+                                                    :
+                                                        null
+                                                    }
+                                                </React.Fragment>
                                             </div>
 
                                         </div>
@@ -150,8 +154,7 @@ const ResetPasswordComp = () => {
                             )}
                         </Formik>
                         </div>
-                       }
-                       </React.Fragment>
+                      
                    
                     </div>
                 </div>

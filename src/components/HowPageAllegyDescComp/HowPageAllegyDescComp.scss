@@ -1,0 +1,166 @@
+.HowPageAllegyDescComp-container {
+    .howpagedesc-wrapper {
+        padding: 45px 40px 50px 50px;
+        box-shadow: 0px 5px 12px 0px #00000014;
+        border-radius: 10px;
+        background: #fff;
+        position: relative;
+        z-index: 1;
+
+        .tags-btn {
+            padding: 5px 20px;
+            border: 1px solid #c8c7cc;
+            border-radius: 50px;
+            min-height: 40px;
+            color: #555555;
+            background: #fff;
+            box-shadow: none !important;
+            outline: none !important;
+            transition: ease 0.35s;
+            font-size: 15px;
+
+            &:hover {
+                box-shadow: 0px 5px 18px 0px #0000001c !important;
+                border: 1px solid transparent;
+            }
+
+            &.active {
+                background: #ffd5e2;
+                border-color: #ffd5e2;
+                color: #cb007b;
+            }
+        }
+
+        .arrow {
+            position: absolute;
+            font-size: 7px;
+            width: 3em;
+            height: 3em;
+
+            &::before {
+                content: '""';
+                margin: auto;
+                display: block;
+                width: 0px;
+                height: 0px;
+                border-style: solid;
+            }
+        }
+
+        .allergen-btn-wrapper {
+            .allergen-btn {
+                max-width: 90px;
+                min-width: 90px;
+                border: none;
+                background: #fff;
+                box-shadow: none;
+                outline: none;
+                transition: all 0.35s;
+                min-height: 110px;
+                box-shadow: 0px 4px 9px 0px #0000000d;
+                border-radius: 15px;
+
+                .allergen-icon {
+                    width: 42px;
+                    height: 42px;
+                    // background: #f6f6f6;
+                    // border-radius: 15px;
+                    transition: ease 0.5s;
+
+                    img {
+                        width: 42px;
+                        // filter: invert(71%) sepia(0%) saturate(4591%) hue-rotate(86deg) brightness(82%) contrast(87%);
+                    }
+                }
+
+                p {
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    display: -webkit-box;
+                    -webkit-box-orient: vertical;
+                    -webkit-line-clamp: 2;
+                }
+
+                &:hover {
+                    box-shadow: 0px 5px 24px 0px #0000001c;
+
+                    .allergen-icon {
+                        img {
+                            filter: invert(20%) sepia(98%) saturate(3481%) hue-rotate(309deg) brightness(75%) contrast(118%);
+                        }
+                    }
+
+                    p {
+                        color: #cb007b;
+                    }
+                }
+            }
+        }
+
+        .allergens-modal-wrapper {
+            z-index: 1;
+
+            .allergens-modal {
+                box-shadow: 0px 3px 23px 0px #0000001a;
+                border-radius: 15px;
+                position: relative;
+                margin-top: -2rem;
+                padding: 30px 50px;
+                max-width: 770px;
+
+                // &:before {
+                //     border-top: 0.75em solid #fff;
+                //     border-right: 0.75em solid transparent;
+                //     border-bottom: 0;
+                //     border-left: 0.75em solid transparent;
+                //     content: '';
+                //     position: absolute;
+                //     transform: rotate(180deg);
+                //     top: -0.75rem;
+                //     left: 1.25rem;
+                // }
+
+                .allergens-heading {
+
+                    .allergens-inner-head {
+                        max-width: calc(100% - 25px);
+                        width: 100%;
+
+                        .allergens-icon {
+                            width: 40px;
+                            height: 40px;
+                        }
+
+                        .allergens-title {
+                            font-size: 16px;
+                            max-width: calc(100% - 70px);
+                            width: 100%;
+                        }
+                    }
+
+                    .allergensclose-btn {
+                        border: none;
+                        font-size: 24px;
+                        font-weight: bold;
+                        background: #fff;
+                        padding: 0;
+                        position: absolute;
+                        right: 0;
+                        line-height: 0;
+                        outline: none;
+                        top: 0;
+                    }
+
+                }
+
+                .allergens-info{
+                    p{
+                        font-size: 15px;
+                    }
+                }
+
+            }
+        }
+
+    }
+}

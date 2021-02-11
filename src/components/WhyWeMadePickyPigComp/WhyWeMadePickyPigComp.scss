@@ -1,0 +1,92 @@
+.WhyWeMadePickyPigComp-container {
+    .knowwhat-section {
+        margin-top: 5rem;
+        padding-top: 9rem;
+        margin-bottom: 3rem;
+
+        .knowwhatbg-img {
+            position: absolute;
+            right: -3%;
+            top: 0%;
+            max-width: 720px;
+        }
+
+        .know-borderstyle {
+            max-width: 200px;
+            height: 6px;
+            width: 100%;
+            background: #ffd5e2;
+            border-radius: 42px;
+        }
+
+        .knowwhat-main {
+            .knowwhat-wrapper {
+                background: #fff;
+                border-radius: 10px;
+                box-shadow: 0px 5px 12px 0px #00000014;
+                height: 170px;
+                padding: 30px 30px 30px 40px !important;
+                margin-bottom: 30px;
+
+                .knowwhat-icon {
+                    width: 60px;
+                    height: 60px;
+                    border-radius: 50px;
+                }
+            }
+
+            .knowwhat-icon {
+                &.lightblue-bg {
+                    background: #ecf0ff;
+                }
+            }
+
+            .knowwhat-icon {
+                &.smokelight-green {
+                    background:#ECFFFB;
+                }
+            }
+
+            .knowwhat-icon {
+                &.light-green {
+                    background: #ebffeb;
+                }
+            }
+
+            &:nth-child(4) {
+                .knowwhat-icon {
+                    background: #ecfffb;
+                }
+            }
+
+            &:nth-child(5) {
+                .knowwhat-icon {
+                    background: #fff3f7;
+                }
+            }
+
+            &:nth-child(6) {
+                .knowwhat-icon {
+                    background: #e8ffe5;
+                }
+            }
+        }
+
+        h1.sectionhead-txt {
+            font-size: 3rem;
+            font-family: "Brandon Text Medium";
+            font-weight: 600;
+            line-height: 1.35;
+        }
+    }
+}
+
+@media screen and (max-width: 1199px) {
+    .WhyWeMadePickyPigComp-container {
+        .knowwhat-section {
+            h1.sectionhead-txt {
+                font-size: 2.5rem;
+            }
+        }
+    }
+}

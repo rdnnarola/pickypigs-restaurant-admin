@@ -95,13 +95,8 @@ const SignUpSignInComponent = () => {
                                 className="pinkline-btn signup-btn btn min-width-270 text-uppercase rounded-pill">
                                 Sign Up
                                 </button>
-                                <React.Fragment>
-                            {loading&&loading?
-                            <CustomLoadingComp/>
-                            :
                                 <SignUpModalComp show={signUpModalshow} onHide={handleClose} />
-                            }
-                            </React.Fragment>
+                            
                         </div>
                     </div>
                 </div>
@@ -109,10 +104,7 @@ const SignUpSignInComponent = () => {
                 <div className="col-md-6">
                     <div className="signin-form " >
                         {isLoginPage?
-                        <React.Fragment>
-                        {loading&&loading?
-                        <CustomLoadingComp/>
-                        :
+                        
                         <div>
                         <h5 className="text-center signindash-heading brandon-Bold mb-4">SIGN IN TO YOUR DASHBOARD</h5>
                         <Formik
@@ -151,25 +143,25 @@ const SignUpSignInComponent = () => {
                                             
                                                  <div className="form-group text-center">
                                                     <button className="min-width-270 pinkline-btn signup-btn btn mt-4 text-uppercase rounded-pill" type="submit" >
-                                                        Sign in
+                                                        Log in
                                                     </button>
+                                                    <React.Fragment>
+                                                        {loading&&loading?
+                                                            <CustomLoadingComp/>
+                                                        :
+                                                            null
+                                                        }
+                                                    </React.Fragment>
                                                 </div>
-                                            
-                                            
-
                                         </div>
                                     </div>
                                 </Form>
                             )}
                         </Formik>
                         </div>
-                        }
-                        </React.Fragment>
+                        
                         :
-                    <React.Fragment>
-                    {loading&&loading?
-                    <CustomLoadingComp/>
-                    :
+                    
                     <React.Fragment>
                      <h5 className="text-center signindash-heading brandon-Bold mb-4">RESET PASSWORD</h5>
                      <p className="f-15">
@@ -213,15 +205,20 @@ const SignUpSignInComponent = () => {
                                                     RESET PASSWORD
                                                 </button>
                                             </div>
-                                            
+                                                <React.Fragment>
+                                                    {loading&&loading?
+                                                        <CustomLoadingComp/>
+                                                    :
+                                                        null
+                                                    }
+                                                </React.Fragment>
                                         </div>
                                     </div>
                                 </Form>
                             )}
                     </Formik>
                     </React.Fragment>
-                     }
-                     </React.Fragment>
+                     
                         }
                     </div>
                 </div>

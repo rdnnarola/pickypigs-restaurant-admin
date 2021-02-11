@@ -1,0 +1,119 @@
+.the_who_page_container .header-txt {
+  color: #2E482B;
+  font-size: 48px;
+  font-weight: 600;
+}
+.the_who_page_container .light-blue-bg {
+  background: #ECF0FF;
+}
+.the_who_page_container .light-green-bg {
+  background: #EBFFEB;
+}
+.the_who_page_container .light-morepich-bg {
+  background: #ECFFFB;
+}
+.the_who_page_container .light-pink-bg {
+  background: #FFF3F7;
+}
+.the_who_page_container .gradient-bg {
+  background: linear-gradient(220deg, #EFFFF7 -70%, white 100%);
+}
+.the_who_page_container .who-section .who-we-are-wrapper {
+  box-shadow: 0px 5px 12px 0px #00000014;
+  border-radius: 20px;
+  overflow: hidden;
+}
+.the_who_page_container .who-section .who-we-are-wrapper .who-we-are-img {
+  height: 300px;
+  width: 100%;
+}
+.the_who_page_container .who-section .who-we-are-wrapper .who-we-are-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+}
+.the_who_page_container .who-section .who-we-are-wrapper .who-we-are-info {
+  padding: 50px 50px 35px;
+}
+.the_who_page_container .ourfounder-section .ourfounder-wrapper {
+  box-shadow: 0px 5px 12px 0px #00000014;
+  padding: 30px 30px 30px;
+  border-radius: 20px;
+  background: #fff;
+}
+.the_who_page_container .ourfounder-section .ourfounder-wrapper .ourfounder-subleft {
+  max-width: 330px;
+  flex: 0 0 330px;
+}
+.the_who_page_container .ourfounder-section .ourfounder-wrapper .ourfounder-subleft .ourfounder-user .founder-img {
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 2px solid #fff;
+  box-shadow: 0px 5px 10px 0px #0000000f;
+}
+.the_who_page_container .ourfounder-section .ourfounder-wrapper .ourfounder-subleft .ourfounder-user .founder-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+}
+.the_who_page_container .ourfounder-section .ourfounder-wrapper .ourfounder-subleft .ourfounder-user .user-name {
+  font-size: 22px;
+  word-break: break-all;
+}
+.the_who_page_container .ourfounder-section .ourfounder-wrapper .ourfounder-subright {
+  max-width: calc(100% - 330px);
+  flex: 0 0 calc(100% - 330px);
+}
+.the_who_page_container .mission-section .ourmission-wrapper {
+  box-shadow: 0px 5px 12px 0px #00000014;
+  padding: 50px 0px 70px;
+  border-radius: 20px;
+  background: #fff;
+}
+.the_who_page_container .mission-section .ourmission-wrapper .ourmission-container {
+  max-width: 970px !important;
+}
+.the_who_page_container .mission-section .ourmission-wrapper .ourmission-container .ourmission-subwrapper {
+  min-height: 147px;
+}
+.the_who_page_container .mission-section .ourmission-wrapper .ourmission-container .ourmission-subwrapper .ourmission-block .ourmission-icon {
+  width: 60px;
+  height: 60px;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50px;
+}
+.the_who_page_container .mission-section .ourmission-wrapper .ourmission-container .ourmission-subwrapper .ourmission-block .ourmission-intro {
+  max-width: 270px;
+  margin: auto;
+}
+.the_who_page_container .mission-section .ourmission-wrapper .ourmission-container .ourmission-subwrapper:nth-child(1) {
+  border-right: 1px solid #E5E5E5;
+  border-bottom: 1px solid #E5E5E5;
+}
+.the_who_page_container .mission-section .ourmission-wrapper .ourmission-container .ourmission-subwrapper:nth-child(1) .ourmission-intro {
+  margin-bottom: 25px;
+}
+.the_who_page_container .mission-section .ourmission-wrapper .ourmission-container .ourmission-subwrapper:nth-child(2) {
+  border-bottom: 1px solid #E5E5E5;
+}
+.the_who_page_container .mission-section .ourmission-wrapper .ourmission-container .ourmission-subwrapper:nth-child(2) .ourmission-intro {
+  margin-bottom: 25px;
+}
+.the_who_page_container .mission-section .ourmission-wrapper .ourmission-container .ourmission-subwrapper:nth-child(3) {
+  border-right: 1px solid #E5E5E5;
+  padding-top: 25px;
+}
+.the_who_page_container .mission-section .ourmission-wrapper .ourmission-container .ourmission-subwrapper:nth-child(4) {
+  padding-top: 25px;
+}
+.the_who_page_container .patternimg-wrapper {
+  max-width: 710px;
+  margin: -6.5% auto 0px;
+}

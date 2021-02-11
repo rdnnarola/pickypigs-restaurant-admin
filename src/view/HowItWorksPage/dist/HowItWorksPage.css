@@ -1,0 +1,30 @@
+.how_it_works_container .gradient-bg {
+  background: linear-gradient(220deg, #EFFFF7 -70%, white 100%);
+}
+.how_it_works_container section.howvideo-section .howvideo-wrapper {
+  width: 100%;
+  height: 625px;
+}
+.how_it_works_container section.howvideo-section .howvideo-wrapper .react-player__preview {
+  border-radius: 20px;
+}
+.how_it_works_container .header-txt {
+  color: #2E482B;
+  font-size: 48px;
+}
+.how_it_works_container .light-blue-bg {
+  background: #ECF0FF;
+}
+.how_it_works_container .light-green-bg {
+  background: #EBFFEB;
+}
+.how_it_works_container .light-morepich-bg {
+  background: #ECFFFB;
+}
+.how_it_works_container .light-pink-bg {
+  background: #FFF3F7;
+}
+.how_it_works_container .patternimg-wrapper {
+  max-width: 710px;
+  margin: -6.5% auto 0px;
+}

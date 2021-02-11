@@ -4,6 +4,7 @@ import Layout from "./components/Layout/Layout";
 import AlertSystemPage from "./view/AlertSystemPage/AlertSystemPage";
 
 const DashboardPage = lazy(() => import("./view/DashboardPage/DashboardPage"));
+
 const BreakfastMenuComponent = lazy(() => import("./components/BreakfastMenuComponent/BreakfastMenuComponent"));
 const ManageMenuComponent = lazy(() => import("./components/ManageMenuComponent/ManageMenuComponent"));
 const ManageSubMenuComponent = lazy(() => import("./components/ManageSubMenuComponent/ManageSubMenuComponent"));
@@ -18,6 +19,7 @@ const RestaurantDetailPage = lazy(() => import("./view/RestaurantDetailPage/Rest
 
 export const routesCode = [
     { path: "/", exact: true, component:DashboardPage },
+    
     { path: "/breakfast_menu", exact: true, component: BreakfastMenuComponent },
     { path: "/manage_menu", exact: true, component: ManageMenuComponent },
     { path: "/manage_submenu", exact: true, component: ManageSubMenuComponent },

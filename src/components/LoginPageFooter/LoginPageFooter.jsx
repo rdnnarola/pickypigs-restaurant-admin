@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link,NavLink} from 'react-router-dom'
 import "./LoginPageFooter.scss"
 const LoginPageFooter = () => {
     return (
@@ -14,6 +14,7 @@ const LoginPageFooter = () => {
                                     <li className="li-list f-15 mb-2 text-white"><a href="#">Team</a></li>
                                     <li className="li-list f-15 mb-2 text-white">Careers</li>
                                     <li className="li-list f-15 mb-2 text-white">Blog</li>
+                                    <li className="li-list f-15 mb-2 text-white"><NavLink to="/faq">FAQ</NavLink></li>
                                 </ul>
                             </div>
                         </div>
@@ -21,9 +22,9 @@ const LoginPageFooter = () => {
                             <div className="footer-block">
                                 <p className="f-15 brandon-Medium text-white text-uppercase">Terms & Conditions</p>
                                 <ul className="pl-0">
-                                    <li className="li-list f-15 mb-2 text-white">Privacy</li>
-                                    <li className="li-list f-15 mb-2 text-white">Cookies</li>
-                                    <li className="li-list f-15 mb-2 text-white">All Terms</li>
+                                    <li className="li-list f-15 mb-2 text-white"><NavLink to="/terms">Privacy</NavLink></li>
+                                    <li className="li-list f-15 mb-2 text-white"><NavLink to="/">Cookies</NavLink></li>
+                                    <li className="li-list f-15 mb-2 text-white"><NavLink to="/terms">All Terms</NavLink></li>
                                 </ul>
                             </div>
                         </div>

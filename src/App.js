@@ -5,10 +5,15 @@ import Routes from './routes';
 import PrivateRoute from './PrivateRoute';
 import PublicRoute from './PublicRoute';
 import AlertSystemPage from './view/AlertSystemPage/AlertSystemPage'
+import LoadonTop from './components/LoadonTop';
 
 const LoginPage = lazy(() => import('./view/LoginPage/LoginPage'));
 const ResetPasswordPage = lazy(() => import('./view/ResetPasswordPage/ResetPasswordPage'));
 // const Signup = lazy(() => import('./view/Signup/Signup'));
+const TheWhoPage = lazy(() => import("./view/TheWhoPage/TheWhoPage"));
+const TheFaqPage = lazy(() => import("./view/TheFaqPage/TheFaqPage.jsx"));
+const TermsAndConditionPage = lazy(() => import("./view/TermsAndConditionPage/TermsAndConditionPage.jsx"));
+const HowItWorksPage = lazy(() => import("./view/HowItWorksPage/HowItWorksPage.jsx"));
 
 function App() {
   return (
@@ -17,9 +22,15 @@ function App() {
         <div>
           <AlertSystemPage/>
         </div>
+        <LoadonTop/>
       <Switch> 
         <Route exact path="/reset_password/:token" render={(props) => <ResetPasswordPage {...props} />} />
         <Route exact path="/login" render={(props) => <LoginPage {...props} />} />
+
+        <Route exact path="/who" render={(props) => <TheWhoPage {...props} />} />
+        <Route exact path="/faq" render={(props) => <TheFaqPage {...props} />} />
+        <Route exact path="/terms" render={(props) => <TermsAndConditionPage {...props} />} />
+        <Route exact path="/how" render={(props) => <HowItWorksPage {...props} />} />
         {/* <Route exact path="/signup" render={(props) => <Signup {...props} />} /> */}
         <PrivateRoute>
           <Routes />

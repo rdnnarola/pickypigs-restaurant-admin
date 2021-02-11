@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Button, Nav, Form, Navbar, Modal } from 'react-bootstrap'
-import { Link, withRouter } from 'react-router-dom'
+import { Link, withRouter,NavLink} from 'react-router-dom'
 import "./LoginPageHeader.scss"
 import logo from "../../assets/images/logo.svg"
 import search_icon from "../../assets/images/search_icon.svg"
@@ -27,9 +27,9 @@ const LoginPageHeader = (props) => {
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav" className="menu-list">
                     <Nav className="mr-auto">
-                        <Nav.Link className="menu-link mr-lg-5" href="#home">Who</Nav.Link>
-                        <Nav.Link className="menu-link mr-lg-5" href="#link">What</Nav.Link>
-                        <Nav.Link className="menu-link" href="#link">How</Nav.Link>
+                        <NavLink className="menu-link mr-lg-5" activeStyle={{color:'#cb007b'}} to="/who">Who</NavLink>
+                        <NavLink className="menu-link mr-lg-5" activeStyle={{color:'#cb007b'}} to="/how">What</NavLink>
+                        {/* <NavLink className="menu-link" activeStyle={{color:'#cb007b'}} to="/how">How</NavLink> */}
                     </Nav>
 
                     <Form inline className="navright-btn">

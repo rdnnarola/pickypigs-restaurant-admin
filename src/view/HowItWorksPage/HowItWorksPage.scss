@@ -1,0 +1,52 @@
+.how_it_works_container {
+    
+    .gradient-bg {
+        background: linear-gradient(220deg, #EFFFF7 -70%, white 100%);
+    }
+
+    section {
+        &.howvideo-section {
+            .howvideo-wrapper {
+                width: 100%;
+                height: 625px;
+
+                .react-player__preview {
+                    border-radius: 20px;
+                }
+                .play_icon{
+                    width:70px;
+                    background-color:rgba(0,0,0,0.5) ;
+                    padding: 10px;
+                    border-radius: 100%;
+                }
+            }
+        }
+    }
+
+    .header-txt {
+        color: #2E482B;
+        font-size: 48px;
+    }
+
+    .light-blue-bg {
+        background: #ECF0FF;
+    }
+
+    .light-green-bg {
+        background: #EBFFEB;
+    }
+
+    .light-morepich-bg {
+        background: #ECFFFB;
+    }
+
+    .light-pink-bg {
+        background: #FFF3F7;
+    }
+
+    .patternimg-wrapper {
+        max-width: 710px;
+        margin: -6.5% auto 0px;
+    }
+
+}

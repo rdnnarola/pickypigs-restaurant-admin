@@ -57,7 +57,7 @@ const ManageSubCategoriesComponent = () => {
                             <th className="brandon-Bold " scope="col">&nbsp;&nbsp;&nbsp;</th>
                             <th className="brandon-Bold " scope="col">&nbsp;&nbsp;&nbsp;</th>
                             <th className="brandon-Bold " scope="col">&nbsp;&nbsp;&nbsp;</th>
-                            <th className="brandon-Bold " scope="col">AVAILABLE</th>
+                            {/* <th className="brandon-Bold " scope="col">AVAILABLE</th> */}
                             <th className="brandon-Bold " scope="col">TOTAL ITEMS</th>
                             <th className="brandon-Bold " scope="col">LATEST MODIFIED</th>
                             <th className="brandon-Bold " scope="col"></th>
@@ -89,7 +89,7 @@ const ManageSubCategoriesComponent = () => {
                                                         <td>&nbsp;</td>
                                                         <td>&nbsp;</td>
                                                         <td>&nbsp;</td>
-                                                        <td className="text-capitalize">yes</td>
+                                                        {/* <td className="text-capitalize">yes</td> */}
                                                         <td>{data.dishesDetail.length}</td>
                                                         <td>{data.updatedAt ?moment(data.updatedAt).format(" Do MMMM, YYYY"): "-"}</td>
                                                         <td className="pt-0 pb-0">
