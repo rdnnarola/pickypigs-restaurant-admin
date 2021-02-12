@@ -156,7 +156,7 @@ const SignUpModalComp = (props) => {
                                                             <div className="error pink-txt f-11">{(touched.email && errors.email && errors.email) || error}</div>
                                                         </div>
                                                         <div className="form-group">
-                                                            <Field name="phone" placeholder="Phone no" className="form-control signup-input" />
+                                                            <Field name="phone" placeholder="Phone" className="form-control signup-input" />
                                                             {touched.phone && errors.phone &&
                                                                 <div className="error pink-txt f-11">{errors.phone}</div>}
                                                         </div>
