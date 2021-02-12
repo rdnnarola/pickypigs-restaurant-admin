@@ -6,6 +6,7 @@ import PrivateRoute from './PrivateRoute';
 import PublicRoute from './PublicRoute';
 import AlertSystemPage from './view/AlertSystemPage/AlertSystemPage'
 import LoadonTop from './components/LoadonTop';
+import TokenVerificationPage from './view/TokenVerificationPage';
 
 const LoginPage = lazy(() => import('./view/LoginPage/LoginPage'));
 const ResetPasswordPage = lazy(() => import('./view/ResetPasswordPage/ResetPasswordPage'));
@@ -25,7 +26,8 @@ function App() {
         <LoadonTop/>
       <Switch> 
         <Route exact path="/reset_password/:token" render={(props) => <ResetPasswordPage {...props} />} />
-        <Route exact path="/login" render={(props) => <LoginPage {...props} />} />
+        <Route exact path="/login/:logintoken" render={(props) => <TokenVerificationPage {...props} />} />
+        <Route exact path="/home" render={(props) => <LoginPage {...props} />} />
 
         <Route exact path="/who" render={(props) => <TheWhoPage {...props} />} />
         <Route exact path="/faq" render={(props) => <TheFaqPage {...props} />} />

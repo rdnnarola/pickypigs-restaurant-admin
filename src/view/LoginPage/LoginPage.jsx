@@ -25,13 +25,13 @@ const LoginPage = () => {
         <>
 
             <LoginPageHeader />
-            <section className="gradient-bg">
+            {/* <section className="gradient-bg">
                 <div className="container">
                     <SignUpSignInComponent />
                 </div>
-            </section>
-            <section>
-                <div className="container">
+            </section> */}
+            <section className="mt-5 pt-5">
+                <div className="container mt-5 pt-5">
                     <div>
                         <div className="row">
                             <div className="col-sm-12 text-center mb-5">

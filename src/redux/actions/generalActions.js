@@ -1,6 +1,7 @@
 import Axios from './axios';
 import axios from "axios";
 import {setAlert} from './alertAction';
+import {RESTAURANT_ADMIN_URL} from '../../shared/constant';
 
 
 
@@ -33,7 +34,9 @@ export const logoutUser=(history)=>{
       try{
           await dispatch({type:"LOGOUT_USER_REQUEST"});
           dispatch(setAlert('LogOut Success', 'success'));
-          history.push('/login') ;
+          history.push('/home') ;
+          window.location=`${RESTAURANT_ADMIN_URL}`;
+
       }
       catch(error){
           console.error(error);
