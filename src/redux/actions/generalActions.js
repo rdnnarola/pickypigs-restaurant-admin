@@ -32,15 +32,21 @@ export const getLogin=(data,history)=>{
 export const logoutUser=(history)=>{
   return async(dispatch)=>{
       try{
-          await dispatch({type:"LOGOUT_USER_REQUEST"});
+          await dispatch({type:"LOGOUT_ADMIN_REQUEST"});
+
+          dispatch({type:"LOGOUT_ADMIN_SUCCESS"});
           dispatch(setAlert('LogOut Success', 'success'));
-          history.push('/home') ;
-          window.location=`${RESTAURANT_ADMIN_URL}`;
+          window.open(
+            `${RESTAURANT_ADMIN_URL}`,
+            '_self', // <- This is what makes it open in a new window.
+            'replace=true'
+          );
+          // history.push('/home') ;
 
       }
       catch(error){
-          console.error(error);
-          dispatch(setAlert('Something Wrong', 'error'));
+        dispatch({type:"LOGOUT_ADMIN_FAILURE"});
+        dispatch(setAlert('Something Wrong', 'error'));
 
       }
   }

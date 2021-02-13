@@ -18,7 +18,7 @@ export const EDAMAM_APP_ID = "2bbcafaf";
 
 export const EDAMAM_APP_KEY = "f779cbf3ef41e8fc15a42df1cff35d0d";
 
-export const RESTAURANT_ADMIN_URL = `${window.location.host === "localhost:3000"?"http://pickypigs.charlieandco.co.nz/#/":"http://pickypigs.charlieandco.co.nz/#/"}`;
+export const RESTAURANT_ADMIN_URL = `${window.location.host === "localhost:3001"?"http://localhost:3000":"http://pickypigs.charlieandco.co.nz/#/"}`;
 
 
 

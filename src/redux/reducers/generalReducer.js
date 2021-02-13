@@ -34,14 +34,28 @@ const initialState = {
         };
 
       //logout user
-      case "LOGOUT_USER_REQUEST":
+      case "LOGOUT_ADMIN_REQUEST":
         localStorage.removeItem('access_token');
         localStorage.removeItem('role');
-
          return{
             ...state,
-            isLoading:false,
+            isLoading:true,
          } 
+      case "FORGOT_ADMIN_SUCCESS":
+        localStorage.removeItem('access_token');
+        localStorage.removeItem('role');
+        return {
+          ...state,
+            isLoading:false,
+        };    
+
+      case "FORGOT_ADMIN_FAILURE":
+        localStorage.removeItem('access_token');
+        localStorage.removeItem('role');
+        return {
+          ...state,
+            isLoading:false,
+        };    
 
       //FORGOT_PASSWORD
       case "FORGOT_PASSWORD_REQUEST":    
