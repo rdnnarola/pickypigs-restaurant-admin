@@ -102,7 +102,7 @@ const AddEditMenuModalComp = (props) => {
                                     <div>
                                         <div className="form-group easydish-input dishname-input w-100 custom-lightinputbox">
                                             <label className="gray-txt f-15">Menu Name</label>
-                                            <Field name="name" placeholder="Enter here" className="form-control f-15" />
+                                            <Field  name="name" placeholder="Enter here" className="form-control f-15" />
                                             {touched.name && errors.name && <div className="error pink-txt f-11">{errors.name}</div>}
                                         </div>
                                         <div className="custom-drodown form-group ">
@@ -122,6 +122,7 @@ const AddEditMenuModalComp = (props) => {
                                                             <KeyboardTimePicker
                                                                 id="from-time-picker" placeholder="From"
                                                                 inputVariant="outlined"
+                                                                disabled={true}
                                                                 mask="__:__ _M" value={values.timeFrom}
                                                                 onChange={date  => setFieldValue("timeFrom", date,false)}
                                                                 KeyboardButtonProps={{

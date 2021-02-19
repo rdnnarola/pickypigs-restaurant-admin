@@ -292,6 +292,7 @@ body {
         width: 20px;
         height: 20px;
         &:checked {
+            ~.custom-control-label{
                 &::before {
                     border-color: #cb007b;
                     background-color: #ffffff;
@@ -303,18 +304,20 @@ body {
                 &::before {
                     border-color: #919191;
                 }
-            
+            }
         }
         &:focus {
+            ~.custom-control-label{
                 &::before {
                     box-shadow: none;
                 }
             
-            &:not(:checked) {
-                    &::before {
-                        border: 1px solid #919191;
-                    }
-                
+                &:not(:checked) {
+                        &::before {
+                            border: 1px solid #919191;
+                        }
+                    
+                }
             }
         }
     }

@@ -8,17 +8,7 @@
                         width: 100%;
                     }
                     .timeing-main-wrapper {
-                        .timeing-block {
-                            .timeing-input {
-                                background: #fff;
-                                border: 1px solid #c8c7cc;
-                                max-width: 70px;
-                                max-height: 36px;
-                                font-size: 15px;
-                                color: #232323;
-                                border-radius: 6px;
-                            }
-                        }
+                        
                         .timeing-dash {
                             width: 10px;
                             display: inline-block;
@@ -27,6 +17,43 @@
                             margin: 0px 10px;
                         }
                     }
+                    // Custom Time Picker CSS Start
+                    .custom-timepicker {
+                        width:125px;
+                        .MuiFormControl-root {
+                            .MuiOutlinedInput-root {
+                                border-radius: 6px;
+                                padding-right: 10px;
+                                .MuiOutlinedInput-input {
+                                    padding: 10px 0px 10px 10px;
+                                    color: #919191;
+                                    font-size: 15px;
+                                    &::placeholder {
+                                        color: #919191;
+                                        opacity: 1;
+                                        font-weight: normal;
+                                    }
+                                }
+                                .MuiOutlinedInput-notchedOutline {
+                                    border-color: #c8c7cc !important;
+                                }
+                                &.Mui-focus {
+                                    .MuiOutlinedInput-notchedOutline {
+                                        box-shadow: 0 0 0 0.2rem #e4e4e4 !important;
+                                        border-color: #919191 !important;
+                                    }
+                                }
+                                .MuiInputAdornment-root {
+                                    .MuiIconButton-root {
+                                        outline: none;
+                                        padding: 4px;
+                                        color: #919191;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    // Custom Time Picker CSS End
                 }
                 .option-tag-main {
                     .option-tag {
@@ -58,6 +85,17 @@
                     }
                 }
             }
+        }
+    }
+    .add-trans-button{
+        position:absolute;
+        top:0px;
+        left:50%;
+        background-color:transparent;
+        border:none;
+        &:focus{
+            border:none;
+            outline: none;
         }
     }
 }
