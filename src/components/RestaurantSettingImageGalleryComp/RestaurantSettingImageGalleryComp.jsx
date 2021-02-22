@@ -131,7 +131,24 @@ const RestaurantSettingImageGalleryComp = (props) => {
                                                                     <p className="f-15 mb-2 brandon-Medium">Add Ambience images to your gallery</p>
                                                                 </div>
                                                                 <div className="col-sm-12">
-                                                                    <form>
+
+                                                                <form>
+                                                                    <div className="form-group">
+                                                                        <div className="fileUpload">
+                                                                            <input
+                                                                                type="file"
+                                                                                accept="image/*"
+                                                                                name="uploadedfile"
+                                                                                className="form-control-file upload"
+                                                                                multiple 
+                                                                                onChange={(e)=>{galleryImageUploadHandeler(e,"Ambience")}}
+                                                                            />
+                                                                            <span>Upload from your desktop</span>
+                                                                        </div>
+                                                                    </div>
+                                                                </form>
+
+                                                                    {/* <form>
                                                                         <div className="form-group">
                                                                             <input
                                                                                 type="file"
@@ -142,7 +159,7 @@ const RestaurantSettingImageGalleryComp = (props) => {
                                                                                 onChange={(e)=>{galleryImageUploadHandeler(e,"Ambience")}}
                                                                             />
                                                                         </div>
-                                                                    </form>
+                                                                    </form> */}
                                                                 </div>
                                                             </div>
                                                             {props.gallerydata && props.gallerydata.ambience&&props.gallerydata && props.gallerydata.ambience.length>0?

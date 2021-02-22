@@ -10,6 +10,7 @@ import moment from 'moment'
 
 
 const phoneRegex = RegExp( /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/);
+const urlRegex=RegExp( /(http(s)?:\/\/.)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/g);
 
 const RestaurantFeaturesComp = (props) => {
     let {openingTimings,website,bookings,socialMedia}=props.detaildata
@@ -57,6 +58,14 @@ const RestaurantFeaturesComp = (props) => {
     }
 
     const validationSchema  = Yup.object().shape({
+        timeArray:Yup.array().required('Please Select Timings'),
+        bookingsphoneNumber2:Yup.string().min(10, "Min 10 Digits").max(10, "Max 10 Digits").matches(phoneRegex, "Invalid Phone Number"),
+        bookingsemail2:Yup.string().email('Email must be a valid email'),
+        bookingswebsiteUrl2:Yup.string().matches(urlRegex,"Enter A valid URL"),
+        facebookUrl2:Yup.string().matches(urlRegex,"Enter A valid URL"),
+        twitterUrl2:Yup.string().matches(urlRegex,"Enter A valid URL"),
+        instagramUrl2:Yup.string().matches(urlRegex,"Enter A valid URL"),
+        websiteUrl2:Yup.string().matches(urlRegex,"Enter A valid URL"),
      });
 
     
@@ -291,6 +300,9 @@ const RestaurantFeaturesComp = (props) => {
                                                                                                                     // mask="__:__ _M" 
                                                                                                                     value={`Thu Dec 31 2020 ${data.timeList&&data.timeList[0].startTime} GMT+0530`}
                                                                                                                     onChange={date  => setFieldValue(`timeArray.${index}.timeList.${0}.startTime`, moment(date).format( 'HH:mm'),false)}
+                                                                                                                    minTime={`Thu Dec 31 2020 08:20 GMT+0530`}
+                                                                                                                    minutesStep={1}
+
                                                                                                                     KeyboardButtonProps={{
                                                                                                                         'aria-label': 'change time',
                                                                                                                     }}
@@ -317,7 +329,7 @@ const RestaurantFeaturesComp = (props) => {
                                                                                                     </React.Fragment>
                                                                                                     {values.isMultiTime&&
                                                                                                         <React.Fragment >
-                                                                                                            <div>&nbsp;&nbsp;&nbsp;&nbsp;&amp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
+                                                                                                            <div className="to-txt">&nbsp;&nbsp;&nbsp;&nbsp;&amp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
                                                                                                             <div className="custom-timepicker mb-0 form-group d-flex align-items-center">
                                                                                                                 <MuiPickersUtilsProvider utils={MomentUtils}>
                                                                                                                     <KeyboardTimePicker
@@ -352,6 +364,8 @@ const RestaurantFeaturesComp = (props) => {
                                                                                                             </div>
                                                                                                         </React.Fragment>
                                                                                                     }
+                                                                                                    {/* {values.timeArray.length == 0 && errors.timeArray && <div className="error pink-txt f-11">{errors.timeArray}</div>} */}
+
                                                                                                 </React.Fragment>
                                                                                                
                                                                                             </div>
@@ -393,7 +407,7 @@ const RestaurantFeaturesComp = (props) => {
                                                                                         <Field name="websiteUrl2" placeholder="http://" className="form-control-input form-control w-50"/>
                                                                                         <button type="button" 
                                                                                         onClick={()=>{handleInputBoxDataUpdate(values.websiteUrl2,values.websiteUrl,setFieldValue,"websiteUrl");setFieldValue("websiteUrl2","") }}
-                                                                                        className="add-trans-button" style={{color:`${values.websiteUrl2&&'#cb007b'}`}} disabled={!values.websiteUrl2}>Add</button>
+                                                                                        className="add-trans-button"  disabled={!values.websiteUrl2||errors.websiteUrl2}>Add</button>
                                                                                     </div>
                                                                                     {touched.websiteUrl2 && errors.websiteUrl2 && <div className="error pink-txt f-11">{errors.websiteUrl2}</div>}
                                                                                     {
@@ -508,7 +522,7 @@ const RestaurantFeaturesComp = (props) => {
                                                                                         {}
                                                                                         <button type="button" 
                                                                                         onClick={()=>{handleInputBoxDataUpdate(values.bookingswebsiteUrl2,values.bookingswebsiteUrl,setFieldValue,"bookingswebsiteUrl");setFieldValue("bookingswebsiteUrl2","") }}
-                                                                                        className="add-trans-button" style={{color:`${values.bookingswebsiteUrl2&&'#cb007b'}`}} disabled={!values.bookingswebsiteUrl2}>Add</button>
+                                                                                        className="add-trans-button"  disabled={!values.bookingswebsiteUrl2||errors.bookingswebsiteUrl2}>Add</button>
                                                                                     </div>
                                                                                     {touched.bookingswebsiteUrl2 && errors.bookingswebsiteUrl2 && <div className="error pink-txt f-11">{errors.bookingswebsiteUrl2}</div>}
                                                                                     {
@@ -550,7 +564,7 @@ const RestaurantFeaturesComp = (props) => {
                                                                                         <Field name="bookingsemail2" placeholder="email@email.com" className="form-control-input form-control w-25"/>
                                                                                         <button type="button" 
                                                                                         onClick={()=>{handleInputBoxDataUpdate(values.bookingsemail2,values.bookingsemail,setFieldValue,"bookingsemail");setFieldValue("bookingsemail2","") }}
-                                                                                        className="add-trans-button" style={{color:`${values.bookingsemail2&&'#cb007b'}`}} disabled={!values.bookingsemail2}>Add</button>
+                                                                                        className="add-trans-button"  disabled={!values.bookingsemail2||errors.bookingsemail2}>Add</button>
                                                                                     </div>
                                                                                     {touched.bookingsemail2 && errors.bookingsemail2 && <div className="error pink-txt f-11">{errors.bookingsemail2}</div>}
                                                                                     {
@@ -589,11 +603,11 @@ const RestaurantFeaturesComp = (props) => {
                                                                                 <React.Fragment >
                                                                                     <p className="gray-txt f-15 mb-0">Phone Number</p>
                                                                                     <div className="position-relative mb-2 mt-2">
-                                                                                        <Field name="bookingsphoneNumber2" placeholder="Phone Number" className="form-control-input form-control w-25"/>
+                                                                                        <Field name="bookingsphoneNumber2" type="number" placeholder="Phone Number" className="form-control-input form-control w-25"/>
                                                                                         {}
                                                                                         <button type="button" 
                                                                                         onClick={()=>{handleInputBoxDataUpdate(values.bookingsphoneNumber2,values.bookingsphoneNumber,setFieldValue,"bookingsphoneNumber");setFieldValue("bookingsphoneNumber2","") }}
-                                                                                        className="add-trans-button" style={{color:`${values.bookingsphoneNumber2&&'#cb007b'}`}} disabled={!values.bookingsphoneNumber2}>Add</button>
+                                                                                        className="add-trans-button"  disabled={!values.bookingsphoneNumber2||errors.bookingsphoneNumber2} >Add</button>
                                                                                     </div>
                                                                                     {touched.bookingsphoneNumber2 && errors.bookingsphoneNumber2 && <div className="error pink-txt f-11">{errors.bookingsphoneNumber2}</div>}
                                                                                     {
@@ -691,7 +705,7 @@ const RestaurantFeaturesComp = (props) => {
                                                                                         {}
                                                                                         <button type="button" 
                                                                                         onClick={()=>{handleInputBoxDataUpdate(values.facebookUrl2,values.facebookUrl,setFieldValue,"facebookUrl");setFieldValue("facebookUrl2","") }}
-                                                                                        className="add-trans-button" style={{color:`${values.facebookUrl2&&'#cb007b'}`}} disabled={!values.facebookUrl2}>Add</button>
+                                                                                        className="add-trans-button" disabled={!values.facebookUrl2||errors.facebookUrl2}>Add</button>
                                                                                     </div>
                                                                                     {touched.facebookUrl2 && errors.facebookUrl2 && <div className="error pink-txt f-11">{errors.facebookUrl2}</div>}
                                                                                     {
@@ -733,7 +747,7 @@ const RestaurantFeaturesComp = (props) => {
                                                                                         <Field name="twitterUrl2" placeholder="http://" className="form-control-input form-control w-50"/>
                                                                                         <button type="button" 
                                                                                         onClick={()=>{handleInputBoxDataUpdate(values.twitterUrl2,values.twitterUrl,setFieldValue,"twitterUrl");setFieldValue("twitterUrl2","") }}
-                                                                                        className="add-trans-button" style={{color:`${values.twitterUrl2&&'#cb007b'}`}} disabled={!values.twitterUrl2}>Add</button>
+                                                                                        className="add-trans-button"  disabled={!values.twitterUrl2||errors.twitterUrl2}>Add</button>
                                                                                     </div>
                                                                                     {touched.twitterUrl2 && errors.twitterUrl2 && <div className="error pink-txt f-11">{errors.twitterUrl2}</div>}
                                                                                     {
@@ -776,7 +790,7 @@ const RestaurantFeaturesComp = (props) => {
                                                                                         {}
                                                                                         <button type="button" 
                                                                                         onClick={()=>{handleInputBoxDataUpdate(values.instagramUrl2,values.instagramUrl,setFieldValue,"instagramUrl");setFieldValue("instagramUrl2","") }}
-                                                                                        className="add-trans-button" style={{color:`${values.instagramUrl2&&'#cb007b'}`}} disabled={!values.instagramUrl2}>Add</button>
+                                                                                        className="add-trans-button" disabled={!values.instagramUrl2||errors.instagramUrl2}>Add</button>
                                                                                     </div>
                                                                                     {touched.instagramUrl2 && errors.instagramUrl2 && <div className="error pink-txt f-11">{errors.instagramUrl2}</div>}
                                                                                     {

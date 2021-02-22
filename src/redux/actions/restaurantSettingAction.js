@@ -54,16 +54,27 @@ export const getAllRestaurantDetail=()=>{
   };
 
   // update product Form
-export const updateRestaurantAbout = (value) => {
-    
-  return async(dispatch)=>{
-    try{
-        await dispatch({type :"UPDATE_RESTAURANT_ABOUT" , payload :value});
+  export const updateRestaurantAbout = (value) => {
+      return async(dispatch)=>{
+        try{
+            await dispatch({type :"UPDATE_RESTAURANT_ABOUT" , payload :value});
+        }
+        catch(error){
+            console.error(error);
+        }
     }
-    catch(error){
-        console.error(error);
-    }
-}
+  };
+
+  // update product Form
+  export const updateRestaurantName = (value) => {
+    return async(dispatch)=>{
+      try{
+          await dispatch({type :"UPDATE_RESTAURANT_NAME" , payload :value});
+      }
+      catch(error){
+          console.error(error);
+      }
+  }
 };
 
 export const updateRestaurantProfileImage=(image)=>{

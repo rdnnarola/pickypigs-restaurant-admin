@@ -1,0 +1,40 @@
+.RestaurantSettingImageGalleryComp{
+    form {
+        .fileUpload {
+            background: #ffd5e2;
+            color: #cb007b;
+            border-color: #ffd5e2;
+            overflow: hidden;
+            position: relative;
+            cursor: pointer !important;
+            opacity: 0.8;
+            min-width: 50px;
+            min-height: 40px;
+            margin: 0px;
+            padding: 0;
+            font-size: 12px;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            .upload {
+                position: absolute;
+                top: 0;
+                right: 0;
+                margin: 0;
+                padding: 0;
+                font-size: 20px;
+                cursor: pointer;
+                opacity: 0;
+                filter: alpha(opacity=0);
+                min-width: 50px;
+                min-height: 40px;
+                cursor: pointer;
+            }
+            span {
+                cursor: pointer;
+            }
+        }
+    }
+}

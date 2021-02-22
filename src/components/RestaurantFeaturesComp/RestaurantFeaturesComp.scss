@@ -8,7 +8,6 @@
                         width: 100%;
                     }
                     .timeing-main-wrapper {
-                        
                         .timeing-dash {
                             width: 10px;
                             display: inline-block;
@@ -16,44 +15,74 @@
                             background: #919191;
                             margin: 0px 10px;
                         }
-                    }
-                    // Custom Time Picker CSS Start
-                    .custom-timepicker {
-                        width:125px;
-                        .MuiFormControl-root {
-                            .MuiOutlinedInput-root {
-                                border-radius: 6px;
-                                padding-right: 10px;
-                                .MuiOutlinedInput-input {
-                                    padding: 10px 0px 10px 10px;
-                                    color: #919191;
-                                    font-size: 15px;
-                                    &::placeholder {
-                                        color: #919191;
-                                        opacity: 1;
-                                        font-weight: normal;
+                        // Custom Time Picker CSS Start
+                        .custom-timepicker {
+                            width: 105px;
+                            .MuiFormControl-root {
+                                .MuiOutlinedInput-root {
+                                    border-radius: 6px;
+                                    padding-right: 7px;
+                                    .MuiOutlinedInput-input {
+                                        padding: 10px 0px 10px 7px;
+                                        color: #c8c7cc;
+                                        font-size: 14.5px;
+                                        &::placeholder {
+                                            color: #919191;
+                                            opacity: 1;
+                                            font-weight: normal;
+                                        }
                                     }
-                                }
-                                .MuiOutlinedInput-notchedOutline {
-                                    border-color: #c8c7cc !important;
-                                }
-                                &.Mui-focus {
                                     .MuiOutlinedInput-notchedOutline {
-                                        box-shadow: 0 0 0 0.2rem #e4e4e4 !important;
-                                        border-color: #919191 !important;
+                                        border-color: #c8c7cc !important;
                                     }
-                                }
-                                .MuiInputAdornment-root {
-                                    .MuiIconButton-root {
-                                        outline: none;
-                                        padding: 4px;
-                                        color: #919191;
+                                    &.Mui-focus {
+                                        .MuiOutlinedInput-notchedOutline {
+                                            box-shadow: 0 0 0 0.2rem #e4e4e4 !important;
+                                            border-color: #919191 !important;
+                                        }
+                                    }
+                                    .MuiInputAdornment-root {
+                                        .MuiIconButton-root {
+                                            outline: none;
+                                            padding: 0px;
+                                            color: #c8c7cc;
+
+                                            .MuiIconButton-label {
+                                                .MuiSvgIcon-root {
+                                                    font-size: 1.25rem;
+                                                }
+                                            }
+                                        }
                                     }
                                 }
                             }
                         }
+                        // Custom Time Picker CSS End
+
+                        .to-txt{
+                            color: #c8c7cc;  
+                        }
+
+                        &.active {
+                            .custom-timepicker {
+                                .MuiFormControl-root {
+                                    .MuiOutlinedInput-root {
+                                        .MuiOutlinedInput-input {
+                                            color: #232323;
+                                        }
+                                        .MuiInputAdornment-root {
+                                            .MuiIconButton-root {
+                                                color: #232323;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            .to-txt{
+                                color: #232323;  
+                            }
+                        }
                     }
-                    // Custom Time Picker CSS End
                 }
                 .option-tag-main {
                     .option-tag {
@@ -69,10 +98,10 @@
                         border-radius: 50px;
                         transition: ease 0.25s;
                         text-decoration: none;
-                        margin-right: 20px; 
+                        margin-right: 20px;
                         margin-bottom: 10px;
                         cursor: pointer;
-                        
+
                         &:hover {
                             box-shadow: 0px 7px 16px 0px #00000017;
                             border: 1px solid transparent;
@@ -87,15 +116,20 @@
             }
         }
     }
-    .add-trans-button{
-        position:absolute;
-        top:0px;
-        left:50%;
-        background-color:transparent;
-        border:none;
-        &:focus{
-            border:none;
+    .add-trans-button {
+        position: absolute;
+        top: 0px;
+        left: 50%;
+        background-color: transparent;
+        border: none;
+        &:focus {
+            border: none;
             outline: none;
+        }
+       
+        &:not(:disabled){
+            color: #cb007b;
+
         }
     }
 }

@@ -11,7 +11,7 @@ import RestaurantMoreInfoComp from "../../components/RestaurantMoreInfoComp/Rest
 import RestaurantInfoFeatureComp from "../../components/RestaurantInfoFeatureComp/RestaurantInfoFeatureComp";
 
 import { useDispatch, useSelector } from "react-redux";
-import { getAllRestaurantDetail, updateRestaurantAbout, updateRestaurantCoverImage, updateRestaurantInfoDetail, updateRestaurantProfileImage } from "../../redux/actions/restaurantSettingAction";
+import { getAllRestaurantDetail, updateRestaurantAbout, updateRestaurantCoverImage, updateRestaurantInfoDetail, updateRestaurantProfileImage,updateRestaurantName} from "../../redux/actions/restaurantSettingAction";
 import { useHistory } from "react-router-dom";
 import CustomLoadingComp from "../../components/CustomLoadingComp/CustomLoadingComp";
 import moment from "moment";
@@ -28,6 +28,8 @@ const RestaurantDetailPage = () => {
         tab2: false,
         tab3: false,
     });
+    const [editProfileName, setEditProfileName] = useState(true);
+
     const [editForm, setEditForm] = useState(true);
 
     useEffect(() => {
@@ -38,7 +40,21 @@ const RestaurantDetailPage = () => {
         return state.restaurantSetting
     });
 
-    let { restauraneSetting_Data, isLoading, selectedAudate } = Restaurant_Setting_Data;
+    let { restauraneSetting_Data, isLoading, selectedAudate,restaurantName } = Restaurant_Setting_Data;
+
+    const handleProfileCancl = () => {
+        setEditProfileName(true)
+        dispatch(updateRestaurantName(restauraneSetting_Data && restauraneSetting_Data.name))
+    }
+    const handleProfileChange = (e) => {
+        dispatch(updateRestaurantName(e.target.value))
+    }
+    const handleProfileSubmit = (e) => {
+        e.preventDefault();
+        dispatch(updateRestaurantInfoDetail({ name: restaurantName }));
+        setEditProfileName(true)
+    }
+
 
     const handleAboutCancl = () => {
         setEditForm(true)
@@ -126,23 +142,45 @@ const RestaurantDetailPage = () => {
                                     </div>
                                 </div>
                                 <div className="pt-3 pb-3 restaurent-info">
-                                    <h4 className="brandon-Medium restaurent-name">Restaurent Name Here</h4>
+                                    {editProfileName?
+                                        restauraneSetting_Data && restauraneSetting_Data.name? 
+                                            <h4 className="brandon-Medium restaurent-name"> { restauraneSetting_Data && restauraneSetting_Data.name}</h4>
+                                        :
+                                            <h4 className="brandon-Medium restaurent-name">Not Available</h4>
+
+                                    :
+                                        <React.Fragment>
+                                            <input type="text" name="name" value={restaurantName} onChange={handleProfileChange} placeholder="Enter Name here" className="form-control-inputtext form-control" />
+
+                                        </React.Fragment>
+
+                                    }
                                     <div className="d-flex flex-wrap">
                                         <p className="mr-4 brandon-regular f-15 mb-2">
                                             <span className="gray-txt">Joined since:</span>
-                                            <span> 1st November, 2020</span>
+                                            {restauraneSetting_Data && restauraneSetting_Data.createdAt ?
+                                            <span>&nbsp;{moment(restauraneSetting_Data && restauraneSetting_Data.createdAt).format('Do MMMM YYYY')}</span>
+                                            :
+                                            <span>Not Available</span>
+                                            }
                                         </p>
-                                        <p className="f-15 gray-txt brandon-regular mb-2">Subscribe level: <span className="pink-txt">Premium</span></p>
+                                        <p className="f-15 gray-txt brandon-regular mb-2">Subscribe level:
+                                            {restauraneSetting_Data && restauraneSetting_Data.package ?
+                                            <span className="pink-txt text-capitalize">&nbsp;{restauraneSetting_Data && restauraneSetting_Data.package}</span>
+                                            :
+                                            <span className="pink-txt">Not Available</span>
+                                            }
+                                        </p>
                                     </div>
                                 </div>
                             </div>
-                            {editForm
+                            {editProfileName
                                 ?
-                                <button className="btn pinkline-btn text-uppercase rounded-pill mt-3 min-width-170" type="button" onClick={() => { setEditForm(false) }}><span className="edit-icon"> Edit Profile</span></button>
+                                <button className="btn pinkline-btn text-uppercase rounded-pill mt-3 min-width-170" type="button" onClick={() => { setEditProfileName(false) }}><span className="edit-icon"> Edit Profile</span></button>
                                 :
                                 <div className="d-flex justify-content-between align-items-center mt-3 min-width-170">
-                                    <button className="btn lightgraynoline-btn min-width-120 border-radius-25 text-uppercase f-15" type="reset" onClick={handleAboutCancl}>cancle</button>
-                                    <button className="btn pinkline-btn min-width-120 border-radius-25 ml-4 text-uppercase f-15" type="submit" onClick={handleAboutSubmit}>Save</button>
+                                    <button className="btn lightgraynoline-btn min-width-120 border-radius-25 text-uppercase f-15" type="reset" onClick={handleProfileCancl}>cancle</button>
+                                    <button className="btn pinkline-btn min-width-120 border-radius-25 ml-4 text-uppercase f-15" type="submit" onClick={handleProfileSubmit}>Save</button>
                                 </div>
                             }
                         </div>
@@ -173,7 +211,7 @@ const RestaurantDetailPage = () => {
                             <p className="form-control-plaintext text-uppercase">No Data Availble...</p>
                         :
                         <React.Fragment>
-                            <textarea rows="4" name="aboutText" value={selectedAudate} onChange={handleAboutChange} placeholder="Enter Name here" className="form-control-inputtext form-control" />
+                            <textarea rows="4" name="aboutText" value={selectedAudate} onChange={handleAboutChange} placeholder="Enter About Your Restaurant" className="form-control-inputtext form-control" />
                             {/* {touched.street && errors.street && <div className="error pink-txt f-11">{errors.street}</div>} */}
                         </React.Fragment>
                     }
@@ -212,7 +250,7 @@ const RestaurantDetailPage = () => {
                                  {restauraneSetting_Data &&
                                 <RestaurantSettingImageGalleryComp gallerydata={restauraneSetting_Data && restauraneSetting_Data.restaurantGalleries}/>
                                  }
-                                <RestaurantMoreInfoComp />
+                                {/* <RestaurantMoreInfoComp /> */}
                             </div>
                             :
                             tabs.tab2 ?

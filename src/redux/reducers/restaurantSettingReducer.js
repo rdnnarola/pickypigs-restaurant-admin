@@ -4,7 +4,8 @@ const initialState = {
     isLoading : false,
     errorMessage:'',
     restauraneSetting_Data:null,
-    selectedAudate:""
+    selectedAudate:"",
+    restaurantName:'',
     };
     
     const restaurantSettingReducer = (state = initialState, { type, payload }) => {
@@ -20,7 +21,8 @@ const initialState = {
                 ...state,
                 isLoading:false,
                 restauraneSetting_Data:payload.restaurantDetail[0],
-                selectedAudate:payload.restaurantDetail[0].about
+                selectedAudate:payload.restaurantDetail[0].about,
+                restaurantName:payload.restaurantDetail[0].name,
             };
        
         case "GET_RESTAURANTSETTING_FAILURE":
@@ -50,12 +52,20 @@ const initialState = {
                 errorMessage:payload
             };    
 
+        //update Name
+        case "UPDATE_RESTAURANT_NAME":
+            return  {
+                ...state,
+                loading: false,
+                restaurantName:payload
+            };
 
         //update about
         case "UPDATE_RESTAURANT_ABOUT":
             return  {
                 ...state,
                 loading: false,
+                selectedAudate:payload
             };    
             
         
