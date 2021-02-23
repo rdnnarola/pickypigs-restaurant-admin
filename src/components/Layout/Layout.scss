@@ -569,7 +569,7 @@ select {
     margin-bottom: 20px;
 
     .accordion-main {
-        padding: 30px 50px;
+        padding: 29px 50px;
         .accordion-item {
             .accordion-header {
                 .accordion-title {
@@ -577,6 +577,7 @@ select {
                         font-size: 16px;
                         word-break: break-all;
                         text-transform: uppercase;
+                        color: #2E482B;
                     }
                 }
                 .custom_edit_button {
@@ -588,7 +589,7 @@ select {
                     text-transform: uppercase;
                     padding: 0;
                     outline: none;
-                    font-weight: 600;
+                    font-weight: 500;
                 }
             }
             .accordion-button .expand-button:after {
