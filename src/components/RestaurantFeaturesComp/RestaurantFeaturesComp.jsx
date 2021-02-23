@@ -286,12 +286,12 @@ const RestaurantFeaturesComp = (props) => {
                                                                                                 <label className="custom-control-label gray-control-label f-15" htmlFor={data.day}>{data.day}</label>
                                                                                             </div>
                                                                                             
-                                                                                            <div className="timeing-main-wrapper d-flex align-items-center">
+                                                                                            <div className={`timeing-main-wrapper d-flex align-items-center ${data.isSelected&&"active"}`}>
                                                                                                 
                                                                                                 
                                                                                                 <React.Fragment>
                                                                                                     <React.Fragment >
-                                                                                                        <div className="custom-timepicker mb-0 form-group d-flex align-items-center">
+                                                                                                        <div className="custom-timepicker mb-0 form-group d-flex align-items-center active">
                                                                                                             <MuiPickersUtilsProvider utils={MomentUtils}>
                                                                                                                 <KeyboardTimePicker
                                                                                                                     id="from-time-picker" placeholder="From"

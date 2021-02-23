@@ -10,22 +10,32 @@ import { useDispatch, useSelector } from "react-redux";
 import LocationIcon from '../../../assets/images/crosshair.svg'
 
 
-function GoogleMapTestComp() {
+function GoogleMapTestComp(props) {
   const [center, setCenter] = useState({ lat:0, lng: 0});
   const [defaultCenter, setDefaultCenter] = useState();
-  const [inputValue, setInputValue] = React.useState('');
+  const [mySelectedCoordinate, setMySelectedCoordinate] = React.useState('');
   const dispatch=useDispatch();
   const refMap = useRef(null);
-
-  const handleBoundsChanged = () => {
+  const [zoom, setZoom] = React.useState(15);
+  const handleBoundsChanged = (props) => {
     const mapCenter = refMap.current.getCenter(); //get map center
     setCenter(mapCenter);
   };
 
 
 useEffect(()=>{
-  getMyLocation();
-},[])
+  if(props.coordinates){
+    dispatch(getLocationGeometryData(props.coordinates ))
+    let array=JSON.parse("[" + props.coordinates + "]");
+    setDefaultCenter({ lat: array[0], lng: array[1] });
+    setCenter({ lat: array[0], lng: array[1] });
+    console.log("hello",props.coordinates)
+    console.log("arrayzzz",array)
+
+  }else{
+    getMyLocation();
+  }
+},[dispatch,props.coordinates])
 
 
 const getMyLocation = () => {
@@ -62,7 +72,8 @@ let Restaurant_Location = useSelector((state) => {
   return (  
     <GoogleMap
       ref={refMap}
-      defaultZoom={15}
+      defaultZoom={zoom}
+      zoom={zoom}
       // defaultCenter={defaultCenter}
       center={defaultCenter}
       onBoundsChanged={handleBoundsChanged}
@@ -70,7 +81,7 @@ let Restaurant_Location = useSelector((state) => {
       
     >
       <Marker position={center}/>
-     <button type="button"  onClick={getMyLocation} style={{background:'transparent',border:"none"}}>
+     <button type="button"  onClick={()=>{getMyLocation();setZoom(15)}} style={{background:'transparent',border:"none"}}>
        <img src={LocationIcon} className="img-fluid" width="30px" />
                 {Restaurant_Location&&Restaurant_Location.location_data}
       </button>
