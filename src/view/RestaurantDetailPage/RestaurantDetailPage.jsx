@@ -15,8 +15,9 @@ import { getAllRestaurantDetail, updateRestaurantAbout, updateRestaurantCoverIma
 import { useHistory } from "react-router-dom";
 import CustomLoadingComp from "../../components/CustomLoadingComp/CustomLoadingComp";
 import moment from "moment";
-import { SERVER_URL } from '../../shared/constant'
+import { SERVER_URL,API_KEY } from '../../shared/constant'
 import RestaurantSettingImageGalleryComp from "../../components/RestaurantSettingImageGalleryComp/RestaurantSettingImageGalleryComp";
+import GoogleMapTestComp from "./GoogleMapTestComp/GoogleMapTestComp";
 
 
 const RestaurantDetailPage = () => {
@@ -256,7 +257,18 @@ const RestaurantDetailPage = () => {
                             tabs.tab2 ?
                                 <section><RestaurantUserDetailComp /></section>
                                 :
-                                <section>ccccc</section>
+                                <section >
+                                        <div className="map-wrapper mb-1 mt-2" style={{height:350}}>
+                                            {/* <GoogleMapTestComp
+                                                googleMapURL={`https://maps.googleapis.com/maps/api/js?key=${API_KEY}&v=3.exp&libraries=geometry,drawing,places`}
+                                                loadingElement={<div style={{ height: `100%` }} />}
+                                                containerElement={<div style={{ height: `100%` }} />}
+                                                mapElement={<div style={{ height: `100%` }} />}
+                                            /> */}
+                                        </div>
+                                                
+                                                
+                                                 </section>
                         }
                     </div>
                 </div>

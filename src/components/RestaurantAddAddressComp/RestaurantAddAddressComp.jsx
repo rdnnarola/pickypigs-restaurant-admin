@@ -2,8 +2,10 @@ import React, { useState } from "react";
 import './RestaurantAddAddressComp.scss';
 import { Field, Form, Formik } from 'formik';
 import * as Yup from 'yup';
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {updateRestaurantInfoDetail} from '../../redux/actions/restaurantSettingAction'
+import GoogleMapTestComp from "../../view/RestaurantDetailPage/GoogleMapTestComp/GoogleMapTestComp";
+import { SERVER_URL,API_KEY } from '../../shared/constant'
 
 const RestaurantAddAddressComp = (props) => {
     let {street,zipcode,locality,pincode,addLocationMap,getDirectionOption,shareLocationOption}=props.addressdata
@@ -15,6 +17,15 @@ const RestaurantAddAddressComp = (props) => {
         resetForm()
     }
 
+    let Restaurant_Location = useSelector((state) => {
+        return state.googleData
+      });
+    let {address_Data}=Restaurant_Location
+    const getSelectedLocationData=(Restaurant_Location)=>{
+       let data= Restaurant_Location&&Restaurant_Location.address_Data&&Restaurant_Location.address_Data.filter(myallergy => myallergy.types.indexOf("postal_code") !== -1)
+       console.log(data.long_name)
+
+    }
     const initialValues = {
         street:street?street:'',
         zipcode:zipcode?zipcode:'',
@@ -44,6 +55,12 @@ const RestaurantAddAddressComp = (props) => {
     return (
         <>
             <section className="RestaurantAddAddressComp">
+                {/* {JSON.stringify(Restaurant_Location&&Restaurant_Location.address_Data&&Restaurant_Location.address_Data.filter(myallergy => myallergy.types.indexOf("postal_code") !== -1) )}
+                {JSON.stringify(Restaurant_Location&&Restaurant_Location.address_Data&&Restaurant_Location.address_Data.filter(myallergy => myallergy.types.indexOf("country") !== -1) )}
+                {JSON.stringify(Restaurant_Location&&Restaurant_Location.address_Data&&Restaurant_Location.address_Data.filter(myallergy => myallergy.types.indexOf("sublocality_level_1") !== -1) )}
+                {JSON.stringify(Restaurant_Location&&Restaurant_Location.address_Data&&Restaurant_Location.address_Data.filter(myallergy => myallergy.types.indexOf("administrative_area_level_2") !== -1) )}
+ */}
+
                 <React.Fragment>
                     <Formik enableReinitialize={true} initialValues={initialValues} validationSchema={validationSchema} onSubmit={onSubmit}>
                         {({ errors, touched, resetForm, setFieldValue,handleChange,values }) => {
@@ -173,6 +190,21 @@ const RestaurantAddAddressComp = (props) => {
                                                                             <Field type="checkbox" name="getDirectionOption" id="customCheck3"  className="custom-control-input"/>
                                                                             <label className="custom-control-label gray-control-label" htmlFor="customCheck3">Get direction option</label>
                                                                         </div>
+                                                                    </div>
+                                                                }
+                                                            </div>
+                                                            <div className="row" >
+                                                                {editForm
+                                                                        ?
+                                                                        null
+                                                                        :
+                                                                    <div className="col-sm-12" style={{height:350,width:'100%'}}>
+                                                                        <GoogleMapTestComp
+                                                                            googleMapURL={`https://maps.googleapis.com/maps/api/js?key=${API_KEY}&v=3.exp&libraries=geometry,drawing,places`}
+                                                                            loadingElement={<div style={{ height: `100%` }} />}
+                                                                            containerElement={<div style={{ height: `100%` }} />}
+                                                                            mapElement={<div style={{ height: `100%` }} />}
+                                                                        />
                                                                     </div>
                                                                 }
                                                             </div>

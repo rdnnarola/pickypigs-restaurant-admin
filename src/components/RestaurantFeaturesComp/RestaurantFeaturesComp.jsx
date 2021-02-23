@@ -389,7 +389,7 @@ const RestaurantFeaturesComp = (props) => {
                                                                         <div>
                                                                             {editForm?
                                                                                 <div>
-                                                                                    {website&&website.websiteUrl&&bookings.websiteUrl.length>0?
+                                                                                    {website&&website.websiteUrl&&website.websiteUrl.length>0?
                                                                                         website&&website.websiteUrl.map((data,index)=>{
                                                                                             return(
                                                                                                 <React.Fragment key={index}>
