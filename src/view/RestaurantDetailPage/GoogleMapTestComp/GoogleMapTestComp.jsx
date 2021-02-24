@@ -29,9 +29,6 @@ useEffect(()=>{
     let array=JSON.parse("[" + props.coordinates + "]");
     setDefaultCenter({ lat: array[0], lng: array[1] });
     setCenter({ lat: array[0], lng: array[1] });
-    console.log("hello",props.coordinates)
-    console.log("arrayzzz",array)
-
   }else{
     getMyLocation();
   }
@@ -49,7 +46,6 @@ const getMyLocation = () => {
       setDefaultCenter({ lat: position.coords.latitude, lng: position.coords.longitude });
       setCenter({ lat: position.coords.latitude, lng: position.coords.longitude });
       dispatch(getLocationGeometryData(` ${position.coords.latitude}, ${position.coords.longitude}` ))
-
     })
   }
 }
@@ -78,7 +74,6 @@ let Restaurant_Location = useSelector((state) => {
       center={defaultCenter}
       onBoundsChanged={handleBoundsChanged}
       onDragEnd={onDragEnd}
-      
     >
       <Marker position={center}/>
      <button type="button"  onClick={()=>{getMyLocation();setZoom(15)}} style={{background:'transparent',border:"none"}}>

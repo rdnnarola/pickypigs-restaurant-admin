@@ -31,7 +31,7 @@ const initialState = {
           };
   
           
-        case "GET_GEOMETRY_DATA":
+        case "GET_LOCATIONDATA_FAILURE":
           return {
             ...state,
             isLoading:false,
@@ -70,11 +70,26 @@ const initialState = {
               localityData:payload
           };   
         //
-        case "GET_GEOMETRY_DATA":
+           
+        case "GET_GEOMETRYDATA_REQUEST":
           return {
             ...state,
-            location_Cordinate:payload.result.geometry.location,
-          };    
+            isLoading:true,
+          };
+
+        case "GET_GEOMETRYDATA_SUCCESS":
+          return {
+            ...state,
+            isLoading:false,
+            location_Cordinate:payload.result.geometry.location
+          };
+  
+        case "GET_GEOMETRYDATA_FAILURE":
+          return {
+            ...state,
+            isLoading:false,
+            errorMessage:payload,
+          };  
 
         default:
           return state;

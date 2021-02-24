@@ -137,10 +137,14 @@ const RestaurantAddAddressComp = (props) => {
                                                             </div>
                                                             <div className="row">
                                                                 <div className="col-sm-12">
+                                                                    {editForm?
+                                                                    null
+                                                                    :
                                                                     <React.Fragment>
                                                                         <MyfilterListExample coordinates={Restaurant_Location&&Restaurant_Location.coordinate_data}/>
                                                                         {/* {Restaurant_Location&&Restaurant_Location.location_data} */}
                                                                     </React.Fragment>
+                                                                    }
                                                                 </div>
                                                             </div>
                                                             <div className="row mb-4 mt-2">

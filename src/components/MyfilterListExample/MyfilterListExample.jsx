@@ -103,10 +103,11 @@ export default function MyfilterListExample(props) {
     [],
   );
 
+ 
 
   React.useEffect(() => {
     let active = true;
-
+   
     if (!autocompleteService.current && window.google) {
       autocompleteService.current = new window.google.maps.places.AutocompleteService();
     }
@@ -134,13 +135,20 @@ export default function MyfilterListExample(props) {
         setOptions(newOptions);
       }
     });
-    dispatch(getLocationFromPlaceId(value&&value.place_id));
 
     return () => {
       active = false;
     };
 
   }, [value, inputValue, fetch]);
+
+  React.useEffect(() => {
+    if(value&&value.place_id){
+      dispatch(getLocationFromPlaceId(value&&value.place_id));
+    }
+    
+  },[value])
+
 
 
   
