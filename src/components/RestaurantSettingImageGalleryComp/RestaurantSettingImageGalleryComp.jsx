@@ -130,7 +130,9 @@ const RestaurantSettingImageGalleryComp = (props) => {
                                                                             })
 
                                                                             :
-                                                                            <img src={dishimg1} alt="" className="img-fluid bg-white img-thumbnil" />
+                                                                            <div className="col-sm-12 pl-0">
+                                                                                <p className="form-control-plaintext gray-txt">Not Available</p>
+                                                                            </div>
                                                                         }
                                                                     </div>
                                                                 </div>
@@ -194,7 +196,9 @@ const RestaurantSettingImageGalleryComp = (props) => {
                                                                             })
 
                                                                             :
-                                                                            <img src={dishimg1} alt="" className="img-fluid bg-white img-thumbnil" />
+                                                                            <div className="col-sm-12 pl-0">
+                                                                                <p className="form-control-plaintext gray-txt">Not Available</p>
+                                                                            </div>
                                                                         }
                                                                     </div>
                                                                 </div>

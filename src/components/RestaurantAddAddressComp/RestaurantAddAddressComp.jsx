@@ -57,13 +57,13 @@ const RestaurantAddAddressComp = (props) => {
     }
 
     const validationSchema  = Yup.object().shape({
-        street:Yup.string().required('street Name is required'),
-        locality:Yup.string().required('locality is required'),
+        // street:Yup.string().required('street Name is required'),
+        // locality:Yup.string().required('locality is required'),
         myPincode:Yup.number().required('pincode is required'),
         addLocationMap:Yup.boolean().oneOf([true,false]),
         getDirectionOption:Yup.boolean().oneOf([true,false]),
         shareLocationOption:Yup.boolean().oneOf([true,false]),
-        coordinates:Yup.array().required('Please Select MapLocation'),
+        // coordinates:Yup.array().required('Please Select MapLocation'),
         googleAddress:Yup.string(),
         myStreet:Yup.string().required('street Name is required'),
         myLocality:Yup.string().required('street Name is required'),
@@ -98,8 +98,8 @@ const RestaurantAddAddressComp = (props) => {
                 {JSON.stringify(Restaurant_Location&&Restaurant_Location.address_Data&&Restaurant_Location.address_Data.filter(myallergy => myallergy.types.indexOf("sublocality_level_1") !== -1) )}
                 {JSON.stringify(Restaurant_Location&&Restaurant_Location.address_Data&&Restaurant_Location.address_Data.filter(myallergy => myallergy.types.indexOf("administrative_area_level_2") !== -1) )}
  */}
-{/* {JSON.stringify( Restaurant_Location&&Restaurant_Location.coordinate_data  )}
-{JSON.stringify( Restaurant_Location&&Restaurant_Location.postalcode  )} */}
+{/* {JSON.stringify( Restaurant_Location&&Restaurant_Location.coordinate_data  )} */}
+{/* {JSON.stringify( Restaurant_Location&&Restaurant_Location.postalcode  )} */}
 
 
                 <React.Fragment>

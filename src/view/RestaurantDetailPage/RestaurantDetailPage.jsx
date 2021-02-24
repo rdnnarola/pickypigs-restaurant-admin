@@ -231,25 +231,25 @@ const RestaurantDetailPage = () => {
                         {tabs.tab1 ?
                             <div>
                                 {restauraneSetting_Data &&
-                                    <RestaurantInfoComp infodata={restauraneSetting_Data && restauraneSetting_Data.info} />
+                                    <RestaurantInfoComp infodata={restauraneSetting_Data && restauraneSetting_Data.info?restauraneSetting_Data && restauraneSetting_Data.info:{}} />
                                 }
 
                                 {restauraneSetting_Data &&
-                                    <RestaurantSecurityComp securitydata={restauraneSetting_Data && restauraneSetting_Data.security} />
+                                    <RestaurantSecurityComp securitydata={restauraneSetting_Data && restauraneSetting_Data.security?restauraneSetting_Data && restauraneSetting_Data.security:{}} />
                                 }
 
                                 {restauraneSetting_Data &&
-                                    <RestaurantAddAddressComp addressdata={restauraneSetting_Data && restauraneSetting_Data.address} />
+                                    <RestaurantAddAddressComp addressdata={restauraneSetting_Data && restauraneSetting_Data.address?restauraneSetting_Data && restauraneSetting_Data.address:{}} />
                                 }
 
                                 {restauraneSetting_Data &&
-                                    <RestaurantFeaturesComp detaildata={restauraneSetting_Data && restauraneSetting_Data.restaurantDetails} />
+                                    <RestaurantFeaturesComp detaildata={restauraneSetting_Data && restauraneSetting_Data.restaurantDetails?restauraneSetting_Data && restauraneSetting_Data.restaurantDetails:{}} />
                                 }
                                 {restauraneSetting_Data &&
-                                    <RestaurantInfoFeatureComp featuredata={restauraneSetting_Data && restauraneSetting_Data.restaurantFeatures} />
+                                    <RestaurantInfoFeatureComp featuredata={restauraneSetting_Data && restauraneSetting_Data.restaurantFeatures?restauraneSetting_Data && restauraneSetting_Data.restaurantFeatures:{}} />
                                 }
                                  {restauraneSetting_Data &&
-                                <RestaurantSettingImageGalleryComp gallerydata={restauraneSetting_Data && restauraneSetting_Data.restaurantGalleries}/>
+                                <RestaurantSettingImageGalleryComp gallerydata={restauraneSetting_Data && restauraneSetting_Data.restaurantGalleries?restauraneSetting_Data && restauraneSetting_Data.restaurantGalleries:{}}/>
                                  }
                                 {/* <RestaurantMoreInfoComp /> */}
                             </div>
