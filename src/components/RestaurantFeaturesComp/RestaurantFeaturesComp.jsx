@@ -214,7 +214,7 @@ const RestaurantFeaturesComp = (props) => {
                                                                                         <p className="f-15 mb-0">{data.day}</p>
 
                                                                                     </div>
-                                                                                    <div className="timeing-main-wrapper d-flex align-items-center">
+                                                                                    <div className={`timeing-main-wrapper d-flex align-items-center ${data.isSelected&&"active"}`}>
                                                                                         <React.Fragment>
                                                                                             <div className="custom-timepicker mb-0 form-group d-flex align-items-center" style={{width:90}}>
                                                                                                 <MuiPickersUtilsProvider utils={MomentUtils}>
