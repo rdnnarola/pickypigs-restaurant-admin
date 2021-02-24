@@ -127,7 +127,7 @@ const RestaurantInfoFeatureComp = (props) => {
                                                             <button className="custom_edit_button mr-5 brandon-Medium" type="button" onClick={() => { setEditForm(false) }}>EDIT</button>
                                                             :
                                                             <div className="d-flex justify-content-between align-items-center ">
-                                                                <button className="btn lightgraynoline-btn min-width-120 border-radius-25 text-uppercase f-15" type="reset" onClick={() => { handleCancleEdit(resetForm); }}>cancle</button>
+                                                                <button className="btn lightgraynoline-btn min-width-120 border-radius-25 text-uppercase f-15" type="reset" onClick={() => { handleCancleEdit(resetForm); }}>cancel</button>
                                                                 <button className="btn pinkline-btn min-width-120 border-radius-25 ml-4 text-uppercase f-15" type="submit">Save</button>
                                                             </div>
                                                         }
@@ -179,12 +179,13 @@ const RestaurantInfoFeatureComp = (props) => {
                                                                         :
                                                                         <div className="d-flex flex-wrap pl-0 mb-3">
                                                                             <p className="f-15 mb-2 brandon-Medium">Provide below average cost for two persons (approx.)</p>
-                                                                            <div className="col-sm-12 d-flex flex-wrap align-items-center mt-3 pl-0">
-                                                                                <div className="pl-0">
+                                                                            <div className="col-sm-12 d-flex flex-wrap align-items-center mt-3 pl-0 approx-costinput-wrapper">
+                                                                                <div className="pl-0 approx-costinput position-relative mr-5">
+                                                                                    <div className="input-doller-sing">$</div>
                                                                                     <Field name="averageCostOfTwoPerson" type="number" placeholder="$" className="form-control-input form-control " />
                                                                                     {touched.averageCostOfTwoPerson && errors.averageCostOfTwoPerson && <div className="error pink-txt f-11">{errors.averageCostOfTwoPerson}</div>}
                                                                                 </div>
-                                                                                <div className="custom-control custom-checkbox pink-checkbox mr-4 ml-4">
+                                                                                <div className="custom-control custom-checkbox pink-checkbox mr-4">
                                                                                     <Field type="checkbox" name="inclusiveTaxesAndCharges" id="inclusiveTaxesAndCharges" className="custom-control-input" />
                                                                                     <label className="custom-control-label gray-control-label f-15" htmlFor="inclusiveTaxesAndCharges">Inclusive taxes and charges if any</label>
                                                                                 </div>
@@ -314,27 +315,29 @@ const RestaurantInfoFeatureComp = (props) => {
                                                                     :
                                                                     <React.Fragment >
                                                                         <div className="col-sm-12">
-                                                                            <p className="gray-txt f-15 mb-0">Select which applies to your restaurant</p>
-                                                                            <div className="col-sm-12 col-md-12 col-lg-6 col-xl-6 position-relative mb-2 mt-2 pl-0 pr-0">
-                                                                                <Field name="appliesOfRestaurant2" placeholder="Enter here" className="form-control-input form-control" />
+                                                                            <p className="f-15 mb-0">Select which applies to your restaurant</p>
+                                                                            <div className="col-sm-12 col-md-12 col-lg-6 col-xl-6 position-relative mb-2 mt-2 pl-0 pr-0 selectapplies-wrapper custom-lightinputbox">
+                                                                                <Field name="appliesOfRestaurant2" placeholder="Enter here" className="form-control-input form-control position-relative" />
                                                                                 <button type="button"
                                                                                     onClick={() => { handleInputBoxDataUpdate(values.appliesOfRestaurant2, values.appliesOfRestaurant, setFieldValue, "appliesOfRestaurant"); setFieldValue("appliesOfRestaurant2", "") }}
                                                                                     className="add-trans-button" style={{ color: `${values.appliesOfRestaurant2 && '#cb007b'}` }} disabled={!values.appliesOfRestaurant2}>Add</button>
                                                                             </div>
                                                                         </div>
-                                                                        {values.appliesOfRestaurant.length == 0 && errors.appliesOfRestaurant && <div className="error pink-txt f-11">{errors.appliesOfRestaurant}</div>}
-                                                                        {
-                                                                            values && values.appliesOfRestaurant.map((data, index) => {
-                                                                                return (
-                                                                                    <React.Fragment key={index}>
-                                                                                        <div className="d-flex flex-wrap justify-content-between align-items-center">
-                                                                                            <p className="f-16 mb-1">{data}</p>
-                                                                                            <button type="button" onClick={() => { handleInputBoxDataRemove(data, values.appliesOfRestaurant, setFieldValue, "appliesOfRestaurant") }}>x</button>
-                                                                                        </div>
-                                                                                    </React.Fragment>
-                                                                                )
-                                                                            })
-                                                                        }
+                                                                        <div className="col-sm-12 selectapplies-tag d-flex align-items-center flex-wrap">
+                                                                            {values.appliesOfRestaurant.length == 0 && errors.appliesOfRestaurant && <div className="error pink-txt f-11">{errors.appliesOfRestaurant}</div>}
+                                                                            {
+                                                                                values && values.appliesOfRestaurant.map((data, index) => {
+                                                                                    return (
+                                                                                        <React.Fragment key={index}>
+                                                                                            <div className="d-flex flex-wrap justify-content-between align-items-center selectapplies-taglabel">
+                                                                                                <p className="f-14 mb-1">{data}</p>
+                                                                                                <button className="remove-tag" type="button" onClick={() => { handleInputBoxDataRemove(data, values.appliesOfRestaurant, setFieldValue, "appliesOfRestaurant") }}>x</button>
+                                                                                            </div>
+                                                                                        </React.Fragment>
+                                                                                    )
+                                                                                })
+                                                                            }
+                                                                        </div>
 
                                                                     </React.Fragment>
                                                                 }
