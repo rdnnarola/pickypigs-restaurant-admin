@@ -1,20 +1,45 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import './RestaurantAddAddressComp.scss';
 import { Field, Form, Formik } from 'formik';
 import * as Yup from 'yup';
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {updateRestaurantInfoDetail} from '../../redux/actions/restaurantSettingAction'
+import GoogleMapTestComp from "../../view/RestaurantDetailPage/GoogleMapTestComp/GoogleMapTestComp";
+import { SERVER_URL,API_KEY } from '../../shared/constant'
+import { getCoordinateData, getLocatityData, getPostalCodeData, getStreetNameData } from "../../redux/actions/googleAction";
+import MyfilterListExample from "../MyfilterListExample/MyfilterListExample";
+// import {MyfilterListExample} from '../MyfilterListExample/MyfilterListExample'
 
 const RestaurantAddAddressComp = (props) => {
-    let {street,zipcode,locality,pincode,addLocationMap,getDirectionOption,shareLocationOption}=props.addressdata
+    let {googleAddress,street,zipcode,locality,pincode,addLocationMap,getDirectionOption,shareLocationOption,map}=props.addressdata
     const dispatch=useDispatch();
     const [editForm, setEditForm] = useState(true);
+
+    useEffect(()=>{
+        dispatch(getCoordinateData(map&&map.coordinates.toString()))
+        dispatch(getPostalCodeData(props.addressdata&&props.addressdata.pincode))
+        dispatch(getStreetNameData(props.addressdata&&props.addressdata.street))
+        dispatch(getLocatityData(props.addressdata&&props.addressdata.locality))
+
+    },[dispatch]);
     
     const handleCancleEdit = (resetForm) => {
         setEditForm(true)
         resetForm()
+        dispatch(getCoordinateData(map&&map.coordinates.toString()))
+        dispatch(getPostalCodeData(props.addressdata&&props.addressdata.pincode))
+        dispatch(getStreetNameData(props.addressdata&&props.addressdata.street))
+        dispatch(getLocatityData(props.addressdata&&props.addressdata.locality))
     }
 
+    let Restaurant_Location = useSelector((state) => {
+        return state.googleData
+      });
+    let {isLoading}=Restaurant_Location
+    // const getSelectedLocationData=(Restaurant_Location)=>{
+    //    let data= Restaurant_Location&&Restaurant_Location.address_Data&&Restaurant_Location.address_Data.filter(myallergy => myallergy.types.indexOf("postal_code") !== -1)
+    //    console.log(data.long_name)
+    // }
     const initialValues = {
         street:street?street:'',
         zipcode:zipcode?zipcode:'',
@@ -23,27 +48,60 @@ const RestaurantAddAddressComp = (props) => {
         addLocationMap:addLocationMap?addLocationMap:false,
         getDirectionOption:getDirectionOption?getDirectionOption:false,
         shareLocationOption:shareLocationOption?shareLocationOption:false,
-       
+        coordinates:map?map.coordinates:[],
+        googleAddress:googleAddress?googleAddress:'',
+        myPincode:Restaurant_Location&&Restaurant_Location.postalcode?Restaurant_Location&&Restaurant_Location.postalcode:"",
+        myStreet:Restaurant_Location&&Restaurant_Location.streetName?Restaurant_Location&&Restaurant_Location.streetName:"",
+        myLocality:Restaurant_Location&&Restaurant_Location.localityData?Restaurant_Location&&Restaurant_Location.localityData:"",
+
     }
 
     const validationSchema  = Yup.object().shape({
-        street:Yup.string().required('street Name is required'),
-        zipcode:Yup.number().required('zipcode is required'),
-        locality:Yup.string().required('locality is required'),
-        pincode:Yup.number().required('pincode is required'),
+        // street:Yup.string().required('street Name is required'),
+        // locality:Yup.string().required('locality is required'),
+        myPincode:Yup.number().required('pincode is required'),
         addLocationMap:Yup.boolean().oneOf([true,false]),
         getDirectionOption:Yup.boolean().oneOf([true,false]),
         shareLocationOption:Yup.boolean().oneOf([true,false]),
+        // coordinates:Yup.array().required('Please Select MapLocation'),
+        googleAddress:Yup.string(),
+        myStreet:Yup.string().required('street Name is required'),
+        myLocality:Yup.string().required('street Name is required'),
+
 
      });
-
     const onSubmit=(fields)=>{
-        dispatch(updateRestaurantInfoDetail({address:fields}));
+
+        let obj={
+            street:fields.myStreet,
+            zipcode:fields.myPincode,
+            locality:fields.myLocality,
+            pincode:fields.myPincode,
+            addLocationMap:fields.addLocationMap,
+            getDirectionOption:fields.getDirectionOption,
+            shareLocationOption:fields.shareLocationOption,
+            googleAddress:Restaurant_Location&&Restaurant_Location.location_data,
+            map: {
+                type:"point",
+                coordinates: Restaurant_Location&&Restaurant_Location.coordinate_data.split(',')
+            }
+        }
+
+        dispatch(updateRestaurantInfoDetail({address:obj}));
         setEditForm(true)
     }
     return (
         <>
             <section className="RestaurantAddAddressComp">
+               {/* {JSON.stringify(Restaurant_Location&&Restaurant_Location.address_Data&&Restaurant_Location.address_Data.filter(myallergy => myallergy.types.indexOf("route") !== -1) )} */}
+               {/*   {JSON.stringify(Restaurant_Location&&Restaurant_Location.address_Data&&Restaurant_Location.address_Data.filter(myallergy => myallergy.types.indexOf("country") !== -1) )}
+                {JSON.stringify(Restaurant_Location&&Restaurant_Location.address_Data&&Restaurant_Location.address_Data.filter(myallergy => myallergy.types.indexOf("sublocality_level_1") !== -1) )}
+                {JSON.stringify(Restaurant_Location&&Restaurant_Location.address_Data&&Restaurant_Location.address_Data.filter(myallergy => myallergy.types.indexOf("administrative_area_level_2") !== -1) )}
+ */}
+{/* {JSON.stringify( Restaurant_Location&&Restaurant_Location.coordinate_data  )} */}
+{/* {JSON.stringify( Restaurant_Location&&Restaurant_Location.postalcode  )} */}
+
+
                 <React.Fragment>
                     <Formik enableReinitialize={true} initialValues={initialValues} validationSchema={validationSchema} onSubmit={onSubmit}>
                         {({ errors, touched, resetForm, setFieldValue,handleChange,values }) => {
@@ -81,7 +139,40 @@ const RestaurantAddAddressComp = (props) => {
                                                                     <hr className="gray-hr"></hr>
                                                                 </div>
                                                             </div>
-                                                            <div className="row mb-4 mt-2">
+                                                            {editForm?
+                                                            null
+                                                            :
+                                                            <div className="row  mb-4 mt-2">
+                                                                <div className="col-sm-12">
+                                                                    <div className="rs-info-block">
+                                                                        <h5 className="accordion-label">Add a location</h5>
+                                                                       
+                                                                        <React.Fragment>
+                                                                            <MyfilterListExample coordinates={Restaurant_Location&&Restaurant_Location.coordinate_data}/>
+                                                                            {/* {Restaurant_Location&&Restaurant_Location.location_data} */}
+                                                                        </React.Fragment>
+                                                                       
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                             }
+                                                            <div className="row mb-4">
+                                                                <div className="col-md-6">
+                                                                    <div className="rs-info-block">
+                                                                        <h5 className="accordion-label">Address</h5>
+                                                                        {editForm?
+                                                                            props.addressdata&&props.addressdata.googleAddress?
+                                                                                <p className="form-control-plaintext text-uppercase">{props.addressdata&&props.addressdata.googleAddress}</p>
+                                                                            :
+                                                                                <p className="form-control-plaintext text-uppercase">No Data Availble...</p>
+                                                                        :
+                                                                            <React.Fragment>
+                                                                                <Field name="googleAddress" readOnly={true}  value={Restaurant_Location&&Restaurant_Location.location_data} placeholder="Enter Address here" className="form-control-inputtext form-control"/>
+                                                                                {touched.googleAddress && errors.googleAddress && <div className="error pink-txt f-11">{errors.googleAddress}</div>}
+                                                                            </React.Fragment>
+                                                                        }
+                                                                    </div>
+                                                                </div>
                                                                 <div className="col-md-6">
                                                                     <div className="rs-info-block">
                                                                         <h5 className="accordion-label">STREET</h5>
@@ -92,12 +183,14 @@ const RestaurantAddAddressComp = (props) => {
                                                                                 <p className="form-control-plaintext text-uppercase">No Data Availble...</p>
                                                                         :
                                                                             <React.Fragment>
-                                                                                <Field name="street" placeholder="Enter Name here" className="form-control-inputtext form-control"/>
-                                                                                {touched.street && errors.street && <div className="error pink-txt f-11">{errors.street}</div>}
+                                                                                <Field name="myStreet" placeholder="Enter Name here" className="form-control-inputtext form-control"/>
+                                                                                {touched.myStreet && errors.myStreet && <div className="error pink-txt f-11">{errors.myStreet}</div>}
                                                                             </React.Fragment>
                                                                         }
                                                                     </div>
                                                                 </div>
+                                                            </div>
+                                                            <div className="row mb-4">
                                                                 <div className="col-md-6">
                                                                     <div className="rs-info-block">
                                                                         <h5 className="accordion-label">LOCALITY</h5>
@@ -108,14 +201,12 @@ const RestaurantAddAddressComp = (props) => {
                                                                                 <p className="form-control-plaintext text-uppercase">No Data Availble...</p>
                                                                         :
                                                                             <React.Fragment>
-                                                                                <Field name="locality" placeholder="Enter Name here" className="form-control-inputtext form-control"/>
-                                                                                {touched.locality && errors.locality && <div className="error pink-txt f-11">{errors.locality}</div>}
+                                                                                <Field name="myLocality" placeholder="Enter Name here" className="form-control-inputtext form-control"/>
+                                                                                {touched.myLocality && errors.myLocality && <div className="error pink-txt f-11">{errors.myLocality}</div>}
                                                                             </React.Fragment>
                                                                         }
                                                                     </div>
                                                                 </div>
-                                                            </div>
-                                                            <div className="row mb-4">
                                                                 <div className="col-md-6">
                                                                     <div className="rs-info-block">
                                                                         <h5 className="accordion-label">PIN CODE</h5>
@@ -126,24 +217,8 @@ const RestaurantAddAddressComp = (props) => {
                                                                                 <p className="form-control-plaintext text-uppercase">No Data Availble...</p>
                                                                         :
                                                                             <React.Fragment>
-                                                                                <Field name="pincode" type="number" placeholder="Enter Name here" className="form-control-inputtext form-control"/>
-                                                                                {touched.pincode && errors.pincode && <div className="error pink-txt f-11">{errors.pincode}</div>}
-                                                                            </React.Fragment>
-                                                                        }
-                                                                    </div>
-                                                                </div>
-                                                                <div className="col-md-6">
-                                                                    <div className="rs-info-block">
-                                                                        <h5 className="accordion-label">ZIP CODE</h5>
-                                                                        {editForm?
-                                                                            props.addressdata&&props.addressdata.zipcode?
-                                                                                <p className="form-control-plaintext text-uppercase">{props.addressdata&&props.addressdata.zipcode}</p>
-                                                                            :
-                                                                                <p className="form-control-plaintext text-uppercase">No Data Availble...</p>
-                                                                        :
-                                                                            <React.Fragment>
-                                                                                <Field name="zipcode" type="number" placeholder="Enter Name here" className="form-control-inputtext form-control"/>
-                                                                                {touched.zipcode && errors.zipcode && <div className="error pink-txt f-11">{errors.zipcode}</div>}
+                                                                                <Field name="myPincode" type="number" placeholder="Enter Name here" className="form-control-inputtext form-control"/>
+                                                                                {touched.myPincode && errors.myPincode && <div className="error pink-txt f-11">{errors.myPincode}</div>}
                                                                             </React.Fragment>
                                                                         }
                                                                     </div>
@@ -173,6 +248,25 @@ const RestaurantAddAddressComp = (props) => {
                                                                             <Field type="checkbox" name="getDirectionOption" id="customCheck3"  className="custom-control-input"/>
                                                                             <label className="custom-control-label gray-control-label" htmlFor="customCheck3">Get direction option</label>
                                                                         </div>
+                                                                    </div>
+                                                                }
+                                                            </div>
+                                                            <div className="row" >
+                                                                {editForm
+                                                                        ?
+                                                                        null
+                                                                        :
+                                                                    <div className="col-sm-12" style={{height:350,width:'100%'}}>
+                                                                        {touched.coordinates && errors.coordinates && <div className="error pink-txt f-11">{errors.coordinates}</div>}
+
+                                                                        <GoogleMapTestComp
+                                                                            googleMapURL={`https://maps.googleapis.com/maps/api/js?key=${API_KEY}&v=3.exp&libraries=geometry,drawing,places`}
+                                                                            loadingElement={<div style={{ height: `100%` }} />}
+                                                                            containerElement={<div style={{ height: `100%` }} />}
+                                                                            mapElement={<div style={{ height: `100%` }} />}
+                                                                        
+                                                                            coordinates={Restaurant_Location&&Restaurant_Location.coordinate_data}
+                                                                        />
                                                                     </div>
                                                                 }
                                                             </div>

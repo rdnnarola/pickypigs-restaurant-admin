@@ -147,10 +147,14 @@ const RestaurantInfoFeatureComp = (props) => {
                                                                             <p className="f-15 mb-4 brandon-Medium">Average cost for two persons (approx.)</p>
 
                                                                             <React.Fragment>
-                                                                                {values.averageCostOfTwoPerson &&
+                                                                                {values.averageCostOfTwoPerson ?
                                                                                     <div className="col-sm-12 pl-0">
                                                                                         <p className="f-15 brandon-Medium mb-2 ">Min ${values.averageCostOfTwoPerson}</p>
                                                                                     </div>
+                                                                                    :
+                                                                                    <div className="col-sm-12 pl-0">
+                                                                                    <p className="form-control-plaintext gray-txt">Not Available</p>
+                                                                                </div>
                                                                                 }
                                                                             </React.Fragment>
                                                                             <React.Fragment>
@@ -223,7 +227,7 @@ const RestaurantInfoFeatureComp = (props) => {
                                                                                             <button
                                                                                                 id={data._id}
                                                                                                 type="button"
-                                                                                                className={`option-tag mr-4 mb-4 ${props.featuredata && props.featuredata.cuisineType.indexOf(data._id) !== -1 && "active"}`}
+                                                                                                className={`option-tag mr-4 mb-4 ${props.featuredata&& props.featuredata.cuisineType && props.featuredata.cuisineType.indexOf(data._id) !== -1 && "active"}`}
                                                                                             >
                                                                                                 {data.name}
                                                                                             </button>
@@ -267,7 +271,7 @@ const RestaurantInfoFeatureComp = (props) => {
                                                                                             <button
                                                                                                 id={data._id}
                                                                                                 type="button"
-                                                                                                className={`option-tag mr-4 mb-4 ${props.featuredata && props.featuredata.restaurantFeaturesOptions.indexOf(data._id) !== -1 && "active"}`}
+                                                                                                className={`option-tag mr-4 mb-4 ${props.featuredata  && props.featuredata.restaurantFeaturesOptions&& props.featuredata.restaurantFeaturesOptions.indexOf(data._id) !== -1 && "active"}`}
                                                                                             >
                                                                                                 {data.name}
                                                                                             </button>

@@ -1,0 +1,79 @@
+.location-input-wrapper {
+    // width: calc(25% + 5px);
+    position: relative;
+    top: -4px;
+    // .location-button {
+    //     position: relative;
+    //     top: 4px;
+    //     button {
+    //         border: none;
+    //         background: #fff;
+    //         outline: none;
+    //     }
+    // }
+
+    .MuiAutocomplete-root {
+        width: 100%;
+        // padding-left: 7px;
+
+        .MuiFormControl-root {
+            .MuiFormLabel-root{
+                color: #232323;
+            }
+            .MuiInputBase-root {
+                &.MuiAutocomplete-inputRoot {
+                    padding-right: 1px;
+
+                    .MuiAutocomplete-input {
+                        font-size: 15px !important;
+                        color: #232323 !important;
+                        font-family: "Brandon Text Medium" !important;
+                        border: none;
+    border-bottom: 1px solid #c8c7cc;
+    border-radius: 0px;
+    box-shadow: none;
+    outline: none;
+    height: calc(1.5em + .75rem + 2px);
+    padding: .375rem 0px;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+                    }
+
+                    .MuiAutocomplete-endAdornment {
+                        .MuiAutocomplete-clearIndicator {
+                            padding: 4px;
+                            margin-right: -7px;
+                            background: #fff;
+                            margin-top: -10px;
+                            svg{
+                                &.MuiSvgIcon-root{
+                                    color: #232323;
+                                }
+                            }
+                        }
+                        .MuiAutocomplete-popupIndicator {
+                            transform: rotate(0deg);
+                            .MuiIconButton-label {
+                                svg {
+                                    &.MuiSvgIcon-root {
+                                        font-size: 30px;
+                                        position: relative;
+                                        top: -6px !important;
+                                        background: #fff !important;
+                                        color: #232323;
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    &:before,
+                    &:after {
+                        display: none;
+                    }
+                }
+            }
+        }
+    }
+}

@@ -15,8 +15,9 @@ import { getAllRestaurantDetail, updateRestaurantAbout, updateRestaurantCoverIma
 import { useHistory } from "react-router-dom";
 import CustomLoadingComp from "../../components/CustomLoadingComp/CustomLoadingComp";
 import moment from "moment";
-import { SERVER_URL } from '../../shared/constant'
+import { SERVER_URL,API_KEY } from '../../shared/constant'
 import RestaurantSettingImageGalleryComp from "../../components/RestaurantSettingImageGalleryComp/RestaurantSettingImageGalleryComp";
+import GoogleMapTestComp from "./GoogleMapTestComp/GoogleMapTestComp";
 
 
 const RestaurantDetailPage = () => {
@@ -230,25 +231,25 @@ const RestaurantDetailPage = () => {
                         {tabs.tab1 ?
                             <div>
                                 {restauraneSetting_Data &&
-                                    <RestaurantInfoComp infodata={restauraneSetting_Data && restauraneSetting_Data.info} />
+                                    <RestaurantInfoComp infodata={restauraneSetting_Data && restauraneSetting_Data.info?restauraneSetting_Data && restauraneSetting_Data.info:{}} />
                                 }
 
                                 {restauraneSetting_Data &&
-                                    <RestaurantSecurityComp securitydata={restauraneSetting_Data && restauraneSetting_Data.security} />
+                                    <RestaurantSecurityComp securitydata={restauraneSetting_Data && restauraneSetting_Data.security?restauraneSetting_Data && restauraneSetting_Data.security:{}} />
                                 }
 
                                 {restauraneSetting_Data &&
-                                    <RestaurantAddAddressComp addressdata={restauraneSetting_Data && restauraneSetting_Data.address} />
+                                    <RestaurantAddAddressComp addressdata={restauraneSetting_Data && restauraneSetting_Data.address?restauraneSetting_Data && restauraneSetting_Data.address:{}} />
                                 }
 
                                 {restauraneSetting_Data &&
-                                    <RestaurantFeaturesComp detaildata={restauraneSetting_Data && restauraneSetting_Data.restaurantDetails} />
+                                    <RestaurantFeaturesComp detaildata={restauraneSetting_Data && restauraneSetting_Data.restaurantDetails?restauraneSetting_Data && restauraneSetting_Data.restaurantDetails:{}} />
                                 }
                                 {restauraneSetting_Data &&
-                                    <RestaurantInfoFeatureComp featuredata={restauraneSetting_Data && restauraneSetting_Data.restaurantFeatures} />
+                                    <RestaurantInfoFeatureComp featuredata={restauraneSetting_Data && restauraneSetting_Data.restaurantFeatures?restauraneSetting_Data && restauraneSetting_Data.restaurantFeatures:{}} />
                                 }
                                  {restauraneSetting_Data &&
-                                <RestaurantSettingImageGalleryComp gallerydata={restauraneSetting_Data && restauraneSetting_Data.restaurantGalleries}/>
+                                <RestaurantSettingImageGalleryComp gallerydata={restauraneSetting_Data && restauraneSetting_Data.restaurantGalleries?restauraneSetting_Data && restauraneSetting_Data.restaurantGalleries:{}}/>
                                  }
                                 {/* <RestaurantMoreInfoComp /> */}
                             </div>
@@ -256,7 +257,18 @@ const RestaurantDetailPage = () => {
                             tabs.tab2 ?
                                 <section><RestaurantUserDetailComp /></section>
                                 :
-                                <section>ccccc</section>
+                                <section >
+                                        <div className="map-wrapper mb-1 mt-2" style={{height:350}}>
+                                            {/* <GoogleMapTestComp
+                                                googleMapURL={`https://maps.googleapis.com/maps/api/js?key=${API_KEY}&v=3.exp&libraries=geometry,drawing,places`}
+                                                loadingElement={<div style={{ height: `100%` }} />}
+                                                containerElement={<div style={{ height: `100%` }} />}
+                                                mapElement={<div style={{ height: `100%` }} />}
+                                            /> */}
+                                        </div>
+                                                
+                                                
+                                                 </section>
                         }
                     </div>
                 </div>

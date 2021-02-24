@@ -8,6 +8,7 @@ import alertReducer from "./alertReducer";
 import dishesReducer from "./dishesReducer";
 import restaurantSettingReducer from "./restaurantSettingReducer";
 import allergyReducer from "./allergyReducer";
+import googleReducer from "./googleReducer";
 
 export default combineReducers({
  
@@ -20,6 +21,7 @@ export default combineReducers({
   dishes:dishesReducer,
   restaurantSetting:restaurantSettingReducer,
   allergy:allergyReducer,
+  googleData:googleReducer,
 
 
 });

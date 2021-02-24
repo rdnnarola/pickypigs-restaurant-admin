@@ -31,7 +31,107 @@ const RestaurantFeaturesComp = (props) => {
 
         isTime24Hours:openingTimings&&openingTimings.isTime24Hours?openingTimings&&openingTimings.isTime24Hours:false,
         isMultiTime:openingTimings&&openingTimings.isMultiTime?openingTimings&&openingTimings.isMultiTime:false,
-        timeArray:openingTimings&&openingTimings.time?openingTimings&&openingTimings.time:[],
+        timeArray:openingTimings&&openingTimings.time?openingTimings&&openingTimings.time:
+        [
+            {
+               day:"Sunday",
+               isSelected:false,
+               timeList:[
+                  {
+                     startTime:"07:00",
+                     endTime:"08:00"
+                  },
+                  {
+                     startTime:"14:00",
+                     endTime:"20:00"
+                  }
+               ]
+            },
+            {
+               day:"Monday",
+               isSelected:false,
+               timeList:[
+                  {
+                     startTime:"09:00",
+                     endTime:"11:00"
+                  },
+                  {
+                     startTime:"14:00",
+                     endTime:"20:00"
+                  }
+               ]
+            },
+            {
+               day:"Tuesday",
+               isSelected:false,
+               timeList:[
+                  {
+                     startTime:"09:00",
+                     endTime:"11:00"
+                  },
+                  {
+                     startTime:"14:00",
+                     endTime:"20:00"
+                  }
+               ]
+            },
+            {
+               day:"Wednesday",
+               isSelected:false,
+               timeList:[
+                  {
+                     startTime:"09:00",
+                     endTime:"11:00"
+                  },
+                  {
+                     startTime:"14:00",
+                     endTime:"20:00"
+                  }
+               ]
+            },
+            {
+               day:"Thursday",
+               isSelected:false,
+               timeList:[
+                  {
+                     startTime:"09:00",
+                     endTime:"11:00"
+                  },
+                  {
+                     startTime:"14:00",
+                     endTime:"20:00"
+                  }
+               ]
+            },
+            {
+               day:"Friday",
+               isSelected:false,
+               timeList:[
+                  {
+                     startTime:"11:00",
+                     endTime:"13:00"
+                  },
+                  {
+                     startTime:"16:00",
+                     endTime:"22:00"
+                  }
+               ]
+            },
+            {
+               day:"Saturday",
+               isSelected:false,
+               timeList:[
+                  {
+                     startTime:"09:00",
+                     endTime:"11:00"
+                  },
+                  {
+                     startTime:"14:00",
+                     endTime:"20:00"
+                  }
+               ]
+            }
+         ],
 
 
         isAvailable:bookings&&bookings.isAvailable?bookings&&bookings.isAvailable:false,
@@ -214,7 +314,7 @@ const RestaurantFeaturesComp = (props) => {
                                                                                         <p className="f-15 mb-0">{data.day}</p>
 
                                                                                     </div>
-                                                                                    <div className="timeing-main-wrapper d-flex align-items-center">
+                                                                                    <div className={`timeing-main-wrapper d-flex align-items-center ${data.isSelected&&"active"}`}>
                                                                                         <React.Fragment>
                                                                                             <div className="custom-timepicker mb-0 form-group d-flex align-items-center" style={{width:90}}>
                                                                                                 <MuiPickersUtilsProvider utils={MomentUtils}>
@@ -286,12 +386,12 @@ const RestaurantFeaturesComp = (props) => {
                                                                                                 <label className="custom-control-label gray-control-label f-15" htmlFor={data.day}>{data.day}</label>
                                                                                             </div>
                                                                                             
-                                                                                            <div className="timeing-main-wrapper d-flex align-items-center">
+                                                                                            <div className={`timeing-main-wrapper d-flex align-items-center ${data.isSelected&&"active"}`}>
                                                                                                 
                                                                                                 
                                                                                                 <React.Fragment>
                                                                                                     <React.Fragment >
-                                                                                                        <div className="custom-timepicker mb-0 form-group d-flex align-items-center">
+                                                                                                        <div className="custom-timepicker mb-0 form-group d-flex align-items-center active">
                                                                                                             <MuiPickersUtilsProvider utils={MomentUtils}>
                                                                                                                 <KeyboardTimePicker
                                                                                                                     id="from-time-picker" placeholder="From"
@@ -389,7 +489,7 @@ const RestaurantFeaturesComp = (props) => {
                                                                         <div>
                                                                             {editForm?
                                                                                 <div>
-                                                                                    {website&&website.websiteUrl&&bookings.websiteUrl.length>0?
+                                                                                    {website&&website.websiteUrl&&website.websiteUrl.length>0?
                                                                                         website&&website.websiteUrl.map((data,index)=>{
                                                                                             return(
                                                                                                 <React.Fragment key={index}>
