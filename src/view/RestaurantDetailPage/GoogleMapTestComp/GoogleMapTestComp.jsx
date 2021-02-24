@@ -8,6 +8,7 @@ import {
 import { getLocationGeometryData } from "../../../redux/actions/googleAction";
 import { useDispatch, useSelector } from "react-redux";
 import LocationIcon from '../../../assets/images/crosshair.svg'
+import './GoogleMapTestComp.scss'
 
 
 function GoogleMapTestComp(props) {
@@ -66,21 +67,26 @@ let Restaurant_Location = useSelector((state) => {
 });
   
   return (  
-    <GoogleMap
-      ref={refMap}
-      defaultZoom={zoom}
-      zoom={zoom}
-      // defaultCenter={defaultCenter}
-      center={defaultCenter}
-      onBoundsChanged={handleBoundsChanged}
-      onDragEnd={onDragEnd}
-    >
-      <Marker position={center}/>
-     <button type="button"  onClick={()=>{getMyLocation();setZoom(15)}} style={{background:'transparent',border:"none"}}>
-       <img src={LocationIcon} className="img-fluid" width="30px" />
-                {Restaurant_Location&&Restaurant_Location.location_data}
-      </button>
-    </GoogleMap>
+    <React.Fragment>
+      <section className="GoogleMapTestComp">
+        <GoogleMap
+          ref={refMap}
+          defaultZoom={zoom}
+          zoom={zoom}
+          defaultCenter={defaultCenter}
+          center={defaultCenter}
+          onBoundsChanged={handleBoundsChanged}
+          onDragEnd={onDragEnd}
+          className="my_google_map"
+        >
+          <Marker position={center}/>
+        <button type="button" className="get_my_current_location"  onClick={()=>{getMyLocation();setZoom(15)}} >
+          <img src={LocationIcon} className="img-fluid " width="30px" />
+                    {/* {Restaurant_Location&&Restaurant_Location.location_data} */}
+          </button>
+        </GoogleMap>
+      </section>
+    </React.Fragment>
   );
 }
 

@@ -26,6 +26,10 @@ const RestaurantAddAddressComp = (props) => {
     const handleCancleEdit = (resetForm) => {
         setEditForm(true)
         resetForm()
+        dispatch(getCoordinateData(map&&map.coordinates.toString()))
+        dispatch(getPostalCodeData(props.addressdata&&props.addressdata.pincode))
+        dispatch(getStreetNameData(props.addressdata&&props.addressdata.street))
+        dispatch(getLocatityData(props.addressdata&&props.addressdata.locality))
     }
 
     let Restaurant_Location = useSelector((state) => {
@@ -135,19 +139,24 @@ const RestaurantAddAddressComp = (props) => {
                                                                     <hr className="gray-hr"></hr>
                                                                 </div>
                                                             </div>
-                                                            <div className="row">
+                                                            {editForm?
+                                                            null
+                                                            :
+                                                            <div className="row  mb-4 mt-2">
                                                                 <div className="col-sm-12">
-                                                                    {editForm?
-                                                                    null
-                                                                    :
-                                                                    <React.Fragment>
-                                                                        <MyfilterListExample coordinates={Restaurant_Location&&Restaurant_Location.coordinate_data}/>
-                                                                        {/* {Restaurant_Location&&Restaurant_Location.location_data} */}
-                                                                    </React.Fragment>
-                                                                    }
+                                                                    <div className="rs-info-block">
+                                                                        <h5 className="accordion-label">Add a location</h5>
+                                                                       
+                                                                        <React.Fragment>
+                                                                            <MyfilterListExample coordinates={Restaurant_Location&&Restaurant_Location.coordinate_data}/>
+                                                                            {/* {Restaurant_Location&&Restaurant_Location.location_data} */}
+                                                                        </React.Fragment>
+                                                                       
+                                                                    </div>
                                                                 </div>
                                                             </div>
-                                                            <div className="row mb-4 mt-2">
+                                                             }
+                                                            <div className="row mb-4">
                                                                 <div className="col-md-6">
                                                                     <div className="rs-info-block">
                                                                         <h5 className="accordion-label">Address</h5>

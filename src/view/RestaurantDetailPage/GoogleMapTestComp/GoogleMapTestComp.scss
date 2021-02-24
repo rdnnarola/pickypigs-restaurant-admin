@@ -1,0 +1,16 @@
+.GoogleMapTestComp{
+    .my_google_map{
+        position: relative;
+    }
+    .get_my_current_location{
+        background-color: white;
+        border: none;
+        position: absolute;
+        padding: 5px;
+        top: 60px;
+        right: 23px;
+        &:focus{
+            outline: none;
+        }
+    }
+}

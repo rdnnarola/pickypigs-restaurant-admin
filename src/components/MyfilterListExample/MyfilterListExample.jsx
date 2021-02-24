@@ -94,7 +94,15 @@ export default function MyfilterListExample(props) {
   // }
 
 
-
+  // let Restaurant_Location = useSelector((state) => {
+  //   return state.googleData
+  // })
+// React.useEffect(() => {
+  //   if(Restaurant_Location&&Restaurant_Location.location_data){
+  //     setInputValue("")
+  //   }
+  // },[Restaurant_Location&&Restaurant_Location.location_data])
+  
   const fetch = React.useMemo(
     () =>
       throttle((request, callback) => {
@@ -107,7 +115,7 @@ export default function MyfilterListExample(props) {
 
   React.useEffect(() => {
     let active = true;
-   
+    
     if (!autocompleteService.current && window.google) {
       autocompleteService.current = new window.google.maps.places.AutocompleteService();
     }
@@ -146,10 +154,9 @@ export default function MyfilterListExample(props) {
     if(value&&value.place_id){
       dispatch(getLocationFromPlaceId(value&&value.place_id));
     }
-    
   },[value])
 
-
+  
 
   
   return (
@@ -157,7 +164,6 @@ export default function MyfilterListExample(props) {
       <div className="location-input-wrapper d-flex align-items-center">
       <Autocomplete
       id="google-map-demo"
-      style={{ width: 300 }}
       getOptionLabel={(option) => (typeof option === 'string' ? option : option.description)}
       filterOptions={(x) => x}
       options={options}
@@ -173,7 +179,7 @@ export default function MyfilterListExample(props) {
         setInputValue(newInputValue);
       }}
       renderInput={(params) => (
-        <TextField {...params} label="Add a location" variant="outlined" fullWidth />
+        <TextField {...params}  variant="standard" fullWidth placeholder="Enter Location Here" />
       )}
       renderOption={(option) => {
         const matches = option.structured_formatting.main_text_matched_substrings;
@@ -187,6 +193,7 @@ export default function MyfilterListExample(props) {
             <Grid item>
               {/* <LocationOnIcon className={classes.icon} /> */}
             </Grid>
+            <div className="justify-content-center align-items-center d-flex">
             <Grid item xs>
               {parts.map((part, index) => (
                 <span key={index} style={{ fontWeight: part.highlight ? 700 : 400 }}>
@@ -198,6 +205,7 @@ export default function MyfilterListExample(props) {
                 {option.structured_formatting.secondary_text}
               </Typography>
             </Grid>
+            </div>
           </Grid>
             );
           }}
