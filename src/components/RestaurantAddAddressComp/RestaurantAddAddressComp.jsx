@@ -224,7 +224,7 @@ const RestaurantAddAddressComp = (props) => {
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                            <div className="row mb-2 pt-2">
+                                                            <div className="row mb-4 pt-2">
                                                                 {editForm
                                                                     ?
                                                                     <div className="col-sm-12">
@@ -236,17 +236,17 @@ const RestaurantAddAddressComp = (props) => {
                                                                     </div>
                                                                     :
                                                                     <div className="col-sm-12 flex-wrap d-flex">
-                                                                        <div className="custom-control custom-checkbox pink-checkbox mr-3">
+                                                                        <div className="checkbox-setting custom-control custom-checkbox pink-checkbox mr-5">
                                                                             <Field type="checkbox" name="addLocationMap" id="customCheck1"  className="custom-control-input"/>
-                                                                            <label className="custom-control-label gray-control-label" htmlFor="customCheck1">Add location map</label>
+                                                                            <label className="custom-control-label gray-control-label f-15" htmlFor="customCheck1">Add location map</label>
                                                                         </div>
-                                                                        <div className="custom-control custom-checkbox pink-checkbox mr-3">
+                                                                        <div className="checkbox-setting custom-control custom-checkbox pink-checkbox mr-5">
                                                                             <Field type="checkbox" name="shareLocationOption" id="customCheck2"  className="custom-control-input"/>
-                                                                            <label className="custom-control-label gray-control-label" htmlFor="customCheck2">Share location option</label>
+                                                                            <label className="custom-control-label gray-control-label f-15" htmlFor="customCheck2">Share location option</label>
                                                                         </div>
-                                                                        <div className="custom-control custom-checkbox pink-checkbox mr-3">
+                                                                        <div className="checkbox-setting custom-control custom-checkbox pink-checkbox mr-5">
                                                                             <Field type="checkbox" name="getDirectionOption" id="customCheck3"  className="custom-control-input"/>
-                                                                            <label className="custom-control-label gray-control-label" htmlFor="customCheck3">Get direction option</label>
+                                                                            <label className="custom-control-label gray-control-label f-15" htmlFor="customCheck3">Get direction option</label>
                                                                         </div>
                                                                     </div>
                                                                 }
@@ -256,7 +256,7 @@ const RestaurantAddAddressComp = (props) => {
                                                                         ?
                                                                         null
                                                                         :
-                                                                    <div className="col-sm-12" style={{height:350,width:'100%'}}>
+                                                                    <div className="col-sm-12 mb-2" style={{height:350,width:'100%'}}>
                                                                         {touched.coordinates && errors.coordinates && <div className="error pink-txt f-11">{errors.coordinates}</div>}
 
                                                                         <GoogleMapTestComp

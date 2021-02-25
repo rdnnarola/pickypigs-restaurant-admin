@@ -1,3 +1,18 @@
+.checkbox-setting{
+    .custom-control-label {
+        padding-left: 15px;
+
+        &::before,
+        &::after {
+            top: 0;
+            width: 20px;
+            height: 20px;
+            background-color: transparent !important;
+            border-color: #919191 !important;
+        }
+    }                  
+}
+
 .RestaurantSecurityComp{
     .showpassword-block {
         position: absolute;

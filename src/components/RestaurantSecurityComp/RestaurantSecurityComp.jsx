@@ -144,11 +144,11 @@ const RestaurantSecurityComp = (props) => {
                                                                     </div>
                                                                     :
                                                                     <div className="col-sm-12 d-flex flex-wrap">
-                                                                        <div className="custom-control custom-checkbox pink-checkbox mr-4 pr-2">
+                                                                        <div className="checkbox-setting custom-control custom-checkbox pink-checkbox mr-5">
                                                                             <Field type="checkbox" name="twoFactorAuthenticationPhoneNumber" id="twoFactorAuthenticationPhoneNumber"  className="custom-control-input"/>
                                                                             <label className="custom-control-label gray-control-label f-15" htmlFor="twoFactorAuthenticationPhoneNumber">Two factor authentication by phone number</label>
                                                                         </div>
-                                                                        <div className="custom-control custom-checkbox pink-checkbox">
+                                                                        <div className="checkbox-setting custom-control custom-checkbox pink-checkbox">
                                                                             <Field type="checkbox" name="twoFactorAuthenticationEmail" id="twoFactorAuthenticationEmail"  className="custom-control-input"/>
                                                                             <label className="custom-control-label gray-control-label f-15" htmlFor="twoFactorAuthenticationEmail">Two factor authentication by email</label>
                                                                         </div>

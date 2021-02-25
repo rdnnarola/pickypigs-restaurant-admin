@@ -116,6 +116,10 @@ body {
     font-size: 13px !important;
 }
 
+.f-11 {
+    font-size: 11px !important;
+}
+
 .minwidth-260 {
     min-width: 260px !important;
 }
@@ -631,6 +635,7 @@ select {
                     }
                     .form-control-plaintext {
                         outline: none;
+                        font-size: 15px;
                     }
                 }
             }
