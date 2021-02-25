@@ -1,7 +1,7 @@
 .RestaurantDetailPage {
     form {
         .fileUpload {
-            background: #3e3d38;
+            background:#404446;
             border-radius: 15px;
             color: #fff;
             overflow: hidden;
@@ -44,6 +44,8 @@
         img {
             object-fit: cover;
             object-position: top center;
+            width: 100%;
+            height: 100%;
         }
     }
     .form-control-inputtext {
@@ -137,6 +139,7 @@
                 padding-left: 11rem;
 
                 .restaurent-name {
+                    font-weight: 600;
                     font-size: 28px;
                     color: #2e482b;
                     overflow: hidden;
@@ -197,7 +200,6 @@
             text-transform: uppercase;
             padding: 0;
             outline: none;
-            font-weight: 600;
         }
         .about_header {
             word-break: break-all;

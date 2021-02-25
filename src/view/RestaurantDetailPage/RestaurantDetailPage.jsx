@@ -11,11 +11,11 @@ import RestaurantMoreInfoComp from "../../components/RestaurantMoreInfoComp/Rest
 import RestaurantInfoFeatureComp from "../../components/RestaurantInfoFeatureComp/RestaurantInfoFeatureComp";
 
 import { useDispatch, useSelector } from "react-redux";
-import { getAllRestaurantDetail, updateRestaurantAbout, updateRestaurantCoverImage, updateRestaurantInfoDetail, updateRestaurantProfileImage,updateRestaurantName} from "../../redux/actions/restaurantSettingAction";
+import { getAllRestaurantDetail, updateRestaurantAbout, updateRestaurantCoverImage, updateRestaurantInfoDetail, updateRestaurantProfileImage, updateRestaurantName } from "../../redux/actions/restaurantSettingAction";
 import { useHistory } from "react-router-dom";
 import CustomLoadingComp from "../../components/CustomLoadingComp/CustomLoadingComp";
 import moment from "moment";
-import { SERVER_URL,API_KEY } from '../../shared/constant'
+import { SERVER_URL, API_KEY } from '../../shared/constant'
 import RestaurantSettingImageGalleryComp from "../../components/RestaurantSettingImageGalleryComp/RestaurantSettingImageGalleryComp";
 import GoogleMapTestComp from "./GoogleMapTestComp/GoogleMapTestComp";
 
@@ -41,7 +41,7 @@ const RestaurantDetailPage = () => {
         return state.restaurantSetting
     });
 
-    let { restauraneSetting_Data, isLoading, selectedAudate,restaurantName } = Restaurant_Setting_Data;
+    let { restauraneSetting_Data, isLoading, selectedAudate, restaurantName } = Restaurant_Setting_Data;
 
     const handleProfileCancl = () => {
         setEditProfileName(true)
@@ -143,13 +143,13 @@ const RestaurantDetailPage = () => {
                                     </div>
                                 </div>
                                 <div className="pt-3 pb-3 restaurent-info">
-                                    {editProfileName?
-                                        restauraneSetting_Data && restauraneSetting_Data.name? 
-                                            <h4 className="brandon-Medium restaurent-name"> { restauraneSetting_Data && restauraneSetting_Data.name}</h4>
-                                        :
+                                    {editProfileName ?
+                                        restauraneSetting_Data && restauraneSetting_Data.name ?
+                                            <h4 className="brandon-Bold restaurent-name"> {restauraneSetting_Data && restauraneSetting_Data.name}</h4>
+                                            :
                                             <h4 className="brandon-Medium restaurent-name">Not Available</h4>
 
-                                    :
+                                        :
                                         <React.Fragment>
                                             <input type="text" name="name" value={restaurantName} onChange={handleProfileChange} placeholder="Enter Name here" className="form-control-inputtext form-control" />
 
@@ -158,18 +158,19 @@ const RestaurantDetailPage = () => {
                                     }
                                     <div className="d-flex flex-wrap">
                                         <p className="mr-4 brandon-regular f-15 mb-2">
-                                            <span className="gray-txt">Joined since:</span>
+                                            <span className="gray-txt pr-1 brandon-Medium">Joined since:</span>
                                             {restauraneSetting_Data && restauraneSetting_Data.createdAt ?
-                                            <span>&nbsp;{moment(restauraneSetting_Data && restauraneSetting_Data.createdAt).format('Do MMMM YYYY')}</span>
-                                            :
-                                            <span>Not Available</span>
+                                                <span>&nbsp;{moment(restauraneSetting_Data && restauraneSetting_Data.createdAt).format('Do MMMM YYYY')}</span>
+                                                :
+                                                <span className="brandon-Medium">Not Available</span>
                                             }
                                         </p>
-                                        <p className="f-15 gray-txt brandon-regular mb-2">Subscribe level:
+                                        <p className="f-15 gray-txt brandon-regular mb-2">
+                                            <span className="gray-txt pr-1 brandon-Medium">Subscribe level:</span>
                                             {restauraneSetting_Data && restauraneSetting_Data.package ?
-                                            <span className="pink-txt text-capitalize">&nbsp;{restauraneSetting_Data && restauraneSetting_Data.package}</span>
-                                            :
-                                            <span className="pink-txt">Not Available</span>
+                                                <span className="pink-txt text-capitalize">&nbsp;{restauraneSetting_Data && restauraneSetting_Data.package}</span>
+                                                :
+                                                <span className="pink-txt brandon-Medium">Not Available</span>
                                             }
                                         </p>
                                     </div>
@@ -189,7 +190,7 @@ const RestaurantDetailPage = () => {
                 </div>
                 <div className="my_shadow border-radius-15 about_section_style">
                     <div className="d-flex justify-content-between align-items-center">
-                        <h5 className="about_header mb-0 f-15 text-uppercase gray-txt">ABOUT</h5>
+                        <h5 className="about_header mb-0 f-15 text-uppercase gray-txt brandon-Medium">ABOUT</h5>
                         {editForm
                             ?
                             <button className="custom_edit_button brandon-Medium" type="button" onClick={() => { setEditForm(false) }}>EDIT</button>
@@ -209,7 +210,7 @@ const RestaurantDetailPage = () => {
                         restauraneSetting_Data && restauraneSetting_Data.about ?
                             <p className="f-15 mb-0 line-height-1_75">{restauraneSetting_Data && restauraneSetting_Data.about}.</p>
                             :
-                            <p className="form-control-plaintext text-uppercase">No Data Availble...</p>
+                            <p className="form-control-plaintext text-uppercase brandon-Medium">No Data Availble...</p>
                         :
                         <React.Fragment>
                             <textarea rows="4" name="aboutText" value={selectedAudate} onChange={handleAboutChange} placeholder="Enter About Your Restaurant" className="form-control-inputtext form-control" />
@@ -231,26 +232,26 @@ const RestaurantDetailPage = () => {
                         {tabs.tab1 ?
                             <div>
                                 {restauraneSetting_Data &&
-                                    <RestaurantInfoComp infodata={restauraneSetting_Data && restauraneSetting_Data.info?restauraneSetting_Data && restauraneSetting_Data.info:{}} />
+                                    <RestaurantInfoComp infodata={restauraneSetting_Data && restauraneSetting_Data.info ? restauraneSetting_Data && restauraneSetting_Data.info : {}} />
                                 }
 
                                 {restauraneSetting_Data &&
-                                    <RestaurantSecurityComp securitydata={restauraneSetting_Data && restauraneSetting_Data.security?restauraneSetting_Data && restauraneSetting_Data.security:{}} />
+                                    <RestaurantSecurityComp securitydata={restauraneSetting_Data && restauraneSetting_Data.security ? restauraneSetting_Data && restauraneSetting_Data.security : {}} />
                                 }
 
                                 {restauraneSetting_Data &&
-                                    <RestaurantAddAddressComp addressdata={restauraneSetting_Data && restauraneSetting_Data.address?restauraneSetting_Data && restauraneSetting_Data.address:{}} />
+                                    <RestaurantAddAddressComp addressdata={restauraneSetting_Data && restauraneSetting_Data.address ? restauraneSetting_Data && restauraneSetting_Data.address : {}} />
                                 }
 
                                 {restauraneSetting_Data &&
-                                    <RestaurantFeaturesComp detaildata={restauraneSetting_Data && restauraneSetting_Data.restaurantDetails?restauraneSetting_Data && restauraneSetting_Data.restaurantDetails:{}} />
+                                    <RestaurantFeaturesComp detaildata={restauraneSetting_Data && restauraneSetting_Data.restaurantDetails ? restauraneSetting_Data && restauraneSetting_Data.restaurantDetails : {}} />
                                 }
                                 {restauraneSetting_Data &&
-                                    <RestaurantInfoFeatureComp featuredata={restauraneSetting_Data && restauraneSetting_Data.restaurantFeatures?restauraneSetting_Data && restauraneSetting_Data.restaurantFeatures:{}} />
+                                    <RestaurantInfoFeatureComp featuredata={restauraneSetting_Data && restauraneSetting_Data.restaurantFeatures ? restauraneSetting_Data && restauraneSetting_Data.restaurantFeatures : {}} />
                                 }
-                                 {restauraneSetting_Data &&
-                                <RestaurantSettingImageGalleryComp gallerydata={restauraneSetting_Data && restauraneSetting_Data.restaurantGalleries?restauraneSetting_Data && restauraneSetting_Data.restaurantGalleries:{}}/>
-                                 }
+                                {restauraneSetting_Data &&
+                                    <RestaurantSettingImageGalleryComp gallerydata={restauraneSetting_Data && restauraneSetting_Data.restaurantGalleries ? restauraneSetting_Data && restauraneSetting_Data.restaurantGalleries : {}} />
+                                }
                                 {/* <RestaurantMoreInfoComp /> */}
                             </div>
                             :
@@ -258,17 +259,17 @@ const RestaurantDetailPage = () => {
                                 <section><RestaurantUserDetailComp /></section>
                                 :
                                 <section >
-                                        <div className="map-wrapper mb-1 mt-2" style={{height:350}}>
-                                            {/* <GoogleMapTestComp
+                                    <div className="map-wrapper mb-1 mt-2" style={{ height: 350 }}>
+                                        {/* <GoogleMapTestComp
                                                 googleMapURL={`https://maps.googleapis.com/maps/api/js?key=${API_KEY}&v=3.exp&libraries=geometry,drawing,places`}
                                                 loadingElement={<div style={{ height: `100%` }} />}
                                                 containerElement={<div style={{ height: `100%` }} />}
                                                 mapElement={<div style={{ height: `100%` }} />}
                                             /> */}
-                                        </div>
-                                                
-                                                
-                                                 </section>
+                                    </div>
+
+
+                                </section>
                         }
                     </div>
                 </div>
