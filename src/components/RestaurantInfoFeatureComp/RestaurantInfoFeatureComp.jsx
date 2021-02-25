@@ -153,8 +153,8 @@ const RestaurantInfoFeatureComp = (props) => {
                                                                                     </div>
                                                                                     :
                                                                                     <div className="col-sm-12 pl-0">
-                                                                                    <p className="form-control-plaintext gray-txt">Not Available</p>
-                                                                                </div>
+                                                                                        <p className="form-control-plaintext gray-txt">Not Available</p>
+                                                                                    </div>
                                                                                 }
                                                                             </React.Fragment>
                                                                             <React.Fragment>

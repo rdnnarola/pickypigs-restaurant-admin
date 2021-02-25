@@ -162,6 +162,7 @@ export default function MyfilterListExample(props) {
   return (
     <React.Fragment>
       <div className="location-input-wrapper d-flex align-items-center">
+        {/* <button>Detect My Location</button> */}
       <Autocomplete
       id="google-map-demo"
       getOptionLabel={(option) => (typeof option === 'string' ? option : option.description)}
