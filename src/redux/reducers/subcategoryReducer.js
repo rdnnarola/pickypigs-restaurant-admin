@@ -87,7 +87,8 @@ const initialState = {
             return {
                 ...state,
                 isLoading:false,
-                errorMessage:payload
+                errorMessage:payload,
+                selectedCategorySubcategoryList:null,
             };
   
     

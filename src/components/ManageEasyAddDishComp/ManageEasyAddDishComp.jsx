@@ -18,9 +18,8 @@ import {SERVER_URL} from '../../shared/constant'
 import CheckBoxAutoCompleteThirdComp from "../CheckBoxAutoCompleteThirdComp/CheckBoxAutoCompleteThirdComp";
 
 
-const menu_options = ['Option 1', 'Option 2','Option 3', 'Option 4','Option 5', 'Option 6','Option 7', 'Option 8'];
 
-const styleOf_currency=["$","$","$"]
+const styleOf_currency=["$","a","b"]
 
 const ManageEasyAddDishComp = () => {
     const dispatch=useDispatch();
@@ -28,50 +27,12 @@ const ManageEasyAddDishComp = () => {
     const [menuValue, setMenuValue] = useState([])
     const [categoryId, setCategoryId] = useState('')
     const [subcategoryId, setSubcategoryId] = useState('')
-    const [dishesData,setDishesData]=useState({
-        name: "",
-        makes: '',
-        price: '',
-        grossProfit: '',
-        image: "image-url",
-        favorite: true,
-        new: true,
-        available: false,
-        menuId: [],
-        restaurantId: "5ff9373ce5dd68114cdf654b",
-        categoryId: "",
-        subcategoryId: "",
-        description: "",
-        allergenId: [],
-        dietaryId: [],
-        lifestyleId: [],
-        instructions: "",
-        customisable: true,
-        createNewVersion: false,
-        ingredientSection: {
-            total: '',
-            ingredient: []
-        },
-        caloriesAndMacros: {
-            "fat": {
-                "items": []
-            },
-            "TotalCarbohydrate": {
-                "items": []
-            },
-            "Protien": {
-                "items": []
-            }
-        }
-    });
-    const [alergy, setAlergy] = useState([]);
-    const [dietary, setDietary] = useState([]);
-    const [lifestyle, setLifestyle] = useState([]);
+    
+
 
     const [descModal, setDescModal] = useState(false);
     const [addItem, setAddItem] = useState(false);
 
-    const [allergyValue, setAllergyValue] = useState([])
     const clearMenugy=()=>{
         setMenuValue([])
     }
@@ -109,6 +70,7 @@ const ManageEasyAddDishComp = () => {
    //--------- Getting All Menu Data -------//
     useEffect(()=>{
         dispatch(getAllMenuData({start:0,delete:0}));
+        
     },[dispatch]);
 
     let menuData = useSelector((state)=>{
@@ -121,10 +83,14 @@ const ManageEasyAddDishComp = () => {
     useEffect(()=>{
         if(menuValue !==""){
             dispatch(getCategoryListOfSelectedMenu({menuId:menuValue}));
+
         }else{
             dispatch(getCategoryListOfSelectedMenu({menuId:[]}));
+            setSubcategoryId('');
+            setCategoryId('');
         }
     },[dispatch,menuValue]);
+
     let categoryData = useSelector((state)=>{
         return state.category.selectedMenuCategoryList
     });
@@ -132,69 +98,29 @@ const ManageEasyAddDishComp = () => {
 
 
     //--------- Getting All Sub-Category Data -------//
+   
+    useEffect(()=>{
+        
+        if(categoryId !==""){
+            dispatch(getSubCategoryListOfSelectedCategory(categoryId));
+        }else{
+            dispatch(getSubCategoryListOfSelectedCategory("5fb6137b358d872b7cce1404"));
+            setSubcategoryId('');
+        }
+    },[dispatch,categoryId,menuValue]);
+    
     let subcategoryData = useSelector((state)=>{
         return state.subcategory.selectedCategorySubcategoryList
     });
-    useEffect(()=>{
-        
-        if(dishesData.categoryId ==""){
-            dispatch(getSubCategoryListOfSelectedCategory("602df0b6a1faf300249070f7"));
-        }else{
-            dispatch(getSubCategoryListOfSelectedCategory("602df0b6a1faf300249070f7"));
-        }
-    },[dispatch,dishesData.categoryId]);
     //--------- Getting All Sub-Category Data Ends-------//
    
     const handleDescModal = () => {
         setDescModal(!descModal);
     }
 
-    //--------- Adding Items And Creating ingredientSection-------//
-    const [datas2,setDatas2] = useState([]);
-    const [datas3,setDatas3] = useState({
-        total:'',
-        ingredient:[],
-    });
-    const [items,setItems] = useState({
-        item:'',
-        allergeies:[],
-        qty:'',
-        customisable: true
-    });
-
-    const addToDatas=(e)=>{
-        e.preventDefault();
-         setDatas2([...datas2,{...items,allergeies:allergyValue}]);
-         setDatas3({...datas3,ingredient:[...datas2,{...items,allergeies:allergyValue}],total:[...datas2,{...items,allergeies:allergyValue}].length,})
-    }
-    //--------- Adding Items And Creating ingredientSection Ends-------//
-
-    const handleItemCheckBox=()=>{
-
-    }
+ 
 
   
-
-
-    const handleManageAddDish=(e)=>{
-        setDishesData({
-            ...dishesData,
-            [e.target.name] : e.target.value
-        });
-        
-    }
-    const handleSubmit=(e)=>{
-        // e.preventDefault();
-        // dispatch(addDishesData(
-        //     {...dishesData,
-        //         // menuId:menuValue&&menuValue.map(({_id}) => _id),
-        //     ingredientSection:datas3,
-        //     allergenId:alergy,
-        //     dietaryId:dietary,
-        //     lifestyleId:lifestyle},
-        //     history));
-    }
-
     const initialValues = {
         name:'',
         makes:'',
@@ -204,34 +130,84 @@ const ManageEasyAddDishComp = () => {
         favorite:false,
         new:false,
         available:false,
-        menuId:[],
-        categoryId:'',
-        restaurantId:'',
-        subcategoryId:'',
+        menuId:menuValue?menuValue&&menuValue.length>=0&&menuValue.map(({_id}) => _id):'',
+        categoryId:categoryId?categoryId:'',
+        subcategoryId:subcategoryId?subcategoryId:'',
         description:'',
         allergenId:[],
         dietaryId:[],
         lifestyleId:[],
         cookingMethodId:[],
-        instructions:[],
+        instructions:'',
         customisable:false,
         createNewVersion:false,
         ingredientSection:{},
         caloriesAndMacros:{},
         total:"",
-        ingredient:[{item:"",qty:'',allergeies: [],customisable:false}]
+        ingredient:[],
+        priceUnit:'$',
       
     }
 
     const validationSchema  = Yup.object().shape({
+        name:Yup.string().required('Name is required'),
+        makes:Yup.string().required('Serving is required'),
+        price:Yup.string().required('Price is required'),
+        grossProfit:Yup.string().required('Profit is required'),
+        image:Yup.string().required('Image is required'),
+        favorite:Yup.boolean().oneOf([true,false]),
+        new:Yup.boolean().oneOf([true,false]),
+        available:Yup.boolean().oneOf([true,false]),
+        menuId:Yup.array().required('Please Select Menu'),
+        categoryId:Yup.string().required('category is required'),
+        subcategoryId:Yup.string().required('subcategory is required'),
+        description:Yup.string().required('description is required'),
+        allergenId:Yup.array().required('Please Select allergen'),
+        dietaryId:Yup.array().required('Please Select  dietary'),
+        lifestyleId:Yup.array().required('Please Select lifestyle'),
+        cookingMethodId:Yup.array().required('Please Select cookingMethod'),
+        instructions:Yup.string().required('instructions is required'),
+        customisable:Yup.boolean().oneOf([true,false]),
+        createNewVersion:Yup.boolean().oneOf([true,false]),
+        ingredient:Yup.array().required('Please Add ingredient'),
+        // ingredient:Yup.array().of(
+        //     Yup.object({
+                
+        //         item:Yup.string().required('category is required'),
 
-     });
+        //     })
+        // ),
+
+        priceUnit:Yup.string().required('priceUnit is required'),
+
+    });
 
     const onSubmit=(fields)=>{
 
         let obj={
-         
+            name:fields.name,
+            makes:fields.makes,
+            priceUnit:fields.priceUnit,
+            price:fields.price,
+            grossProfit:fields.grossProfit,
+            image:fields.image,
+            favorite:fields.favorite,
+            new:fields.new,
+            available:fields.available,
+            menuId:menuValue&&menuValue.length>=0&&menuValue.map(({_id}) => _id),
+            categoryId:categoryId,
+            subcategoryId:subcategoryId,
+            description:fields.description,
+            allergenId:fields.allergenId,
+            dietaryId:fields.dietaryId,
+            lifestyleId:fields.lifestyleId,
+            cookingMethodId:fields.cookingMethodId,
+            instructions:fields.instructions,
+            customisable:fields.customisable,
+            createNewVersion:fields.createNewVersion,
+            ingredientSection:{total:fields.ingredient&&fields.ingredient.length>=0&&fields.ingredient.length,ingredient:fields.ingredient},
         }
+        console.log(obj)
 
         // dispatch(updateRestaurantInfoDetail({address:obj}));
     }
@@ -246,11 +222,11 @@ const ManageEasyAddDishComp = () => {
                         return (
                             <Form>
                                 <React.Fragment>
-                                {JSON.stringify(values)}
+                                {/* {JSON.stringify(values)}
                                     ||
-                                    {/* {JSON.stringify(dishesData)} */}
+                                    {JSON.stringify(dishesData)}
                                     ||
-            {JSON.stringify(values.menuId)}
+                                    {JSON.stringify(categoryId)} */}
                                     <div className="row">
                                         <div className="col-sm-12">
                                             <div className="page-heading brandon-Medium d-flex justify-content-between align-items-center">
@@ -294,8 +270,7 @@ const ManageEasyAddDishComp = () => {
                                                         <label className="gray-txt f-15">Price</label>
                                                         <div className="d-flex border rounded">
                                                            
-                                                            <Field as="select" name="currency" className="form-control border border-white">
-                                                                <option value="">Select</option>
+                                                            <Field as="select" name="priceUnit" className="form-control border border-white">
                                                                 {styleOf_currency && styleOf_currency.map((data, index)=>{
                                                                     return(
                                                                         <React.Fragment key={index}>
@@ -308,6 +283,7 @@ const ManageEasyAddDishComp = () => {
                                                             <Field name="price" type="number" placeholder="0.00" className="form-control border border-white"/>
                                                         </div>
                                                         {touched.price && errors.price && <div className="error pink-txt f-11">{errors.price}</div>}
+                                                        {touched.priceUnit && errors.priceUnit && <div className="error pink-txt f-11">{errors.priceUnit}</div>}
                                                     </div>
                                                     <div className="col-md-2 form-group mb-0 easydish-input gross-input">
                                                         <label className="gray-txt f-15">Gross Profit</label>
@@ -354,14 +330,16 @@ const ManageEasyAddDishComp = () => {
                                                             className="minwidth-260" 
                                                             placeholder={"menu_options"} 
                                                             clearAll={clearMenugy} 
-                                                            options={menuData&&menuData.menuDetails} 
+                                                            options={menuData&&menuData.menuDetails?menuData.menuDetails:[]} 
                                                             value={menuValue} 
-                                                            onChangeData={setMenuValue}
+                                                            onChangeData={(value)=>{setMenuValue(value); setSubcategoryId('');
+                                                            setCategoryId('');}}
                                                         />
+                                                        {touched.menuId && errors.menuId && <div className="error pink-txt f-11">{errors.menuId}</div>}
                                                     </div>
                                                     <div className="custom-drodown form-group mr-4 mb-0">
                                                         <label className="gray-txt f-15">Category</label>
-                                                        <Field as="select" name="categoryId" className="form-control lightgray-border selectdropdown-btn minwidth-260">
+                                                        <select  name="categoryId" onChange={(e)=>{setCategoryId(e.target.value)}} className="form-control lightgray-border selectdropdown-btn minwidth-260">
                                                             <option value="">Select</option>
                                                             {categoryData && categoryData.map((data, index)=>{
                                                                 return(
@@ -370,12 +348,12 @@ const ManageEasyAddDishComp = () => {
                                                                     </React.Fragment>
                                                                 )
                                                             })}
-                                                        </Field>
+                                                        </select>
                                                         {touched.categoryId && errors.categoryId && <div className="error pink-txt f-11">{errors.categoryId}</div>}
                                                     </div>
                                                     <div className="custom-drodown form-group mr-4 mb-0">
                                                         <label className="gray-txt f-15">Sub-Category</label>
-                                                        <Field as="select" name="subcategoryId" className="form-control lightgray-border selectdropdown-btn minwidth-260">
+                                                        <select  name="subcategoryId" onChange={(e)=>{setSubcategoryId(e.target.value)}} className="form-control lightgray-border selectdropdown-btn minwidth-260">
                                                             <option value="">Select</option>
                                                             {subcategoryData && subcategoryData.map((data, index)=>{
                                                                 return(
@@ -384,7 +362,7 @@ const ManageEasyAddDishComp = () => {
                                                                     </React.Fragment>
                                                                 )
                                                             })}
-                                                        </Field>
+                                                        </select>
                                                         {touched.subcategoryId && errors.subcategoryId && <div className="error pink-txt f-11">{errors.subcategoryId}</div>}
                                                     </div>
                                                     {/* <div className="custom-drodown form-group mr-4 mb-0">
@@ -421,14 +399,15 @@ const ManageEasyAddDishComp = () => {
                                                             <div className="d-flex add-description-head justify-content-between align-items-center">
                                                                 <h6 className="brandon-Bold text-uppercase">Add Description</h6>
                                                                 <div className="add-description-inputbtn">
-                                                                    <button type="reset" className="cancel-btn" onClick={handleDescModal}>Cancel</button>
-                                                                    <button type="button" className="save-btn ml-3">Save</button>
+                                                                    <button type="reset" className="cancel-btn" onClick={()=>{handleDescModal()}}>Cancel</button>
+                                                                    <button type="button" className="save-btn ml-3" onClick={handleDescModal}>Save</button>
                                                                 </div>
                                                             </div>
                                                             <Field component='textarea' name="description"  rows='5' className="form-control add-description-textarea" placeholder="Type Here" />
-                                                            {touched.description && errors.description && <div className="error pink-txt f-11">{errors.description}</div>}
                                                         </div>
                                                     }
+                                                    {touched.description && errors.description && <div className="error pink-txt f-11">{errors.description}</div>}
+
                                                 </div>
 
                                             </div>
@@ -450,13 +429,14 @@ const ManageEasyAddDishComp = () => {
                                                             </div>
                                                         </div>
                                                     </form>
+                                                    {touched.image && errors.image && <div className="error pink-txt f-11">{errors.image}</div>}
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                     <FieldArray name="ingredient">
-            {({ insert, remove, push }) => (
-              <React.Fragment>
+                                    {({ insert, remove, push }) => (
+                                    <React.Fragment>
                                     <div className="row mb-4 pb-2">
                                         <div className="col-sm-12">
                                             <div className="table-responsive my_custom_table mb-4 add-dish-table">
@@ -465,6 +445,7 @@ const ManageEasyAddDishComp = () => {
                                                         <tr>
                                                             <th className="brandon-Bold" scope="col">ITEM</th>
                                                             <th className="brandon-Bold " scope="col">ALLERGIES</th>
+                                                            <td className=""></td>
                                                             <th className="brandon-Bold text-right" scope="col">QTY</th>
                                                             <th className="brandon-Bold text-right" scope="col">CUSTOMISABLE</th>
                                                             <th className="brandon-Bold text-right" scope="col">Action</th>
@@ -472,64 +453,55 @@ const ManageEasyAddDishComp = () => {
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-                   
-                {values.ingredient&&values.ingredient.length > 0?
-                <React.Fragment>
-                  {values.ingredient&&values.ingredient.map((data, index) => {
-                      return(
-                    <React.Fragment key={index}>
-                        <tr>
-                            <td>
-                                <Field className="form-control" name={`ingredient.${index}.item`} placeholder="item" type="text"/>
-                                
-                            </td>
-                            <td>
-                                <CheckBoxAutoCompleteThirdComp placeholder={"Allergy Values"} 
-                                    options={allergy_Data&&allergy_Data.data} name={`ingredient.${index}.allergeies`}
-                                    value={data.allergeies} 
-                                    onChangeData={(value)=> {setFieldValue(`ingredient.${index}.allergeies`, value)}}
-                                />
-                            </td>
-                            <td>
-                                <Field className="form-control" name={`ingredient.${index}.qty`}placeholder="Qty" type="number"/>
-                            </td>
-                            <td>
-                                <div className="custom-control custom-checkbox pink-checkbox">
-                                <Field
-                                name={`ingredient.${index}.customisable`}
-                                type="checkbox"
-                                className="custom-control-input"
-                                id={`ingredient.${index}.customisable`}
-                                />                                   
-                                 <label className="custom-control-label" htmlFor={`ingredient.${index}.customisable`}></label>
-                                </div>
-                                
-                             
-                            </td>
-                            <td>
-                                    <button
-                                type="button"
-                                className="secondary"
-                                onClick={() => remove(index)}
-                                >
-                                X
-                                </button>
-                            </td>
-                        </tr>
-                      
-
-                    </React.Fragment>
-                    )}
-                    )
-                  }
-                  </React.Fragment>
-                  :
-                  null
-                  }
-                
-             
-                                                        
-                                                        
+                                                        {values.ingredient&&values.ingredient.length > 0?
+                                                        <React.Fragment>
+                                                            {values.ingredient&&values.ingredient.map((data, index) => {
+                                                                return(
+                                                                    <React.Fragment key={index}>
+                                                                    <tr>
+                                                                        <td>
+                                                                            <Field className="form-control" name={`ingredient.${index}.item`} placeholder="item" type="text"/>
+                                                                            <ErrorMessage
+                          name={`ingredient.${index}.item`}
+                          component="div"
+                          className="field-error"
+                        />
+                                                                            {/* {touched.ingredient.item && errors.ingredient.item && <div className="error pink-txt f-11">{errors.ingredient.item}</div>} */}
+                                                                     </td>
+                                                                        <td>
+                                                                            <CheckBoxAutoCompleteThirdComp placeholder={"Allergy Values"} 
+                                                                                options={allergy_Data&&allergy_Data.data?allergy_Data.data:[]} name={`ingredient.${index}.allergeies`}
+                                                                                value={data.allergeies} 
+                                                                                onChangeData={(value)=> {setFieldValue(`ingredient.${index}.allergeies`, value)}}
+                                                                            />
+                                                                        </td>
+                                                                        <td className=""></td>
+                                                                        <td>
+                                                                            <Field className="form-control" name={`ingredient.${index}.qty`}placeholder="Qty" type="number"/>
+                                                                        </td>
+                                                                        <td>
+                                                                            <div className="custom-control custom-checkbox pink-checkbox">
+                                                                                <Field
+                                                                                name={`ingredient.${index}.customisable`}
+                                                                                type="checkbox"
+                                                                                className="custom-control-input"
+                                                                                id={`ingredient.${index}.customisable`}
+                                                                                />                                   
+                                                                                <label className="custom-control-label" htmlFor={`ingredient.${index}.customisable`}></label>
+                                                                            </div>
+                                                                        </td>
+                                                                        <td>
+                                                                            <button type="button" className="secondary" onClick={() => remove(index)}>X</button>
+                                                                        </td>
+                                                                    </tr>
+                                                                    </React.Fragment>
+                                                                )}
+                                                            )
+                                                        }
+                                                        </React.Fragment>
+                                                        :
+                                                        null
+                                                        }
                                                     </tbody>
                                                     <tfoot>
                                                         <tr className="item-cost">
@@ -541,19 +513,21 @@ const ManageEasyAddDishComp = () => {
                                                             </td>
                                                             <td className=""></td>
                                                             <td className="text-right">Estimated Cost</td>
-                                                            {/* <td className="text-right brandon-Bold">{values&&values.ingredient&&values.ingredient.reduce((prev,next) => prev+JSON.parse(next.qty),0)}%</td> */}
-                                                            {JSON.stringify(values.ingredient)}
+                                                            <td className="text-right brandon-Bold">{values&&values.ingredient&&values.ingredient.reduce((prev,next) => prev+next.qty,0)}%</td>
                                                             <td className=""></td>
+                                                            <td className=""></td>
+
                                                         </tr>
                                                     </tfoot>
                                                 </table>
                                             </div>  
                                         </div>
                                     </div>
-                        </React.Fragment>
-            )}
-          </FieldArray>
-                                  
+                                    </React.Fragment>
+                                    )}
+                                    </FieldArray>
+                                    {touched.ingredient && errors.ingredient && <div className="error pink-txt f-11">{errors.ingredient}</div>}
+
 
                                     <div className="row">
                                         <div className="col-sm-12">
@@ -582,6 +556,7 @@ const ManageEasyAddDishComp = () => {
                                                     )
                                                 })}
                                             </div>
+                                            {touched.allergenId && errors.allergenId && <div className="error pink-txt f-11">{errors.allergenId}</div>}
                                         </div>
                                     </div>
                                         <div className="row">
@@ -607,6 +582,7 @@ const ManageEasyAddDishComp = () => {
                                                         )
                                                     })}
                                                 </div>
+                                                {touched.dietaryId && errors.dietaryId && <div className="error pink-txt f-11">{errors.dietaryId}</div>}
                                             </div>
                                         </div>
                                         <div className="row">
@@ -632,6 +608,7 @@ const ManageEasyAddDishComp = () => {
                                                         )
                                                     })}
                                                 </div>
+                                                {touched.lifestyleId && errors.lifestyleId && <div className="error pink-txt f-11">{errors.lifestyleId}</div>}
                                             </div>
                                         </div>
                                         <div className="row">
@@ -657,13 +634,14 @@ const ManageEasyAddDishComp = () => {
                                                         )
                                                     })}
                                                 </div>
+                                                {touched.cookingMethodId && errors.cookingMethodId && <div className="error pink-txt f-11">{errors.cookingMethodId}</div>}
                                             </div>
                                         </div>
 
                                     
                                     <div className="row">
                                         <div className="col-sm-12">
-                                            <CaloriesMacrosModalComp />
+                                            <CaloriesMacrosModalComp  />
                                         </div>
                                     </div>
                                     <div className="row">
@@ -690,7 +668,7 @@ const ManageEasyAddDishComp = () => {
                                                 {touched.createNewVersion && errors.createNewVersion && <div className="error pink-txt f-11">{errors.createNewVersion}</div>}
                                             </div>
                                             <button className="btn pinkline-btn text-uppercase rounded-pill ml-3" type="reset">CANCLE</button>
-                                            <button className="btn pinkline-btn text-uppercase rounded-pill ml-3" type="submit" onClick={handleSubmit}>Save</button>
+                                            <button className="btn pinkline-btn text-uppercase rounded-pill ml-3" type="submit" >Save</button>
                                         </div>
                                     </div>
                                 </React.Fragment>

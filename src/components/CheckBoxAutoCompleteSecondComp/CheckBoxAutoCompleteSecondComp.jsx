@@ -3,7 +3,6 @@ import { Form } from 'react-bootstrap';
 import { Picky } from 'react-picky';
 import "./CheckBoxAutoCompleteSecondComp.scss"
 
-const alergy_information = [{ name: "Egg", image:"zzzzz" }, { name: "Milk", image:"zzzzz" }, { name: "Celery", image:"zzzzz" }, { name: "Mustard", image:"zzzzz" }, { name: "Lupin", image:"zzzzz" }, { name: "Nuts", image:"zzzzz" }, { name: "Peanuts", image:"zzzzz" }, { name: "Sesame", image:"zzzzz" }, { name: "Molluscs", image:"zzzzz" }, { name: "Crustaceans", image:"zzzzz" }, { name: "Fish", image:"zzzzz" }, { name: "Cereals (Wheat)", image:"zzzzz" }, { name: "Soya", image:"zzzzz" }, { name: "Sulphur dioxide", image:"zzzzz" }];
 const CheckBoxAutoCompleteSecondComp = ({ placeholder,clearAll, labelKey = "name", valueKey = "_id", options, value, onChangeData, className = "" }) => {
    
     return (
@@ -33,17 +32,10 @@ const CheckBoxAutoCompleteSecondComp = ({ placeholder,clearAll, labelKey = "name
                 multiple,
             }) => {
                 return (
-                    <div className="filter-listcheck">
-                        {/* {JSON.stringify(item) } */}
-                        {/* {isSelected?
-                       <div className="clearall-link">
-                       <button onClick={clearAll}>
-                           Clear all
-                       </button>
-                   </div>
-                        :null} */}
+                    <div className="filter-listcheck" key={`custom-inline-${item._id}`}>
+                  
                         <Form>
-                                <div key={`custom-inline-${item._id}`} className="mb-2">
+                                <div  className="mb-2">
                                     <Form.Check
                                         key={item._id} // required
                                         onChange={() => selectValue(item)}

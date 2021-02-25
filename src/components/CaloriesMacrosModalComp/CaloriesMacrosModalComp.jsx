@@ -3,12 +3,31 @@ import { Modal, Button, } from "react-bootstrap";
 import './CaloriesMacrosModalComp.scss';
 import nutritionFactsicon from "../../assets/images/NutritionFacts-icon.svg";
 import rightarrow from "../../assets/images/right-arrow.svg";
+import { Field, Form, Formik,ErrorMessage, FieldArray} from 'formik';
+import * as Yup from 'yup';
 
 const CaloriesMacrosModalComp = () => {
     const [show, setShow] = useState(false);
-
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
+
+    console.log(show)
+    const initialValues = {
+      
+    }
+
+    const validationSchema  = Yup.object().shape({
+       
+    });
+
+    const onSubmit=(fields)=>{
+
+        let obj={
+            }
+        console.log(obj)
+
+        // dispatch(updateRestaurantInfoDetail({address:obj}));
+    }
 
     return (
         <>
@@ -26,15 +45,25 @@ const CaloriesMacrosModalComp = () => {
                     <p className="rs-allergiesinfomodalbtn-detail mb-0 text-left">View additional details</p>
                 </Button>
             </div>
+            <section>
+                <React.Fragment>
+                    <Formik enableReinitialize={true} initialValues={initialValues} validationSchema={validationSchema} onSubmit={onSubmit}>
+                        {({ errors, touched, resetForm, setFieldValue,handleChange,values }) => {
+                            return (
+                                <Form>
+                                    <React.Fragment>
+           
             <Modal centered className="rs-discallergiesinfomadel" show={show} onHide={handleClose} animation={false} >
-                <Modal.Header closeButton className="border-bottom-0 align-items-center">
+                <Modal.Header  className="border-bottom-0 align-items-center">
                     <Modal.Title className="w-100">
                         <p className="d-flex align-items-center mb-0 rsd-icontext-content">
                             <div className="d-flex align-items-center w-100">
                                 <img src={nutritionFactsicon} alt="" className="img-fluid mr-2 position-absolute" />
                                 <div className="d-flex align-items-center w-100 justify-content-between rsd-allergiesinfomodal-sub">
                                     <span className="pl-4 ml-2 text-left rsd-allergiesinfomodal-name">Amount per serving<br></br><b>Calories & Macros</b></span>
-                                    <div className="mt-3"><span><b>507</b></span></div>
+                                    <div className="mt-3"><span><b>
+                                        
+                                        </b></span></div>
                                 </div>
                             </div>
                         </p>
@@ -69,7 +98,9 @@ const CaloriesMacrosModalComp = () => {
                                     <td scope="col" className="txt-lightgray fw-400 text-right pl-0 pr-0 border-top-0 pt-1 pb-1">-</td>
                                 </tr>
                                 <tr>
-                                    <td scope="col" className="fw-400 pl-0 pr-0 text-left"><b>Cholesterol</b></td>
+                                    <td scope="col" className="fw-400 pl-0 pr-0 text-left">
+                                        <b>Cholesterol</b>
+                                    </td>
                                     <td scope="col" className="fw-400 text-right pl-0 pr-0"><b>0 g</b></td>
                                     <td scope="col" className="fw-400 text-right pl-0 pr-0"><b>0%</b></td>
                                 </tr>
@@ -140,6 +171,13 @@ const CaloriesMacrosModalComp = () => {
                     <p>Voluptua sed diam lorem sanctus ipsum sed sanctus nonumy. Accusam sea tempor labore accusam diam labore no sea amet, at sed et et takimata et et voluptua duo. Aliquyam et.</p>
                 </Modal.Footer> */}
             </Modal>
+                                    </React.Fragment>
+                                </Form>
+                            );
+                        }}
+                    </Formik>
+                </React.Fragment>
+            </section>
 
         </>
     )
