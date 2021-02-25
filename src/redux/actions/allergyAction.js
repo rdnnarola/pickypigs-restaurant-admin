@@ -97,6 +97,30 @@ import {setAlert} from './alertAction';
         }
     };
 
+    export const getAllCookingData=()=>{
+        return async(dispatch)=>{
+            try{
+                dispatch({type:"GET_COOKING_REQUEST"});
+                let config= {
+                  headers:{
+                   "Content-Type":"application/json"
+                   }
+                }
+                let dataURL=`/list/cooking_method`
+                let response = await Axios.get(dataURL,config);
+                dispatch({type:"GET_COOKING_SUCCESS",payload:response.data});
+            }
+            catch(error){
+              dispatch({type:"GET_COOKING_FAILURE",payload:error});
+              if (error.response) {
+                dispatch(setAlert(`${error.response.data.message}`, 'danger'));
+              } else {
+                dispatch(setAlert('Something went wrong!', 'danger'));
+              }
+            }
+        }
+      };
+
 
 
 

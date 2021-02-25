@@ -8,6 +8,7 @@ const initialState = {
     lifestyle_Data:{},
     restaurantFeatures_Data:{},
     cuisine_Data:{},
+    cooking_Data:{},
     };
     
     const allergyReducer = (state = initialState, { type, payload }) => {
@@ -18,6 +19,7 @@ const initialState = {
         case "GET_LIFESTYLE_REQUEST":
         case "GET_RESTAURANTFEATURE_REQUEST":
         case "GET_CUISINE_REQUEST":
+        case "GET_COOKING_REQUEST":
             return {
                 ...state,
                 isLoading :true,
@@ -53,13 +55,19 @@ const initialState = {
                 isLoading:false,
                 cuisine_Data:payload,
             }   
-       
+        case "GET_COOKING_SUCCESS":            
+            return{
+                ...state,
+                isLoading:false,
+                cooking_Data:payload,
+            } 
              
         case "GET_ALLERGY_FAILURE":
         case "GET_DIETARY_FAILURE":
         case "GET_LIFESTYLE_FAILURE":  
         case "GET_RESTAURANTFEATURE_FAILURE":  
         case "GET_CUISINE_FAILURE":  
+        case "GET_COOKING_FAILURE":  
             return {
                 ...state,
                 isLoading:false,

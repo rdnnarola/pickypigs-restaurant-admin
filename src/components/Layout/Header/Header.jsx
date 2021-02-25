@@ -35,7 +35,7 @@ const Header = () => {
                         <li className="nav-item ">
                             <NavLink className="nav-link" to="/">DASHBOARD <span className="sr-only">(current)</span></NavLink>
                         </li>
-                        <li className="nav-item">
+                        {/* <li className="nav-item">
                             <NavLink className="nav-link" to="/reports">REPORTS</NavLink>
                         </li>
                         <li className="nav-item">
@@ -43,7 +43,7 @@ const Header = () => {
                         </li>
                         <li className="nav-item">
                             <NavLink className="nav-link " to="/kds" >KDS</NavLink>
-                        </li>
+                        </li> */}
                     </ul>
                     
                     <div className="d-flex align-items-center nav-rigthcontent">
@@ -52,12 +52,15 @@ const Header = () => {
                             <img src={searchicon_gray} className="img-fluid search-icon" alt="icon" />
                             {/* <button className="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button> */}
                         </form>
-                        <button onMouseEnter={() => SetAddButton('+    ')} onMouseLeave={() => SetAddButton('')}
-                            className="btn btn-outline-success my-2 my-sm-0 add-dish-btn mr-4" type="submit">{addButton}Add Dish</button>
+                        {/* <button onMouseEnter={() => SetAddButton('+    ')} onMouseLeave={() => SetAddButton('')}
+                            className="btn btn-outline-success my-2 my-sm-0 add-dish-btn mr-4" type="submit">{addButton}Add Dish</button> */}
+                        <NavLink to="/manage_dishes" className="btn pinkline-btn text-uppercase rounded-pill mr-4 w-170 f-15" style={{display:'flex',justifyContent:'center',alignItems:'center'}} ><span className="add-icon">Add New</span></NavLink>
+
                         <button className="btn notification-btn p-0 position-relative mr-3">
                             <img src={notification_bell} className="img-fluid" alt="icon"  />
                             <span className="notification-count">2</span>
                         </button>
+
                         <div className="dropdown">
                             <button className="user-details d-flex align-items-center" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 <div className="user-img position-absolute">

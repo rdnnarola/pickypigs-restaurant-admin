@@ -33,7 +33,9 @@ const RestaurantSettingImageGalleryComp = (props) => {
         e.preventDefault();
         if (e.target.files && e.target.files.length > 0) {
             dispatch(uploadRestaurantGalleryImage(e.target.files, type))
+            
         }
+
     }
 
     const handleRemoveImage = (id, type) => {
@@ -88,10 +90,13 @@ const RestaurantSettingImageGalleryComp = (props) => {
                                                                 </div>
                                                             </div>
                                                             {/* {JSON.stringify(values.ambience)} */}
+                                                            
                                                             <div className="row">
                                                                 <div className="col-sm-12">
-                                                                    <p className="f-15 mb-2 brandon-Medium">Add images to your gallery</p>
+                                                                    <p className="f-15 mb-2 brandon-Medium">Add Food Images to your gallery</p>
                                                                 </div>
+                                                                {!editForm?
+                                                            
                                                                 <div className="col-sm-12">
                                                                     <form>
                                                                         <div className="form-group">
@@ -109,6 +114,9 @@ const RestaurantSettingImageGalleryComp = (props) => {
                                                                         </div>
                                                                     </form>
                                                                 </div>
+                                                                 :
+                                                                 null
+                                                                 }
                                                             </div>
                                                             <div className="row mt-1">
                                                                 <div className="col-sm-12">
@@ -121,9 +129,13 @@ const RestaurantSettingImageGalleryComp = (props) => {
                                                                                             <img loading="lazy" onLoad={() => { setImageLoading(true); }}
                                                                                                 src={`${SERVER_URL}/${data.url}`}
                                                                                                 alt="" className="img-fluid bg-white border p-1 position-relative" />
-                                                                                            <div className="overlay-close">
-                                                                                                <button className="position-absolute uploadyour-close" onClick={() => { handleRemoveImage(data._id, "Food") }} style={{}}>x</button>
-                                                                                            </div>
+                                                                                                {editForm?
+                                                                                                    null
+                                                                                                :
+                                                                                                    <div className="overlay-close">
+                                                                                                        <button className="position-absolute uploadyour-close" onClick={() => { handleRemoveImage(data._id, "Food") }} style={{}}>x</button>
+                                                                                                    </div>
+                                                                                                }
                                                                                         </div>
                                                                                     </React.Fragment>
                                                                                 )
@@ -137,12 +149,15 @@ const RestaurantSettingImageGalleryComp = (props) => {
                                                                     </div>
                                                                 </div>
                                                             </div>
+                                                            
                                                             <div className="row">
                                                                 <div className="col-sm-12">
-                                                                    <p className="f-15 mb-2 brandon-Medium">Or you can upload by yourself</p>
-                                                                </div>
-                                                                <div className="col-sm-12">
+                                                                    <p className="f-15 mb-2 brandon-Medium">Add Ambient images to your gallery
 
+</p>
+                                                                </div>
+                                                                {!editForm?
+                                                                <div className="col-sm-12">
                                                                     <form>
                                                                         <div className="form-group">
                                                                             <div className="fileUpload">
@@ -172,6 +187,9 @@ const RestaurantSettingImageGalleryComp = (props) => {
                                                                         </div>
                                                                     </form> */}
                                                                 </div>
+                                                                :
+                                                                    null
+                                                                }
                                                             </div>
                                                             <div className="row mt-1">
                                                                 <div className="col-sm-12">
@@ -185,9 +203,13 @@ const RestaurantSettingImageGalleryComp = (props) => {
                                                                                             <img loading="lazy" onLoad={() => { setImageLoading(true); }}
                                                                                                 src={`${SERVER_URL}/${data.url}`}
                                                                                                 alt="" className="img-fluid bg-white p-1 position-relative" />
-                                                                                            <div className="overlay-close">
-                                                                                                <button className="position-absolute uploadyour-close" onClick={() => { handleRemoveImage(data._id, "Ambience") }} style={{}}>x</button>
-                                                                                            </div>
+                                                                                            {editForm?
+                                                                                                null
+                                                                                            :
+                                                                                                <div className="overlay-close">
+                                                                                                    <button className="position-absolute uploadyour-close" onClick={() => { handleRemoveImage(data._id, "Ambience") }} style={{}}>x</button>
+                                                                                                </div>
+                                                                                            }
                                                                                         </div>
 
                                                                                     </React.Fragment>
