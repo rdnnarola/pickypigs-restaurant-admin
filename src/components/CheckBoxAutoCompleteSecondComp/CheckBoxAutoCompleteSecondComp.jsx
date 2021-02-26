@@ -12,7 +12,7 @@ const CheckBoxAutoCompleteSecondComp = ({ placeholder,clearAll, labelKey = "name
                 className: 'testing'
             }}
             placeholder={placeholder}
-            numberDisplayed={1}
+            numberDisplayed={0}
             options={options}
             labelKey={labelKey}
             valueKey={valueKey}
@@ -38,10 +38,10 @@ const CheckBoxAutoCompleteSecondComp = ({ placeholder,clearAll, labelKey = "name
                                 <div  className="mb-2">
                                     <Form.Check
                                         key={item._id} // required
-                                        onChange={() => selectValue(item)}
+                                        onChange={() => selectValue(item._id)}
                                         custom
                                         inline
-                                        checked={isSelected}
+                                        checked={value&&value.indexOf(item._id) !== -1}
                                         label={item.name}
                                         className="filterdrop-checkbox"
                                         type="checkbox"

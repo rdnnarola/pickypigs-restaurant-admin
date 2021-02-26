@@ -1,12 +1,12 @@
 import React, { useState,useEffect} from "react";
-import './ManageEasyAddDishComp.scss';
+import './UpdateEasyAddDishComp.scss';
 import Nonveg_icon from "../../assets/images/filterfeature/Nonveg_icon.svg"
 import CaloriesMacrosModalComp from "../CaloriesMacrosModalComp/CaloriesMacrosModalComp";
 import CheckBoxAutoCompleteComp from "../CheckBoxAutoCompleteComp/CheckBoxAutoCompleteComp";
 import { JsonWebTokenError } from "jsonwebtoken";
-import { addDishesData } from "../../redux/actions/dishesAction";
+import { updateSelectedDiscData, getSelectedDiscData } from "../../redux/actions/dishesAction";
 import { useDispatch,useSelector } from "react-redux";
-import { useHistory } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import { getAllMenuData } from "../../redux/actions/menuAction";
 import CheckBoxAutoCompleteSecondComp from "../CheckBoxAutoCompleteSecondComp/CheckBoxAutoCompleteSecondComp";
 import { getCategoryListOfSelectedMenu } from "../../redux/actions/categoryAction";
@@ -23,19 +23,25 @@ import CustomLoadingComp from "../CustomLoadingComp/CustomLoadingComp";
 const styleOf_currency=["$","a","b"]
 const numRegExp = /^[+]?([0-9]+(?:[\.][0-9]*)?|\.[0-9]+)$/;
 
-const ManageEasyAddDishComp = () => {
+const UpdateEasyAddDishComp = () => {
+    const params=useParams();
+	let  discId  = params.id;
     const dispatch=useDispatch();
     const history = useHistory();
     const [menuValue, setMenuValue] = useState([])
     const [categoryId, setCategoryId] = useState('')
     const [subcategoryId, setSubcategoryId] = useState('')
     const [myData, setMyData] = useState([]);
-
-
-
     const [descModal, setDescModal] = useState(false);
-    const [addItem, setAddItem] = useState(false);
+    const [addItem, setAddItem] = useState(true);
 
+    useEffect(()=>{
+        dispatch(getSelectedDiscData(discId));
+    },[dispatch,discId]);
+
+    let selectedDisc_data = useSelector((state) => {
+        return state.dishes.selected_Disc
+    });
     const clearMenugy=()=>{
         setMenuValue([])
     }
@@ -73,6 +79,7 @@ const ManageEasyAddDishComp = () => {
    //--------- Getting All Menu Data -------//
     useEffect(()=>{
         dispatch(getAllMenuData({start:0,delete:0}));
+        
     },[dispatch]);
 
     let menuData = useSelector((state)=>{
@@ -80,6 +87,8 @@ const ManageEasyAddDishComp = () => {
     });
     //--------- Getting All Menu Data Ends -------//
 
+
+    //--------- Getting All Category Data -------//
     const getCategoryAction=(data)=>{
         if(data&&data.length>0 !==""){
             dispatch(getCategoryListOfSelectedMenu({menuId:data}));
@@ -88,16 +97,13 @@ const ManageEasyAddDishComp = () => {
             dispatch(getCategoryListOfSelectedMenu({menuId:[]}));
         }
     }
-
-    //--------- Getting All Category Data -------//
-    // useEffect(()=>{
-    //     if(menuValue !==""){
-    //         dispatch(getCategoryListOfSelectedMenu({menuId:menuValue}));
-
-    //     }else{
-    //         dispatch(getCategoryListOfSelectedMenu({menuId:[]}));
-    //     }
-    // },[dispatch,menuValue]);
+    useEffect(()=>{
+        if(selectedDisc_data&&selectedDisc_data[0].menuId !==""){
+            dispatch(getCategoryListOfSelectedMenu({menuId:selectedDisc_data&&selectedDisc_data[0].menuId}));
+        }else{
+            dispatch(getCategoryListOfSelectedMenu({menuId:[]}));
+        }
+    },[dispatch,selectedDisc_data&&selectedDisc_data[0].menuId]);
 
     let categoryData = useSelector((state)=>{
         return state.category.selectedMenuCategoryList
@@ -114,14 +120,14 @@ const ManageEasyAddDishComp = () => {
             dispatch(getSubCategoryListOfSelectedCategory("5fb6137b358d872b7cce1404"));
         }
     }
-    // useEffect(()=>{
-    //     if(categoryId !==""){
-    //         dispatch(getSubCategoryListOfSelectedCategory(categoryId));
-    //     }else{
-    //         dispatch(getSubCategoryListOfSelectedCategory("5fb6137b358d872b7cce1404"));
-    //         setSubcategoryId('');
-    //     }
-    // },[dispatch,categoryId]);
+    useEffect(()=>{
+        
+        if(selectedDisc_data&&selectedDisc_data[0].categoryId !==""){
+            dispatch(getSubCategoryListOfSelectedCategory(selectedDisc_data&&selectedDisc_data[0].categoryId));
+        }else{
+            dispatch(getSubCategoryListOfSelectedCategory("5fb6137b358d872b7cce1404"));
+        }
+    },[dispatch,selectedDisc_data&&selectedDisc_data[0].categoryId]);
     
     let subcategoryData = useSelector((state)=>{
         return state.subcategory.selectedCategorySubcategoryList
@@ -137,30 +143,30 @@ const ManageEasyAddDishComp = () => {
     })
   
     const initialValues = {
-        name:'',
-        makes:'',
-        price:'',
-        grossProfit:'',
-        image:'',
-        favorite:false,
-        new:false,
-        available:false,
-        menuId:[],
-        categoryId:'',
-        subcategoryId:'',
-        description:'',
-        allergenId:[],
-        dietaryId:[],
-        lifestyleId:[],
-        cookingMethodId:[],
-        instructions:'',
-        customisable:false,
-        createNewVersion:false,
+        name:selectedDisc_data&&selectedDisc_data[0].name?selectedDisc_data[0].name:'',
+        makes:selectedDisc_data&&selectedDisc_data[0].makes?selectedDisc_data[0].makes:'',
+        price:selectedDisc_data&&selectedDisc_data[0].price?selectedDisc_data[0].price:'',
+        grossProfit:selectedDisc_data&&selectedDisc_data[0].grossProfit?selectedDisc_data[0].grossProfit:'',
+        image:selectedDisc_data&&selectedDisc_data[0].image?selectedDisc_data[0].image:'',
+        favorite:selectedDisc_data&&selectedDisc_data[0].favorite?selectedDisc_data[0].favorite:false,
+        new:selectedDisc_data&&selectedDisc_data[0].new?selectedDisc_data[0].new:false,
+        available:selectedDisc_data&&selectedDisc_data[0].available?selectedDisc_data[0].available:false,
+        menuId:selectedDisc_data&&selectedDisc_data[0].menuId?selectedDisc_data[0].menuId:[],
+        categoryId:selectedDisc_data&&selectedDisc_data[0].categoryId?selectedDisc_data[0].categoryId:'',
+        subcategoryId:selectedDisc_data&&selectedDisc_data[0].subcategoryId?selectedDisc_data[0].subcategoryId:'',
+        description:selectedDisc_data&&selectedDisc_data[0].description?selectedDisc_data[0].description:'',
+        allergenId:selectedDisc_data&&selectedDisc_data[0].allergenId?selectedDisc_data[0].allergenId:[],
+        dietaryId:selectedDisc_data&&selectedDisc_data[0].dietaryId?selectedDisc_data[0].dietaryId:[],
+        lifestyleId:selectedDisc_data&&selectedDisc_data[0].lifestyleId?selectedDisc_data[0].lifestyleId:[],
+        cookingMethodId:selectedDisc_data&&selectedDisc_data[0].cookingMethodId?selectedDisc_data[0].cookingMethodId:[],
+        instructions:selectedDisc_data&&selectedDisc_data[0].instructions?selectedDisc_data[0].instructions:'',
+        customisable:selectedDisc_data&&selectedDisc_data[0].customisable?selectedDisc_data[0].customisable:false,
+        createNewVersion:selectedDisc_data&&selectedDisc_data[0].createNewVersion?selectedDisc_data[0].createNewVersion:false,
         ingredientSection:{},
-        caloriesAndMacros:"",
-        ingredient:[],
-        priceUnit:'$',
-      
+        caloriesAndMacros:selectedDisc_data&&selectedDisc_data[0].caloriesAndMacros?selectedDisc_data[0].caloriesAndMacros:'',
+        ingredient:selectedDisc_data&&selectedDisc_data[0].ingredientSection&&selectedDisc_data[0].ingredientSection.dish_ingredients?selectedDisc_data[0].ingredientSection.dish_ingredients:[],
+        priceUnit:selectedDisc_data&&selectedDisc_data[0].priceUnit?selectedDisc_data[0].priceUnit:'',
+        deleteIngredients:[],
     }
 
     const validationSchema  = Yup.object().shape({
@@ -210,8 +216,8 @@ const ManageEasyAddDishComp = () => {
             new:fields.new,
             available:fields.available,
             menuId:fields.menuId,
-            categoryId:categoryId,
-            subcategoryId:subcategoryId,
+            categoryId:fields.categoryId,
+            subcategoryId:fields.subcategoryId,
             description:fields.description,
             allergenId:fields.allergenId,
             dietaryId:fields.dietaryId,
@@ -222,22 +228,22 @@ const ManageEasyAddDishComp = () => {
             createNewVersion:fields.createNewVersion,
             ingredientSection:{
                 total:fields.ingredient&&fields.ingredient.length>=0&&fields.ingredient.reduce((prev,next) => prev+next.qty,0),
-                ingredient:fields.ingredient
+                ingredient:fields.ingredient,
+                deleteIngredients:fields.deleteIngredients,
             },
             caloriesAndMacros:fields.caloriesAndMacros,
         }
         console.log(obj)
     
-        dispatch(addDishesData(obj,history));
+        dispatch(updateSelectedDiscData(discId,obj,history));
     }
     const handleCancleEdit = (resetForm) => {
         history.push('/all_dishes');
         resetForm()
     }
-
     return (
         <>
-        <section className="ManageEasyAddDishComp-comp">
+        <section className="UpdateEasyAddDishComp-comp">
             <React.Fragment>
                 {myLoading&&myLoading?
                     <CustomLoadingComp/>
@@ -251,7 +257,7 @@ const ManageEasyAddDishComp = () => {
                         return (
                             <Form>
                                 <React.Fragment>
-                                {/* {JSON.stringify(values)} */}
+                                {/* {JSON.stringify(values.deleteIngredients)} */}
                                     {/* || */}
                                     {/* {JSON.stringify(dishesData)} */}
                                     {/* || */}
@@ -380,8 +386,8 @@ const ManageEasyAddDishComp = () => {
                                                         {touched.categoryId && errors.categoryId && <div className="error pink-txt f-11">{errors.categoryId}</div>}
                                                     </div>
                                                     <div className="custom-drodown form-group mr-4 mb-0">
-                                                        <label className="gray-txt f-15">Sub-Category</label>
-                                                        <Field as="select"  name="subcategoryId" onChange={(e)=>{setFieldValue("subcategoryId",e.target.value);}} className="form-control lightgray-border selectdropdown-btn minwidth-260">
+                                                        <label  className="gray-txt f-15">Sub-Category</label>
+                                                        <Field as="select" name="subcategoryId" onChange={(e)=>{setFieldValue("subcategoryId",e.target.value);}} className="form-control lightgray-border selectdropdown-btn minwidth-260">
                                                             <option value="">Select</option>
                                                             {subcategoryData && subcategoryData.map((data, index)=>{
                                                                 return(
@@ -441,7 +447,7 @@ const ManageEasyAddDishComp = () => {
                                             </div>
                                             <div className="col-md-3">
                                                 <div className="mb-3">
-                                                    {/* {JSON.stringify(values.image) } */}
+                                                  
                                                     <form>
                                                         <div className="form-group">
                                                             <div className="fileUpload text-center">
@@ -454,7 +460,11 @@ const ManageEasyAddDishComp = () => {
                                                                     onChange={(e)=>{setFieldValue("image",e.target.files[0])}}
                                                                 />
                                                                 {values.image?
-                                                                    <img src={URL.createObjectURL(values.image)} width="150px" height="100px" className="border" alt={"image"}/>
+                                                                    typeof values.image === 'string' || values.image instanceof String ?
+                                                                        <img src={`${SERVER_URL}/${values.image}`} width="160px" height="100px" className="border" alt={values&&values.name?values.name:"image"}/>
+                                                                    :
+                                                                        <img src={URL.createObjectURL(values.image)} width="150px" height="100px" className="border" alt={"image"}/>
+                                                            
                                                                 :
                                                                     <img src="https://png.pngtree.com/png-clipart/20200225/original/pngtree-image-upload-icon-photo-upload-icon-png-image_5279795.jpg" className="img-fluid" width="150px" alt="image_upload"/>
                                                                 }
@@ -489,9 +499,38 @@ const ManageEasyAddDishComp = () => {
                                                     <tbody>
                                                         {values.ingredient&&values.ingredient.length > 0?
                                                         <React.Fragment>
+                                              
                                                             {values.ingredient&&values.ingredient.map((data, index) => {
                                                                 return(
                                                                     <React.Fragment key={index}>
+                                                                    {addItem?
+                                                                        <React.Fragment key={index}>
+                                                                            <tr >
+                                                                                <td>{data.item}</td>
+                                                                                <td className="">
+                                                                                    {data.allergenlist&&data.allergenlist.map((data,index)=>{
+                                                                                        return(
+                                                                                        <React.Fragment key={index}>
+                                                                                            {data.name},
+                                                                                        </React.Fragment>
+                                                                                        )
+                                                                                        })}
+                                                                                    </td>
+                                                                                <td className=""></td>
+
+                                                                                <td className="text-right">{data.qty} %</td>
+                                                                                <td className="text-right">
+                                                                                    <div className="custom-control custom-checkbox pink-checkbox">
+                                                                                        <input type="checkbox" disabled className="custom-control-input" id={index} defaultChecked={data.customisable}/>
+                                                                                        <label className="custom-control-label" htmlFor={index}></label>
+                                                                                    </div>
+                                                                                </td>
+                                                                                <td className="text-right"></td>
+                                                                            </tr>
+                                                                        </React.Fragment>
+        
+                                                                    :
+                                                                    <React.Fragment >
                                                                     <tr>
                                                                         <td>
                                                                             <Field className="form-control" name={`ingredient.${index}.item`} placeholder="item" type="text"/>
@@ -523,11 +562,18 @@ const ManageEasyAddDishComp = () => {
                                                                             </div>
                                                                         </td>
                                                                         <td>
-                                                                            <button type="button" className="secondary" onClick={() => remove(index)}>X</button>
+                                                                            {data._id&&data._id?
+                                                                            <button type="button" className="secondary" onClick={() =>{ remove(index);setFieldValue("deleteIngredients",[...values.deleteIngredients,data._id])}}>X</button>
+                                                                            :
+                                                                            <button type="button" className="secondary" onClick={() =>{ remove(index)}}>X</button>
+                                                                            }
                                                                         </td>
                                                                     </tr>
                                                                     
                                                                     </React.Fragment>
+                                                                    
+                                                                    }
+                                                                </React.Fragment>
                                                                 )}
                                                             )
                                                         }
@@ -542,7 +588,15 @@ const ManageEasyAddDishComp = () => {
                                                             <td>
                                                                 <span className="d-flex align-items-center">
                                                                     <span className="itemsplus-icon">+</span>
-                                                                    <button type="button" className="additems-btn" onClick={() => push({ item: '', qty: '',allergeies: [],customisable:false})}>Click to add item</button>
+                                                                    {addItem?
+                                                                        <button type="button" className="additems-btn" onClick={() => {setAddItem(false)}}>Click to add item</button>
+                                                                        :
+                                                                        <React.Fragment>
+                                                                            <button type="button" className="additems-btn" onClick={() => {push({ item: '', qty: '',allergeies: [],customisable:false})}}>Click to add item</button>
+                                                                            {/* <button onClick={() => {setAddItem(true)}}>save</button> */}
+                                                                            <button onClick={()=>{setAddItem(true);setFieldValue("deleteIngredients",[]);setFieldValue("ingredient",selectedDisc_data&&selectedDisc_data[0].ingredientSection&&selectedDisc_data[0].ingredientSection.dish_ingredients)}}>cancle</button>
+                                                                        </React.Fragment>
+                                                                    }
                                                                 </span>
                                                             </td>
                                                             <td className=""></td>
@@ -784,7 +838,7 @@ const ManageEasyAddDishComp = () => {
                                                 <label className="custom-control-label" htmlFor="createNewVersion">Create New Version</label>
                                                 {touched.createNewVersion && errors.createNewVersion && <div className="error pink-txt f-11">{errors.createNewVersion}</div>}
                                             </div>
-                                            <button className="btn pinkline-btn text-uppercase rounded-pill ml-3" type="reset" onClick={()=>{handleCancleEdit(resetForm)}}>CANCLE</button>
+                                            <button className="btn pinkline-btn text-uppercase rounded-pill ml-3" type="reset" onClick={()=>{handleCancleEdit(resetForm)}} >CANCLE</button>
                                             <button className="btn pinkline-btn text-uppercase rounded-pill ml-3" type="submit" >Save</button>
                                         </div>
                                     </div>
@@ -799,4 +853,4 @@ const ManageEasyAddDishComp = () => {
     )
 }
 
-export default ManageEasyAddDishComp;
+export default UpdateEasyAddDishComp;

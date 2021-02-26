@@ -1,0 +1,408 @@
+.UpdateEasyAddDishComp-comp{
+
+    .lastedit-txt {
+        font-weight: 400;
+        font-size: 15px;
+        span {
+            color: #919191;
+        }
+    }
+
+    span.recipe-msg {
+        background: #fff1f5;
+        padding: 9px 10px;
+        border: 1px solid #ffd5e2;
+        border-radius: 6px;
+        display: inline-block;
+        font-size: 15px;
+        color: #71154d;
+    }
+
+    .easydish-input {
+        &.dishname-input {
+            max-width: 360px;
+            flex: 0 0 360px;
+            width: 100%;
+        }
+        &.makes-input {
+            max-width: 180px;
+            flex: 0 0 180px;
+            width: 100%;
+            .makesserving-wrapper {
+                position: relative;
+                span {
+                    &.serving-txt {
+                        position: absolute;
+                        top: 2px;
+                        right: 2px;
+                        display: flex;
+                        min-height: 36px;
+                        align-items: center;
+                        justify-content: center;
+                        font-size: 15px;
+                        color: #c8c7cc;
+                        padding-right: 10px;
+                        padding-left: 10px;
+                        background: #fff;
+                        &:before {
+                            content: "";
+                            position: absolute;
+                            left: 0;
+                            width: 1px;
+                            height: 25px;
+                            background: #c8c7cc;
+                        }
+                    }
+                }
+            }
+        }
+        &.price-input {
+            max-width: 140px;
+            flex: 0 0 140px;
+            width: 100%;
+        }
+        &.gross-input {
+            max-width: 125px;
+            flex: 0 0 125px;
+            width: 100%;
+        }
+        .form-control {
+            border-color: #c8c7cc;
+            min-height: 40px;
+            border-radius: 6px;
+            font-size: 15px;
+            color: #232323;
+            &:focus {
+                box-shadow: 0 0 0 0.2rem #c8c7cc47;
+            }
+        }
+    }
+
+    .easydish-select-input {
+        &.dishname-input {
+            max-width: 360px;
+            flex: 0 0 360px;
+            width: 100%;
+        }
+        &.makes-input {
+            max-width: 180px;
+            flex: 0 0 180px;
+            width: 100%;
+            .makesserving-wrapper {
+                position: relative;
+                span {
+                    &.serving-txt {
+                        position: absolute;
+                        top: 2px;
+                        right: 2px;
+                        display: flex;
+                        min-height: 36px;
+                        align-items: center;
+                        justify-content: center;
+                        font-size: 15px;
+                        color: #c8c7cc;
+                        padding-right: 10px;
+                        padding-left: 10px;
+                        background: #fff;
+                        &:before {
+                            content: "";
+                            position: absolute;
+                            left: 0;
+                            width: 1px;
+                            height: 25px;
+                            background: #c8c7cc;
+                        }
+                    }
+                }
+            }
+        }
+        &.price-input {
+            max-width: 160px;
+            flex: 0 0 160px;
+            width: 100%;
+        }
+        &.gross-input {
+            max-width: 125px;
+            flex: 0 0 125px;
+            width: 100%;
+        }
+        .form-control {
+            border-color: #c8c7cc;
+            min-height: 40px;
+            border-radius: 6px;
+            font-size: 15px;
+            color: #232323;
+            &:focus {
+                box-shadow: 0 0 0 0.2rem #c8c7cc47;
+            }
+        }
+    }
+
+    .easydish-serving-input {
+        &.dishname-input {
+            max-width: 360px;
+            flex: 0 0 360px;
+            width: 100%;
+        }
+        &.makes-input {
+            max-width: 180px;
+            flex: 0 0 180px;
+            width: 100%;
+            .makesserving-wrapper {
+                position: relative;
+                span {
+                    &.serving-txt {
+                        position: absolute;
+                        top: 2px;
+                        right: 2px;
+                        display: flex;
+                        min-height: 36px;
+                        align-items: center;
+                        justify-content: center;
+                        font-size: 15px;
+                        color: #c8c7cc;
+                        padding-right: 10px;
+                        padding-left: 10px;
+                        background: #fff;
+                        &:before {
+                            content: "";
+                            position: absolute;
+                            left: 0;
+                            width: 1px;
+                            height: 25px;
+                            background: #c8c7cc;
+                        }
+                    }
+                }
+            }
+        }
+        &.price-input {
+            max-width: 140px;
+            flex: 0 0 140px;
+            width: 100%;
+        }
+        &.gross-input {
+            max-width: 125px;
+            flex: 0 0 125px;
+            width: 100%;
+        }
+        .form-control {
+            border-color: #c8c7cc;
+            min-height: 40px;
+            border-radius: 6px;
+            font-size: 15px;
+            color: #232323;
+            padding-right:56px;
+            &:focus {
+                box-shadow: 0 0 0 0.2rem #c8c7cc47;
+            }
+        }
+    }
+
+    .add-description-wrapper {
+        .add-description-btn {
+            max-width: 740px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 15px;
+            box-shadow: 0px 3px 10px 0px #0000000f;
+            background: #fff;
+            outline: none;
+            font-size: 14px;
+            color: #232323;
+
+            span {
+                font-size: 24px;
+            }
+        }
+
+        .add-description-subwrapper {
+            max-width: 740px;
+            border-radius: 25px;
+            box-shadow: 0px 9px 24px 0px #0000000d;
+            overflow: hidden;
+
+            .add-description-head {
+                height: 76px;
+                padding: 30px 20px;
+                border-bottom: 1px solid #c8c7cc;
+                h6 {
+                    font-size: 14px;
+                }
+                .add-description-inputbtn {
+                    .cancel-btn {
+                        width: 120px;
+                        height: 40px;
+                        display: inline-flex;
+                        align-items: center;
+                        justify-content: center;
+                        border-radius: 25px;
+                        background: #fff;
+                        color: #919191;
+                        border: 1px solid transparent;
+                        text-transform: uppercase;
+                        font-size: 14px;
+                        outline: none;
+                        transition: ease 0.25s;
+                        &:hover {
+                            background: #919191;
+                            color: #fff;
+                        }
+                    }
+                    .save-btn {
+                        width: 120px;
+                        height: 40px;
+                        display: inline-flex;
+                        align-items: center;
+                        justify-content: center;
+                        border-radius: 25px;
+                        background: #fff;
+                        color: #919191;
+                        border: 1px solid #c8c7cc;
+                        text-transform: uppercase;
+                        font-size: 14px;
+                        outline: none;
+                        &:hover {
+                            background: #919191;
+                            color: #fff;
+                        }
+                    }
+                }
+            }
+
+            textarea {
+                &.add-description-textarea {
+                    border: none !important;
+                    padding: 18px 24px;
+                    border-bottom-left-radius: 15px;
+                    border-bottom-right-radius: 15px;
+                    box-shadow: none !important;
+                    outline: none !important;
+                }
+            }
+        }
+    }
+
+    .add-dish-table {
+        table {
+            tr {
+                &.item-cost {
+                    td {
+                        height: 86px;
+                        padding: 1.75rem 2rem;
+                    }
+                    .itemsplus-icon {
+                        color: #cb007b;
+                        font-size: 25px;
+                        font-weight: 100;
+                        line-height: 1;
+                    }
+                    .additems-btn {
+                        background: #fff;
+                        color: #cb007b;
+                        border: none;
+                        outline: none;
+                        text-decoration: none !important;
+                        border-bottom: 1px solid #cb007b;
+                        padding: 0px;
+                        margin-left: 5px;
+                        font-size: 15px;
+                    }
+                }
+            }
+        }
+    }
+
+    .allergen-info{
+        font-size: 14px;
+        color: #2E482B;
+    }
+
+    .tags-btn {
+        padding: 5px 20px;
+        border: 1px solid #c8c7cc;
+        border-radius: 50px;
+        min-height: 40px;
+        color: #555555;
+        background: #fff;
+        box-shadow: none !important;
+        outline: none !important;
+        transition: ease 0.35s;
+        font-size: 15px;
+
+        &:hover {
+            box-shadow: 0px 5px 18px 0px #0000001c !important;
+            border: 1px solid transparent;
+        }
+
+        &.active {
+            background: #ffd5e2;
+            border-color: #ffd5e2;
+            color: #cb007b;
+        }
+    }
+
+    .allergen-btn-wrapper {
+        .allergen-btn {
+            max-width: 60px;
+            min-width: 60px;
+            border: none;
+            background: transparent;
+            box-shadow: none;
+            outline: none;
+            transition: all 0.25s;
+
+            .allergen-icon {
+                width: 60px;
+                height: 60px;
+                background: #f6f6f6;
+                border-radius: 15px;
+                transition: ease 0.5s;
+                position: relative;
+                z-index: -1;
+
+                img {
+                    width: 35px;
+                    filter: invert(71%) sepia(0%) saturate(4591%) hue-rotate(86deg) brightness(82%) contrast(87%);
+                }
+            }
+            p {
+                overflow: hidden;
+                text-overflow: ellipsis;
+                display: -webkit-box;
+                -webkit-box-orient: vertical;
+                -webkit-line-clamp: 2;
+            }
+
+            &:hover {
+                .allergen-icon {
+                    background: #fff;
+                    box-shadow: 0px 5px 24px 0px #0000001c;
+                }
+            }
+
+            &.active {
+                .allergen-icon {
+                    background: #fff;
+                    box-shadow: 0px 5px 24px 0px #0000001c;
+                    img {
+                        filter: invert(14%) sepia(75%) saturate(6404%) hue-rotate(315deg) brightness(80%) contrast(105%);
+                    }
+                }
+                p {
+                    color: #cb007b;
+                }
+            }
+
+            span{
+                position: relative;
+                z-index: -1;
+            }
+
+        }
+    }
+}

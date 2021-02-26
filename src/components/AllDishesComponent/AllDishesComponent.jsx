@@ -155,7 +155,7 @@ const AllDishesComponent=()=>{
                                                                         Action
                                                                         </button>
                                                                         <ul className="dropdown-menu actiondropdown-list" aria-labelledby="dropdownMenuButton">
-                                                                            <li><button className="dropdown-item"  >Update</button></li>
+                                                                            <li><Link className="dropdown-item" to={'/manage_dishes/' + data._id} >Update</Link></li>
                                                                             <li><button className="dropdown-item" onClick={() => {setDeleteModalShow(true);setDishesId(data._id)}}>Delete</button></li>
                                                                         </ul>
                                                                     </div>

@@ -14,6 +14,7 @@ const AllDishesComponent = lazy(() => import("./components/AllDishesComponent/Al
 const ManageEasyAddDishComp = lazy(() => import("./components/ManageEasyAddDishComp/ManageEasyAddDishComp"));
 const SingleAllergyDetailPage = lazy(() => import("./view/SingleAllergyDetailPage/SingleAllergyDetailPage"));
 const RestaurantDetailPage = lazy(() => import("./view/RestaurantDetailPage/RestaurantDetailPage"));
+const UpdateEasyAddDishComp = lazy(() => import("./components/UpdateEasyAddDishComp/UpdateEasyAddDishComp"));
 
 // const Verify = lazy(() => import("./view/Signup/verify"));
 
@@ -29,6 +30,7 @@ export const routesCode = [
     { path: "/manage_dishes", exact: true, component: ManageEasyAddDishComp },
     { path: "/allergy_detail/:id", exact: true, component: SingleAllergyDetailPage },
     { path: "/restaurant_detail", exact: true, component: RestaurantDetailPage },
+    { path: "/manage_dishes/:id", exact: true, component: UpdateEasyAddDishComp },
 
     // { path: "/verify/:token", exact: true, component: Verify }
     // { path: "*", component: 404Page },
