@@ -20,7 +20,7 @@ const CheckBoxAutoCompleteComp = ({ placeholder,clearAll, labelKey = "name", val
             includeSelectAll={false}
             value={value}
             onChange={onChangeData}
-            className={`filterdropdown ${className}`}
+            className={`CheckBoxAutoCompleteComp ${className}`}
             render={({
                 style,
                 isSelected,

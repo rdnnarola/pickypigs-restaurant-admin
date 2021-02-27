@@ -1,12 +1,12 @@
 .rs-allergiesinfomodalbtn {
-    width: 48%;
+    max-width: 280px;
     .btn {
         background: #fff !important;
         box-shadow: 0px 2px 18px 0px #00000012 !important;
         border: none;
         outline: none !important;
         color: #232323 !important;
-        padding: 19px;
+        padding: 10px 20px 20px;
         width: 100%;
         border-radius: 15px;
         .icontext-content {
@@ -29,9 +29,10 @@
 .rs-discallergiesinfomadel {
     border-radius: 10px;
     .modal-dialog {
+        max-width: 700px;
         .modal-content {
             border: none;
-            border-radius: 0;
+            border-radius: 15px;
             .modal-header {
                 padding: 24px 29px 7px;
                 .modal-title {
@@ -69,6 +70,7 @@
                             tr{
                                 td{
                                     font-size: 14px;
+                                    border-top-style: dashed;
                                 }
                             }
                         }

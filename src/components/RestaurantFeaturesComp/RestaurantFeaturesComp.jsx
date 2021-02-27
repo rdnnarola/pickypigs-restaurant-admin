@@ -311,7 +311,7 @@ const RestaurantFeaturesComp = (props) => {
                                                                                         <label className="custom-control-label gray-control-label f-15" htmlFor={data.day}>{data.day}</label>
                                                                                     </div> */}
                                                                                                 <div style={{ width: 100 }}>
-                                                                                                    <p className="f-15 mb-0">{data.day}</p>
+                                                                                                    <p className="f-15 mb-0 brandon-Medium">{data.day}</p>
 
                                                                                                 </div>
                                                                                                 <div className={`timeing-main-wrapper d-flex align-items-center ${data.isSelected && "active"}`}>
@@ -503,7 +503,7 @@ const RestaurantFeaturesComp = (props) => {
                                                                             </div>
                                                                             :
                                                                             <React.Fragment >
-                                                                                <div className="col-sm-12 position-relative mb-2">
+                                                                                <div className="col-sm-12 position-relative">
                                                                                     <div className="addinput-control custom-lightinputbox position-relative">
                                                                                         <Field name="websiteUrl2" placeholder="http://" className="form-control-input form-control f-15" />
                                                                                         <button type="button"
@@ -543,7 +543,7 @@ const RestaurantFeaturesComp = (props) => {
                                                                             </React.Fragment>
                                                                         </div>
                                                                         :
-                                                                        <div className="col-sm-12 mt-3">
+                                                                        <div className="col-sm-12 mt-2">
                                                                             <div className="checkbox-setting custom-control custom-checkbox pink-checkbox pl-2">
                                                                                 <Field type="checkbox" name="isAddToProfilePage" id="isAddToProfilePage" className="custom-control-input" />
                                                                                 <label className="custom-control-label gray-control-label f-15" htmlFor="isAddToProfilePage">Add to profile page</label>
@@ -625,7 +625,7 @@ const RestaurantFeaturesComp = (props) => {
                                                                             <React.Fragment >
                                                                                 <p className="gray-txt f-13 mb-2">Provide URL (your own website or third party website</p>
                                                                                 <div className="row">
-                                                                                    <div className="col-sm-12 position-relative mb-2">
+                                                                                    <div className="col-sm-12 position-relative">
                                                                                         <div className="addinput-control custom-lightinputbox position-relative">
                                                                                             <Field name="bookingswebsiteUrl2" placeholder="http://" className="form-control-input form-control f-15" />
                                                                                             { }
@@ -678,7 +678,7 @@ const RestaurantFeaturesComp = (props) => {
                                                                             <React.Fragment >
                                                                                 <p className="gray-txt f-13 mb-2">Provide Email</p>
                                                                                 <div className="row">
-                                                                                    <div className="col-sm-12 position-relative mb-2">
+                                                                                    <div className="col-sm-12 position-relative">
                                                                                         <div className="addinput-control custom-lightinputbox position-relative addinput-w-360">
                                                                                             <Field name="bookingsemail2" placeholder="email@email.com" className="form-control-input form-control" />
                                                                                             <button type="button"
@@ -731,7 +731,7 @@ const RestaurantFeaturesComp = (props) => {
                                                                             <React.Fragment >
                                                                                 <p className="gray-txt f-13 mb-2">Phone Number</p>
                                                                                 <div className="row">
-                                                                                    <div className="col-sm-12 position-relative mb-2">
+                                                                                    <div className="col-sm-12 position-relative">
                                                                                         <div className="addinput-control custom-lightinputbox position-relative addinput-w-360">
                                                                                             <Field name="bookingsphoneNumber2" type="number" placeholder="Phone Number" className="form-control-input form-control" />
                                                                                             { }
@@ -839,7 +839,7 @@ const RestaurantFeaturesComp = (props) => {
                                                                             <React.Fragment >
                                                                                 <p className="gray-txt f-13 mb-2">Facebook</p>
                                                                                 <div className="row">
-                                                                                    <div className="col-sm-12 position-relative mb-2">
+                                                                                    <div className="col-sm-12 position-relative">
                                                                                         <div className="addinput-control custom-lightinputbox position-relative">
                                                                                             <Field name="facebookUrl2" placeholder="http://" className="form-control-input form-control" />
                                                                                             { }
@@ -892,7 +892,7 @@ const RestaurantFeaturesComp = (props) => {
                                                                             <React.Fragment >
                                                                                 <p className="gray-txt f-13 mb-2">Twitter</p>
                                                                                 <div className="row">
-                                                                                    <div className="col-sm-12 position-relative mb-2">
+                                                                                    <div className="col-sm-12 position-relative">
                                                                                         <div className="addinput-control custom-lightinputbox position-relative">
                                                                                             <Field name="twitterUrl2" placeholder="http://" className="form-control-input form-control" />
                                                                                             <button type="button"
@@ -945,7 +945,7 @@ const RestaurantFeaturesComp = (props) => {
                                                                             <React.Fragment >
                                                                                 <p className="gray-txt f-13 mb-2">Instagram</p>
                                                                                 <div className="row">
-                                                                                    <div className="col-sm-12 position-relative mb-2">
+                                                                                    <div className="col-sm-12 position-relative">
                                                                                         <div className="addinput-control custom-lightinputbox position-relative">
                                                                                             <Field name="instagramUrl2" placeholder="http://" className="form-control-input form-control" />
                                                                                             { }

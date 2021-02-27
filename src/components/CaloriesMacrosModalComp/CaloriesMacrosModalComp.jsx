@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Modal, Button, } from "react-bootstrap";
 import './CaloriesMacrosModalComp.scss';
 import nutritionFactsicon from "../../assets/images/NutritionFacts-icon.svg";
-import rightarrow from "../../assets/images/right-arrow.svg";
+import plusicon from "../../assets/images/plus-icon.svg";
 import { Field, Form, Formik,ErrorMessage, FieldArray} from 'formik';
 import * as Yup from 'yup';
 
@@ -37,12 +37,12 @@ const CaloriesMacrosModalComp = () => {
                         <div className="d-flex align-items-center w-100">
                             <img src={nutritionFactsicon} alt="" className="img-fluid mr-2 position-absolute" />
                             <div className="d-flex align-items-center w-100 justify-content-between rs-allergiesinfomodal-sub">
-                                <span className="pl-4 ml-2 text-left rs-allergiesinfomodal-name">Nutrition Facts<br></br>Calories & Macros</span>
-                                <div><img src={rightarrow} alt="" className="img-fluid" /></div>
+                                <span className="pl-4 ml-2 text-left rs-allergiesinfomodal-name brandon-Medium f-13">Nutrition Facts<br></br><span className="brandon-Bold f-17">Calories & Macros</span></span>
+                                <div><img src={plusicon} alt="" className="img-fluid" /></div>
                             </div>
                         </div>
                     </p>
-                    <p className="rs-allergiesinfomodalbtn-detail mb-0 text-left">View additional details</p>
+                    <p className="rs-allergiesinfomodalbtn-detail mb-0 text-left f-13 brandon-Medium">View additional details</p>
                 </Button>
             </div>
             <section>
@@ -81,21 +81,21 @@ const CaloriesMacrosModalComp = () => {
                         <table className="table">
                             <tbody>
                                 <tr>
-                                    <td scope="col" colSpan="3" className="txt-lightgray fw-400 text-right pl-0 pr-0 border-top-0 pt-1 pb-1 text-right">% Daily Values *</td>
+                                    <td scope="col" colSpan="3" className="gray-txt fw-400 text-right pl-0 pr-0 border-top-0 pt-1 pb-1 text-right">% Daily Values *</td>
                                 </tr>
                                 <tr>
-                                    <td scope="col" className="txt-lightgray fw-400 pl-0 pr-0 border-top-0 pt-1 pb-1 text-left">Total Fat</td>
-                                    <td scope="col" className="txt-lightgray fw-400 text-right pl-0 pr-0 border-top-0 pt-1 pb-1">20.84 g</td>
-                                    <td scope="col" className="txt-lightgray fw-400 text-right pl-0 pr-0 border-top-0 pt-1 pb-1">32%</td>
+                                    <td scope="col" className="gray-txt fw-400 pl-0 pr-0 border-top-0 pt-1 pb-1 text-left">Total Fat</td>
+                                    <td scope="col" className="gray-txt fw-400 text-right pl-0 pr-0 border-top-0 pt-1 pb-1">20.84 g</td>
+                                    <td scope="col" className="gray-txt fw-400 text-right pl-0 pr-0 border-top-0 pt-1 pb-1">32%</td>
                                 </tr>
                                 <tr>
-                                    <td scope="col" className="txt-lightgray fw-400 pl-0 pr-0 border-top-0 pt-1 pb-1 text-left">Saturated Fat</td>
-                                    <td scope="col" className="txt-lightgray fw-400 text-right pl-0 pr-0 border-top-0 pt-1 pb-1">2.88 g</td>
-                                    <td scope="col" className="txt-lightgray fw-400 text-right pl-0 pr-0 border-top-0 pt-1 pb-1">14%</td>
+                                    <td scope="col" className="gray-txt fw-400 pl-0 pr-0 border-top-0 pt-1 pb-1 text-left">Saturated Fat</td>
+                                    <td scope="col" className="gray-txt fw-400 text-right pl-0 pr-0 border-top-0 pt-1 pb-1">2.88 g</td>
+                                    <td scope="col" className="gray-txt fw-400 text-right pl-0 pr-0 border-top-0 pt-1 pb-1">14%</td>
                                 </tr>
                                 <tr>
-                                    <td scope="col" className="txt-lightgray fw-400 pl-0 pr-0 border-top-0 pt-1 pb-1 text-left">Trans Fat</td>
-                                    <td scope="col" className="txt-lightgray fw-400 text-right pl-0 pr-0 border-top-0 pt-1 pb-1">-</td>
+                                    <td scope="col" className="gray-txt fw-400 pl-0 pr-0 border-top-0 pt-1 pb-1 text-left">Trans Fat</td>
+                                    <td scope="col" className="gray-txt fw-400 text-right pl-0 pr-0 border-top-0 pt-1 pb-1">-</td>
                                 </tr>
                                 <tr>
                                     <td scope="col" className="fw-400 pl-0 pr-0 text-left">
@@ -115,13 +115,13 @@ const CaloriesMacrosModalComp = () => {
                                     <td scope="col" className="fw-400 text-right pl-0 pr-0"><b>22%</b></td>
                                 </tr>
                                 <tr>
-                                    <td scope="col" className="txt-lightgray fw-400 pl-0 pr-0 text-left pt-1 pb-1 border-top-0">Dietary Fiber</td>
-                                    <td scope="col" className="txt-lightgray fw-400 text-right pl-0 pr-0 pt-1 pb-1 border-top-0">3.2 g</td>
+                                    <td scope="col" className="gray-txt fw-400 pl-0 pr-0 text-left pt-1 pb-1 border-top-0">Dietary Fiber</td>
+                                    <td scope="col" className="gray-txt fw-400 text-right pl-0 pr-0 pt-1 pb-1 border-top-0">3.2 g</td>
                                     <td scope="col" className="fw-400 text-right pl-0 pr-0 pt-1 pb-1 border-top-0">13%</td>
                                 </tr>
                                 <tr>
-                                    <td scope="col" className="txt-lightgray fw-400 pl-0 pr-0 border-top-0 pt-1 pb-1 text-left pb-3">Sugars</td>
-                                    <td scope="col" className="txt-lightgray fw-400 text-right pl-0 pr-0 border-top-0 pt-1 pb-3">2.06 g</td>
+                                    <td scope="col" className="gray-txt fw-400 pl-0 pr-0 border-top-0 pt-1 pb-1 text-left pb-3">Sugars</td>
+                                    <td scope="col" className="gray-txt fw-400 text-right pl-0 pr-0 border-top-0 pt-1 pb-3">2.06 g</td>
                                 </tr>
                                 <tr>
                                     <td scope="col" className="fw-400 pl-0 pr-0 text-left"><b>Protien</b></td>
@@ -129,33 +129,33 @@ const CaloriesMacrosModalComp = () => {
                                     <td scope="col" className="fw-400 text-right pl-0 pr-0"><b>22%</b></td>
                                 </tr>
                                 <tr>
-                                    <td scope="col" className="txt-lightgray fw-400 pl-0 pr-0 text-left pt-1 pb-1 border-top-0">Vitamin D</td>
-                                    <td scope="col" className="txt-lightgray fw-400 text-right pl-0 pr-0 pt-1 pb-1 border-top-0">-</td>
+                                    <td scope="col" className="gray-txt fw-400 pl-0 pr-0 text-left pt-1 pb-1 border-top-0">Vitamin D</td>
+                                    <td scope="col" className="gray-txt fw-400 text-right pl-0 pr-0 pt-1 pb-1 border-top-0">-</td>
                                 </tr>
                                 <tr>
-                                    <td scope="col" className="txt-lightgray fw-400 pl-0 pr-0 text-left pt-1 pb-1 border-top-0">Calcium</td>
-                                    <td scope="col" className="txt-lightgray fw-400 text-right pl-0 pr-0 pt-1 pb-1 border-top-0">130 mg</td>
-                                    <td scope="col" className="txt-lightgray fw-400 text-right pl-0 pr-0 pt-1 pb-1 border-top-0">13%</td>
+                                    <td scope="col" className="gray-txt fw-400 pl-0 pr-0 text-left pt-1 pb-1 border-top-0">Calcium</td>
+                                    <td scope="col" className="gray-txt fw-400 text-right pl-0 pr-0 pt-1 pb-1 border-top-0">130 mg</td>
+                                    <td scope="col" className="gray-txt fw-400 text-right pl-0 pr-0 pt-1 pb-1 border-top-0">13%</td>
                                 </tr>
                                 <tr>
-                                    <td scope="col" className="txt-lightgray fw-400 pl-0 pr-0 text-left pt-1 pb-1 border-top-0">Iron</td>
-                                    <td scope="col" className="txt-lightgray fw-400 text-right pl-0 pr-0 pt-1 pb-1 border-top-0">5 mg</td>
-                                    <td scope="col" className="txt-lightgray fw-400 text-right pl-0 pr-0 pt-1 pb-1 border-top-0">30%</td>
+                                    <td scope="col" className="gray-txt fw-400 pl-0 pr-0 text-left pt-1 pb-1 border-top-0">Iron</td>
+                                    <td scope="col" className="gray-txt fw-400 text-right pl-0 pr-0 pt-1 pb-1 border-top-0">5 mg</td>
+                                    <td scope="col" className="gray-txt fw-400 text-right pl-0 pr-0 pt-1 pb-1 border-top-0">30%</td>
                                 </tr>
                                 <tr>
-                                    <td scope="col" className="txt-lightgray fw-400 pl-0 pr-0 text-left pt-1 pb-1 border-top-0">Potassium</td>
-                                    <td scope="col" className="txt-lightgray fw-400 text-right pl-0 pr-0 pt-1 pb-1 border-top-0">667 mg</td>
-                                    <td scope="col" className="txt-lightgray fw-400 text-right pl-0 pr-0 pt-1 pb-1 border-top-0">19%</td>
+                                    <td scope="col" className="gray-txt fw-400 pl-0 pr-0 text-left pt-1 pb-1 border-top-0">Potassium</td>
+                                    <td scope="col" className="gray-txt fw-400 text-right pl-0 pr-0 pt-1 pb-1 border-top-0">667 mg</td>
+                                    <td scope="col" className="gray-txt fw-400 text-right pl-0 pr-0 pt-1 pb-1 border-top-0">19%</td>
                                 </tr>
                                 <tr>
-                                    <td scope="col" className="txt-lightgray fw-400 pl-0 pr-0 text-left pt-1 pb-1 border-top-0">Vitamin A</td>
-                                    <td scope="col" className="txt-lightgray fw-400 text-right pl-0 pr-0 pt-1 pb-1 border-top-0">0 I U</td>
-                                    <td scope="col" className="txt-lightgray fw-400 text-right pl-0 pr-0 pt-1 pb-1 border-top-0">0%</td>
+                                    <td scope="col" className="gray-txt fw-400 pl-0 pr-0 text-left pt-1 pb-1 border-top-0">Vitamin A</td>
+                                    <td scope="col" className="gray-txt fw-400 text-right pl-0 pr-0 pt-1 pb-1 border-top-0">0 I U</td>
+                                    <td scope="col" className="gray-txt fw-400 text-right pl-0 pr-0 pt-1 pb-1 border-top-0">0%</td>
                                 </tr>
                                 <tr>
-                                    <td scope="col" className="txt-lightgray fw-400 pl-0 pr-0 text-left pt-1 pb-1 border-top-0">Vitamin C</td>
-                                    <td scope="col" className="txt-lightgray fw-400 text-right pl-0 pr-0 pt-1 pb-1 border-top-0">7 mg</td>
-                                    <td scope="col" className="txt-lightgray fw-400 text-right pl-0 pr-0 pt-1 pb-1 border-top-0">12%</td>
+                                    <td scope="col" className="gray-txt fw-400 pl-0 pr-0 text-left pt-1 pb-1 border-top-0">Vitamin C</td>
+                                    <td scope="col" className="gray-txt fw-400 text-right pl-0 pr-0 pt-1 pb-1 border-top-0">7 mg</td>
+                                    <td scope="col" className="gray-txt fw-400 text-right pl-0 pr-0 pt-1 pb-1 border-top-0">12%</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -163,7 +163,7 @@ const CaloriesMacrosModalComp = () => {
                     <div>
                         <hr className="mt-0 mb-0"></hr>
                     </div>
-                    <p className="contributes-detailtxt txt-lightgray">
+                    <p className="contributes-detailtxt gray-txt">
                         * The % Daily Value (DV) tells you how much a nutrient in a serving of food contributes to a daily diet. 2,000 calories a day is used for general nutrition advice.
                     </p>
                 </Modal.Body>

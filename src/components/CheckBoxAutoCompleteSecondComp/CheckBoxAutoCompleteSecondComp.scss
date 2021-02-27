@@ -1,4 +1,4 @@
-.filterdropdown {
+.CheckBoxAutoCompleteSecondComp {
     .picky__input {
         border: 1px solid #c8c7cc;
         border-radius: 6px;
@@ -17,9 +17,11 @@
         color: #232323;
         font-size: 15px;
         background-color: #fff;
+
         &:focus {
             box-shadow: 0 0 0 0.2rem #e4e4e4;
         }
+
         span {
             &.picky__placeholder {
                 color: #919191;
@@ -27,6 +29,7 @@
             }
         }
     }
+
     .picky__dropdown {
         width: 260px;
         background: #fff;
@@ -107,16 +110,20 @@
 
                 .custom-control-input {
                     &:checked {
-                        & ~ .custom-control-label {
+                        &~.custom-control-label {
                             &:before {
-                                border-color: #cb007b;
-                                background-color: #cb007b;
+                                border-color: #919191;
+                                background-color: #fff;
+                            }
+
+                            &:after {
+                                background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='9.898' height='7.014' viewBox='0 0 9.898 7.014'%3E%3Cpath id='Path_411' data-name='Path 411' d='M-8.169-3.752l5.362-5.362.826.826L-8.169-2.1l-3.71-3.71.826-.826Z' transform='translate(11.879 9.114)' fill='%23cb007b'/%3E%3C/svg%3E%0A") !important;
                             }
                         }
                     }
 
                     &:focus {
-                        & ~ .custom-control-label {
+                        &~.custom-control-label {
                             &:before {
                                 box-shadow: 0 0 0 0.2rem #d00b812e !important;
                                 border-color: #cb007b38 !important;
@@ -126,16 +133,19 @@
                 }
 
                 .custom-control-label {
+
                     &::before,
                     &::after {
                         width: 20px;
                         height: 20px;
+                        top: 0px;
                     }
                 }
 
                 label {
-                    padding-top: 2px;
-                    padding-left: 5px;
+                    padding-top: 0px !important; 
+                    padding-left: 7px !important;
+                    font-size: 15px;
                 }
             }
         }

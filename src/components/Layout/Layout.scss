@@ -79,6 +79,10 @@ body {
     color: #666666 !important;
 }
 
+.txt-darkgreen{
+    color: #2E482B !important;
+}
+
 .outline-none {
     outline: none;
 }
@@ -100,6 +104,10 @@ body {
     border-color: #ffffff30;
 }
 
+.f-17 {
+    font-size: 17px !important;
+}
+
 .f-16 {
     font-size: 16px !important;
 }
@@ -116,8 +124,20 @@ body {
     font-size: 13px !important;
 }
 
+.f-12 {
+    font-size: 12px !important;
+}
+
 .f-11 {
     font-size: 11px !important;
+}
+
+.fw-500{
+    font-weight: 500;
+}
+
+.fw-600{
+    font-weight: 600;
 }
 
 .minwidth-260 {
@@ -165,6 +185,7 @@ body {
     min-width: 120px;
     transition: all 0.2s;
     font-size: 15px !important;
+    font-family: "Brandon Text Medium" !important;
 
     &:hover {
         background: #c8c7cc;
@@ -188,9 +209,45 @@ body {
     min-width: 160px;
     transition: all 0.2s;
     background: linear-gradient(2deg, #cb007b, #ff75ba);
+    font-family: "Brandon Text Medium" !important;
 
     &:hover {
         background: #fff;
+        color: #cb007b !important;
+        border: 1px solid #fb6bb5 !important;
+    }
+
+    &:focus {
+        box-shadow: 0 0 0 0.2rem #d00b812e !important;
+    }
+    &.min-width-120 {
+        min-width: 120px;
+    }
+    &.min-width-270 {
+        min-width: 270px;
+    }
+    &.min-height-50 {
+        height: 50px;
+    }
+    &.shadow-light {
+        box-shadow: 0px 7px 10px 0px #0000000f;
+    }
+}
+
+// Pink Button css end
+
+// Pink Only Button css start
+.pink-btn {
+    border: 1px solid #cb007b !important;
+    color: #fff !important;
+    height: 40px;
+    min-width: 160px;
+    transition: all 0.2s;
+    background: #cb007b !important;
+    font-family: "Brandon Text Medium" !important;
+
+    &:hover {
+        background: #fff !important;
         color: #cb007b !important;
         border: 1px solid #fb6bb5 !important;
     }
@@ -222,6 +279,7 @@ body {
     min-width: 160px;
     transition: all 0.2s;
     font-size: 15px;
+    font-family: "Brandon Text Medium" !important;
 
     .add-icon {
         cursor: pointer;
@@ -250,7 +308,7 @@ body {
             font-size: 20px;
             position: absolute;
             opacity: 0;
-            top: -6px;
+            top: -3px;
             left: -15px;
             transition: all 0.2s;
             width: 14px;
@@ -341,6 +399,56 @@ body {
     }
 }
 // Pink CheckBox Css end
+
+// pinkline CheckBox Css start
+.pinkline-checkbox {
+    .custom-control-input {
+        &:checked {
+            ~.custom-control-label{
+                &::before {
+                    border-color: #cb007b;
+                    background-color: #ffffff;
+                }
+                &::after {
+                    border-color: #cb007b;
+                    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='9.898' height='7.014' viewBox='0 0 9.898 7.014'%3E%3Cpath id='Path_411' data-name='Path 411' d='M-8.169-3.752l5.362-5.362.826.826L-8.169-2.1l-3.71-3.71.826-.826Z' transform='translate(11.879 9.114)' fill='%23cb007b'/%3E%3C/svg%3E%0A") !important;
+                }
+            
+                &::before {
+                    border-color: #919191;
+                }
+            }
+        }
+        &:focus {
+            ~.custom-control-label{
+                &::before {
+                    box-shadow: none;
+                }
+            
+                &:not(:checked) {
+                        &::before {
+                            border: 1px solid #919191;
+                        }
+                    
+                }
+            }
+        }
+    }
+    .custom-control-label::before,
+    .custom-control-label::after {
+        border: 1px solid #919191;
+        width: 20px;
+        height: 20px;
+        top: 1px;
+        border-radius: 4px;
+        background-color: #fff;
+    }
+    .custom-control-label {
+        padding-left: 10px;
+        cursor: pointer;
+    }
+}
+// pinkline CheckBox Css end
 
 // actiondropdown css start
 .actiondropdown-btn {
@@ -438,12 +546,14 @@ select {
         font-size: 14px;
         min-height: 40px;
         border-radius: 6px;
+        font-family: "Brandon Text Medium" !important;
         &:focus {
             box-shadow: 0 0 0 0.2rem #e4e4e4;
             border-color: #919191;
         }
         &::placeholder {
             color: #c8c7cc;
+            font-family: "BrandonTextWeb-Regular" !important;
         }
     }
 }
@@ -593,7 +703,8 @@ select {
                     text-transform: uppercase;
                     padding: 0;
                     outline: none;
-                    font-weight: 500;
+                    // font-weight: 500;
+                    font-family: "Brandon Text Medium" !important;
                 }
             }
             .accordion-button .expand-button:after {
@@ -629,6 +740,7 @@ select {
                         border-radius: 0px;
                         box-shadow: none;
                         outline: none;
+                        font-family: "Brandon Text Medium" !important;
                         &:focus {
                             border-bottom: 1px solid#CB007B;
                         }
@@ -636,6 +748,7 @@ select {
                     .form-control-plaintext {
                         outline: none;
                         font-size: 15px;
+                        font-family: "Brandon Text Medium" !important;
                     }
                 }
             }

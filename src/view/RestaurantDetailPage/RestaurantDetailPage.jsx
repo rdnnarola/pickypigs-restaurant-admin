@@ -145,13 +145,13 @@ const RestaurantDetailPage = () => {
                                 <div className="pt-3 pb-3 restaurent-info">
                                     {editProfileName ?
                                         restauraneSetting_Data && restauraneSetting_Data.name ?
-                                            <h4 className="brandon-Bold restaurent-name"> {restauraneSetting_Data && restauraneSetting_Data.name}</h4>
+                                            <h4 className="brandon-Medium restaurent-name"> {restauraneSetting_Data && restauraneSetting_Data.name}</h4>
                                             :
                                             <h4 className="brandon-Medium restaurent-name">Not Available</h4>
 
                                         :
                                         <React.Fragment>
-                                            <input type="text" name="name" value={restaurantName} onChange={handleProfileChange} placeholder="Enter Name here" className="form-control-inputtext form-control" />
+                                            <input type="text" name="name" value={restaurantName} onChange={handleProfileChange} placeholder="Enter Name here" className="form-control-inputtext form-control mb-2" />
 
                                         </React.Fragment>
 
@@ -208,7 +208,7 @@ const RestaurantDetailPage = () => {
                     </div>
                     {editForm ?
                         restauraneSetting_Data && restauraneSetting_Data.about ?
-                            <p className="f-15 mb-0 line-height-1_75">{restauraneSetting_Data && restauraneSetting_Data.about}.</p>
+                            <p className="f-15 mb-0 line-height-1_75 brandon-Medium">{restauraneSetting_Data && restauraneSetting_Data.about}.</p>
                             :
                             <p className="form-control-plaintext text-uppercase brandon-Medium">No Data Availble...</p>
                         :

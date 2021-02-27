@@ -21,7 +21,7 @@ const CheckBoxAutoCompleteThirdComp = ({ placeholder,clearAll, labelKey = "name"
             includeSelectAll={false}
             value={value}
             onChange={onChangeData}
-            className={`filterdropdown ${className}`}
+            className={`CheckBoxAutoCompleteThirdComp ${className}`}
             render={({
                 style,
                 isSelected,

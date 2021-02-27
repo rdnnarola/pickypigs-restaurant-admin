@@ -21,7 +21,7 @@ const CheckBoxAutoCompleteSecondComp = ({ placeholder,clearAll, labelKey = "name
             includeSelectAll={false}
             value={value}
             onChange={onChangeData}
-            className={`filterdropdown ${className}`}
+            className={`CheckBoxAutoCompleteSecondComp ${className}`}
             render={({
                 style,
                 isSelected,
@@ -32,7 +32,7 @@ const CheckBoxAutoCompleteSecondComp = ({ placeholder,clearAll, labelKey = "name
                 multiple,
             }) => {
                 return (
-                    <div className="filter-listcheck" key={`custom-inline-${item._id}`}>
+                    <div className="filter-listcheck mt-1" key={`custom-inline-${item._id}`}>
                   
                         <Form>
                                 <div  className="mb-2">
