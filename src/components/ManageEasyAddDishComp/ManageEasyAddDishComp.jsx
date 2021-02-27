@@ -509,8 +509,8 @@ const ManageEasyAddDishComp = () => {
                                                                                                     <Field className="form-control" name={`ingredient.${index}.qty`} placeholder="Qty" type="number" />
                                                                                                     <ErrorMessage name={`ingredient.${index}.qty`} />
                                                                                                 </td>
-                                                                                                <td>
-                                                                                                    <div className="custom-control custom-checkbox pink-checkbox">
+                                                                                                <td className="text-center">
+                                                                                                    <div className="custom-control custom-checkbox pink-checkbox pinkgray-checkbox-style">
                                                                                                         <Field
                                                                                                             name={`ingredient.${index}.customisable`}
                                                                                                             type="checkbox"
@@ -520,8 +520,8 @@ const ManageEasyAddDishComp = () => {
                                                                                                         <label className="custom-control-label" htmlFor={`ingredient.${index}.customisable`}></label>
                                                                                                     </div>
                                                                                                 </td>
-                                                                                                <td>
-                                                                                                    <button type="button" className="secondary" onClick={() => remove(index)}>X</button>
+                                                                                                <td className="text-center">
+                                                                                                    <button type="button" className="secondary actionclose-btn m-auto" onClick={() => remove(index)}>X</button>
                                                                                                 </td>
                                                                                             </tr>
 
