@@ -132,7 +132,10 @@ export const getAllDishesData=(data)=>{
 
              const formData = new FormData();
              const file = data.image;
-             formData.append("image", file);
+             if( typeof data.image !== 'string' || !data.image instanceof String){
+              formData.append("image", file);
+             }
+            //  formData.append("image", file);
              formData.append("name", data.name);
              formData.append("makes", data.makes);
              formData.append("price", data.price);

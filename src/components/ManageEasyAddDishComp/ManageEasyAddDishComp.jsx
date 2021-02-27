@@ -141,7 +141,6 @@ const ManageEasyAddDishComp = () => {
         menuId:[],
         categoryId:'',
         subcategoryId:'',
-        description:'',
         allergenId:[],
         dietaryId:[],
         lifestyleId:[],
@@ -153,7 +152,9 @@ const ManageEasyAddDishComp = () => {
         caloriesAndMacros:"",
         ingredient:[],
         priceUnit:'$',
-      
+        description:'',
+        description2:'',
+
     }
 
     const validationSchema  = Yup.object().shape({
@@ -168,7 +169,7 @@ const ManageEasyAddDishComp = () => {
         menuId:Yup.array().required('Please Select Menu'),
         categoryId:Yup.string().required('category is required'),
         subcategoryId:Yup.string().required('subcategory is required'),
-        description:Yup.string().required('description is required'),
+        description2:Yup.string().required('description is required'),
         allergenId:Yup.array().required('Please Select allergen'),
         dietaryId:Yup.array().required('Please Select  dietary'),
         lifestyleId:Yup.array().required('Please Select lifestyle'),
@@ -252,10 +253,10 @@ const ManageEasyAddDishComp = () => {
                                     <div className="row">
                                         <div className="col-sm-12">
                                             <div className="page-heading brandon-Medium d-flex justify-content-between align-items-center">
-                                                <h4>Manage Easy Add Dish</h4>
-                                                <div>
+                                                <h4>Easy Dish Upload</h4>
+                                                {/* <div>
                                                     <p className="mb-0 lastedit-txt brandon-regular"><span>Last edited : </span>Yesterday 2:30 PM</p>
-                                                </div>
+                                                </div> */}
                                             </div>
 
                                         </div>
@@ -418,14 +419,14 @@ const ManageEasyAddDishComp = () => {
                                                             <div className="d-flex add-description-head justify-content-between align-items-center">
                                                                 <h6 className="brandon-Bold text-uppercase">Add Description</h6>
                                                                 <div className="add-description-inputbtn">
-                                                                    <button type="reset" className="cancel-btn" onClick={()=>{handleDescModal()}}>Cancel</button>
-                                                                    <button type="button" className="save-btn ml-3" onClick={handleDescModal}>Save</button>
+                                                                    <button type="reset" className="cancel-btn" onClick={()=>{handleDescModal();setFieldValue("description2",values.description)}}>Cancel</button>
+                                                                    <button type="button" className="save-btn ml-3" onClick={()=>{handleDescModal();setFieldValue("description",values.description2)}}>Save</button>
                                                                 </div>
                                                             </div>
-                                                            <Field component='textarea' name="description"  rows='5' className="form-control add-description-textarea" placeholder="Type Here" />
+                                                            <Field component='textarea' name="description2"  rows='5' className="form-control add-description-textarea" placeholder="Type Here" />
                                                         </div>
                                                     }
-                                                    {touched.description && errors.description && <div className="error pink-txt f-11">{errors.description}</div>}
+                                                    {touched.description2 && errors.description2 && <div className="error pink-txt f-11">{errors.description2}</div>}
 
                                                 </div>
 

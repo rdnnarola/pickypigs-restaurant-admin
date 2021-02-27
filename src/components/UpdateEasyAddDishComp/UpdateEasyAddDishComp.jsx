@@ -17,6 +17,7 @@ import { getAllAllergyData, getAllDietaryData,getAllLifestyleData,getAllCookingD
 import {SERVER_URL} from '../../shared/constant'
 import CheckBoxAutoCompleteThirdComp from "../CheckBoxAutoCompleteThirdComp/CheckBoxAutoCompleteThirdComp";
 import CustomLoadingComp from "../CustomLoadingComp/CustomLoadingComp";
+import moment from "moment";
 
 
 
@@ -149,7 +150,6 @@ const UpdateEasyAddDishComp = () => {
         menuId:selectedDisc_data&&selectedDisc_data[0].menuId?selectedDisc_data[0].menuId:[],
         categoryId:selectedDisc_data&&selectedDisc_data[0].categoryId?selectedDisc_data[0].categoryId:'',
         subcategoryId:selectedDisc_data&&selectedDisc_data[0].subcategoryId?selectedDisc_data[0].subcategoryId:'',
-        description:selectedDisc_data&&selectedDisc_data[0].description?selectedDisc_data[0].description:'',
         allergenId:selectedDisc_data&&selectedDisc_data[0].allergenId?selectedDisc_data[0].allergenId:[],
         dietaryId:selectedDisc_data&&selectedDisc_data[0].dietaryId?selectedDisc_data[0].dietaryId:[],
         lifestyleId:selectedDisc_data&&selectedDisc_data[0].lifestyleId?selectedDisc_data[0].lifestyleId:[],
@@ -162,6 +162,8 @@ const UpdateEasyAddDishComp = () => {
         ingredient:selectedDisc_data&&selectedDisc_data[0].ingredientSection&&selectedDisc_data[0].ingredientSection.dish_ingredients?selectedDisc_data[0].ingredientSection.dish_ingredients:[],
         priceUnit:selectedDisc_data&&selectedDisc_data[0].priceUnit?selectedDisc_data[0].priceUnit:'',
         deleteIngredients:[],
+        description:selectedDisc_data&&selectedDisc_data[0].description?selectedDisc_data[0].description:'',
+        description2:selectedDisc_data&&selectedDisc_data[0].description?selectedDisc_data[0].description:'',
     }
 
     const validationSchema  = Yup.object().shape({
@@ -176,7 +178,7 @@ const UpdateEasyAddDishComp = () => {
         menuId:Yup.array().required('Please Select Menu'),
         categoryId:Yup.string().required('category is required'),
         subcategoryId:Yup.string().required('subcategory is required'),
-        description:Yup.string().required('description is required'),
+        description2:Yup.string().required('description is required'),
         allergenId:Yup.array().required('Please Select allergen'),
         dietaryId:Yup.array().required('Please Select  dietary'),
         lifestyleId:Yup.array().required('Please Select lifestyle'),
@@ -252,7 +254,7 @@ const UpdateEasyAddDishComp = () => {
                         return (
                             <Form>
                                 <React.Fragment>
-                                {/* {JSON.stringify(values.deleteIngredients)} */}
+                                {JSON.stringify(values.description)}
                                     {/* || */}
                                     {/* {JSON.stringify(dishesData)} */}
                                     {/* || */}
@@ -260,9 +262,10 @@ const UpdateEasyAddDishComp = () => {
                                     <div className="row">
                                         <div className="col-sm-12">
                                             <div className="page-heading brandon-Medium d-flex justify-content-between align-items-center">
-                                                <h4>Manage Easy Add Dish</h4>
+                                                <h4>Update Easy Add Dish</h4>
                                                 <div>
-                                                    <p className="mb-0 lastedit-txt brandon-regular"><span>Last edited : </span>Yesterday 2:30 PM</p>
+                                                    <p className="mb-0 lastedit-txt brandon-regular"><span>Last edited : </span>
+                                                    {selectedDisc_data&&selectedDisc_data[0]&&selectedDisc_data[0].updatedAt ?moment(selectedDisc_data[0].updatedAt).format(" Do MMMM, YYYY"): "Not Available" }</p>
                                                 </div>
                                             </div>
 
@@ -426,14 +429,14 @@ const UpdateEasyAddDishComp = () => {
                                                             <div className="d-flex add-description-head justify-content-between align-items-center">
                                                                 <h6 className="brandon-Bold text-uppercase">Add Description</h6>
                                                                 <div className="add-description-inputbtn">
-                                                                    <button type="reset" className="cancel-btn" onClick={()=>{handleDescModal()}}>Cancel</button>
-                                                                    <button type="button" className="save-btn ml-3" onClick={handleDescModal}>Save</button>
+                                                                    <button type="reset" className="cancel-btn" onClick={()=>{handleDescModal();setFieldValue("description2",values.description)}}>Cancel</button>
+                                                                    <button type="button" className="save-btn ml-3" onClick={()=>{handleDescModal();setFieldValue("description",values.description2)}}>Save</button>
                                                                 </div>
                                                             </div>
-                                                            <Field component='textarea' name="description"  rows='5' className="form-control add-description-textarea" placeholder="Type Here" />
+                                                            <Field component='textarea' name="description2"  rows='5' className="form-control add-description-textarea" placeholder="Type Here" />
                                                         </div>
                                                     }
-                                                    {touched.description && errors.description && <div className="error pink-txt f-11">{errors.description}</div>}
+                                                    {touched.description2 && errors.description2 && <div className="error pink-txt f-11">{errors.description2}</div>}
 
                                                 </div>
 
@@ -451,6 +454,7 @@ const UpdateEasyAddDishComp = () => {
                                                                     className="form-control-file userprofile-control upload"
                                                                     // onChange={(e)=>{galleryImageUploadHandeler(e,values.image,setFieldValue,"image")}}
                                                                     onChange={(e)=>{setFieldValue("image",e.target.files[0])}}
+                                                                    onCan
                                                                 />
                                                                 {values.image?
                                                                     typeof values.image === 'string' || values.image instanceof String ?
