@@ -254,7 +254,7 @@ const UpdateEasyAddDishComp = () => {
                         return (
                             <Form>
                                 <React.Fragment>
-                                {JSON.stringify(values.description)}
+                                {/* {JSON.stringify(values.description)} */}
                                     {/* || */}
                                     {/* {JSON.stringify(dishesData)} */}
                                     {/* || */}
