@@ -71,6 +71,8 @@ export const getAllMenuData=(data)=>{
         }
     }
   };
+
+  
 // update product Form
 export const updateMenuForm = (key , value) => {
     

@@ -4,8 +4,8 @@ const initialState = {
     isLoading : false,
     errorMessage:'',
     dishes_Data:null,
-    selectedCategory:{},
-    selectedMenuCategoryList:[]
+    selected_Disc:null,
+
     };
     
     const dishesReducer = (state = initialState, { type, payload }) => {
@@ -13,10 +13,9 @@ const initialState = {
         
         case "GET_ALLDISHES_REQUEST":
         case "ADD_DISHES_REQUEST":
-        case "GET_SELECTEDCATEGORY_REQUEST":
-        case "UPDATE_CATEGORY_REQUEST":
+        case "GET_SELECTEDDISC_REQUEST":
+        case "UPDATE_DISC_REQUEST":
         case "DELETE_DISHES_REQUEST":
-        case "GET_MENUCATEGORYLIST_REQUEST":
             return {
                 ...state,
                 isLoading :true,
@@ -33,22 +32,14 @@ const initialState = {
                 ...state,
                 isLoading:false,
             };
-        case "GET_SELECTEDCATEGORY_SUCCESS":            
+        case "GET_SELECTEDDISC_SUCCESS":            
             return{
                 ...state,
                 isLoading:false,
-                selectedCategory: payload.data
+                selected_Disc: payload
             }  
-        case "UPDATE_CATEGORY_FORM":
-            return  {
-                ...state,
-                loading: false,
-                selectedCategory : {
-                    ...state.selectedCategory,
-                    [payload.key] : payload.value
-                }
-            };
-        case "UPDATE_CATEGORY_SUCCESS":            
+        
+        case "UPDATE_DISC_SUCCESS":            
             return{
                 ...state,
                 isLoading:false
@@ -59,19 +50,12 @@ const initialState = {
                 ...state,
                 isLoading:false
             } 
-        case "GET_MENUCATEGORYLIST_SUCCESS":
-            return {
-                ...state,
-                isLoading:false,
-                selectedMenuCategoryList:payload.data,
-    
-            };        
+            
         case "GET_ALLDISHES_FAILURE":
         case "ADD_DISHES_FAILURE":
-        case "GET_SELECTEDCATEGORY_FAILURE":  
-        case "UPDATE_CATEGORY_FAILURE":  
+        case "GET_SELECTEDDISC_FAILURE":  
+        case "UPDATE_DISC_FAILURE":  
         case "DELETE_DISHES_FAILURE": 
-        case "GET_MENUCATEGORYLIST_FAILURE":    
             return {
                 ...state,
                 isLoading:false,

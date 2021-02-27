@@ -19,8 +19,8 @@
                     word-break: break-all;
                     line-height: 1.25;
                 }
-                .rs-allergiesinfomodalbtn-detail {
-                    font-size: 14px;
+                .modal-footer {
+                    padding: 0px 26px 40px;
                 }
             }
         }
@@ -75,12 +75,41 @@
                             }
                         }
                     }
-                }
-                .contributes-detailtxt{
-                    font-size: 14px;
-                    margin-top: 20px;
+                    .contributes-detailtxt {
+                        font-size: 14px;
+                        margin-top: 20px;
+                    }
                 }
             }
+        }
+    }
+
+  
+}  
+
+.recipt-editwraper {
+    .mg-input {
+        max-width: 46px;
+        border: none;
+        border-bottom: 1px #232323;
+        border-bottom-style: dashed;
+        text-align: right;
+        font-size: 14px;
+        color: #919191;
+        outline: none;
+    }
+    .mg-input-txt {
+        width: 20px;
+        padding: 0px;
+        border: none;
+        color: #919191;
+        outline: none;
+        text-align: right;
+    }
+    &.input-dark{
+        .mg-input, .mg-input-txt{
+            color: #232323;
+            font-family: "Brandon Text Medium" !important;
         }
     }
 }
