@@ -28,9 +28,6 @@ const UpdateEasyAddDishComp = () => {
 	let  discId  = params.id;
     const dispatch=useDispatch();
     const history = useHistory();
-    const [menuValue, setMenuValue] = useState([])
-    const [categoryId, setCategoryId] = useState('')
-    const [subcategoryId, setSubcategoryId] = useState('')
     const [myData, setMyData] = useState([]);
     const [descModal, setDescModal] = useState(false);
     const [addItem, setAddItem] = useState(true);
@@ -42,9 +39,7 @@ const UpdateEasyAddDishComp = () => {
     let selectedDisc_data = useSelector((state) => {
         return state.dishes.selected_Disc
     });
-    const clearMenugy=()=>{
-        setMenuValue([])
-    }
+   
     useEffect(() => {
         dispatch(getAllAllergyData())
         dispatch(getAllDietaryData())
@@ -349,7 +344,6 @@ const UpdateEasyAddDishComp = () => {
                                                         <CheckBoxAutoCompleteSecondComp 
                                                             className="minwidth-260" 
                                                             placeholder={"Select"} 
-                                                            clearAll={clearMenugy} 
                                                             options={menuData&&menuData.menuDetails} 
                                                             name="menuId" 
                                                             value={values.menuId} 
@@ -364,7 +358,6 @@ const UpdateEasyAddDishComp = () => {
                                                         <CheckBoxAutoCompleteSecondComp 
                                                             className="minwidth-260" 
                                                             placeholder={"menu_options"} 
-                                                            clearAll={clearMenugy} 
                                                             options={menuData&&menuData.menuDetails?menuData.menuDetails:[]} 
                                                             value={values.menuId} 
                                                             onChangeData={(value)=>{setFieldValue("menuId",value);setFieldValue("categoryId",'');setFieldValue("subcategoryId",'');getCategoryAction(value);}}

@@ -26,19 +26,12 @@ const numRegExp = /^[+]?([0-9]+(?:[\.][0-9]*)?|\.[0-9]+)$/;
 const ManageEasyAddDishComp = () => {
     const dispatch=useDispatch();
     const history = useHistory();
-    const [menuValue, setMenuValue] = useState([])
-    const [categoryId, setCategoryId] = useState('')
-    const [subcategoryId, setSubcategoryId] = useState('')
     const [myData, setMyData] = useState([]);
-
-
 
     const [descModal, setDescModal] = useState(false);
     const [addItem, setAddItem] = useState(false);
 
-    const clearMenugy=()=>{
-        setMenuValue([])
-    }
+    
     useEffect(() => {
         dispatch(getAllAllergyData())
         dispatch(getAllDietaryData())
@@ -210,8 +203,8 @@ const ManageEasyAddDishComp = () => {
             new:fields.new,
             available:fields.available,
             menuId:fields.menuId,
-            categoryId:categoryId,
-            subcategoryId:subcategoryId,
+            categoryId:fields.categoryId,
+            subcategoryId:fields.subcategoryId,
             description:fields.description,
             allergenId:fields.allergenId,
             dietaryId:fields.dietaryId,
@@ -251,7 +244,7 @@ const ManageEasyAddDishComp = () => {
                         return (
                             <Form>
                                 <React.Fragment>
-                                {/* {JSON.stringify(values)} */}
+                                {JSON.stringify(values)}
                                     {/* || */}
                                     {/* {JSON.stringify(dishesData)} */}
                                     {/* || */}
@@ -343,7 +336,6 @@ const ManageEasyAddDishComp = () => {
                                                         <CheckBoxAutoCompleteSecondComp 
                                                             className="minwidth-260" 
                                                             placeholder={"Select"} 
-                                                            clearAll={clearMenugy} 
                                                             options={menuData&&menuData.menuDetails} 
                                                             name="menuId" 
                                                             value={values.menuId} 
@@ -358,7 +350,6 @@ const ManageEasyAddDishComp = () => {
                                                         <CheckBoxAutoCompleteSecondComp 
                                                             className="minwidth-260" 
                                                             placeholder={"menu_options"} 
-                                                            clearAll={clearMenugy} 
                                                             options={menuData&&menuData.menuDetails?menuData.menuDetails:[]} 
                                                             value={values.menuId} 
                                                             onChangeData={(value)=>{setFieldValue("menuId",value);setFieldValue("categoryId",'');setFieldValue("subcategoryId",'');getCategoryAction(value);}}
