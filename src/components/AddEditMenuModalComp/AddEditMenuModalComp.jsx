@@ -120,9 +120,8 @@ const AddEditMenuModalComp = (props) => {
                                                     <div className="custom-timepicker form-group ">
                                                         <MuiPickersUtilsProvider utils={MomentUtils}>
                                                             <KeyboardTimePicker
-                                                                id="from-time-picker" placeholder="From"
+                                                                id="from-time-picker1" placeholder="From"
                                                                 inputVariant="outlined"
-                                                                disabled={true}
                                                                 mask="__:__ _M" value={values.timeFrom}
                                                                 onChange={date  => setFieldValue("timeFrom", date,false)}
                                                                 KeyboardButtonProps={{
@@ -137,7 +136,7 @@ const AddEditMenuModalComp = (props) => {
                                                     <div className="custom-timepicker form-group ">
                                                         <MuiPickersUtilsProvider utils={MomentUtils}>
                                                             <KeyboardTimePicker
-                                                                id="to-time-pickera" placeholder="To" 
+                                                                id="to-time-pickera2" placeholder="To" 
                                                                 inputVariant="outlined"
                                                                 value={values.timeTo}  mask="__:__ _M"
                                                                 onChange={value => setFieldValue("timeTo", value)}

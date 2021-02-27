@@ -203,6 +203,38 @@ export const updateMenuForm = (key , value) => {
     }
   };
 
+
+  export const redoSelectedMenuData=(selectedId,showDeleted)=>{
+    return async(dispatch)=>{
+        try{
+            dispatch({type:"REDO_MENU_REQUEST"});
+            let config= {
+                headers:{
+                 "Content-Type":"application/json"
+                 }
+             }
+            let dataURL=`/restaurant_admin/menus/redo/${selectedId}`
+            let response = await Axios.put(dataURL,config );
+            dispatch({type:"REDO_MENU_SUCCESS",payload:response.data});
+            if(showDeleted){
+              dispatch(getAllMenuData());
+            }else{
+              dispatch(getAllMenuData({delete:0}));
+            }
+            dispatch(setAlert('Menu Restored Successfuly', 'warning'));
+
+        }
+        catch(error){
+          dispatch({type:"REDO_MENU_FAILURE",payload:error});
+          if (error.response) {
+            dispatch(setAlert(`${error.response.data.message}`, 'error'));
+          } else {
+            dispatch(setAlert('Something wwnt wrong!', 'error'));
+          }
+        }
+    }
+  };
+
   
 
   

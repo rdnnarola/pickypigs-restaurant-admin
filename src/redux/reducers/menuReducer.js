@@ -17,6 +17,7 @@ const initialState = {
         case "DELETE_MENU_REQUEST":
         case "HIDE_MENU_REQUEST":
         case "DUPLICATE_MENU_REQUEST":
+        case "REDO_MENU_REQUEST":
             return {
                 ...state,
                 isLoading :true,
@@ -69,7 +70,12 @@ const initialState = {
             return{
                 ...state,
                 isLoading:false,
-            };         
+            }; 
+        case "REDO_MENU_SUCCESS":
+            return{
+                ...state,
+                isLoading:false,
+            };             
              
         case "GET_ALLMENU_FAILURE":
         case "ADD_MENU_FAILURE":
@@ -78,6 +84,7 @@ const initialState = {
         case "DELETE_MENU_FAILURE": 
         case "HIDE_MENU_FAILURE": 
         case "DUPLICATE_MENU_FAILURE": 
+        case "REDO_MENU_FAILURE": 
             return {
                 ...state,
                 isLoading:false,

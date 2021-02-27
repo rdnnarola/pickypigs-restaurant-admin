@@ -1,6 +1,6 @@
 import React,{useState,useEffect} from "react";
 import {useDispatch,useSelector} from "react-redux";
-import {getAllMenuData, hideSelectedMenuData,duplicateSelectedMenuData} from "../../redux/actions/menuAction"
+import {getAllMenuData, hideSelectedMenuData,duplicateSelectedMenuData, redoSelectedMenuData} from "../../redux/actions/menuAction"
 import AddEditMenuModalComp from "../AddEditMenuModalComp/AddEditMenuModalComp";
 import DeleteMenuModalComp from "../DeleteMenuModalComp/DeleteMenuModalComp";
 import moment from "moment";
@@ -133,7 +133,7 @@ const ManageMenuComponent = () => {
                                                                             {data.isDeleted===0?
                                                                                 <li><button className="dropdown-item" onClick={() => {setDeleteModalShow(true);setMenuId(data._id)}}>Delete</button></li>
                                                                             :
-                                                                                <li><button className="dropdown-item" >Restore Menu</button></li>
+                                                                                <li><button className="dropdown-item" onClick={()=>{dispatch(redoSelectedMenuData(data._id,showDeleted))}}>Restore Menu</button></li>
                                                                             }
                                                                             <li><button className="dropdown-item" onClick={()=>{dispatch(hideSelectedMenuData(data._id,{isActive:!data.isActive},showDeleted))}}>{data.isActive?"Hide":"UnHide"}</button></li>
                                                                             <li><button className="dropdown-item" onClick={()=>{dispatch(duplicateSelectedMenuData(data._id,{},showDeleted))}}>Duplicate</button></li>

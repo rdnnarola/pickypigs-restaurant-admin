@@ -6,6 +6,7 @@ import DeleteSubMenuModalComp from "../DeleteSubMenuModalComp/DeleteSubMenuModal
 import moment from "moment";
 import './ManageSubMenuComponent.scss';
 import daycalculate from "../FormikExample/daycalculate";
+import { redoSelectedMenuData } from "../../redux/actions/menuAction";
 
 
 
@@ -129,7 +130,7 @@ const ManageSubMenuComponent = () => {
                                                                             {data.isDeleted===0?
                                                                                 <li><button className="dropdown-item" onClick={() => {setDeleteModalShow(true);setSubMenuId(data._id)}}>Delete</button></li>
                                                                             :
-                                                                                <li><button className="dropdown-item" >Restore Menu</button></li>
+                                                                                <li><button className="dropdown-item" onClick={()=>{dispatch(redoSelectedMenuData(data._id,showDeleted))}}>Restore SubMenu</button></li>
                                                                             }
                                                                             <li><button className="dropdown-item" onClick={()=>{dispatch(hideSelectedSubMenuData(data._id,{isActive:!data.isActive},showDeleted))}}>{data.isActive?"Hide":"UnHide"}</button></li>
                                                                             <li><button className="dropdown-item" onClick={()=>{dispatch(duplicateSelectedSubMenuData(data._id,{},showDeleted))}}>Duplicate</button></li>
