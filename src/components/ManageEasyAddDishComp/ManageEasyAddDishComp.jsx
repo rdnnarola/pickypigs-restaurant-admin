@@ -761,11 +761,13 @@ const ManageEasyAddDishComp = () => {
 
                                         </div>
                                         <div className="row">
-                                            <div className="col-sm-12">
-                                                <div className="my_shadow mb-3 bg-white w-100">
-                                                    <div className="d-flex justify-content-between align-items-center">
-                                                        <h2>INSTRUCTIONS</h2>
+                                            <div className="col-sm-12 mb-4 pb-2">
+                                                <div className="my_shadow bg-white w-100 instructions-wrapper">
+                                                    <div className="d-flex justify-content-between align-items-center instructions-heading">
+                                                        <h2 className="text-uppercase f-14 brandon-Bold p-4">INSTRUCTIONS</h2>
                                                     </div>
+                                                    <Field component='textarea' rows='5' name="instructions" className="form-control add-description-textarea" placeholder="Type Here" />
+                                                    {touched.instructions && errors.instructions && <div className="error pink-txt f-11 ml-3">{errors.instructions}</div>}
                                                 </div>
                                             </div>
                                         </div>

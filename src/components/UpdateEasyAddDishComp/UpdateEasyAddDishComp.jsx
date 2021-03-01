@@ -508,7 +508,7 @@ const UpdateEasyAddDishComp = () => {
                                                                                     {data.allergenlist&&data.allergenlist.map((data,index)=>{
                                                                                         return(
                                                                                         <React.Fragment key={index}>
-                                                                                            {data.name},
+                                                                                            {(index ? ' , ' : '')+data.name}
                                                                                         </React.Fragment>
                                                                                         )
                                                                                         })}
