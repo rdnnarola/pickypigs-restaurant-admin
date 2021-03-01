@@ -260,7 +260,7 @@ const RestaurantAddAddressComp = (props) => {
                                                                         {touched.coordinates && errors.coordinates && <div className="error pink-txt f-11">{errors.coordinates}</div>}
 
                                                                         <GoogleMapTestComp
-                                                                            googleMapURL={`https://cors-anywhere.herokuapp.com ${`https://maps.googleapis.com/maps/api/js?key=${API_KEY}&v=3.exp&libraries=geometry,drawing,places`}`}
+                                                                            googleMapURL={`https://maps.googleapis.com/maps/api/js?key=${API_KEY}&v=3.exp&libraries=geometry,drawing,places`}
 
                                                                             loadingElement={<div style={{ height: `100%` }} />}
                                                                             containerElement={<div style={{ height: `100%` }} />}
