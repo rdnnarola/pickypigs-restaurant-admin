@@ -27,12 +27,12 @@ function App() {
       <Switch> 
         <Route exact path="/reset_password/:token" render={(props) => <ResetPasswordPage {...props} />} />
         <Route exact path="/login/:logintoken" render={(props) => <TokenVerificationPage {...props} />} />
-        <Route exact path="/home" render={(props) => <LoginPage {...props} />} />
+        {/* <Route exact path="/home" render={(props) => <LoginPage {...props} />} /> */}
 
-        <Route exact path="/who" render={(props) => <TheWhoPage {...props} />} />
+        {/* <Route exact path="/who" render={(props) => <TheWhoPage {...props} />} />
         <Route exact path="/faq" render={(props) => <TheFaqPage {...props} />} />
         <Route exact path="/terms" render={(props) => <TermsAndConditionPage {...props} />} />
-        <Route exact path="/how" render={(props) => <HowItWorksPage {...props} />} />
+        <Route exact path="/how" render={(props) => <HowItWorksPage {...props} />} /> */}
         {/* <Route exact path="/signup" render={(props) => <Signup {...props} />} /> */}
         <PrivateRoute>
           <Routes />
