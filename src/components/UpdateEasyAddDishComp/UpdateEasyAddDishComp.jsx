@@ -194,8 +194,8 @@ const UpdateEasyAddDishComp = () => {
                 allergeies:Yup.array().required('Please Select allergeies'),
             })
         ).required('Must have Items'),
-        caloriesAndMacros: Yup.string().required('required'),
-        priceUnit:Yup.string().required('priceUnit is required'),
+        caloriesAndMacros: Yup.string().required('Required'),
+        priceUnit:Yup.string().required('PriceUnit is required'),
 
     });
    
