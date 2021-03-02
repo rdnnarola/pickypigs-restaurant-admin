@@ -415,7 +415,7 @@ const ManageEasyAddDishComp = () => {
                                                         </select>
                                                     </div> */}
                                                     </div>
-                                                    <div className=" w-100 mb-4 pb-3 position-relative add-description-wrapper">
+                                                    <div className="w-100 mb-4 pb-3 position-relative add-description-wrapper">
                                                         <button type="button" className="w-100 add-description-btn brandon-Bold" onClick={handleDescModal}>ADD DESCRIPTION<span className="brandon-regular">+</span></button>
                                                         {descModal &&
                                                             <div className="my_shadow mb-3 bg-white w-100 add-description-subwrapper" style={{ position: 'absolute', top: 0, left: 0, zIndex: 1 }}>
@@ -441,9 +441,9 @@ const ManageEasyAddDishComp = () => {
                                                             <div className="form-group">
                                                                 <div className="fileUpload text-center my_shadow bg-white d-flex flex-column align-items-center justify-content-center ml-auto">
                                                                     {values.image ?
-                                                                        <img src={URL.createObjectURL(values.image)} width="82" className="img-fluid mb-3" alt={"image"} />
+                                                                        <img src={URL.createObjectURL(values.image)} width="82px" height="82px" className="img-fluid mb-3" alt={"image"} />
                                                                         :
-                                                                        <img src={uploadimg_icon} alt="" width="82" className="img-fluid mb-3" alt={"image"} />
+                                                                        <img src={uploadimg_icon} alt="" width="82px" height="82px" className="img-fluid mb-3" alt={"image"} />
                                                                     }
                                                                     {/* <img src="https://png.pngtree.com/png-clipart/20200225/original/pngtree-image-upload-icon-photo-upload-icon-png-image_5279795.jpg" className="img-fluid" width="150px" alt="image_upload" /> */}
                                                                     <span className="f-15 gray-txt brandon-Medium">Upload Image <br /> or drag and drop image here</span>

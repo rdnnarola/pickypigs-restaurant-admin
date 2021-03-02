@@ -345,7 +345,7 @@ const CaloriesMacrosModalComp = (props) => {
 
 
                 <Modal backdrop="static" centered className="mainmodal-wrapper rs-discallergiesinfomadel" show={show} onHide={handleClose} animation={false} >
-                    <Modal.Header closeButton className="border-bottom-0 align-items-center">
+                    <Modal.Header className="border-bottom-0 align-items-center">
                         <Modal.Title className="w-100">
                             <p className="d-flex align-items-center mb-0 rsd-icontext-content">
                                 <div className="d-flex align-items-center w-100">

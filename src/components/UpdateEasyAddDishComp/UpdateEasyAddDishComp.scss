@@ -1,8 +1,39 @@
-.UpdateEasyAddDishComp-comp{
+.pink-checkbox-style {
+    .custom-control-label {
+        font-family: "Brandon Text Medium" !important;
+
+        &::before,
+        &::after {
+            width: 20px;
+            height: 20px;
+            top: 0;
+            background-color: transparent !important;
+            border-color: #cb007b !important;
+        }
+    }
+}
+
+.pinkgray-checkbox-style {
+    .custom-control-label {
+        font-family: "Brandon Text Medium" !important;
+
+        &::before,
+        &::after {
+            width: 20px;
+            height: 20px;
+            top: 0;
+            background-color: transparent !important;
+            border-color: #919191 !important;
+        }
+    }
+}
+
+.UpdateEasyAddDishComp-comp {
 
     .lastedit-txt {
         font-weight: 400;
         font-size: 15px;
+
         span {
             color: #919191;
         }
@@ -20,16 +51,19 @@
 
     .easydish-input {
         &.dishname-input {
-            max-width: 360px;
-            flex: 0 0 360px;
+            max-width: 390px;
+            flex: 0 0 390px;
             width: 100%;
         }
+
         &.makes-input {
-            max-width: 180px;
-            flex: 0 0 180px;
+            max-width: 210px;
+            flex: 0 0 210px;
             width: 100%;
+
             .makesserving-wrapper {
                 position: relative;
+
                 span {
                     &.serving-txt {
                         position: absolute;
@@ -44,6 +78,7 @@
                         padding-right: 10px;
                         padding-left: 10px;
                         background: #fff;
+
                         &:before {
                             content: "";
                             position: absolute;
@@ -56,24 +91,34 @@
                 }
             }
         }
+
         &.price-input {
-            max-width: 140px;
-            flex: 0 0 140px;
+            max-width: 170px;
+            flex: 0 0 170px;
             width: 100%;
         }
+
         &.gross-input {
-            max-width: 125px;
-            flex: 0 0 125px;
+            max-width: 130px;
+            flex: 0 0 130px;
             width: 100%;
         }
+
         .form-control {
             border-color: #c8c7cc;
             min-height: 40px;
             border-radius: 6px;
             font-size: 15px;
             color: #232323;
+            font-family: "Brandon Text Medium" !important;
+
             &:focus {
                 box-shadow: 0 0 0 0.2rem #c8c7cc47;
+            }
+
+            &::placeholder {
+                font-family: "BrandonTextWeb-Regular" !important;
+                color: #C8C7CC;
             }
         }
     }
@@ -84,12 +129,15 @@
             flex: 0 0 360px;
             width: 100%;
         }
+
         &.makes-input {
-            max-width: 180px;
-            flex: 0 0 180px;
+            max-width: 210px;
+            flex: 0 0 210px;
             width: 100%;
+
             .makesserving-wrapper {
                 position: relative;
+
                 span {
                     &.serving-txt {
                         position: absolute;
@@ -104,6 +152,7 @@
                         padding-right: 10px;
                         padding-left: 10px;
                         background: #fff;
+
                         &:before {
                             content: "";
                             position: absolute;
@@ -116,26 +165,50 @@
                 }
             }
         }
+
         &.price-input {
-            max-width: 160px;
-            flex: 0 0 160px;
+            max-width: 170px;
+            flex: 0 0 170px;
             width: 100%;
         }
+
         &.gross-input {
-            max-width: 125px;
-            flex: 0 0 125px;
+            max-width: 130px;
+            flex: 0 0 130px;
             width: 100%;
         }
+
         .form-control {
             border-color: #c8c7cc;
             min-height: 40px;
             border-radius: 6px;
             font-size: 15px;
             color: #232323;
+            font-family: "Brandon Text Medium" !important;
+            padding: 7px;
+
             &:focus {
                 box-shadow: 0 0 0 0.2rem #c8c7cc47;
             }
+
+            &::placeholder {
+                font-family: "BrandonTextWeb-Regular" !important;
+                color: #C8C7CC;
+            }
         }
+
+        .line-style {
+            &::before {
+                content: "";
+                position: absolute;
+                left: 0;
+                width: 1px;
+                height: 30px;
+                background: #c8c7cc;
+                top: -15px;
+            }
+        }
+
     }
 
     .easydish-serving-input {
@@ -144,12 +217,15 @@
             flex: 0 0 360px;
             width: 100%;
         }
+
         &.makes-input {
-            max-width: 180px;
-            flex: 0 0 180px;
+            max-width: 210px;
+            flex: 0 0 210px;
             width: 100%;
+
             .makesserving-wrapper {
                 position: relative;
+
                 span {
                     &.serving-txt {
                         position: absolute;
@@ -164,6 +240,7 @@
                         padding-right: 10px;
                         padding-left: 10px;
                         background: #fff;
+
                         &:before {
                             content: "";
                             position: absolute;
@@ -176,25 +253,34 @@
                 }
             }
         }
+
         &.price-input {
-            max-width: 140px;
-            flex: 0 0 140px;
+            max-width: 170px;
+            flex: 0 0 170px;
             width: 100%;
         }
+
         &.gross-input {
-            max-width: 125px;
-            flex: 0 0 125px;
+            max-width: 130px;
+            flex: 0 0 130px;
             width: 100%;
         }
+
         .form-control {
             border-color: #c8c7cc;
             min-height: 40px;
             border-radius: 6px;
             font-size: 15px;
             color: #232323;
-            padding-right:56px;
+            padding-right: 72px;
+            font-family: "Brandon Text Medium" !important;
+
             &:focus {
                 box-shadow: 0 0 0 0.2rem #c8c7cc47;
+            }
+
+            &::placeholder {
+                font-family: "BrandonTextWeb-Regular" !important;
             }
         }
     }
@@ -230,9 +316,11 @@
                 height: 76px;
                 padding: 30px 20px;
                 border-bottom: 1px solid #c8c7cc;
+
                 h6 {
                     font-size: 14px;
                 }
+
                 .add-description-inputbtn {
                     .cancel-btn {
                         width: 120px;
@@ -248,11 +336,13 @@
                         font-size: 14px;
                         outline: none;
                         transition: ease 0.25s;
+
                         &:hover {
                             background: #919191;
                             color: #fff;
                         }
                     }
+
                     .save-btn {
                         width: 120px;
                         height: 40px;
@@ -266,6 +356,7 @@
                         text-transform: uppercase;
                         font-size: 14px;
                         outline: none;
+
                         &:hover {
                             background: #919191;
                             color: #fff;
@@ -282,6 +373,10 @@
                     border-bottom-right-radius: 15px;
                     box-shadow: none !important;
                     outline: none !important;
+
+                    &::placeholder {
+                        color: #C8C7CC;
+                    }
                 }
             }
         }
@@ -295,12 +390,14 @@
                         height: 86px;
                         padding: 1.75rem 2rem;
                     }
+
                     .itemsplus-icon {
                         color: #cb007b;
                         font-size: 25px;
                         font-weight: 100;
                         line-height: 1;
                     }
+
                     .additems-btn {
                         background: #fff;
                         color: #cb007b;
@@ -312,12 +409,24 @@
                         margin-left: 5px;
                         font-size: 15px;
                     }
+
+                    .cancel-btn {
+                        background: #fff;
+                        color: #919191;
+                        border: none;
+                        outline: none;
+                        text-decoration: none !important;
+                        border-bottom: 1px solid #919191;
+                        padding: 0px;
+                        margin-left: 5px;
+                        font-size: 15px;
+                    }
                 }
             }
         }
     }
 
-    .allergen-info{
+    .allergen-info {
         font-size: 14px;
         color: #2E482B;
     }
@@ -370,6 +479,7 @@
                     filter: invert(71%) sepia(0%) saturate(4591%) hue-rotate(86deg) brightness(82%) contrast(87%);
                 }
             }
+
             p {
                 overflow: hidden;
                 text-overflow: ellipsis;
@@ -389,20 +499,107 @@
                 .allergen-icon {
                     background: #fff;
                     box-shadow: 0px 5px 24px 0px #0000001c;
+
                     img {
                         filter: invert(14%) sepia(75%) saturate(6404%) hue-rotate(315deg) brightness(80%) contrast(105%);
                     }
                 }
-                p {
+
+                span {
                     color: #cb007b;
                 }
             }
 
-            span{
+            span {
                 position: relative;
                 z-index: -1;
             }
 
+        }
+    }
+
+    .add-dish-table {
+        .table {
+            .actionclose-btn {
+                background: #ffd5e2;
+                border: none;
+                border-radius: 7px;
+                width: 24px;
+                height: 24px;
+                font-weight: bold;
+                color: #cb007b;
+                outline: none;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                line-height: 0;
+            }
+
+            .form-control {
+                width: 100%;
+                border-color: #c8c7cc;
+                font-size: 14px;
+                min-height: 40px;
+                border-radius: 6px;
+                font-family: "Brandon Text Medium" !important;
+
+                &:focus {
+                    box-shadow: 0 0 0 0.2rem #e4e4e4;
+                    border-color: #919191;
+                }
+
+                &::placeholder {
+                    color: #c8c7cc;
+                    font-family: "BrandonTextWeb-Regular" !important;
+                }
+            }
+        }
+    }
+
+    .instructions-wrapper {
+        border-radius: 15px;
+        overflow: hidden;
+
+        .instructions-heading {
+            min-height: 75px;
+            border-bottom: 1px solid #C8C7CC;
+        }
+
+        .add-description-textarea {
+            border: none;
+            padding: 20px 30px;
+            outline: none;
+            box-shadow: none;
+
+            &::placeholder {
+                color: #C8C7CC;
+            }
+        }
+    }
+
+    .fileUpload {
+        pointer-events: none;
+        position: relative;
+        overflow: hidden;
+        height: 250px;
+        border-radius: 15px;
+        max-width: 250px;
+
+        &>* {
+            pointer-events: none;
+        }
+
+        &>input[type="file"] {
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            opacity: 0;
+            pointer-events: all;
+            cursor: pointer;
+            height: 100%;
+            width: 100%;
         }
     }
 }
