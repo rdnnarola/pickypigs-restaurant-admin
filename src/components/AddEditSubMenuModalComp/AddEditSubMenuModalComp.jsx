@@ -13,7 +13,7 @@ import { getAllMenuData} from "../../redux/actions/menuAction";
 
 
 const alergy_information = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"];
-const styleOf_menu=["drinks","Meal","breakfast","lunch","dinner","dessert","buffet"]
+const styleOf_menu=["breakfast","lunch","dinner","dessert","buffet","drinks","nibble","Set Menu"]
 
 const AddEditSubMenuModalComp = (props) => {
 
@@ -126,7 +126,7 @@ const AddEditSubMenuModalComp = (props) => {
                                                 {menuData && menuData.menuDetails.map((data, index)=>{
                                                     return(
                                                         <React.Fragment key={index}>
-                                                            <option value={data._id}>{data.name}</option>
+                                                            <option className="text-capitalize" value={data._id}>{data.name}</option>
                                                         </React.Fragment>
                                                     )
                                                 })}

@@ -88,7 +88,7 @@ const RestaurantInfoComp = (props) => {
                                                                             props.infodata&&props.infodata.login?
                                                                                 <p className="form-control-plaintext text-uppercase">{props.infodata&&props.infodata.login}</p>
                                                                             :
-                                                                                <p className="form-control-plaintext text-uppercase">No Data Availble...</p>
+                                                                                <p className="form-control-plaintext text-uppercase">-</p>
                                                                         :
                                                                             <React.Fragment>
                                                                                 <Field name="login" placeholder="Enter Name here" className="form-control-inputtext form-control"/>
@@ -104,7 +104,7 @@ const RestaurantInfoComp = (props) => {
                                                                             props.infodata&&props.infodata.email?
                                                                                 <p className="form-control-plaintext text-uppercase">{props.infodata&&props.infodata.email}</p>
                                                                             :
-                                                                                <p className="form-control-plaintext text-uppercase">No Data Availble...</p>
+                                                                                <p className="form-control-plaintext text-uppercase">-</p>
                                                                         :
                                                                             <React.Fragment>
                                                                                 <Field name="email" type="email" placeholder="Enter Name here" className="form-control-inputtext form-control"/>
@@ -122,7 +122,7 @@ const RestaurantInfoComp = (props) => {
                                                                             props.infodata&&props.infodata.phoneNumber?
                                                                                 <p className="form-control-plaintext text-uppercase">{props.infodata&&props.infodata.phoneNumber}</p>
                                                                             :
-                                                                                <p className="form-control-plaintext text-uppercase">No Data Availble...</p>
+                                                                                <p className="form-control-plaintext text-uppercase">-</p>
                                                                         :
                                                                             <React.Fragment>
                                                                                 <Field name="phoneNumber" type="number" placeholder="Enter Name here" className="form-control-inputtext form-control"/>
@@ -138,7 +138,7 @@ const RestaurantInfoComp = (props) => {
                                                                             props.infodata&&props.infodata.mobileNumber?
                                                                                 <p className="form-control-plaintext text-uppercase">{props.infodata&&props.infodata.mobileNumber}</p>
                                                                             :
-                                                                                <p className="form-control-plaintext text-uppercase">No Data Availble...</p>
+                                                                                <p className="form-control-plaintext text-uppercase">-</p>
                                                                         :
                                                                             <React.Fragment>
                                                                                 <Field name="mobileNumber" type="number" placeholder="Enter Name here" className="form-control-inputtext form-control"/>
@@ -156,7 +156,7 @@ const RestaurantInfoComp = (props) => {
                                                                             props.infodata&&props.infodata.location?
                                                                                 <p className="form-control-plaintext text-uppercase">{props.infodata&&props.infodata.location}</p>
                                                                             :
-                                                                                <p className="form-control-plaintext text-uppercase">No Data Availble...</p>                                                                            :
+                                                                                <p className="form-control-plaintext text-uppercase">-</p>                                                                            :
                                                                             <React.Fragment>
                                                                                 <Field component='textarea' rows='1' className="form-control-inputtext form-control"  name="location" placeholder="Your Location" />
                                                                                 {touched.location && errors.location && <div className="error pink-txt f-11">{errors.location}</div>}

@@ -170,26 +170,26 @@ const ManageEasyAddDishComp = () => {
         new: Yup.boolean().oneOf([true, false]),
         available: Yup.boolean().oneOf([true, false]),
         menuId: Yup.array().required('Please Select Menu'),
-        categoryId: Yup.string().required('category is required'),
-        subcategoryId: Yup.string().required('subcategory is required'),
-        description2: Yup.string().required('description is required'),
-        allergenId: Yup.array().required('Please Select allergen'),
-        dietaryId: Yup.array().required('Please Select  dietary'),
-        lifestyleId: Yup.array().required('Please Select lifestyle'),
-        cookingMethodId: Yup.array().required('Please Select cookingMethod'),
-        instructions: Yup.string().required('instructions is required'),
+        categoryId: Yup.string().required('Category is required'),
+        subcategoryId: Yup.string().required('Subcategory is Required'),
+        description2: Yup.string().required('Description is Required'),
+        allergenId: Yup.array().required('Please Select Allergen'),
+        dietaryId: Yup.array().required('Please Select  Dietary'),
+        lifestyleId: Yup.array().required('Please Select Lifestyle'),
+        cookingMethodId: Yup.array().required('Please Select CookingMethod'),
+        instructions: Yup.string().required('Instructions is Required'),
         customisable: Yup.boolean().oneOf([true, false]),
         createNewVersion: Yup.boolean().oneOf([true, false]),
         ingredient: Yup.array()
             .of(
                 Yup.object().shape({
-                    item: Yup.string().required("item required"),
-                    qty: Yup.string().required('required').matches(numRegExp, 'Enter Valid Number'),
+                    item: Yup.string().required("Item Required"),
+                    qty: Yup.string().required('Required').matches(numRegExp, 'Enter Valid Number'),
                     allergeies: Yup.array().required('Please Select allergeies'),
                 })
             ).required('Must have Items'),
-        caloriesAndMacros: Yup.string().required('required'),
-        priceUnit: Yup.string().required('priceUnit is required'),
+        caloriesAndMacros: Yup.string().required('Please Provide Calories And Macros Details'),
+        priceUnit: Yup.string().required('PriceUnit is Required'),
 
     });
 
@@ -353,7 +353,7 @@ const ManageEasyAddDishComp = () => {
                                                             <label className="gray-txt f-15 brandon-Medium">Menu</label>
                                                             <CheckBoxAutoCompleteSecondComp
                                                                 className="minwidth-260 brandon-Medium"
-                                                                placeholder={"menu_options"}
+                                                                placeholder={"Select Menu"}
                                                                 options={menuData && menuData.menuDetails ? menuData.menuDetails : []}
                                                                 value={values.menuId}
                                                                 onChangeData={(value) => { setFieldValue("menuId", value); setFieldValue("categoryId", ''); setFieldValue("subcategoryId", ''); getCategoryAction(value); }}
@@ -364,13 +364,21 @@ const ManageEasyAddDishComp = () => {
                                                             <label className="gray-txt f-15 brandon-Medium">Category</label>
                                                             <Field as="select" name="categoryId" onChange={(e) => { setFieldValue("categoryId", e.target.value); getSubCategoryAction(e.target.value); setFieldValue("subcategoryId", ''); }} className="brandon-Medium form-control lightgray-border selectdropdown-btn minwidth-260">
                                                                 <option value="">Select</option>
-                                                                {categoryData && categoryData.map((data, index) => {
-                                                                    return (
-                                                                        <React.Fragment key={index}>
-                                                                            <option value={data._id}>{data.name}</option>
+                                                                {
+                                                                    values&&values.menuId&&values.menuId.length>0?
+                                                                        <React.Fragment>
+                                                                            {categoryData && categoryData.map((data, index) => {
+                                                                                return (
+                                                                                    <React.Fragment key={index}>
+                                                                                        <option className="text-capitalize" value={data._id}>{data.name}</option>
+                                                                                    </React.Fragment>
+                                                                                )
+                                                                            })}
                                                                         </React.Fragment>
-                                                                    )
-                                                                })}
+                                                                    :
+                                                                        null
+                                                                }
+                                                                
                                                             </Field>
                                                             {touched.categoryId && errors.categoryId && <div className="error pink-txt f-11">{errors.categoryId}</div>}
                                                         </div>
@@ -378,13 +386,20 @@ const ManageEasyAddDishComp = () => {
                                                             <label className="gray-txt f-15 brandon-Medium">Sub-Category</label>
                                                             <Field as="select" name="subcategoryId" onChange={(e) => { setFieldValue("subcategoryId", e.target.value); }} className="brandon-Medium form-control lightgray-border selectdropdown-btn minwidth-260">
                                                                 <option value="">Select</option>
-                                                                {subcategoryData && subcategoryData.map((data, index) => {
-                                                                    return (
-                                                                        <React.Fragment key={index}>
-                                                                            <option value={data._id}>{data.name}</option>
+                                                                {
+                                                                    values&&values.categoryId?
+                                                                        <React.Fragment>
+                                                                            {subcategoryData && subcategoryData.map((data, index) => {
+                                                                                return (
+                                                                                    <React.Fragment key={index}>
+                                                                                        <option className="text-capitalize" value={data._id}>{data.name}</option>
+                                                                                    </React.Fragment>
+                                                                                )
+                                                                            })}
                                                                         </React.Fragment>
-                                                                    )
-                                                                })}
+                                                                    :
+                                                                        null
+                                                                }
                                                             </Field>
                                                             {touched.subcategoryId && errors.subcategoryId && <div className="error pink-txt f-11">{errors.subcategoryId}</div>}
                                                         </div>
@@ -756,10 +771,8 @@ const ManageEasyAddDishComp = () => {
                                                     onChangeData={(value) => { setFieldValue("caloriesAndMacros", value); }}
                                                     value={values.caloriesAndMacros}
                                                 />
+                                                {touched.caloriesAndMacros && errors.caloriesAndMacros && <div className="error pink-txt f-11">{errors.caloriesAndMacros}</div>}
                                             </div>
-                                            {touched.caloriesAndMacros && errors.caloriesAndMacros && <div className="error pink-txt f-11">{errors.caloriesAndMacros}</div>}
-
-
                                         </div>
                                         <div className="row">
                                             <div className="col-sm-12 mb-4 pb-2">
@@ -768,8 +781,9 @@ const ManageEasyAddDishComp = () => {
                                                         <h2 className="text-uppercase f-14 brandon-Bold p-4">INSTRUCTIONS</h2>
                                                     </div>
                                                     <Field component='textarea' rows='5' name="instructions" className="form-control add-description-textarea" placeholder="Type Here" />
-                                                    {touched.instructions && errors.instructions && <div className="error pink-txt f-11 ml-3">{errors.instructions}</div>}
                                                 </div>
+                                                {touched.instructions && errors.instructions && <div className="error pink-txt f-11 ml-3">{errors.instructions}</div>}
+
                                             </div>
                                         </div>
                                         <div className="row">

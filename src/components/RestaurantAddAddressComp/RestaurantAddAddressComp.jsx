@@ -164,7 +164,7 @@ const RestaurantAddAddressComp = (props) => {
                                                                             props.addressdata&&props.addressdata.googleAddress?
                                                                                 <p className="form-control-plaintext text-uppercase">{props.addressdata&&props.addressdata.googleAddress}</p>
                                                                             :
-                                                                                <p className="form-control-plaintext text-uppercase">No Data Availble...</p>
+                                                                                <p className="form-control-plaintext text-uppercase">-</p>
                                                                         :
                                                                             <React.Fragment>
                                                                                 <Field name="googleAddress" readOnly={true}  value={Restaurant_Location&&Restaurant_Location.location_data} placeholder="Enter Address here" className="form-control-inputtext form-control"/>
@@ -180,7 +180,7 @@ const RestaurantAddAddressComp = (props) => {
                                                                             props.addressdata&&props.addressdata.street?
                                                                                 <p className="form-control-plaintext text-uppercase">{props.addressdata&&props.addressdata.street}</p>
                                                                             :
-                                                                                <p className="form-control-plaintext text-uppercase">No Data Availble...</p>
+                                                                                <p className="form-control-plaintext text-uppercase">-</p>
                                                                         :
                                                                             <React.Fragment>
                                                                                 <Field name="myStreet" placeholder="Enter Name here" className="form-control-inputtext form-control"/>
@@ -198,7 +198,7 @@ const RestaurantAddAddressComp = (props) => {
                                                                             props.addressdata&&props.addressdata.locality?
                                                                                 <p className="form-control-plaintext text-uppercase">{props.addressdata&&props.addressdata.locality}</p>
                                                                             :
-                                                                                <p className="form-control-plaintext text-uppercase">No Data Availble...</p>
+                                                                                <p className="form-control-plaintext text-uppercase">-</p>
                                                                         :
                                                                             <React.Fragment>
                                                                                 <Field name="myLocality" placeholder="Enter Name here" className="form-control-inputtext form-control"/>
@@ -214,7 +214,7 @@ const RestaurantAddAddressComp = (props) => {
                                                                             props.addressdata&&props.addressdata.pincode?
                                                                                 <p className="form-control-plaintext text-uppercase">{props.addressdata&&props.addressdata.pincode}</p>
                                                                             :
-                                                                                <p className="form-control-plaintext text-uppercase">No Data Availble...</p>
+                                                                                <p className="form-control-plaintext text-uppercase">-</p>
                                                                         :
                                                                             <React.Fragment>
                                                                                 <Field name="myPincode" type="number" placeholder="Enter Name here" className="form-control-inputtext form-control"/>
