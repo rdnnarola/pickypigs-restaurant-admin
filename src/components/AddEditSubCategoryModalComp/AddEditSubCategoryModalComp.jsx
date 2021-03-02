@@ -127,14 +127,15 @@ const AddEditSubCategoryModalComp = (props) => {
                                                         onChange={e => {
                                                             handleChange(e)
                                                             let someValue = e.currentTarget.value
-                                                            handleUserChange(someValue) 
+                                                            handleUserChange(someValue) ;
+                                                            setFieldValue("categoryId",'')
                                                         }}                                                   
                                                         className="form-control lightgray-border selectdropdown-btn gray-txt f-15">
                                                         <option value="">Select</option>
                                                         {menuData && menuData.menuDetails.map((data, index)=>{
                                                             return(
                                                                 <React.Fragment key={index}>
-                                                                    <option value={data._id}>{data.name}</option>
+                                                                    <option className="text-capitalize" value={data._id}>{data.name}</option>
                                                                 </React.Fragment>
                                                             )
                                                         })}
@@ -148,13 +149,20 @@ const AddEditSubCategoryModalComp = (props) => {
                                                     <label className="gray-txt f-15">Category</label>
                                                     <Field as="select" name="categoryId" className="form-control lightgray-border selectdropdown-btn gray-txt f-15">
                                                         <option value="">Select</option>
-                                                        {categoryData && categoryData.map((data, index)=>{
-                                                            return(
-                                                                <React.Fragment key={index}>
-                                                                    <option value={data._id}>{data.name}</option>
-                                                                </React.Fragment>
-                                                            )
-                                                        })}
+                                                        {values&&values.menuId?
+                                                            <React.Fragment>
+                                                                {categoryData && categoryData.map((data, index)=>{
+                                                                    return(
+                                                                        <React.Fragment key={index}>
+                                                                            <option className="text-capitalize" value={data._id}>{data.name}</option>
+                                                                        </React.Fragment>
+                                                                    )
+                                                                })}
+                                                            </React.Fragment>
+                                                            :
+                                                            null
+                                                        }
+                                                        
                                                     </Field>
                                                     {touched.categoryId && errors.categoryId && <div className="error pink-txt f-11">{errors.categoryId}</div>}
                                                 </div>

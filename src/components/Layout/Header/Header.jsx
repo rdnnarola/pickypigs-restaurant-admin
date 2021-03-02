@@ -54,7 +54,7 @@ const Header = () => {
                         </form>
                         {/* <button onMouseEnter={() => SetAddButton('+    ')} onMouseLeave={() => SetAddButton('')}
                             className="btn btn-outline-success my-2 my-sm-0 add-dish-btn mr-4" type="submit">{addButton}Add Dish</button> */}
-                        <NavLink to="/manage_dishes" className="btn pinkline-btn text-uppercase rounded-pill mr-4 w-170 f-15" style={{display:'flex',justifyContent:'center',alignItems:'center'}} ><span className="add-icon">Add New</span></NavLink>
+                        <NavLink to="/manage_dishes" className="btn pinkline-btn text-uppercase rounded-pill mr-4 w-170 f-15" style={{display:'flex',justifyContent:'center',alignItems:'center'}} ><span className="add-icon">Add Dish</span></NavLink>
 
                         <button className="btn notification-btn p-0 position-relative mr-3">
                             <img src={notification_bell} className="img-fluid" alt="icon"  />
@@ -71,10 +71,10 @@ const Header = () => {
                                 <p className="user-date mb-0">Wednesday 19, March 2020</p>
                                 </div>
                             </button>
-                            <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <ul className="dropdown-menu w-100" aria-labelledby="navbarDropdown">
                                 <li><button className="dropdown-item" onClick={handleLogout}>Log Out</button></li>
-                                <li><a className="dropdown-item" href="#">Another action</a></li>
-                                <li><a className="dropdown-item" href="#">Something else here</a></li>
+                                {/* <li><a className="dropdown-item" href="#">Another action</a></li>
+                                <li><a className="dropdown-item" href="#">Something else here</a></li> */}
                             </ul>
                         </div>
                     </div>

@@ -20,7 +20,7 @@ export const getAllSubCategoryData=(data)=>{
           if (error.response) {
             dispatch(setAlert(`${error.response.data.message}`, 'error'));
           } else {
-            dispatch(setAlert('Something wwnt wrong!', 'error'));
+            dispatch(setAlert('Something Went wrong!', 'error'));
           }
         }
     }
@@ -49,7 +49,7 @@ export const getAllSubCategoryData=(data)=>{
           if (error.response) {
             dispatch(setAlert(`${error.response.data.message}`, 'error'));
           } else {
-            dispatch(setAlert('Something wwnt wrong!', 'error'));
+            dispatch(setAlert('Something Went wrong!', 'error'));
           }
         }
     }
@@ -103,7 +103,7 @@ export const updateSubCategoryForm = (key , value) => {
           if (error.response) {
             dispatch(setAlert(`${error.response.data.message}`, 'error'));
           } else {
-            dispatch(setAlert('Something wwnt wrong!', 'error'));
+            dispatch(setAlert('Something Went wrong!', 'error'));
           }
         }
     }
@@ -124,7 +124,7 @@ export const updateSubCategoryForm = (key , value) => {
             if (error.response) {
               dispatch(setAlert(`${error.response.data.message}`, 'error'));
             } else {
-              dispatch(setAlert('Something wwnt wrong!', 'error'));
+              dispatch(setAlert('Something Went wrong!', 'error'));
             }
         }
     }
@@ -173,7 +173,7 @@ export const updateSubCategoryForm = (key , value) => {
           if (error.response) {
             dispatch(setAlert(`${error.response.data.message}`, 'error'));
           } else {
-            dispatch(setAlert('Something wwnt wrong!', 'error'));
+            dispatch(setAlert('Something Went wrong!', 'error'));
           }
         }
     }
@@ -201,7 +201,7 @@ export const updateSubCategoryForm = (key , value) => {
           if (error.response) {
             dispatch(setAlert(`${error.response.data.message}`, 'error'));
           } else {
-            dispatch(setAlert('Something wwnt wrong!', 'error'));
+            dispatch(setAlert('Something Went wrong!', 'error'));
           }
         }
     }

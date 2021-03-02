@@ -143,7 +143,7 @@ const RestaurantSettingImageGalleryComp = (props) => {
 
                                                                             :
                                                                             <div className="col-sm-12 pl-0">
-                                                                                <p className="form-control-plaintext gray-txt">Not Available</p>
+                                                                                <p className="form-control-plaintext gray-txt">-</p>
                                                                             </div>
                                                                         }
                                                                     </div>
@@ -219,7 +219,7 @@ const RestaurantSettingImageGalleryComp = (props) => {
 
                                                                             :
                                                                             <div className="col-sm-12 pl-0">
-                                                                                <p className="form-control-plaintext gray-txt">Not Available</p>
+                                                                                <p className="form-control-plaintext gray-txt">-</p>
                                                                             </div>
                                                                         }
                                                                     </div>

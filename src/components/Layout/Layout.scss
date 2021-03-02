@@ -497,6 +497,17 @@ body {
 .actiondropdown-list {
     min-width: 120px !important;
     li {
+        a {
+            &.dropdown-item {
+                padding: 0.25rem 0.85rem;
+                outline: none;
+                &:hover,
+                &:active {
+                    background: #ffd5e2;
+                    color: #cb007b;
+                }
+            }
+        }
         button {
             &.dropdown-item {
                 padding: 0.25rem 0.85rem;

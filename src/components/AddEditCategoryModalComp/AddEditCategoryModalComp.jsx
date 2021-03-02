@@ -108,7 +108,7 @@ const AddEditCategoryModalComp = (props) => {
                                                 {menuData && menuData.menuDetails.map((data, index)=>{
                                                     return(
                                                         <React.Fragment key={index}>
-                                                            <option value={data._id}>{data.name}</option>
+                                                            <option className="text-capitalize" value={data._id}>{data.name}</option>
                                                         </React.Fragment>
                                                     )
                                                 })}

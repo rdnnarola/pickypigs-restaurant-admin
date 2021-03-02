@@ -31,7 +31,7 @@ export const getLocationGeometryData = (position) =>  {
           if (error) {
             dispatch(setAlert(`${error}`, 'error'));
           } else {
-            dispatch(setAlert('Something wwnt wrong!', 'error'));
+            dispatch(setAlert('Something Went wrong!', 'error'));
           }
       }
     }
@@ -60,7 +60,7 @@ export const getLocationGeometryData = (position) =>  {
           if (error) {
             dispatch(setAlert(`${error}`, 'error'));
           } else {
-            dispatch(setAlert('Something wwnt wrong!', 'error'));
+            dispatch(setAlert('Something Went wrong!', 'error'));
           }
       }
     }

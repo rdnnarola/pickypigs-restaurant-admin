@@ -498,7 +498,7 @@ const RestaurantFeaturesComp = (props) => {
                                                                                         )
                                                                                     })
                                                                                     :
-                                                                                    <p className="form-control-plaintext gray-txt">No Data Availble...</p>
+                                                                                    <p className="form-control-plaintext gray-txt">-</p>
                                                                                 }
                                                                             </div>
                                                                             :
@@ -618,7 +618,7 @@ const RestaurantFeaturesComp = (props) => {
                                                                                         )
                                                                                     })
                                                                                     :
-                                                                                    <p className="form-control-plaintext gray-txt">No Data Availble...</p>
+                                                                                    <p className="form-control-plaintext gray-txt">-</p>
                                                                                 }
                                                                             </div>
                                                                             :
@@ -671,7 +671,7 @@ const RestaurantFeaturesComp = (props) => {
                                                                                         )
                                                                                     })
                                                                                     :
-                                                                                    <p className="form-control-plaintext gray-txt">No Data Availble...</p>
+                                                                                    <p className="form-control-plaintext gray-txt">-</p>
                                                                                 }
                                                                             </div>
                                                                             :
@@ -724,7 +724,7 @@ const RestaurantFeaturesComp = (props) => {
                                                                                         )
                                                                                     })
                                                                                     :
-                                                                                    <p className="form-control-plaintext gray-txt">No Data Availble...</p>
+                                                                                    <p className="form-control-plaintext gray-txt">-</p>
                                                                                 }
                                                                             </div>
                                                                             :
@@ -832,7 +832,7 @@ const RestaurantFeaturesComp = (props) => {
                                                                                         )
                                                                                     })
                                                                                     :
-                                                                                    <p className="form-control-plaintext gray-txt">No Data Availble...</p>
+                                                                                    <p className="form-control-plaintext gray-txt">-</p>
                                                                                 }
                                                                             </div>
                                                                             :
@@ -885,7 +885,7 @@ const RestaurantFeaturesComp = (props) => {
                                                                                         )
                                                                                     })
                                                                                     :
-                                                                                    <p className="form-control-plaintext gray-txt">No Data Availble...</p>
+                                                                                    <p className="form-control-plaintext gray-txt">-</p>
                                                                                 }
                                                                             </div>
                                                                             :
@@ -938,7 +938,7 @@ const RestaurantFeaturesComp = (props) => {
                                                                                         )
                                                                                     })
                                                                                     :
-                                                                                    <p className="form-control-plaintext gray-txt">No Data Availble...</p>
+                                                                                    <p className="form-control-plaintext gray-txt">-</p>
                                                                                 }
                                                                             </div>
                                                                             :

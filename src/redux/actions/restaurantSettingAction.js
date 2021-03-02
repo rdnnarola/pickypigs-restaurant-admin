@@ -47,7 +47,7 @@ export const getAllRestaurantDetail=()=>{
           if (error.response) {
             dispatch(setAlert(`${error.response.data.message}`, 'error'));
           } else {
-            dispatch(setAlert('Something wwnt wrong!', 'error'));
+            dispatch(setAlert('Something Went wrong!', 'error'));
           }
         }
     }
@@ -101,7 +101,7 @@ export const updateRestaurantProfileImage=(image)=>{
         if (error.response) {
           dispatch(setAlert(`${error.response.data.message}`, 'error'));
         } else {
-          dispatch(setAlert('Something wwnt wrong!', 'error'));
+          dispatch(setAlert('Something Went wrong!', 'error'));
         }
       }
   }
@@ -131,7 +131,7 @@ export const updateRestaurantCoverImage=(image)=>{
         if (error.response) {
           dispatch(setAlert(`${error.response.data.message}`, 'error'));
         } else {
-          dispatch(setAlert('Something wwnt wrong!', 'error'));
+          dispatch(setAlert('Something Went wrong!', 'error'));
         }
       }
   }
@@ -167,7 +167,7 @@ export const uploadRestaurantGalleryImage=(image,type)=>{
         if (error.response) {
           dispatch(setAlert(`${error.response.data.message}`, 'error'));
         } else {
-          dispatch(setAlert('Something wwnt wrong!', 'error'));
+          dispatch(setAlert('Something Went wrong!', 'error'));
         }
       }
   }
@@ -194,7 +194,7 @@ export const deleteRestaurantGalleryImage=(data)=>{
         if (error.response) {
           dispatch(setAlert(`${error.response.data.message}`, 'error'));
         } else {
-          dispatch(setAlert('Something wwnt wrong!', 'error'));
+          dispatch(setAlert('Something Went wrong!', 'error'));
         }
       }
   }
