@@ -279,12 +279,12 @@ const ManageEasyAddDishComp = () => {
                                                     </div>
                                                     <div className="row mb-4">
                                                         <div className="col-md-4 form-group mb-0 easydish-input dishname-input">
-                                                            <label className="gray-txt f-15">Dish name</label>
+                                                            <label className="gray-txt f-15 brandon-Medium">Dish name</label>
                                                             <Field name="name" placeholder="Dish name" className="form-control" />
                                                             {touched.name && errors.name && <div className="error pink-txt f-11">{errors.name}</div>}
                                                         </div>
                                                         <div className="col-md-3 form-group mb-0 easydish-serving-input makes-input">
-                                                            <label className="gray-txt f-15">Makes</label>
+                                                            <label className="gray-txt f-15 brandon-Medium">Makes</label>
                                                             <div className="makesserving-wrapper">
                                                                 <Field name="makes" type="number" placeholder="1.000" className="form-control" />
                                                                 <span className="serving-txt">Serving</span>
@@ -293,7 +293,7 @@ const ManageEasyAddDishComp = () => {
                                                         </div>
 
                                                         <div className="col-md-3 form-group mb-0 easydish-select-input price-input">
-                                                            <label className="gray-txt f-15">Price</label>
+                                                            <label className="gray-txt f-15 brandon-Medium">Price</label>
                                                             <div className="d-flex align-items-center border rounded">
 
                                                                 <Field as="select" name="priceUnit" className="form-control border border-white">
@@ -312,25 +312,25 @@ const ManageEasyAddDishComp = () => {
                                                             {touched.priceUnit && errors.priceUnit && <div className="error pink-txt f-11">{errors.priceUnit}</div>}
                                                         </div>
                                                         <div className="col-md-2 form-group mb-0 easydish-input gross-input">
-                                                            <label className="gray-txt f-15">Gross Profit</label>
+                                                            <label className="gray-txt f-15 brandon-Medium">Gross Profit</label>
                                                             <Field name="grossProfit" type="number" placeholder="0%" className="form-control" />
                                                             {touched.grossProfit && errors.grossProfit && <div className="error pink-txt f-11">{errors.grossProfit}</div>}
                                                         </div>
                                                     </div>
                                                     <div className="d-flex flex-wrap mb-4">
-                                                        <div className="custom-control custom-checkbox pink-checkbox pinkline-checkbox  mr-5 pr-4">
+                                                        <div className="custom-control custom-checkbox pinkline-checkbox  mr-5 pr-4">
                                                             <Field type="checkbox" name="favorite" id="favorite" className="custom-control-input" />
-                                                            <label className="custom-control-label f-15 pl-2" htmlFor="favorite">Favorite</label>
+                                                            <label className="custom-control-label f-15 pl-2 brandon-Medium" htmlFor="favorite">Favorite</label>
                                                             {touched.favorite && errors.favorite && <div className="error pink-txt f-11">{errors.favorite}</div>}
                                                         </div>
-                                                        <div className="custom-control custom-checkbox pink-checkbox pinkline-checkbox mr-5 pr-4">
+                                                        <div className="custom-control custom-checkbox pinkline-checkbox mr-5 pr-4">
                                                             <Field type="checkbox" name="new" id="new" className="custom-control-input" />
-                                                            <label className="custom-control-label f-15 pl-2" htmlFor="new">New</label>
+                                                            <label className="custom-control-label f-15 pl-2 brandon-Medium" htmlFor="new">New</label>
                                                             {touched.new && errors.new && <div className="error pink-txt f-11">{errors.new}</div>}
                                                         </div>
-                                                        <div className="custom-control custom-checkbox pink-checkbox pinkline-checkbox">
+                                                        <div className="custom-control custom-checkbox pinkline-checkbox">
                                                             <Field type="checkbox" name="available" id="available" className="custom-control-input" />
-                                                            <label className="custom-control-label f-15 pl-2" htmlFor="available">Available</label>
+                                                            <label className="custom-control-label f-15 pl-2 brandon-Medium" htmlFor="available">Available</label>
                                                             {touched.available && errors.available && <div className="error pink-txt f-11">{errors.available}</div>}
                                                         </div>
                                                     </div>
@@ -349,10 +349,10 @@ const ManageEasyAddDishComp = () => {
                                                             onChangeData={(value)=> {setFieldValue("menuId", value)}}
                                                         />
                                                         </div> */}
-                                                        <div className="custom-drodown form-group mr-4 mb-0">
-                                                            <label className="gray-txt f-15">Menu</label>
+                                                        <div className="custom-drodown form-group mr-5 mb-0">
+                                                            <label className="gray-txt f-15 brandon-Medium">Menu</label>
                                                             <CheckBoxAutoCompleteSecondComp
-                                                                className="minwidth-260"
+                                                                className="minwidth-260 brandon-Medium"
                                                                 placeholder={"menu_options"}
                                                                 options={menuData && menuData.menuDetails ? menuData.menuDetails : []}
                                                                 value={values.menuId}
@@ -360,9 +360,9 @@ const ManageEasyAddDishComp = () => {
                                                             />
                                                             {touched.menuId && errors.menuId && <div className="error pink-txt f-11">{errors.menuId}</div>}
                                                         </div>
-                                                        <div className="custom-drodown form-group mr-4 mb-0">
-                                                            <label className="gray-txt f-15">Category</label>
-                                                            <Field as="select" name="categoryId" onChange={(e) => { setFieldValue("categoryId", e.target.value); getSubCategoryAction(e.target.value); setFieldValue("subcategoryId", ''); }} className="form-control lightgray-border selectdropdown-btn minwidth-260">
+                                                        <div className="custom-drodown form-group mr-5 mb-0">
+                                                            <label className="gray-txt f-15 brandon-Medium">Category</label>
+                                                            <Field as="select" name="categoryId" onChange={(e) => { setFieldValue("categoryId", e.target.value); getSubCategoryAction(e.target.value); setFieldValue("subcategoryId", ''); }} className="brandon-Medium form-control lightgray-border selectdropdown-btn minwidth-260">
                                                                 <option value="">Select</option>
                                                                 {categoryData && categoryData.map((data, index) => {
                                                                     return (
@@ -375,8 +375,8 @@ const ManageEasyAddDishComp = () => {
                                                             {touched.categoryId && errors.categoryId && <div className="error pink-txt f-11">{errors.categoryId}</div>}
                                                         </div>
                                                         <div className="custom-drodown form-group mr-4 mb-0">
-                                                            <label className="gray-txt f-15">Sub-Category</label>
-                                                            <Field as="select" name="subcategoryId" onChange={(e) => { setFieldValue("subcategoryId", e.target.value); }} className="form-control lightgray-border selectdropdown-btn minwidth-260">
+                                                            <label className="gray-txt f-15 brandon-Medium">Sub-Category</label>
+                                                            <Field as="select" name="subcategoryId" onChange={(e) => { setFieldValue("subcategoryId", e.target.value); }} className="brandon-Medium form-control lightgray-border selectdropdown-btn minwidth-260">
                                                                 <option value="">Select</option>
                                                                 {subcategoryData && subcategoryData.map((data, index) => {
                                                                     return (
@@ -422,8 +422,8 @@ const ManageEasyAddDishComp = () => {
                                                                 <div className="d-flex add-description-head justify-content-between align-items-center">
                                                                     <h6 className="brandon-Bold text-uppercase">Add Description</h6>
                                                                     <div className="add-description-inputbtn">
-                                                                    <button type="reset" className="cancel-btn" onClick={() => { handleDescModal(); setFieldValue("description2", values.description) }}>Cancel</button>
-                                                                        <button type="button" className="save-btn ml-3" onClick={() => { handleDescModal(); setFieldValue("description", values.description2) }}>Save</button>
+                                                                    <button type="reset" className="cancel-btn brandon-Medium" onClick={() => { handleDescModal(); setFieldValue("description2", values.description) }}>Cancel</button>
+                                                                        <button type="button" className="save-btn ml-3 brandon-Medium" onClick={() => { handleDescModal(); setFieldValue("description", values.description2) }}>Save</button>
                                                                    </div>
                                                                 </div>
                                                                 <Field component='textarea' name="description2" rows='5' className="form-control add-description-textarea" placeholder="Type Here" />
@@ -446,7 +446,7 @@ const ManageEasyAddDishComp = () => {
                                                                         <img src={uploadimg_icon} alt="" width="82" className="img-fluid mb-3" alt={"image"} />
                                                                     }
                                                                     {/* <img src="https://png.pngtree.com/png-clipart/20200225/original/pngtree-image-upload-icon-photo-upload-icon-png-image_5279795.jpg" className="img-fluid" width="150px" alt="image_upload" /> */}
-                                                                    <span className="f-15 gray-txt">Upload Image <br /> or drag and drop image here</span>
+                                                                    <span className="f-15 gray-txt brandon-Medium">Upload Image <br /> or drag and drop image here</span>
                                                                     <input
                                                                         type="file"
                                                                         accept="image/*"
@@ -493,7 +493,7 @@ const ManageEasyAddDishComp = () => {
                                                                                             <tr>
                                                                                                 <td>
                                                                                                     <Field className="form-control" name={`ingredient.${index}.item`} placeholder="item" type="text" />
-                                                                                                    <ErrorMessage name={`ingredient.${index}.item`} />
+                                                                                                    <ErrorMessage className="pink-txt f-11" name={`ingredient.${index}.item`} />
                                                                                                 </td>
                                                                                                 <td>
                                                                                                     <CheckBoxAutoCompleteThirdComp placeholder={"Allergy Values"}
@@ -501,13 +501,13 @@ const ManageEasyAddDishComp = () => {
                                                                                                         value={data.allergeies}
                                                                                                         onChangeData={(value) => { setFieldValue(`ingredient.${index}.allergeies`, value) }}
                                                                                                     />
-                                                                                                    <ErrorMessage name={`ingredient.${index}.allergeies`} />
+                                                                                                    <ErrorMessage className="pink-txt f-11" name={`ingredient.${index}.allergeies`} />
 
                                                                                                 </td>
                                                                                                 <td className=""></td>
                                                                                                 <td>
                                                                                                     <Field className="form-control" name={`ingredient.${index}.qty`} placeholder="Qty" type="number" />
-                                                                                                    <ErrorMessage name={`ingredient.${index}.qty`} />
+                                                                                                    <ErrorMessage className="pink-txt f-11" name={`ingredient.${index}.qty`} />
                                                                                                 </td>
                                                                                                 <td className="text-center">
                                                                                                     <div className="custom-control custom-checkbox pink-checkbox pinkgray-checkbox-style">
@@ -541,11 +541,11 @@ const ManageEasyAddDishComp = () => {
                                                                             <td>
                                                                                 <span className="d-flex align-items-center">
                                                                                     <span className="itemsplus-icon">+</span>
-                                                                                    <button type="button" className="additems-btn" onClick={() => push({ item: '', qty: '', allergeies: [], customisable: false })}>Click to add item</button>
+                                                                                    <button type="button" className="additems-btn brandon-Medium" onClick={() => push({ item: '', qty: '', allergeies: [], customisable: false })}>Click to add item</button>
                                                                                 </span>
                                                                             </td>
                                                                             <td className=""></td>
-                                                                            <td className="text-right">Estimated Cost</td>
+                                                                            <td className="text-right brandon-Medium">Estimated Cost</td>
                                                                             <td className="text-right brandon-Bold">{values && values.ingredient && values.ingredient.reduce((prev, next) => prev + next.qty, 0)}%</td>
                                                                             <td className=""></td>
                                                                             <td className=""></td>
@@ -567,7 +567,7 @@ const ManageEasyAddDishComp = () => {
 
                                         <div className="row">
                                             <div className="col-sm-12">
-                                                <p className="brandon-Medium txt-darkgreen">ALLERGEN INFORMATION</p>
+                                                <p className="brandon-Medium txt-darkgreen fw-600 f-14">ALLERGEN INFORMATION</p>
                                                 {/* {JSON.stringify(values.allergenInformation)} */}
                                                 {
                                                     isLoading ?
@@ -596,7 +596,7 @@ const ManageEasyAddDishComp = () => {
                                                                                             <div className="allergen-icon d-flex align-items-center justify-content-center mb-2">
                                                                                                 <img src={`${SERVER_URL}/${data.image}`} className="img-fluid" />
                                                                                             </div>
-                                                                                            <span className={`mb-0 f-12 txt-lightgray`}>{data.name}</span>
+                                                                                            <span className={`mb-0 f-12 txt-lightgray brandon-Medium`}>{data.name}</span>
                                                                                         </button>
                                                                                     </React.Fragment>
 
@@ -615,7 +615,7 @@ const ManageEasyAddDishComp = () => {
                                         </div>
                                         <div className="row">
                                             <div className="col-sm-12 mt-2">
-                                                <p className="brandon-Medium txt-darkgreen">DIETARY PREFERENCES</p>
+                                                <p className="brandon-Medium txt-darkgreen fw-600 f-14">DIETARY PREFERENCES</p>
                                                 {
                                                     isLoading ?
                                                         <React.Fragment>
@@ -638,7 +638,7 @@ const ManageEasyAddDishComp = () => {
                                                                                             id={data._id}
                                                                                             type="button"
                                                                                             onClick={(e) => { handleAlergy(e, values.dietaryId, setFieldValue, "dietaryId") }}
-                                                                                            className={`tags-btn mr-4 mb-4 ${values.dietaryId && values.dietaryId.indexOf(data._id) !== -1 && "active"}`}
+                                                                                            className={`tags-btn mr-4 mb-4 brandon-Medium ${values.dietaryId && values.dietaryId.indexOf(data._id) !== -1 && "active"}`}
                                                                                         >
                                                                                             {data.name}
                                                                                         </button>
@@ -660,7 +660,7 @@ const ManageEasyAddDishComp = () => {
 
                                         <div className="row">
                                             <div className="col-sm-12 mt-3">
-                                                <p className="brandon-Medium txt-darkgreen">LIFESTYLE CHOICE</p>
+                                                <p className="brandon-Medium txt-darkgreen fw-600 f-14">LIFESTYLE CHOICE</p>
                                                 {
                                                     isLoading ?
                                                         <React.Fragment>
@@ -683,7 +683,7 @@ const ManageEasyAddDishComp = () => {
                                                                                             id={data._id}
                                                                                             type="button"
                                                                                             onClick={(e) => { handleAlergy(e, values.lifestyleId, setFieldValue, "lifestyleId") }}
-                                                                                            className={`tags-btn mr-4 mb-4 ${values.lifestyleId && values.lifestyleId.indexOf(data._id) !== -1 && "active"}`}
+                                                                                            className={`tags-btn mr-4 mb-4 brandon-Medium ${values.lifestyleId && values.lifestyleId.indexOf(data._id) !== -1 && "active"}`}
                                                                                         >
                                                                                             {data.name}
                                                                                         </button>
@@ -702,9 +702,10 @@ const ManageEasyAddDishComp = () => {
                                                 }
                                             </div>
                                         </div>
+                                        
                                         <div className="row">
-                                            <div className="col-sm-12 mt-3">
-                                                <p className="brandon-Medium txt-darkgreen">COOKING METHOD</p>
+                                            <div className="col-sm-12 mt-3 mb-3 pb-1">
+                                                <p className="brandon-Medium txt-darkgreen fw-600 f-14">COOKING METHOD</p>
                                                 {
                                                     isLoading ?
                                                         <React.Fragment>
@@ -727,7 +728,7 @@ const ManageEasyAddDishComp = () => {
                                                                                             id={data._id}
                                                                                             type="button"
                                                                                             onClick={(e) => { handleAlergy(e, values.cookingMethodId, setFieldValue, "cookingMethodId") }}
-                                                                                            className={`tags-btn mr-4 mb-4 ${values.cookingMethodId && values.cookingMethodId.indexOf(data._id) !== -1 && "active"}`}
+                                                                                            className={`tags-btn mr-4 mb-4 brandon-Medium ${values.cookingMethodId && values.cookingMethodId.indexOf(data._id) !== -1 && "active"}`}
                                                                                         >
                                                                                             {data.name}
                                                                                         </button>
@@ -749,7 +750,7 @@ const ManageEasyAddDishComp = () => {
 
 
                                         <div className="row">
-                                            <div className="col-sm-12">
+                                            <div className="col-sm-12 mb-4 pb-2">
                                                 <CaloriesMacrosModalComp
                                                     name="caloriesAndMacros"
                                                     onChangeData={(value) => { setFieldValue("caloriesAndMacros", value); }}
@@ -773,17 +774,17 @@ const ManageEasyAddDishComp = () => {
                                         </div>
                                         <div className="row">
                                             <div className="col-sm-12 d-flex align-items-center justify-content-end">
-                                                <div className="custom-control custom-checkbox pinkline-checkbox ">
+                                                <div className="custom-control custom-checkbox pinkline-checkbox mr-1">
                                                     <Field type="checkbox" name="customisable" id="customisable" className="custom-control-input" />
-                                                    <label className="custom-control-label" htmlFor="customisable">Customisable</label>
+                                                    <label className="custom-control-label brandon-Medium" htmlFor="customisable">Customisable</label>
                                                     {touched.customisable && errors.customisable && <div className="error pink-txt f-11">{errors.customisable}</div>}
                                                 </div>
-                                                <div className="custom-control custom-checkbox pinkline-checkbox ml-3 mr-2">
+                                                <div className="custom-control custom-checkbox pinkline-checkbox ml-4 mr-2">
                                                     <Field type="checkbox" name="createNewVersion" id="createNewVersion" className="custom-control-input" />
-                                                    <label className="custom-control-label" htmlFor="createNewVersion">Create New Version</label>
+                                                    <label className="custom-control-label brandon-Medium" htmlFor="createNewVersion">Create New Version</label>
                                                     {touched.createNewVersion && errors.createNewVersion && <div className="error pink-txt f-11">{errors.createNewVersion}</div>}
                                                 </div>
-                                                <button className="btn lightgraynoline-btn text-uppercase rounded-pill ml-5" type="reset" onClick={() => { handleCancleEdit(resetForm) }}>CANCLE</button>
+                                                <button className="btn lightgraynoline-btn text-uppercase rounded-pill ml-5" type="reset" onClick={() => { handleCancleEdit(resetForm) }}>CANCEL</button>
                                                 <button className="btn pink-btn text-uppercase rounded-pill ml-3" type="submit" >Save</button>
                                             </div>
                                        </div>

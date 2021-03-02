@@ -373,6 +373,9 @@
                     border-bottom-right-radius: 15px;
                     box-shadow: none !important;
                     outline: none !important;
+                    &::placeholder{
+                        color: #C8C7CC;
+                    }
                 }
             }
         }
@@ -554,6 +557,9 @@
             padding: 20px 30px;
             outline: none;
             box-shadow: none;
+            &::placeholder{
+                color: #C8C7CC;
+            }
         }
     }
 
