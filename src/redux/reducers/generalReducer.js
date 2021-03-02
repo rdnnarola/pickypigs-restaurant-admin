@@ -18,7 +18,7 @@ const initialState = {
           isLoading :true,
         };
       case "GET_LOGIN_SUCCESS":
-        localStorage.setItem('access_token',payload.token);
+        localStorage.setItem('access_token',payload);
         localStorage.setItem('role','restaurant_admin');
         return {
           ...state,

@@ -145,7 +145,21 @@ const AllDishesComponent=()=>{
                                                             <tr >
                                                                 <td>{data.name}</td>
                                                                 <td>&nbsp;</td>
-                                                                <td>{data.allergenId}</td>
+                                                                <td>
+                                                                    {data.allergensDetail&&data.allergensDetail.length>0?
+                                                                        <React.Fragment>
+                                                                            {data.allergensDetail&&data.allergensDetail.map((data,index)=>{
+                                                                                return(
+                                                                                    <React.Fragment key={index}>
+                                                                                        {(index? ' , ' : '')+data.name}
+                                                                                    </React.Fragment>
+                                                                                )
+                                                                            })}
+                                                                        </React.Fragment>
+                                                                        :
+                                                                        "Na"
+                                                                    }
+                                                                </td>
                                                                 <td>{data.available?"Yes":"No"}</td>
                                                                 <td>{data.menuDetail&&data.menuDetail.length}</td>
                                                                 <td>{data.updatedAt ?moment(data.updatedAt).format(" Do MMMM, YYYY"): "-" }</td>

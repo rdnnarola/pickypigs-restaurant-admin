@@ -5,26 +5,65 @@ import {RESTAURANT_ADMIN_URL} from '../../shared/constant';
 
 
 
-export const getLogin=(data,history)=>{
+// export const getLogin=(data,history)=>{
+//   return async(dispatch)=>{
+//       try{
+//           dispatch({type:"GET_LOGIN_REQUEST"});
+//           let config= {
+//               headers:{
+//                "Content-Type":"application/json"
+//                }
+//            }
+//           let dataURL=`/auth/login`
+//           let response = await Axios.post(dataURL,JSON.stringify(data),config );
+//           dispatch({type:"GET_LOGIN_SUCCESS",payload:response.data});
+//           dispatch(setAlert('LogIn Success', 'success'));
+//           history.push('/');
+//           const token = localStorage.getItem("access_token");
+//           if (token) axios.defaults.headers.common = { "x-access-token": token };
+//       }
+//       catch(error){
+//         dispatch({type:"GET_LOGIN_FAILURE",payload:error});
+//         dispatch(setAlert('Wrong Credential', 'error'));
+//       }
+//   }
+// };
+
+export const getLogin=(token,history)=>{
   return async(dispatch)=>{
       try{
           dispatch({type:"GET_LOGIN_REQUEST"});
           let config= {
               headers:{
-               "Content-Type":"application/json"
+               "Content-Type":"application/json",
                }
            }
-          let dataURL=`/auth/login`
-          let response = await Axios.post(dataURL,JSON.stringify(data),config );
-          dispatch({type:"GET_LOGIN_SUCCESS",payload:response.data});
-          dispatch(setAlert('LogIn Success', 'success'));
-          history.push('/');
-          const token = localStorage.getItem("access_token");
-          if (token) axios.defaults.headers.common = { "x-access-token": token };
+          const mytoken = token;
+          if (mytoken) axios.defaults.headers.common = { "x-access-token": mytoken };
+          let dataURL=`/restaurant_admin/domain_change_verification`
+          let response = await Axios.post(dataURL,config );
+          if(response&&response.status==200){
+            dispatch({type:"GET_LOGIN_SUCCESS",payload:mytoken});
+            dispatch(setAlert('LogIn Success', 'success'));
+            history.push('/');
+          }else{
+            window.open(
+              `${RESTAURANT_ADMIN_URL}`,
+              '_self', // <- This is what makes it open in a new window.
+              'replace=true'
+            )
+          }
+        
+          
       }
       catch(error){
         dispatch({type:"GET_LOGIN_FAILURE",payload:error});
         dispatch(setAlert('Wrong Credential', 'error'));
+        { window.open(
+          `${RESTAURANT_ADMIN_URL}`,
+          '_self', // <- This is what makes it open in a new window.
+          'replace=true'
+        )}
       }
   }
 };
