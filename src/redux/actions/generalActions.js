@@ -42,7 +42,7 @@ export const getLogin=(token,history)=>{
           if (mytoken) axios.defaults.headers.common = { "x-access-token": mytoken };
           let dataURL=`/restaurant_admin/domain_change_verification`
           let response = await Axios.post(dataURL,config );
-          if(response&&response.status==200){
+          if(response){
             dispatch({type:"GET_LOGIN_SUCCESS",payload:mytoken});
             dispatch(setAlert('LogIn Success', 'success'));
             history.push('/');
