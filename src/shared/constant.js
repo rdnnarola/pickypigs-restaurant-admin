@@ -20,6 +20,6 @@ export const EDAMAM_APP_KEY = "f779cbf3ef41e8fc15a42df1cff35d0d";
 
 export const RESTAURANT_ADMIN_URL = `${window.location.host === "localhost:3001"?"http://pickypigs.charlieandco.co.nz/#/restaurant_login":"http://pickypigs.charlieandco.co.nz/#/restaurant_login"}`;
 
-export const SERVER_URL = "https://pickypigsapi.herokuapp.com";
+export const SERVER_URL = "http://apps.narola.online:5003";
 
 
