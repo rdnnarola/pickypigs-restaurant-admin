@@ -42,7 +42,7 @@ const RestaurantFeaturesComp = (props) => {
                             endTime: "08:00"
                         },
                         {
-                            startTime: "9:00",
+                            startTime: "09:00",
                             endTime: "10:00"
                         }
                     ]
