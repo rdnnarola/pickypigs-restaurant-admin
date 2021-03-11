@@ -42,8 +42,8 @@ const RestaurantFeaturesComp = (props) => {
                             endTime: "08:00"
                         },
                         {
-                            startTime: "14:00",
-                            endTime: "20:00"
+                            startTime: "9:00",
+                            endTime: "10:00"
                         }
                     ]
                 },
@@ -52,12 +52,12 @@ const RestaurantFeaturesComp = (props) => {
                     isSelected: false,
                     timeList: [
                         {
-                            startTime: "09:00",
-                            endTime: "11:00"
+                            startTime: "07:00",
+                            endTime: "08:00"
                         },
                         {
-                            startTime: "14:00",
-                            endTime: "20:00"
+                            startTime: "09:00",
+                            endTime: "10:00"
                         }
                     ]
                 },
@@ -66,12 +66,12 @@ const RestaurantFeaturesComp = (props) => {
                     isSelected: false,
                     timeList: [
                         {
-                            startTime: "09:00",
-                            endTime: "11:00"
+                            startTime: "07:00",
+                            endTime: "08:00"
                         },
                         {
-                            startTime: "14:00",
-                            endTime: "20:00"
+                            startTime: "09:00",
+                            endTime: "10:00"
                         }
                     ]
                 },
@@ -80,12 +80,12 @@ const RestaurantFeaturesComp = (props) => {
                     isSelected: false,
                     timeList: [
                         {
-                            startTime: "09:00",
-                            endTime: "11:00"
+                            startTime: "07:00",
+                            endTime: "08:00"
                         },
                         {
-                            startTime: "14:00",
-                            endTime: "20:00"
+                            startTime: "09:00",
+                            endTime: "10:00"
                         }
                     ]
                 },
@@ -94,12 +94,12 @@ const RestaurantFeaturesComp = (props) => {
                     isSelected: false,
                     timeList: [
                         {
-                            startTime: "09:00",
-                            endTime: "11:00"
+                            startTime: "07:00",
+                            endTime: "08:00"
                         },
                         {
-                            startTime: "14:00",
-                            endTime: "20:00"
+                            startTime: "09:00",
+                            endTime: "10:00"
                         }
                     ]
                 },
@@ -108,12 +108,12 @@ const RestaurantFeaturesComp = (props) => {
                     isSelected: false,
                     timeList: [
                         {
-                            startTime: "11:00",
-                            endTime: "13:00"
+                            startTime: "07:00",
+                            endTime: "08:00"
                         },
                         {
-                            startTime: "16:00",
-                            endTime: "22:00"
+                            startTime: "09:00",
+                            endTime: "10:00"
                         }
                     ]
                 },
@@ -122,12 +122,12 @@ const RestaurantFeaturesComp = (props) => {
                     isSelected: false,
                     timeList: [
                         {
-                            startTime: "09:00",
-                            endTime: "11:00"
+                            startTime: "07:00",
+                            endTime: "08:00"
                         },
                         {
-                            startTime: "14:00",
-                            endTime: "20:00"
+                            startTime: "09:00",
+                            endTime: "10:00"
                         }
                     ]
                 }

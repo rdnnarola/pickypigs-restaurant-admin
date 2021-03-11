@@ -12,7 +12,7 @@ import { addMenuData, getSelectedMenuData, updateSelectedMenuData } from "../../
 
 
 const alergy_information = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"];
-const styleOf_menu=["breakfast","lunch","dinner","dessert","buffet","drinks","nibble","Set Menu"]
+const styleOf_menu=["breakfast","lunch","dinner","dessert","buffet","drinks","nibble","setmenu"]
 
 const AddEditMenuModalComp = (props) => {
     const [selectedDate, handleDateChange] = useState(new Date());

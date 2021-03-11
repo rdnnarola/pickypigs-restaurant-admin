@@ -231,7 +231,6 @@ const UpdateEasyAddDishComp = () => {
             },
             caloriesAndMacros: fields.caloriesAndMacros,
         }
-        console.log(obj)
 
         dispatch(updateSelectedDiscData(discId, obj, history));
     }
@@ -605,10 +604,10 @@ const UpdateEasyAddDishComp = () => {
                                                                                 <span className="d-flex align-items-center">
                                                                                     <span className="itemsplus-icon">+</span>
                                                                                     {addItem ?
-                                                                                        <button type="button" className="additems-btn brandon-Medium" onClick={() => { setAddItem(false) }}>Click to add item</button>
+                                                                                        <button type="button" className="additems-btn brandon-Medium" onClick={() => { setAddItem(false) }}>Click to Edit item</button>
                                                                                         :
                                                                                         <React.Fragment>
-                                                                                            <button type="button" className="additems-btn" onClick={() => { push({ item: '', qty: '', allergeies: [], customisable: false }) }}>Click to add item</button>
+                                                                                            <button type="button" className="additems-btn mr-3" onClick={() => { push({ item: '', qty: '', allergeies: [], customisable: false }) }}>Add item</button>
                                                                                             {/* <button onClick={() => {setAddItem(true)}}>save</button> */}
                                                                                             <button className="cancel-btn" onClick={() => { setAddItem(true); setFieldValue("deleteIngredients", []); setFieldValue("ingredient", selectedDisc_data && selectedDisc_data[0].ingredientSection && selectedDisc_data[0].ingredientSection.dish_ingredients) }}>Cancel</button>
                                                                                         </React.Fragment>
@@ -830,32 +829,33 @@ const UpdateEasyAddDishComp = () => {
                                         </div>
                                     </div>
                                     <div className="row">
-                                        <div className="col-sm-12">
-                                            <div className="my_shadow mb-3 bg-white w-100">
-                                                <div className="d-flex justify-content-between align-items-center">
-                                                    <h2>INSTRUCTIONS</h2>
+                                        <div className="col-sm-12 mb-4 pb-2">
+                                            <div className="my_shadow bg-white w-100 instructions-wrapper">
+                                                <div className="d-flex justify-content-between align-items-center instructions-heading">
+                                                    <h2 className="text-uppercase f-14 brandon-Bold p-4">INSTRUCTIONS</h2>
                                                 </div>
                                                 <Field component='textarea' rows='5' name="instructions" className="form-control add-description-textarea" placeholder="Type Here" />
                                             </div>
                                             {touched.instructions && errors.instructions && <div className="error pink-txt f-11">{errors.instructions}</div>}
                                         </div>
-                                        <div className="row">
-                                            <div className="col-sm-12 d-flex align-items-center justify-content-end">
-                                                <div className="custom-control custom-checkbox pinkline-checkbox mr-1">
-                                                    <Field type="checkbox" name="customisable" id="customisable" className="custom-control-input" />
-                                                    <label className="custom-control-label brandon-Medium" htmlFor="customisable">Customisable</label>
-                                                    {touched.customisable && errors.customisable && <div className="error pink-txt f-11">{errors.customisable}</div>}
-                                                </div>
-                                                <div className="custom-control custom-checkbox pinkline-checkbox ml-4 mr-2">
-                                                    <Field type="checkbox" name="createNewVersion" id="createNewVersion" className="custom-control-input" />
-                                                    <label className="custom-control-label brandon-Medium" htmlFor="createNewVersion">Create New Version</label>
-                                                    {touched.createNewVersion && errors.createNewVersion && <div className="error pink-txt f-11">{errors.createNewVersion}</div>}
-                                                </div>
-                                                <button className="btn lightgraynoline-btn text-uppercase rounded-pill ml-5" type="reset" onClick={() => { handleCancleEdit(resetForm) }} >CANCEL</button>
-                                                <button className="btn pink-btn text-uppercase rounded-pill ml-3" type="submit" >Save</button>
+                                    </div>
+                                    <div className="row">
+                                        <div className="col-sm-12 d-flex align-items-center justify-content-end">
+                                            <div className="custom-control custom-checkbox pinkline-checkbox mr-1">
+                                                <Field type="checkbox" name="customisable" id="customisable" className="custom-control-input" />
+                                                <label className="custom-control-label brandon-Medium" htmlFor="customisable">Customisable</label>
+                                                {touched.customisable && errors.customisable && <div className="error pink-txt f-11">{errors.customisable}</div>}
                                             </div>
+                                            <div className="custom-control custom-checkbox pinkline-checkbox ml-4 mr-2">
+                                                <Field type="checkbox" name="createNewVersion" id="createNewVersion" className="custom-control-input" />
+                                                <label className="custom-control-label brandon-Medium" htmlFor="createNewVersion">Create New Version</label>
+                                                {touched.createNewVersion && errors.createNewVersion && <div className="error pink-txt f-11">{errors.createNewVersion}</div>}
+                                            </div>
+                                            <button className="btn lightgraynoline-btn text-uppercase rounded-pill ml-5" type="reset" onClick={() => { handleCancleEdit(resetForm) }} >CANCEL</button>
+                                            <button className="btn pink-btn text-uppercase rounded-pill ml-3" type="submit" >Update</button>
                                         </div>
                                     </div>
+                                   
                                     </React.Fragment>
                                 </Form>
                             );

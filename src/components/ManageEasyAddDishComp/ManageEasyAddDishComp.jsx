@@ -224,7 +224,6 @@ const ManageEasyAddDishComp = () => {
             },
             caloriesAndMacros: fields.caloriesAndMacros,
         }
-        console.log(obj)
 
         dispatch(addDishesData(obj, history));
     }
