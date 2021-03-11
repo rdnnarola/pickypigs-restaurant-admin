@@ -683,7 +683,7 @@ const CaloriesMacrosModalComp = (props) => {
                                                     <p className="contributes-detailtxt gray-txt f-14">
                                                         * The % Daily Value (DV) tells you how much a nutrient in a serving of food contributes to a daily diet. 2,000 calories a day is used for general nutrition advice.
                                                     </p>
-                                                    <button className="btn lightgraynoline-btn text-uppercase rounded-pill" type="reset" onClick={() => { handleCancleEdit(resetForm); }}>cancle</button>
+                                                    <button className="btn lightgraynoline-btn text-uppercase rounded-pill" type="reset" onClick={() => { handleCancleEdit(resetForm); }}>cancel</button>
                                                     <button className="btn pinkline-btn text-uppercase rounded-pill ml-3 min-width-120" type="submit">Save</button>
                                                 </div>
                                                 {/* {JSON.stringify(values)} */}

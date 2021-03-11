@@ -39,7 +39,7 @@ const RestaurantUserDetailComp=()=>{
                                 <button className="custom_edit_button mr-5" onClick={()=>{setEditForm(false)}}>EDIT</button>
                                 :
                                 <div  className="d-flex justify-content-between align-items-center mr-5">
-                                    <button onClick={handleCancleEdit}>cancle</button>
+                                    <button onClick={handleCancleEdit}>cancel</button>
                                     <button>Save</button>
                                 </div>
                                 }

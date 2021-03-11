@@ -68,7 +68,7 @@ const RestaurantInfoComp = (props) => {
                                                             <button className="custom_edit_button mr-5 brandon-Medium" type="button" onClick={() => { setEditForm(false) }}>EDIT</button>
                                                             :
                                                             <div className="d-flex justify-content-between align-items-center ">
-                                                                <button className="btn lightgraynoline-btn min-width-120 border-radius-25 text-uppercase f-15" type="reset" onClick={()=>{handleCancleEdit(resetForm);}}>cancle</button>
+                                                                <button className="btn lightgraynoline-btn min-width-120 border-radius-25 text-uppercase f-15" type="reset" onClick={()=>{handleCancleEdit(resetForm);}}>cancel</button>
                                                                 <button className="btn pinkline-btn min-width-120 border-radius-25 ml-4 text-uppercase f-15" type="submit">Save</button>
                                                             </div>
                                                         }
@@ -91,7 +91,7 @@ const RestaurantInfoComp = (props) => {
                                                                                 <p className="form-control-plaintext text-uppercase">-</p>
                                                                         :
                                                                             <React.Fragment>
-                                                                                <Field name="login" placeholder="Enter Name here" className="form-control-inputtext form-control"/>
+                                                                                <Field name="login" placeholder="Login" className="form-control-inputtext form-control"/>
                                                                                 {touched.login && errors.login && <div className="error pink-txt f-11">{errors.login}</div>}
                                                                             </React.Fragment>
                                                                         }
@@ -107,7 +107,7 @@ const RestaurantInfoComp = (props) => {
                                                                                 <p className="form-control-plaintext text-uppercase">-</p>
                                                                         :
                                                                             <React.Fragment>
-                                                                                <Field name="email" type="email" placeholder="Enter Name here" className="form-control-inputtext form-control"/>
+                                                                                <Field name="email" type="email" placeholder="Email" className="form-control-inputtext form-control"/>
                                                                                 {touched.email && errors.email && <div className="error pink-txt f-11">{errors.email}</div>}
                                                                             </React.Fragment>
                                                                         }
@@ -125,7 +125,7 @@ const RestaurantInfoComp = (props) => {
                                                                                 <p className="form-control-plaintext text-uppercase">-</p>
                                                                         :
                                                                             <React.Fragment>
-                                                                                <Field name="phoneNumber" type="number" placeholder="Enter Name here" className="form-control-inputtext form-control"/>
+                                                                                <Field name="phoneNumber" type="number" placeholder="Phone Number" className="form-control-inputtext form-control"/>
                                                                                 {touched.phoneNumber && errors.phoneNumber && <div className="error pink-txt f-11">{errors.phoneNumber}</div>}
                                                                             </React.Fragment>
                                                                         }
@@ -141,7 +141,7 @@ const RestaurantInfoComp = (props) => {
                                                                                 <p className="form-control-plaintext text-uppercase">-</p>
                                                                         :
                                                                             <React.Fragment>
-                                                                                <Field name="mobileNumber" type="number" placeholder="Enter Name here" className="form-control-inputtext form-control"/>
+                                                                                <Field name="mobileNumber" type="number" placeholder="Mobile Number" className="form-control-inputtext form-control"/>
                                                                                 {touched.mobileNumber && errors.mobileNumber && <div className="error pink-txt f-11">{errors.mobileNumber}</div>}
                                                                             </React.Fragment>
                                                                         }                                                                    </div>

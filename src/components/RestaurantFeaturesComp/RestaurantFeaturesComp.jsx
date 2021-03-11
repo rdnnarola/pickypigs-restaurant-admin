@@ -159,7 +159,8 @@ const RestaurantFeaturesComp = (props) => {
 
     const validationSchema = Yup.object().shape({
         timeArray: Yup.array().required('Please Select Timings'),
-        bookingsphoneNumber2: Yup.string().min(10, "Min 10 Digits").max(10, "Max 10 Digits").matches(phoneRegex, "Invalid Phone Number"),
+        // bookingsphoneNumber2: Yup.string().min(10, "Min 10 Digits").max(10, "Max 10 Digits").matches(phoneRegex, "Invalid Phone Number"),
+        // bookingsphoneNumber2: Yup.string(),
         bookingsemail2: Yup.string().email('Email must be a valid email'),
         bookingswebsiteUrl2: Yup.string().matches(urlRegex, "Enter A valid URL"),
         facebookUrl2: Yup.string().matches(urlRegex, "Enter A valid URL"),
@@ -250,7 +251,7 @@ const RestaurantFeaturesComp = (props) => {
                                                             <button className="custom_edit_button mr-5 brandon-Medium" type="button" onClick={() => { setEditForm(false) }}>EDIT</button>
                                                             :
                                                             <div className="d-flex justify-content-between align-items-center ">
-                                                                <button className="btn lightgraynoline-btn min-width-120 border-radius-25 text-uppercase f-15" type="reset" onClick={() => { handleCancleEdit(resetForm); }}>cancle</button>
+                                                                <button className="btn lightgraynoline-btn min-width-120 border-radius-25 text-uppercase f-15" type="reset" onClick={() => { handleCancleEdit(resetForm); }}>cancel</button>
                                                                 <button className="btn pinkline-btn min-width-120 border-radius-25 ml-4 text-uppercase f-15" type="submit">Save</button>
                                                             </div>
                                                         }
@@ -322,7 +323,7 @@ const RestaurantFeaturesComp = (props) => {
                                                                                                                     inputVariant="outlined"
                                                                                                                     ampm={!openingTimings.isTime24Hours}
                                                                                                                     disabled={true}
-                                                                                                                    value={`Thu Dec 31 2020 ${data.timeList && data.timeList[0].startTime} GMT+0530`}
+                                                                                                                    value={`Thu Dec 31 2020 ${data.timeList && data.timeList[0].startTime} `}
                                                                                                                 />
                                                                                                             </MuiPickersUtilsProvider>
                                                                                                         </div>
@@ -334,7 +335,7 @@ const RestaurantFeaturesComp = (props) => {
                                                                                                                     inputVariant="outlined"
                                                                                                                     ampm={!openingTimings.isTime24Hours}
                                                                                                                     disabled={true}
-                                                                                                                    value={`Thu Dec 31 2020 ${data.timeList && data.timeList[0].endTime} GMT+0530`}
+                                                                                                                    value={`Thu Dec 31 2020 ${data.timeList && data.timeList[0].endTime} `}
                                                                                                                 />
                                                                                                             </MuiPickersUtilsProvider>
                                                                                                         </div>
@@ -349,7 +350,7 @@ const RestaurantFeaturesComp = (props) => {
                                                                                                                         inputVariant="outlined"
                                                                                                                         ampm={!openingTimings.isTime24Hours}
                                                                                                                         disabled={true}
-                                                                                                                        value={`Thu Dec 31 2020 ${data.timeList && data.timeList[1].startTime} GMT+0530`}
+                                                                                                                        value={`Thu Dec 31 2020 ${data.timeList && data.timeList[1].startTime} `}
                                                                                                                     />
                                                                                                                 </MuiPickersUtilsProvider>
                                                                                                             </div>
@@ -361,7 +362,7 @@ const RestaurantFeaturesComp = (props) => {
                                                                                                                         inputVariant="outlined"
                                                                                                                         ampm={!openingTimings.isTime24Hours}
                                                                                                                         disabled={true}
-                                                                                                                        value={`Thu Dec 31 2020 ${data.timeList && data.timeList[1].endTime} GMT+0530`}
+                                                                                                                        value={`Thu Dec 31 2020 ${data.timeList && data.timeList[1].endTime} `}
                                                                                                                     />
                                                                                                                 </MuiPickersUtilsProvider>
                                                                                                             </div>
@@ -398,11 +399,8 @@ const RestaurantFeaturesComp = (props) => {
                                                                                                                     inputVariant="outlined"
                                                                                                                     ampm={!values.isTime24Hours}
                                                                                                                     // mask="__:__ _M" 
-                                                                                                                    value={`Thu Dec 31 2020 ${data.timeList && data.timeList[0].startTime} GMT+0530`}
+                                                                                                                    value={`Thu Dec 31 2020 ${data.timeList && data.timeList[0].startTime} `}
                                                                                                                     onChange={date => setFieldValue(`timeArray.${index}.timeList.${0}.startTime`, moment(date).format('HH:mm'), false)}
-                                                                                                                    minTime={`Thu Dec 31 2020 08:20 GMT+0530`}
-                                                                                                                    minutesStep={1}
-
                                                                                                                     KeyboardButtonProps={{
                                                                                                                         'aria-label': 'change time',
                                                                                                                     }}
@@ -418,7 +416,7 @@ const RestaurantFeaturesComp = (props) => {
                                                                                                                     inputVariant="outlined"
                                                                                                                     ampm={!values.isTime24Hours}
                                                                                                                     // mask="__:__ _M" 
-                                                                                                                    value={`Thu Dec 31 2020 ${data.timeList && data.timeList[0].endTime} GMT+0530`}
+                                                                                                                    value={`Thu Dec 31 2020 ${data.timeList && data.timeList[0].endTime} `}
                                                                                                                     onChange={date => setFieldValue(`timeArray.${index}.timeList.${0}.endTime`, moment(date).format('HH:mm'), false)}
                                                                                                                     KeyboardButtonProps={{
                                                                                                                         'aria-label': 'change time',
@@ -437,7 +435,7 @@ const RestaurantFeaturesComp = (props) => {
                                                                                                                         inputVariant="outlined"
                                                                                                                         ampm={!values.isTime24Hours}
                                                                                                                         // mask="__:__ _M" 
-                                                                                                                        value={`Thu Dec 31 2020 ${data.timeList && data.timeList[1].startTime} GMT+0530`}
+                                                                                                                        value={`Thu Dec 31 2020 ${data.timeList && data.timeList[1].startTime} `}
                                                                                                                         onChange={date => setFieldValue(`timeArray.${index}.timeList.${1}.startTime`, moment(date).format('HH:mm'), false)}
                                                                                                                         KeyboardButtonProps={{
                                                                                                                             'aria-label': 'change time',
@@ -454,7 +452,7 @@ const RestaurantFeaturesComp = (props) => {
                                                                                                                         inputVariant="outlined"
                                                                                                                         ampm={!values.isTime24Hours}
                                                                                                                         // mask="__:__ _M"                                                                                                                        
-                                                                                                                        value={`Thu Dec 31 2020 ${data.timeList && data.timeList[1].endTime} GMT+0530`}
+                                                                                                                        value={`Thu Dec 31 2020 ${data.timeList && data.timeList[1].endTime} `}
                                                                                                                         onChange={date => setFieldValue(`timeArray.${index}.timeList.${1}.endTime`, moment(date).format('HH:mm'), false)}
                                                                                                                         KeyboardButtonProps={{
                                                                                                                             'aria-label': 'change time',

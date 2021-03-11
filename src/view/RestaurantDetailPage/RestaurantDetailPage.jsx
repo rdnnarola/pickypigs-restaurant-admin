@@ -181,7 +181,7 @@ const RestaurantDetailPage = () => {
                                 <button className="btn pinkline-btn text-uppercase rounded-pill mt-3 min-width-170" type="button" onClick={() => { setEditProfileName(false) }}><span className="edit-icon"> Edit Profile</span></button>
                                 :
                                 <div className="d-flex justify-content-between align-items-center mt-3 min-width-170">
-                                    <button className="btn lightgraynoline-btn min-width-120 border-radius-25 text-uppercase f-15" type="reset" onClick={handleProfileCancl}>cancle</button>
+                                    <button className="btn lightgraynoline-btn min-width-120 border-radius-25 text-uppercase f-15" type="reset" onClick={handleProfileCancl}>cancel</button>
                                     <button className="btn pinkline-btn min-width-120 border-radius-25 ml-4 text-uppercase f-15" type="submit" onClick={handleProfileSubmit}>Save</button>
                                 </div>
                             }
@@ -196,7 +196,7 @@ const RestaurantDetailPage = () => {
                             <button className="custom_edit_button brandon-Medium" type="button" onClick={() => { setEditForm(false) }}>EDIT</button>
                             :
                             <div className="d-flex justify-content-between align-items-center ">
-                                <button className="btn lightgraynoline-btn min-width-120 border-radius-25 text-uppercase f-15" type="reset" onClick={handleAboutCancl}>cancle</button>
+                                <button className="btn lightgraynoline-btn min-width-120 border-radius-25 text-uppercase f-15" type="reset" onClick={handleAboutCancl}>cancel</button>
                                 <button className="btn pinkline-btn min-width-120 border-radius-25 ml-4 text-uppercase f-15" type="submit" onClick={handleAboutSubmit}>Save</button>
                             </div>
                         }
