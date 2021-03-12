@@ -153,7 +153,98 @@ const ManageEasyAddDishComp = () => {
         customisable: false,
         createNewVersion: false,
         ingredientSection: {},
-        caloriesAndMacros: "",
+        caloriesAndMacros: {
+            total: 0,
+            fat: {
+                weight: 0,
+                fatUnit: "g",
+            },
+            totalFat: {
+                weight: 0,
+                weightUnit: "g",
+                percentage: 0,
+            },
+            saturatedFat: {
+                weight: 0,
+                weightUnit: "g",
+                percentage: 0,
+            },
+            transFat: {
+                weight: 0,
+                weightUnit: "g",
+                percentage: 0,
+            },
+            polyunsaturatedFat: {
+                weight: 0,
+                weightUnit: "g",
+                percentage: 0,
+            },
+            monounsaturatedFat: {
+                weight: 0,
+                weightUnit: "g",
+                percentage: 0,
+            },
+            cholesterol: {
+                weight: 0,
+                weightUnit: "g",
+                percentage: 0,
+            },
+            sodium: {
+                weight: 0,
+                weightUnit: "g",
+                percentage: 0,
+            },
+            totalCarbohydrate: {
+                totalWeight: 0,
+                weightUnit: "g",
+                totalPercentage: 0,
+            },
+            dietaryFiber: {
+                weight: 0,
+                weightUnit: "mg",
+                percentage: 0
+            },
+            sugars: {
+                weight: 0,
+                weightUnit: "mg",
+                percentage: 0
+            },
+            protien: {
+                totalWeight: 0,
+                weightUnit: "g",
+                totalPercentage: 0,
+            },
+            vitaminD: {
+                weight: 0,
+                weightUnit: "mg",
+                percentage: 0
+            },
+            calcium: {
+                weight: 0,
+                weightUnit: "mg",
+                percentage: 0
+            },
+            iron: {
+                weight: 0,
+                weightUnit: "mg",
+                percentage: 0
+            },
+            potassium: {
+                weight: 0,
+                weightUnit: "mg",
+                percentage: 0
+            },
+            vitaminA: {
+                weight: 0,
+                weightUnit: "IU",
+                percentage: 0
+            },
+            vitaminC: {
+                weight: 0,
+                weightUnit: "mg",
+                percentage: 0
+            }
+        },
         ingredient: [],
         priceUnit: '$',
         description: '',
@@ -163,34 +254,34 @@ const ManageEasyAddDishComp = () => {
 
     const validationSchema = Yup.object().shape({
         name: Yup.string().required('Name is required'),
-        makes: Yup.string().required('Serving is required'),
+        // makes: Yup.string().required('Serving is required'),//should be positive
         price: Yup.string().required('Price is required'),
-        grossProfit: Yup.string().required('Profit is required'),
-        image: Yup.mixed().required('Image is required'),
+        // grossProfit: Yup.string().required('Profit is required'),
+        // image: Yup.mixed().required('Image is required'),
         favorite: Yup.boolean().oneOf([true, false]),
         new: Yup.boolean().oneOf([true, false]),
         available: Yup.boolean().oneOf([true, false]),
         menuId: Yup.array().required('Please Select Menu'),
         categoryId: Yup.string().required('Category is required'),
         subcategoryId: Yup.string().required('Subcategory is Required'),
-        description2: Yup.string().required('Description is Required'),
-        allergenId: Yup.array().required('Please Select Allergen'),
-        dietaryId: Yup.array().required('Please Select  Dietary'),
-        lifestyleId: Yup.array().required('Please Select Lifestyle'),
-        cookingMethodId: Yup.array().required('Please Select CookingMethod'),
-        instructions: Yup.string().required('Instructions is Required'),
+        // description2: Yup.string().required('Description is Required'),
+        // allergenId: Yup.array().required('Please Select Allergen'),
+        // dietaryId: Yup.array().required('Please Select  Dietary'),
+        // lifestyleId: Yup.array().required('Please Select Lifestyle'),
+        // cookingMethodId: Yup.array().required('Please Select CookingMethod'),
+        // instructions: Yup.string().required('Instructions is Required'),
         customisable: Yup.boolean().oneOf([true, false]),
         createNewVersion: Yup.boolean().oneOf([true, false]),
-        ingredient: Yup.array()
-            .of(
-                Yup.object().shape({
-                    item: Yup.string().required("Item Required"),
-                    qty: Yup.string().required('Required').matches(numRegExp, 'Enter Valid Number'),
-                    allergeies: Yup.array().required('Please Select allergeies'),
-                })
-            ).required('Must have Items'),
-        caloriesAndMacros: Yup.string().required('Please Provide Calories And Macros Details'),
-        priceUnit: Yup.string().required('PriceUnit is Required'),
+        // ingredient: Yup.array()
+        //     .of(
+        //         Yup.object().shape({
+        //             item: Yup.string().required("Item Required"),
+        //             qty: Yup.string().required('Required').matches(numRegExp, 'Enter Valid Number'),
+        //             allergeies: Yup.array().required('Please Select allergeies'),
+        //         })
+        //     ).required('Must have Items'),
+        // caloriesAndMacros: Yup.string().required('Please Provide Calories And Macros Details'),
+        // priceUnit: Yup.string().required('PriceUnit is Required'),
 
     });
 

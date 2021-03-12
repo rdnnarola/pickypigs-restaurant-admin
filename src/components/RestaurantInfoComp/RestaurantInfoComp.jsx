@@ -7,6 +7,7 @@ import {updateRestaurantInfoDetail} from '../../redux/actions/restaurantSettingA
 
 const passwordRegExp = RegExp(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,24})/);
 const phoneRegex = RegExp( /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/);
+const numbRegs=RegExp(/^[0-9]*$/);
 
 const RestaurantInfoComp = (props) => {
     let {login,phoneNumber,email,location,mobileNumber}=props.infodata
@@ -30,9 +31,12 @@ const RestaurantInfoComp = (props) => {
     const validationSchema  = Yup.object().shape({
         login:Yup.string().required('Login Name is required'),
         email:Yup.string().email('Email must be a valid email').required('Email Required'),
-        phoneNumber:Yup.string().required('Phone Number is a required field').min(10, "Min 10 Digits").max(10, "Max 10 Digits").matches(phoneRegex, "Invalid Phone Number"),
+        // phoneNumber:Yup.string().required('Phone Number is a required field').min(10, "Min 10 Digits").max(10, "Max 10 Digits").matches(phoneRegex, "Invalid Phone Number"),
+        phoneNumber:Yup.string().required('Phone Number is a required field').matches(numbRegs, "Invalid Phone Number"),
         location:Yup.string().required('Address is required').min(10).max(50),
-        mobileNumber:Yup.string().required('Phone Number is a required field').min(10, "Min 10 Digits").max(10, "Max 10 Digits").matches(phoneRegex, "Invalid Phone Number"),
+        // mobileNumber:Yup.string().required('Phone Number is a required field').min(10, "Min 10 Digits").max(10, "Max 10 Digits").matches(phoneRegex, "Invalid Phone Number"),
+        mobileNumber:Yup.string().required('Mobile Number is a required field').matches(numbRegs, "Invalid Phone Number"),
+
     });
 
     const onSubmit=(fields)=>{
@@ -117,7 +121,7 @@ const RestaurantInfoComp = (props) => {
                                                             <div className="row mb-4">
                                                                 <div className="col-md-6">
                                                                     <div className="rs-info-block">
-                                                                        <h5 className="accordion-label">PHONE NUMBE</h5>
+                                                                        <h5 className="accordion-label">PHONE NUMBER</h5>
                                                                         {editForm?
                                                                             props.infodata&&props.infodata.phoneNumber?
                                                                                 <p className="form-control-plaintext text-uppercase">{props.infodata&&props.infodata.phoneNumber}</p>
@@ -133,7 +137,7 @@ const RestaurantInfoComp = (props) => {
                                                                 </div>
                                                                 <div className="col-md-6">
                                                                     <div className="rs-info-block">
-                                                                        <h5 className="accordion-label">MOBILE NUMBE</h5>
+                                                                        <h5 className="accordion-label">MOBILE NUMBER</h5>
                                                                         {editForm?
                                                                             props.infodata&&props.infodata.mobileNumber?
                                                                                 <p className="form-control-plaintext text-uppercase">{props.infodata&&props.infodata.mobileNumber}</p>
@@ -150,7 +154,7 @@ const RestaurantInfoComp = (props) => {
                                                             <div className="row">
                                                                 <div className="col-md-6">
                                                                     <div className="rs-info-block">
-                                                                        <h5 className="accordion-label">LOCATIO</h5>
+                                                                        <h5 className="accordion-label">LOCATION</h5>
                                                                         {editForm
                                                                             ?
                                                                             props.infodata&&props.infodata.location?

@@ -223,6 +223,16 @@ const RestaurantFeaturesComp = (props) => {
         setEditForm(true)
     }
 
+    function tConv24(time24) {
+        var ts = time24;
+        var H = +ts.substr(0, 2);
+        var h = (H % 12) || 12;
+        h = (h < 10)?("0"+h):h;  // leading 0 at the left for 1 digit hours
+        var ampm = H < 12 ? " AM" : " PM";
+        ts = h + ts.substr(2, 3) + ampm;
+        return ts;
+      };
+
     return (
         <>
             <section className="RestaurantFeaturesComp">
@@ -392,51 +402,18 @@ const RestaurantFeaturesComp = (props) => {
 
                                                                                                 <React.Fragment>
                                                                                                     <React.Fragment >
-                                                                                                        <div className="custom-timepicker mb-0 form-group d-flex align-items-center active">
-                                                                                                            <MuiPickersUtilsProvider utils={MomentUtils}>
-                                                                                                                <KeyboardTimePicker
-                                                                                                                    id="from-time-picker" placeholder="From"
-                                                                                                                    inputVariant="outlined"
-                                                                                                                    ampm={!values.isTime24Hours}
-                                                                                                                    // mask="__:__ _M" 
-                                                                                                                    value={`Thu Dec 31 2020 ${data.timeList && data.timeList[0].startTime} `}
-                                                                                                                    onChange={date => setFieldValue(`timeArray.${index}.timeList.${0}.startTime`, moment(date).format('HH:mm'), false)}
-                                                                                                                    KeyboardButtonProps={{
-                                                                                                                        'aria-label': 'change time',
-                                                                                                                    }}
-                                                                                                                />
-                                                                                                            </MuiPickersUtilsProvider>
-                                                                                                        </div>
-                                                                                                        <div className="timeing-dash">
-                                                                                                        </div>
-                                                                                                        <div className="custom-timepicker mb-0 form-group d-flex align-items-center">
-                                                                                                            <MuiPickersUtilsProvider utils={MomentUtils}>
-                                                                                                                <KeyboardTimePicker
-                                                                                                                    id="from-time-picker" placeholder="From"
-                                                                                                                    inputVariant="outlined"
-                                                                                                                    ampm={!values.isTime24Hours}
-                                                                                                                    // mask="__:__ _M" 
-                                                                                                                    value={`Thu Dec 31 2020 ${data.timeList && data.timeList[0].endTime} `}
-                                                                                                                    onChange={date => setFieldValue(`timeArray.${index}.timeList.${0}.endTime`, moment(date).format('HH:mm'), false)}
-                                                                                                                    KeyboardButtonProps={{
-                                                                                                                        'aria-label': 'change time',
-                                                                                                                    }}
-                                                                                                                />
-                                                                                                            </MuiPickersUtilsProvider>
-                                                                                                        </div>
-                                                                                                    </React.Fragment>
-                                                                                                    {values.isMultiTime &&
-                                                                                                        <React.Fragment >
-                                                                                                            <div className="to-txt">&nbsp;&nbsp;&nbsp;&nbsp;&amp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
-                                                                                                            <div className="custom-timepicker mb-0 form-group d-flex align-items-center">
+                                                                                                        <div className="position-relative d-flex align-items-center mb-3">
+                                                                                                            <div className="custom-timepicker mb-0 form-group d-flex align-items-center active ">
                                                                                                                 <MuiPickersUtilsProvider utils={MomentUtils}>
                                                                                                                     <KeyboardTimePicker
                                                                                                                         id="from-time-picker" placeholder="From"
                                                                                                                         inputVariant="outlined"
                                                                                                                         ampm={!values.isTime24Hours}
                                                                                                                         // mask="__:__ _M" 
-                                                                                                                        value={`Thu Dec 31 2020 ${data.timeList && data.timeList[1].startTime} `}
-                                                                                                                        onChange={date => setFieldValue(`timeArray.${index}.timeList.${1}.startTime`, moment(date).format('HH:mm'), false)}
+                                                                                                                        disabled={!data.isSelected}
+                                                                                                                        value={ moment(data.timeList && data.timeList[0].startTime, "HH:mm")}
+                                                                                                                        // value={`Thu Dec 31 2020 ${data.timeList && data.timeList[0].startTime} `}
+                                                                                                                        onChange={date => setFieldValue(`timeArray.${index}.timeList.${0}.startTime`, moment(date).format('HH:mm'), false)}
                                                                                                                         KeyboardButtonProps={{
                                                                                                                             'aria-label': 'change time',
                                                                                                                         }}
@@ -451,15 +428,89 @@ const RestaurantFeaturesComp = (props) => {
                                                                                                                         id="from-time-picker" placeholder="From"
                                                                                                                         inputVariant="outlined"
                                                                                                                         ampm={!values.isTime24Hours}
-                                                                                                                        // mask="__:__ _M"                                                                                                                        
-                                                                                                                        value={`Thu Dec 31 2020 ${data.timeList && data.timeList[1].endTime} `}
-                                                                                                                        onChange={date => setFieldValue(`timeArray.${index}.timeList.${1}.endTime`, moment(date).format('HH:mm'), false)}
+                                                                                                                        // mask="__:__ _M" 
+                                                                                                                        disabled={!data.isSelected}
+                                                                                                                        value={`Thu Dec 31 2020 ${data.timeList && data.timeList[0].endTime} `}
+                                                                                                                        onChange={date => setFieldValue(`timeArray.${index}.timeList.${0}.endTime`, moment(date).format('HH:mm'), false)}
                                                                                                                         KeyboardButtonProps={{
                                                                                                                             'aria-label': 'change time',
                                                                                                                         }}
                                                                                                                     />
                                                                                                                 </MuiPickersUtilsProvider>
                                                                                                             </div>
+                                                                                                            {data.isSelected?
+                                                                                                                <div style={{position:'absolute',bottom:-22}}>
+                                                                                                                    <small className="pink-txt">
+                                                                                                                        {(moment(data.timeList && data.timeList[0].startTime, "HH:mm").isBefore(moment(data.timeList && data.timeList[0].endTime, "HH:mm")))?null:`Please Select End Time After ${!values.isTime24Hours?tConv24(data.timeList && data.timeList[0].startTime):data.timeList && data.timeList[0].startTime}`}
+                                                                                                                    </small>
+                                                                                                                </div>
+                                                                                                            :
+                                                                                                                null
+                                                                                                            }
+                                                                                                        </div>
+                                                                                                    </React.Fragment>
+                                                                                                    {values.isMultiTime &&
+                                                                                                        <React.Fragment >
+                                                                                                            <div className="position-relative d-flex align-items-center mb-3">
+                                                                                                                <div className="to-txt">&nbsp;&nbsp;&nbsp;&nbsp;&amp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
+                                                                                                                <div className="custom-timepicker mb-0 form-group d-flex align-items-center">
+                                                                                                                    <MuiPickersUtilsProvider utils={MomentUtils}>
+                                                                                                                        <KeyboardTimePicker
+                                                                                                                            id="from-time-picker" placeholder="From"
+                                                                                                                            inputVariant="outlined"
+                                                                                                                            ampm={!values.isTime24Hours}
+                                                                                                                            // mask="__:__ _M" 
+                                                                                                                            disabled={!data.isSelected}
+                                                                                                                            value={`Thu Dec 31 2020 ${data.timeList && data.timeList[1].startTime} `}
+                                                                                                                            onChange={date => setFieldValue(`timeArray.${index}.timeList.${1}.startTime`, moment(date).format('HH:mm'), false)}
+                                                                                                                            KeyboardButtonProps={{
+                                                                                                                                'aria-label': 'change time',
+                                                                                                                            }}
+                                                                                                                        />
+                                                                                                                    </MuiPickersUtilsProvider>
+                                                                                                                </div>
+                                                                                                                <div className="timeing-dash">
+                                                                                                                </div>
+                                                                                                                <div className="custom-timepicker mb-0 form-group d-flex align-items-center">
+                                                                                                                    <MuiPickersUtilsProvider utils={MomentUtils}>
+                                                                                                                        <KeyboardTimePicker
+                                                                                                                            id="from-time-picker" placeholder="From"
+                                                                                                                            inputVariant="outlined"
+                                                                                                                            ampm={!values.isTime24Hours}
+                                                                                                                            // mask="__:__ _M"        
+                                                                                                                            disabled={!data.isSelected}                                                                                                                
+                                                                                                                            value={`Thu Dec 31 2020 ${data.timeList && data.timeList[1].endTime} `}
+                                                                                                                            onChange={date => setFieldValue(`timeArray.${index}.timeList.${1}.endTime`, moment(date).format('HH:mm'), false)}
+                                                                                                                            KeyboardButtonProps={{
+                                                                                                                                'aria-label': 'change time',
+                                                                                                                            }}
+                                                                                                                        />
+                                                                                                                    </MuiPickersUtilsProvider>
+                                                                                                                </div>
+                                                                                                                {data.isSelected?
+                                                                                                                    <div style={{position:'absolute',bottom:-22}}>
+                                                                                                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                                                                                        <small className="pink-txt">
+                                                                                                                            {(moment(data.timeList && data.timeList[1].startTime, "HH:mm").isBefore(moment(data.timeList && data.timeList[0].endTime, "HH:mm")))?
+                                                                                                                                <React.Fragment>
+                                                                                                                                    {`Please Select Start Time After ${!values.isTime24Hours?tConv24(data.timeList && data.timeList[0].endTime):data.timeList && data.timeList[0].endTime}`}
+                                                                                                                                </React.Fragment>
+                                                                                                                            :
+                                                                                                                                <React.Fragment>
+                                                                                                                                    {
+                                                                                                                                    (moment(data.timeList && data.timeList[1].startTime, "HH:mm").isBefore(moment(data.timeList && data.timeList[1].endTime, "HH:mm")))?
+                                                                                                                                    null
+                                                                                                                                    :
+                                                                                                                                    `Please Select End Time After ${!values.isTime24Hours?tConv24(data.timeList && data.timeList[1].startTime):data.timeList && data.timeList[1].startTime}`
+                                                                                                                                    }
+                                                                                                                                </React.Fragment>
+                                                                                                                            }
+                                                                                                                        </small>
+                                                                                                                    </div>
+                                                                                                                :
+                                                                                                                    null
+                                                                                                                }
+                                                                                                            </div>    
                                                                                                         </React.Fragment>
                                                                                                     }
                                                                                                     {/* {values.timeArray.length == 0 && errors.timeArray && <div className="error pink-txt f-11">{errors.timeArray}</div>} */}

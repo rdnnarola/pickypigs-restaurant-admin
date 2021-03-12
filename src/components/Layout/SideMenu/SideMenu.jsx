@@ -43,12 +43,12 @@ const SideMenu = () => {
                             </div>
                             <NavLink to="/manage_menu" className="btn btn-none text-primary menu-name">Menus</NavLink>
                         </div>
-                        <div className="menu-list d-flex align-items-center">
+                        {/* <div className="menu-list d-flex align-items-center">
                             <div className="menu-icon">
                                 <img src={menu_icon} className="img-fluid" alt="icon"  />
                             </div>
                             <NavLink to="/manage_submenu" className="btn btn-none text-primary menu-name">Sub Menus</NavLink>
-                        </div>
+                        </div> */}
                         <div className="menu-list d-flex align-items-center">
                             <div className="menu-icon">
                                 <img src={category_icon} className="img-fluid" alt="icon"  />
