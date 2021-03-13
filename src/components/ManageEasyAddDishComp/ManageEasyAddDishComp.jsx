@@ -583,7 +583,7 @@ const ManageEasyAddDishComp = () => {
                                                                             <th className="brandon-Bold " scope="col">ALLERGIES</th>
                                                                             <td className=""></td>
                                                                             <th className="brandon-Bold text-right" scope="col">QTY</th>
-                                                                            <th className="brandon-Bold text-right" scope="col">CUSTOMISABLE</th>
+                                                                            <th className="brandon-Bold text-center" scope="col">CUSTOMISABLE</th>
                                                                             <th className="brandon-Bold text-right" scope="col">Action</th>
 
                                                                         </tr>
