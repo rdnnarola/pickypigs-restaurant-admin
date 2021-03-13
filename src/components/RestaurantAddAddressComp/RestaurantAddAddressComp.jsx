@@ -127,7 +127,7 @@ const RestaurantAddAddressComp = (props) => {
                                                             <button className="custom_edit_button mr-5 brandon-Medium" type="button" onClick={() => { setEditForm(false) }}>EDIT</button>
                                                             :
                                                             <div className="d-flex justify-content-between align-items-center ">
-                                                                <button className="btn lightgraynoline-btn min-width-120 border-radius-25 text-uppercase f-15" type="reset" onClick={()=>{handleCancleEdit(resetForm);}}>cancle</button>
+                                                                <button className="btn lightgraynoline-btn min-width-120 border-radius-25 text-uppercase f-15" type="reset" onClick={()=>{handleCancleEdit(resetForm);}}>cancel</button>
                                                                 <button className="btn pinkline-btn min-width-120 border-radius-25 ml-4 text-uppercase f-15" type="submit">Save</button>
                                                             </div>
                                                         }
@@ -183,7 +183,7 @@ const RestaurantAddAddressComp = (props) => {
                                                                                 <p className="form-control-plaintext text-uppercase">-</p>
                                                                         :
                                                                             <React.Fragment>
-                                                                                <Field name="myStreet" placeholder="Enter Name here" className="form-control-inputtext form-control"/>
+                                                                                <Field name="myStreet" placeholder="Street Name" className="form-control-inputtext form-control"/>
                                                                                 {touched.myStreet && errors.myStreet && <div className="error pink-txt f-11">{errors.myStreet}</div>}
                                                                             </React.Fragment>
                                                                         }
@@ -201,7 +201,7 @@ const RestaurantAddAddressComp = (props) => {
                                                                                 <p className="form-control-plaintext text-uppercase">-</p>
                                                                         :
                                                                             <React.Fragment>
-                                                                                <Field name="myLocality" placeholder="Enter Name here" className="form-control-inputtext form-control"/>
+                                                                                <Field name="myLocality" placeholder="Locality" className="form-control-inputtext form-control"/>
                                                                                 {touched.myLocality && errors.myLocality && <div className="error pink-txt f-11">{errors.myLocality}</div>}
                                                                             </React.Fragment>
                                                                         }
@@ -217,7 +217,7 @@ const RestaurantAddAddressComp = (props) => {
                                                                                 <p className="form-control-plaintext text-uppercase">-</p>
                                                                         :
                                                                             <React.Fragment>
-                                                                                <Field name="myPincode" type="number" placeholder="Enter Name here" className="form-control-inputtext form-control"/>
+                                                                                <Field name="myPincode" type="number" placeholder="Pincode" className="form-control-inputtext form-control"/>
                                                                                 {touched.myPincode && errors.myPincode && <div className="error pink-txt f-11">{errors.myPincode}</div>}
                                                                             </React.Fragment>
                                                                         }

@@ -18,10 +18,11 @@ import { SERVER_URL } from '../../shared/constant'
 import CheckBoxAutoCompleteThirdComp from "../CheckBoxAutoCompleteThirdComp/CheckBoxAutoCompleteThirdComp";
 import uploadimg_icon from "../../assets/images/uploadimg-icon.svg";
 import CustomLoadingComp from "../CustomLoadingComp/CustomLoadingComp";
+import { useDropzone } from "react-dropzone";
 
 
 
-const styleOf_currency = ["$", "a", "b"]
+const styleOf_currency = ["$"]
 const numRegExp = /^[+]?([0-9]+(?:[\.][0-9]*)?|\.[0-9]+)$/;
 
 const ManageEasyAddDishComp = () => {
@@ -152,7 +153,98 @@ const ManageEasyAddDishComp = () => {
         customisable: false,
         createNewVersion: false,
         ingredientSection: {},
-        caloriesAndMacros: "",
+        caloriesAndMacros: {
+            total: 0,
+            fat: {
+                weight: 0,
+                fatUnit: "g",
+            },
+            totalFat: {
+                weight: 0,
+                weightUnit: "g",
+                percentage: 0,
+            },
+            saturatedFat: {
+                weight: 0,
+                weightUnit: "g",
+                percentage: 0,
+            },
+            transFat: {
+                weight: 0,
+                weightUnit: "g",
+                percentage: 0,
+            },
+            polyunsaturatedFat: {
+                weight: 0,
+                weightUnit: "g",
+                percentage: 0,
+            },
+            monounsaturatedFat: {
+                weight: 0,
+                weightUnit: "g",
+                percentage: 0,
+            },
+            cholesterol: {
+                weight: 0,
+                weightUnit: "g",
+                percentage: 0,
+            },
+            sodium: {
+                weight: 0,
+                weightUnit: "g",
+                percentage: 0,
+            },
+            totalCarbohydrate: {
+                totalWeight: 0,
+                weightUnit: "g",
+                totalPercentage: 0,
+            },
+            dietaryFiber: {
+                weight: 0,
+                weightUnit: "mg",
+                percentage: 0
+            },
+            sugars: {
+                weight: 0,
+                weightUnit: "mg",
+                percentage: 0
+            },
+            protien: {
+                totalWeight: 0,
+                weightUnit: "g",
+                totalPercentage: 0,
+            },
+            vitaminD: {
+                weight: 0,
+                weightUnit: "mg",
+                percentage: 0
+            },
+            calcium: {
+                weight: 0,
+                weightUnit: "mg",
+                percentage: 0
+            },
+            iron: {
+                weight: 0,
+                weightUnit: "mg",
+                percentage: 0
+            },
+            potassium: {
+                weight: 0,
+                weightUnit: "mg",
+                percentage: 0
+            },
+            vitaminA: {
+                weight: 0,
+                weightUnit: "IU",
+                percentage: 0
+            },
+            vitaminC: {
+                weight: 0,
+                weightUnit: "mg",
+                percentage: 0
+            }
+        },
         ingredient: [],
         priceUnit: '$',
         description: '',
@@ -162,34 +254,34 @@ const ManageEasyAddDishComp = () => {
 
     const validationSchema = Yup.object().shape({
         name: Yup.string().required('Name is required'),
-        makes: Yup.string().required('Serving is required'),
+        // makes: Yup.string().required('Serving is required'),//should be positive
         price: Yup.string().required('Price is required'),
-        grossProfit: Yup.string().required('Profit is required'),
-        image: Yup.mixed().required('Image is required'),
+        // grossProfit: Yup.string().required('Profit is required'),
+        // image: Yup.mixed().required('Image is required'),
         favorite: Yup.boolean().oneOf([true, false]),
         new: Yup.boolean().oneOf([true, false]),
         available: Yup.boolean().oneOf([true, false]),
         menuId: Yup.array().required('Please Select Menu'),
         categoryId: Yup.string().required('Category is required'),
         subcategoryId: Yup.string().required('Subcategory is Required'),
-        description2: Yup.string().required('Description is Required'),
-        allergenId: Yup.array().required('Please Select Allergen'),
-        dietaryId: Yup.array().required('Please Select  Dietary'),
-        lifestyleId: Yup.array().required('Please Select Lifestyle'),
-        cookingMethodId: Yup.array().required('Please Select CookingMethod'),
-        instructions: Yup.string().required('Instructions is Required'),
+        // description2: Yup.string().required('Description is Required'),
+        // allergenId: Yup.array().required('Please Select Allergen'),
+        // dietaryId: Yup.array().required('Please Select  Dietary'),
+        // lifestyleId: Yup.array().required('Please Select Lifestyle'),
+        // cookingMethodId: Yup.array().required('Please Select CookingMethod'),
+        // instructions: Yup.string().required('Instructions is Required'),
         customisable: Yup.boolean().oneOf([true, false]),
         createNewVersion: Yup.boolean().oneOf([true, false]),
-        ingredient: Yup.array()
-            .of(
-                Yup.object().shape({
-                    item: Yup.string().required("Item Required"),
-                    qty: Yup.string().required('Required').matches(numRegExp, 'Enter Valid Number'),
-                    allergeies: Yup.array().required('Please Select allergeies'),
-                })
-            ).required('Must have Items'),
-        caloriesAndMacros: Yup.string().required('Please Provide Calories And Macros Details'),
-        priceUnit: Yup.string().required('PriceUnit is Required'),
+        // ingredient: Yup.array()
+        //     .of(
+        //         Yup.object().shape({
+        //             item: Yup.string().required("Item Required"),
+        //             qty: Yup.string().required('Required').matches(numRegExp, 'Enter Valid Number'),
+        //             allergeies: Yup.array().required('Please Select allergeies'),
+        //         })
+        //     ).required('Must have Items'),
+        // caloriesAndMacros: Yup.string().required('Please Provide Calories And Macros Details'),
+        // priceUnit: Yup.string().required('PriceUnit is Required'),
 
     });
 
@@ -223,7 +315,6 @@ const ManageEasyAddDishComp = () => {
             },
             caloriesAndMacros: fields.caloriesAndMacros,
         }
-        console.log(obj)
 
         dispatch(addDishesData(obj, history));
     }
@@ -452,6 +543,7 @@ const ManageEasyAddDishComp = () => {
 
                                                 <div className="col-md-3">
                                                     <div className="mb-3">
+                                                        {/* <UploadComponent setFieldValue={setFieldValue} image={values.image}/> */}
                                                         <form>
                                                             <div className="form-group">
                                                                 <div className="fileUpload text-center my_shadow bg-white d-flex flex-column align-items-center justify-content-center ml-auto">
@@ -460,8 +552,8 @@ const ManageEasyAddDishComp = () => {
                                                                         :
                                                                         <img src={uploadimg_icon} alt="" width="82px" height="82px" className="img-fluid mb-3" alt={"image"} />
                                                                     }
-                                                                    {/* <img src="https://png.pngtree.com/png-clipart/20200225/original/pngtree-image-upload-icon-photo-upload-icon-png-image_5279795.jpg" className="img-fluid" width="150px" alt="image_upload" /> */}
                                                                     <span className="f-15 gray-txt brandon-Medium">Upload Image <br /> or drag and drop image here</span>
+
                                                                     <input
                                                                         type="file"
                                                                         accept="image/*"
@@ -469,9 +561,6 @@ const ManageEasyAddDishComp = () => {
                                                                         className="form-control-file userprofile-control upload"
                                                                         onChange={(e) => { setFieldValue("image", e.target.files[0]) }}
                                                                     />
-                                                                    {/* <img src="https://png.pngtree.com/png-clipart/20200225/original/pngtree-image-upload-icon-photo-upload-icon-png-image_5279795.jpg" className="img-fluid" width="150px" alt="image_upload"/>
-                                                                <br></br>
-                                                                <span className="brandon-Medium text-center">Upload Image <br></br>or drag and drop image here</span> */}
                                                                 </div>
                                                             </div>
                                                         </form>
@@ -815,3 +904,41 @@ const ManageEasyAddDishComp = () => {
 }
 
 export default ManageEasyAddDishComp;
+
+
+
+
+// const UploadComponent = props => {
+//     const { setFieldValue,image} = props;
+
+//     const { getRootProps, getInputProps, isDragActive } = useDropzone({
+//       accept: "image/*",
+//       onDrop: acceptedFiles => {
+//           setFieldValue("image", acceptedFiles[0]);
+//       }
+//     });
+    
+
+//     return (
+//       <div className="form-group" type="button">
+//         {}
+//         <div {...getRootProps({ className: "dropzone" })}>
+//             <input {...getInputProps()} />
+//                 <form>
+//                     <div className="form-group">
+//                         <div className="fileUpload text-center my_shadow bg-white d-flex flex-column align-items-center justify-content-center ml-auto">
+//                             {image ?
+//                                 <img src={URL.createObjectURL(image)} width="82" className="img-fluid mb-3" alt={"image"} />
+//                                 :
+//                                 <img src={uploadimg_icon} alt="" width="82" className="img-fluid mb-3" alt={"image"} />
+//                             }
+//                             <span className="f-15 gray-txt brandon-Medium">Upload Image <br /> or drag and drop image here</span>
+
+                            
+//                         </div>
+//                     </div>
+//                 </form>
+//             </div>
+//       </div>
+//     );
+//   };

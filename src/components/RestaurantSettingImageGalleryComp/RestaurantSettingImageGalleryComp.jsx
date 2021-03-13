@@ -77,7 +77,7 @@ const RestaurantSettingImageGalleryComp = (props) => {
                                                             <button className="custom_edit_button mr-5 brandon-Medium" type="button" onClick={() => { setEditForm(false) }}>EDIT</button>
                                                             :
                                                             <div className="d-flex justify-content-between align-items-center ">
-                                                                <button className="btn lightgraynoline-btn min-width-120 border-radius-25 text-uppercase f-15" type="reset" onClick={() => { handleCancleEdit(resetForm); }}>cancle</button>
+                                                                <button className="btn lightgraynoline-btn min-width-120 border-radius-25 text-uppercase f-15" type="reset" onClick={() => { handleCancleEdit(resetForm); }}>cancel</button>
                                                                 <button className="btn pinkline-btn min-width-120 border-radius-25 ml-4 text-uppercase f-15" type="submit">Save</button>
                                                             </div>
                                                         }

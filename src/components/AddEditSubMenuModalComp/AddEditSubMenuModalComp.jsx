@@ -12,8 +12,8 @@ import { addSubMenuData, getSelectedSubMenuData, updateSelectedSubMenuData } fro
 import { getAllMenuData} from "../../redux/actions/menuAction";
 
 
-const alergy_information = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"];
-const styleOf_menu=["breakfast","lunch","dinner","dessert","buffet","drinks","nibble","Set Menu"]
+const days_information = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"];
+const styleOf_menu=["breakfast","lunch","dinner","dessert","buffet","drinks","nibble","setmenu"]
 
 const AddEditSubMenuModalComp = (props) => {
 
@@ -27,7 +27,7 @@ const AddEditSubMenuModalComp = (props) => {
         timeTo:null,
         type: "submenu",
         availability:[],
-        styleOfmenu:'',
+        styleOfmenu:[],
         parentMenu: '',
 
     }
@@ -37,7 +37,7 @@ const AddEditSubMenuModalComp = (props) => {
         timeFrom:Yup.date().nullable().required('Time Is Required'),
         timeTo:Yup.date().nullable().required('Time Is Required'),
         availability:Yup.array().required('Please Select Availablity'),
-        styleOfmenu:Yup.string().required('Please Select Menu Style'),
+        styleOfmenu:Yup.array().required('Please Select Menu Style'),
         parentMenu:Yup.string().required('Please Select Menu'),
 
     });
@@ -61,8 +61,8 @@ const AddEditSubMenuModalComp = (props) => {
 
     let initialValues2={
         name:subMenuData.name,
-        timeFrom:`Thu Dec 31 2020 ${subMenuData.timeFrom} GMT+0530`,
-        timeTo:`Thu Dec 31 2020 ${subMenuData.timeTo} GMT+0530`,
+        timeFrom:`Thu Dec 31 2020 ${subMenuData.timeFrom} `,
+        timeTo:`Thu Dec 31 2020 ${subMenuData.timeTo} `,
         availability:subMenuData.availability,
         type: "submenu",
         styleOfmenu:subMenuData.styleOfmenu,
@@ -136,7 +136,7 @@ const AddEditSubMenuModalComp = (props) => {
                                         <div className="custom-drodown form-group ">
                                             <label className="gray-txt f-15">Availability</label>
                                             <CheckBoxAutoCompleteComp className="minwidth-260" placeholder={"Select"}  
-                                                name="availability" options={alergy_information} value={values.availability} 
+                                                name="availability" options={days_information} value={values.availability} 
                                                 onChangeData={value => setFieldValue("availability", value)}
                                             />
                                             {touched.availability && errors.availability && <div className="error pink-txt f-11">{errors.availability}</div>}
@@ -181,7 +181,11 @@ const AddEditSubMenuModalComp = (props) => {
                                     
                                         <div className="custom-drodown form-group ">
                                             <label className="gray-txt f-15">Style of Sub Menu</label>
-                                            <Field as="select" name="styleOfmenu" className="text-capitalize form-control lightgray-border selectdropdown-btn gray-txt f-15">
+                                            <CheckBoxAutoCompleteComp className="minwidth-260" placeholder={"Select"}  
+                                                name="styleOfmenu" options={styleOf_menu?styleOf_menu:[]} value={values.styleOfmenu} 
+                                                onChangeData={value => setFieldValue("styleOfmenu", value)}
+                                            />
+                                            {/* <Field as="select" name="styleOfmenu" className="text-capitalize form-control lightgray-border selectdropdown-btn gray-txt f-15">
                                                 <option value="">Select</option>
                                                 {styleOf_menu && styleOf_menu.map((data, index)=>{
                                                     return(
@@ -190,12 +194,12 @@ const AddEditSubMenuModalComp = (props) => {
                                                         </React.Fragment>
                                                     )
                                                 })}
-                                            </Field>
+                                            </Field> */}
                                             {touched.styleOfmenu && errors.styleOfmenu && <div className="error pink-txt f-11">{errors.styleOfmenu}</div>}
                                         </div>
                                     </div>
                                     <div className="border-top-0 pt-4 pb-4 d-flex justify-content-end">
-                                        <button className="btn lightgraynoline-btn text-uppercase border-radius-25 min-width-120" type="reset" onClick={props.onHide}>CANCLE</button>
+                                        <button className="btn lightgraynoline-btn text-uppercase border-radius-25 min-width-120" type="reset" onClick={props.onHide}>CANCEL</button>
                                         <button className="btn pinkline-btn text-uppercase border-radius-25 min-width-120 ml-2" type="submit">{isAddMode?"ADD":"UPDATE"}</button>
                                     </div>
                                 </Form>

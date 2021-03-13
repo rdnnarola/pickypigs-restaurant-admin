@@ -14,7 +14,7 @@ const SideMenu = () => {
             <div className="sidebar d-flex flex-column">
                 <div className="aside-content">
                     <div className="aside-menu">
-                        <div className="menu-list d-flex align-items-center">
+                        {/* <div className="menu-list d-flex align-items-center">
                             <div className="menu-icon">
                                 <img src={manageicon} className="img-fluid" alt="icon" />
                             </div>
@@ -24,7 +24,7 @@ const SideMenu = () => {
                                     <img src={pinkrightarrow} className={`img-fluid ${display === "block" ? "active" : "none"}`} alt="icon"/>
                                 </span>
                             </button>
-                        </div>
+                        </div> */}
                         <div className={`submenu_area  ${display==="block"?"d-block flex-column":"d-none"}`}>
                             {/* <NavLink to="/breakfast_menu" className="submenu_name">Breakfast</NavLink> */}
                             {/* <NavLink to="/manage_menu" className="submenu_name">Manage Menus</NavLink> */}
@@ -43,12 +43,12 @@ const SideMenu = () => {
                             </div>
                             <NavLink to="/manage_menu" className="btn btn-none text-primary menu-name">Menus</NavLink>
                         </div>
-                        <div className="menu-list d-flex align-items-center">
+                        {/* <div className="menu-list d-flex align-items-center">
                             <div className="menu-icon">
                                 <img src={menu_icon} className="img-fluid" alt="icon"  />
                             </div>
                             <NavLink to="/manage_submenu" className="btn btn-none text-primary menu-name">Sub Menus</NavLink>
-                        </div>
+                        </div> */}
                         <div className="menu-list d-flex align-items-center">
                             <div className="menu-icon">
                                 <img src={category_icon} className="img-fluid" alt="icon"  />

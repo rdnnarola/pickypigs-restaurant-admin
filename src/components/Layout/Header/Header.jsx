@@ -33,7 +33,7 @@ const Header = () => {
                 <div className="collapse navbar-collapse nav-collapse  align-items-center" id="navbarSupportedContent">
                     <ul className="navbar-nav mr-auto">
                         <li className="nav-item ">
-                            <NavLink className="nav-link" to="/">DASHBOARD <span className="sr-only">(current)</span></NavLink>
+                            <NavLink className="nav-link" to="/dashboard">DASHBOARD <span className="sr-only">(current)</span></NavLink>
                         </li>
                         {/* <li className="nav-item">
                             <NavLink className="nav-link" to="/reports">REPORTS</NavLink>

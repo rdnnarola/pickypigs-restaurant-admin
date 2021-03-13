@@ -8,7 +8,7 @@ const CheckBoxAutoCompleteComp = ({ placeholder,clearAll, labelKey = "name", val
     return (
         <Picky
             buttonProps={{
-                className: 'testing'
+                className: 'testing text-capitalize'
             }}
             placeholder={placeholder}
             numberDisplayed={2.5}
@@ -50,7 +50,7 @@ const CheckBoxAutoCompleteComp = ({ placeholder,clearAll, labelKey = "name", val
                                         inline
                                         checked={isSelected}
                                         label={item}
-                                        className="filterdrop-checkbox"
+                                        className="filterdrop-checkbox text-capitalize"
                                         type={"checkbox"}
                                         id={item}
                                     />

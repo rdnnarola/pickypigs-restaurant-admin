@@ -127,7 +127,7 @@ const AllDishesComponent=()=>{
                                     <th className="brandon-Bold " scope="col">&nbsp;&nbsp;&nbsp;</th>
                                     <th className="brandon-Bold " scope="col">ALLERGENS</th> 
                                     <th className="brandon-Bold " scope="col">AVAILABLE</th>
-                                    <th className="brandon-Bold " scope="col">TOTAL ITEMS</th>
+                                    {/* <th className="brandon-Bold " scope="col">TOTAL ITEMS</th> */}
                                     <th className="brandon-Bold " scope="col">LATEST MODIFIED</th>
                                     <th className="brandon-Bold text-right" scope="col">Actions</th>
                                 </tr>
@@ -137,7 +137,7 @@ const AllDishesComponent=()=>{
                                     isLoading
                                     ?
                                     <tr>
-                                        <td colSpan="9" className="text-center" >
+                                        <td colSpan="8" className="text-center" >
                                             <div className="spinner-border m-3" role="status"></div>
                                             <div className="visually-hidden">Please Wait Loading...</div>
                                         </td>
@@ -170,7 +170,7 @@ const AllDishesComponent=()=>{
                                                                     }
                                                                 </td>
                                                                 <td>{data.available?"Yes":"No"}</td>
-                                                                <td>{data.menuDetail&&data.menuDetail.length}</td>
+                                                                {/* <td>{data.menuDetail&&data.menuDetail.length}</td> */}
                                                                 <td>{data.updatedAt ?moment(data.updatedAt).format(" Do MMMM, YYYY"): "-" }</td>
                                                                 <td className="pt-0 pb-0">
                                                                     <div className="dropdown">
@@ -191,7 +191,7 @@ const AllDishesComponent=()=>{
                                             :
                                             <React.Fragment>
                                                 <tr >
-                                                    <td colSpan="9" className="text-center">No Data Available</td>
+                                                    <td colSpan="8" className="text-center">No Data Available</td>
                                                 </tr>
                                             </React.Fragment>
                                         }

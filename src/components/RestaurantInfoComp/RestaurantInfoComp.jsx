@@ -7,6 +7,7 @@ import {updateRestaurantInfoDetail} from '../../redux/actions/restaurantSettingA
 
 const passwordRegExp = RegExp(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,24})/);
 const phoneRegex = RegExp( /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/);
+const numbRegs=RegExp(/^[0-9]*$/);
 
 const RestaurantInfoComp = (props) => {
     let {login,phoneNumber,email,location,mobileNumber}=props.infodata
@@ -30,9 +31,12 @@ const RestaurantInfoComp = (props) => {
     const validationSchema  = Yup.object().shape({
         login:Yup.string().required('Login Name is required'),
         email:Yup.string().email('Email must be a valid email').required('Email Required'),
-        phoneNumber:Yup.string().required('Phone Number is a required field').min(10, "Min 10 Digits").max(10, "Max 10 Digits").matches(phoneRegex, "Invalid Phone Number"),
+        // phoneNumber:Yup.string().required('Phone Number is a required field').min(10, "Min 10 Digits").max(10, "Max 10 Digits").matches(phoneRegex, "Invalid Phone Number"),
+        phoneNumber:Yup.string().required('Phone Number is a required field').matches(numbRegs, "Invalid Phone Number"),
         location:Yup.string().required('Address is required').min(10).max(50),
-        mobileNumber:Yup.string().required('Phone Number is a required field').min(10, "Min 10 Digits").max(10, "Max 10 Digits").matches(phoneRegex, "Invalid Phone Number"),
+        // mobileNumber:Yup.string().required('Phone Number is a required field').min(10, "Min 10 Digits").max(10, "Max 10 Digits").matches(phoneRegex, "Invalid Phone Number"),
+        mobileNumber:Yup.string().required('Mobile Number is a required field').matches(numbRegs, "Invalid Phone Number"),
+
     });
 
     const onSubmit=(fields)=>{
@@ -68,7 +72,7 @@ const RestaurantInfoComp = (props) => {
                                                             <button className="custom_edit_button mr-5 brandon-Medium" type="button" onClick={() => { setEditForm(false) }}>EDIT</button>
                                                             :
                                                             <div className="d-flex justify-content-between align-items-center ">
-                                                                <button className="btn lightgraynoline-btn min-width-120 border-radius-25 text-uppercase f-15" type="reset" onClick={()=>{handleCancleEdit(resetForm);}}>cancle</button>
+                                                                <button className="btn lightgraynoline-btn min-width-120 border-radius-25 text-uppercase f-15" type="reset" onClick={()=>{handleCancleEdit(resetForm);}}>cancel</button>
                                                                 <button className="btn pinkline-btn min-width-120 border-radius-25 ml-4 text-uppercase f-15" type="submit">Save</button>
                                                             </div>
                                                         }
@@ -91,7 +95,7 @@ const RestaurantInfoComp = (props) => {
                                                                                 <p className="form-control-plaintext text-uppercase">-</p>
                                                                         :
                                                                             <React.Fragment>
-                                                                                <Field name="login" placeholder="Enter Name here" className="form-control-inputtext form-control"/>
+                                                                                <Field name="login" placeholder="Login" className="form-control-inputtext form-control"/>
                                                                                 {touched.login && errors.login && <div className="error pink-txt f-11">{errors.login}</div>}
                                                                             </React.Fragment>
                                                                         }
@@ -107,7 +111,7 @@ const RestaurantInfoComp = (props) => {
                                                                                 <p className="form-control-plaintext text-uppercase">-</p>
                                                                         :
                                                                             <React.Fragment>
-                                                                                <Field name="email" type="email" placeholder="Enter Name here" className="form-control-inputtext form-control"/>
+                                                                                <Field name="email" type="email" placeholder="Email" className="form-control-inputtext form-control"/>
                                                                                 {touched.email && errors.email && <div className="error pink-txt f-11">{errors.email}</div>}
                                                                             </React.Fragment>
                                                                         }
@@ -117,7 +121,7 @@ const RestaurantInfoComp = (props) => {
                                                             <div className="row mb-4">
                                                                 <div className="col-md-6">
                                                                     <div className="rs-info-block">
-                                                                        <h5 className="accordion-label">PHONE NUMBE</h5>
+                                                                        <h5 className="accordion-label">PHONE NUMBER</h5>
                                                                         {editForm?
                                                                             props.infodata&&props.infodata.phoneNumber?
                                                                                 <p className="form-control-plaintext text-uppercase">{props.infodata&&props.infodata.phoneNumber}</p>
@@ -125,7 +129,7 @@ const RestaurantInfoComp = (props) => {
                                                                                 <p className="form-control-plaintext text-uppercase">-</p>
                                                                         :
                                                                             <React.Fragment>
-                                                                                <Field name="phoneNumber" type="number" placeholder="Enter Name here" className="form-control-inputtext form-control"/>
+                                                                                <Field name="phoneNumber" type="number" placeholder="Phone Number" className="form-control-inputtext form-control"/>
                                                                                 {touched.phoneNumber && errors.phoneNumber && <div className="error pink-txt f-11">{errors.phoneNumber}</div>}
                                                                             </React.Fragment>
                                                                         }
@@ -133,7 +137,7 @@ const RestaurantInfoComp = (props) => {
                                                                 </div>
                                                                 <div className="col-md-6">
                                                                     <div className="rs-info-block">
-                                                                        <h5 className="accordion-label">MOBILE NUMBE</h5>
+                                                                        <h5 className="accordion-label">MOBILE NUMBER</h5>
                                                                         {editForm?
                                                                             props.infodata&&props.infodata.mobileNumber?
                                                                                 <p className="form-control-plaintext text-uppercase">{props.infodata&&props.infodata.mobileNumber}</p>
@@ -141,7 +145,7 @@ const RestaurantInfoComp = (props) => {
                                                                                 <p className="form-control-plaintext text-uppercase">-</p>
                                                                         :
                                                                             <React.Fragment>
-                                                                                <Field name="mobileNumber" type="number" placeholder="Enter Name here" className="form-control-inputtext form-control"/>
+                                                                                <Field name="mobileNumber" type="number" placeholder="Mobile Number" className="form-control-inputtext form-control"/>
                                                                                 {touched.mobileNumber && errors.mobileNumber && <div className="error pink-txt f-11">{errors.mobileNumber}</div>}
                                                                             </React.Fragment>
                                                                         }                                                                    </div>
@@ -150,7 +154,7 @@ const RestaurantInfoComp = (props) => {
                                                             <div className="row">
                                                                 <div className="col-md-6">
                                                                     <div className="rs-info-block">
-                                                                        <h5 className="accordion-label">LOCATIO</h5>
+                                                                        <h5 className="accordion-label">LOCATION</h5>
                                                                         {editForm
                                                                             ?
                                                                             props.infodata&&props.infodata.location?

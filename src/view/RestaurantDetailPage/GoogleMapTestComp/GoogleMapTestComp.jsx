@@ -62,9 +62,9 @@ const getMyLocation = () => {
     }
 }
 
-let Restaurant_Location = useSelector((state) => {
-  return state.googleData
-});
+// let Restaurant_Location = useSelector((state) => {
+//   return state.googleData
+// });
   
   return (  
     <React.Fragment>

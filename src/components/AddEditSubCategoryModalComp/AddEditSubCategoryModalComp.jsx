@@ -169,7 +169,7 @@ const AddEditSubCategoryModalComp = (props) => {
                                             </div>
 
                                             <div className="border-top-0 pt-4 pb-4 d-flex justify-content-end">
-                                                <button className="btn lightgraynoline-btn text-uppercase border-radius-25 min-width-120" type="reset" onClick={props.onHide}>CANCLE</button>
+                                                <button className="btn lightgraynoline-btn text-uppercase border-radius-25 min-width-120" type="reset" onClick={props.onHide}>CANCEL</button>
                                                 <button className="btn pinkline-btn text-uppercase border-radius-25 min-width-120 ml-2" type="submit" disabled={isSubmitting}>{isAddMode?"ADD":"UPDATE"}</button>
                                             </div>
                                         </Form>

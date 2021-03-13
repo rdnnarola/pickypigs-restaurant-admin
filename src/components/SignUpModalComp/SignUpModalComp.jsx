@@ -15,6 +15,7 @@ const phoneRegex = RegExp(
     /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/
 );
 const passwordRegExp = RegExp(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,24})/);
+const numbRegs=RegExp(/^[0-9]*$/);
 
 const validationSchema = Yup.object().shape({
     fullName: Yup.string().required('Name Required'),
@@ -29,9 +30,7 @@ const validationSchema = Yup.object().shape({
     phone: Yup
         .string()
         .required('Phone Number is a required field')
-        .min(10, "Min 10 Digits")
-        .max(10, "Max 10 Digits")
-        .matches(phoneRegex, "Invalid Phone Number"),
+        .matches(numbRegs, "Invalid Phone Number"),
     confirmPassword: Yup
         .string()
         .required('Required')

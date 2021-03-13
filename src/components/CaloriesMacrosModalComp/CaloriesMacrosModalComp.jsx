@@ -107,6 +107,7 @@ const CaloriesMacrosModalComp = (props) => {
         }
     };
     const initialValues2 = {
+        _id:props.value._id ? props.value._id : '',
         total: props.value.total ? props.value.total : '',
         fat: {
             weight: props.value && props.value.fat ? props.value.fat.weight : '',
@@ -201,82 +202,82 @@ const CaloriesMacrosModalComp = (props) => {
 
 
     const validationSchema = Yup.object().shape({
-        total: Yup.string().required('required').matches(numRegExp, 'Enter Valid Number'),
+        total: Yup.string().matches(numRegExp, 'Enter Valid Number'),
         fat: Yup.object().shape({
-            weight: Yup.string().required('required').matches(numRegExp, 'Enter Valid Number'),
+            weight: Yup.string().matches(numRegExp, 'Enter Valid Number'),
         }),
 
         totalFat: Yup.object().shape({
-            weight: Yup.string().required('required').matches(numRegExp, 'Enter Valid Number'),
-            percentage: Yup.string().required('required').matches(numRegExp, 'Enter Valid Number'),
+            weight: Yup.string().matches(numRegExp, 'Enter Valid Number'),
+            percentage: Yup.string().matches(numRegExp, 'Enter Valid Number'),
         }),
         saturatedFat: Yup.object().shape({
-            weight: Yup.string().required('required').matches(numRegExp, 'Enter Valid Number'),
-            percentage: Yup.string().required('required').matches(numRegExp, 'Enter Valid Number'),
+            weight: Yup.string().matches(numRegExp, 'Enter Valid Number'),
+            percentage: Yup.string().matches(numRegExp, 'Enter Valid Number'),
         }),
         transFat: Yup.object().shape({
-            weight: Yup.string().required('required').matches(numRegExp, 'Enter Valid Number'),
-            percentage: Yup.string().required('required').matches(numRegExp, 'Enter Valid Number'),
+            weight: Yup.string().matches(numRegExp, 'Enter Valid Number'),
+            percentage: Yup.string().matches(numRegExp, 'Enter Valid Number'),
         }),
         polyunsaturatedFat: Yup.object().shape({
-            weight: Yup.string().required('required').matches(numRegExp, 'Enter Valid Number'),
-            percentage: Yup.string().required('required').matches(numRegExp, 'Enter Valid Number'),
+            weight: Yup.string().matches(numRegExp, 'Enter Valid Number'),
+            percentage: Yup.string().matches(numRegExp, 'Enter Valid Number'),
         }),
         monounsaturatedFat: Yup.object().shape({
-            weight: Yup.string().required('required').matches(numRegExp, 'Enter Valid Number'),
-            percentage: Yup.string().required('required').matches(numRegExp, 'Enter Valid Number'),
+            weight: Yup.string().matches(numRegExp, 'Enter Valid Number'),
+            percentage: Yup.string().matches(numRegExp, 'Enter Valid Number'),
         }),
         cholesterol: Yup.object().shape({
-            weight: Yup.string().required('required').matches(numRegExp, 'Enter Valid Number'),
-            percentage: Yup.string().required('required').matches(numRegExp, 'Enter Valid Number'),
+            weight: Yup.string().matches(numRegExp, 'Enter Valid Number'),
+            percentage: Yup.string().matches(numRegExp, 'Enter Valid Number'),
         }),
         sodium: Yup.object().shape({
-            weight: Yup.string().required('required').matches(numRegExp, 'Enter Valid Number'),
-            percentage: Yup.string().required('required').matches(numRegExp, 'Enter Valid Number'),
+            weight: Yup.string().matches(numRegExp, 'Enter Valid Number'),
+            percentage: Yup.string().matches(numRegExp, 'Enter Valid Number'),
         }),
 
         totalCarbohydrate: Yup.object().shape({
-            totalWeight: Yup.string().required('required').matches(numRegExp, 'Enter Valid Number'),
-            totalPercentage: Yup.string().required('required').matches(numRegExp, 'Enter Valid Number'),
+            totalWeight: Yup.string().matches(numRegExp, 'Enter Valid Number'),
+            totalPercentage: Yup.string().matches(numRegExp, 'Enter Valid Number'),
         }),
 
         dietaryFiber: Yup.object().shape({
-            weight: Yup.string().required('required').matches(numRegExp, 'Enter Valid Number'),
-            percentage: Yup.string().required('required').matches(numRegExp, 'Enter Valid Number'),
+            weight: Yup.string().matches(numRegExp, 'Enter Valid Number'),
+            percentage: Yup.string().matches(numRegExp, 'Enter Valid Number'),
         }),
         sugars: Yup.object().shape({
-            weight: Yup.string().required('required').matches(numRegExp, 'Enter Valid Number'),
-            percentage: Yup.string().required('required').matches(numRegExp, 'Enter Valid Number'),
+            weight: Yup.string().matches(numRegExp, 'Enter Valid Number'),
+            percentage: Yup.string().matches(numRegExp, 'Enter Valid Number'),
         }),
 
 
         protien: Yup.object().shape({
-            totalWeight: Yup.string().required('required').matches(numRegExp, 'Enter Valid Number'),
-            totalPercentage: Yup.string().required('required').matches(numRegExp, 'Enter Valid Number'),
+            totalWeight: Yup.string().matches(numRegExp, 'Enter Valid Number'),
+            totalPercentage: Yup.string().matches(numRegExp, 'Enter Valid Number'),
         }),
         vitaminD: Yup.object().shape({
-            weight: Yup.string().required('required').matches(numRegExp, 'Enter Valid Number'),
-            percentage: Yup.string().required('required').matches(numRegExp, 'Enter Valid Number'),
+            weight: Yup.string().matches(numRegExp, 'Enter Valid Number'),
+            percentage: Yup.string().matches(numRegExp, 'Enter Valid Number'),
         }),
         calcium: Yup.object().shape({
-            weight: Yup.string().required('required').matches(numRegExp, 'Enter Valid Number'),
-            percentage: Yup.string().required('required').matches(numRegExp, 'Enter Valid Number'),
+            weight: Yup.string().matches(numRegExp, 'Enter Valid Number'),
+            percentage: Yup.string().matches(numRegExp, 'Enter Valid Number'),
         }),
         iron: Yup.object().shape({
-            weight: Yup.string().required('required').matches(numRegExp, 'Enter Valid Number'),
-            percentage: Yup.string().required('required').matches(numRegExp, 'Enter Valid Number'),
+            weight: Yup.string().matches(numRegExp, 'Enter Valid Number'),
+            percentage: Yup.string().matches(numRegExp, 'Enter Valid Number'),
         }),
         potassium: Yup.object().shape({
-            weight: Yup.string().required('required').matches(numRegExp, 'Enter Valid Number'),
-            percentage: Yup.string().required('required').matches(numRegExp, 'Enter Valid Number'),
+            weight: Yup.string().matches(numRegExp, 'Enter Valid Number'),
+            percentage: Yup.string().matches(numRegExp, 'Enter Valid Number'),
         }),
         vitaminA: Yup.object().shape({
-            weight: Yup.string().required('required').matches(numRegExp, 'Enter Valid Number'),
-            percentage: Yup.string().required('required').matches(numRegExp, 'Enter Valid Number'),
+            weight: Yup.string().matches(numRegExp, 'Enter Valid Number'),
+            percentage: Yup.string().matches(numRegExp, 'Enter Valid Number'),
         }),
         vitaminC: Yup.object().shape({
-            weight: Yup.string().required('required').matches(numRegExp, 'Enter Valid Number'),
-            percentage: Yup.string().required('required').matches(numRegExp, 'Enter Valid Number'),
+            weight: Yup.string().matches(numRegExp, 'Enter Valid Number'),
+            percentage: Yup.string().matches(numRegExp, 'Enter Valid Number'),
 
         })
 
@@ -289,6 +290,7 @@ const CaloriesMacrosModalComp = (props) => {
     const onSubmit = (fields) => {
 
         let obj = {
+            _id:fields._id,
             total: fields.total,
             fat: {
                 weight: fields.fat.weight,

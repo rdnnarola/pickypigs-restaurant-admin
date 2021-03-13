@@ -22,7 +22,7 @@ import moment from "moment";
 
 
 
-const styleOf_currency = ["$", "a", "b"]
+const styleOf_currency = ["$"]
 const numRegExp = /^[+]?([0-9]+(?:[\.][0-9]*)?|\.[0-9]+)$/;
 
 const UpdateEasyAddDishComp = () => {
@@ -159,9 +159,105 @@ const UpdateEasyAddDishComp = () => {
         customisable: selectedDisc_data && selectedDisc_data[0].customisable ? selectedDisc_data[0].customisable : false,
         createNewVersion: selectedDisc_data && selectedDisc_data[0].createNewVersion ? selectedDisc_data[0].createNewVersion : false,
         ingredientSection: {},
-        caloriesAndMacros: selectedDisc_data && selectedDisc_data[0].caloriesAndMacros ? selectedDisc_data[0].caloriesAndMacros : '',
+        caloriesAndMacros:
+            selectedDisc_data && selectedDisc_data[0].caloriesAndMacros ? selectedDisc_data[0].caloriesAndMacros
+                :
+                {
+
+                    total: 0,
+                    fat: {
+                        weight: 0,
+                        fatUnit: "g",
+                    },
+                    totalFat: {
+                        weight: 0,
+                        weightUnit: "g",
+                        percentage: 0,
+                    },
+                    saturatedFat: {
+                        weight: 0,
+                        weightUnit: "g",
+                        percentage: 0,
+                    },
+                    transFat: {
+                        weight: 0,
+                        weightUnit: "g",
+                        percentage: 0,
+                    },
+                    polyunsaturatedFat: {
+                        weight: 0,
+                        weightUnit: "g",
+                        percentage: 0,
+                    },
+                    monounsaturatedFat: {
+                        weight: 0,
+                        weightUnit: "g",
+                        percentage: 0,
+                    },
+                    cholesterol: {
+                        weight: 0,
+                        weightUnit: "g",
+                        percentage: 0,
+                    },
+                    sodium: {
+                        weight: 0,
+                        weightUnit: "g",
+                        percentage: 0,
+                    },
+                    totalCarbohydrate: {
+                        totalWeight: 0,
+                        weightUnit: "g",
+                        totalPercentage: 0,
+                    },
+                    dietaryFiber: {
+                        weight: 0,
+                        weightUnit: "mg",
+                        percentage: 0
+                    },
+                    sugars: {
+                        weight: 0,
+                        weightUnit: "mg",
+                        percentage: 0
+                    },
+                    protien: {
+                        totalWeight: 0,
+                        weightUnit: "g",
+                        totalPercentage: 0,
+                    },
+                    vitaminD: {
+                        weight: 0,
+                        weightUnit: "mg",
+                        percentage: 0
+                    },
+                    calcium: {
+                        weight: 0,
+                        weightUnit: "mg",
+                        percentage: 0
+                    },
+                    iron: {
+                        weight: 0,
+                        weightUnit: "mg",
+                        percentage: 0
+                    },
+                    potassium: {
+                        weight: 0,
+                        weightUnit: "mg",
+                        percentage: 0
+                    },
+                    vitaminA: {
+                        weight: 0,
+                        weightUnit: "IU",
+                        percentage: 0
+                    },
+                    vitaminC: {
+                        weight: 0,
+                        weightUnit: "mg",
+                        percentage: 0
+                    }
+                },
+
         ingredient: selectedDisc_data && selectedDisc_data[0].ingredientSection && selectedDisc_data[0].ingredientSection.dish_ingredients ? selectedDisc_data[0].ingredientSection.dish_ingredients : [],
-        priceUnit: selectedDisc_data && selectedDisc_data[0].priceUnit ? selectedDisc_data[0].priceUnit : '',
+        priceUnit: selectedDisc_data && selectedDisc_data[0].priceUnit ? selectedDisc_data[0].priceUnit : '$',
         deleteIngredients: [],
         description: selectedDisc_data && selectedDisc_data[0].description ? selectedDisc_data[0].description : '',
         description2: selectedDisc_data && selectedDisc_data[0].description ? selectedDisc_data[0].description : '',
@@ -169,34 +265,34 @@ const UpdateEasyAddDishComp = () => {
 
     const validationSchema = Yup.object().shape({
         name: Yup.string().required('Name is Required'),
-        makes: Yup.string().required('Serving is Required'),
+        // makes:Yup.string().required('Serving is Required'),
         price: Yup.string().required('Price is Required'),
-        grossProfit: Yup.string().required('Profit is Required'),
-        image: Yup.mixed().required('Image is Required'),
+        // grossProfit:Yup.string().required('Profit is Required'),
+        // image:Yup.mixed().required('Image is Required'),
         favorite: Yup.boolean().oneOf([true, false]),
         new: Yup.boolean().oneOf([true, false]),
         available: Yup.boolean().oneOf([true, false]),
         menuId: Yup.array().required('Please Select Menu'),
         categoryId: Yup.string().required('Category is Required'),
         subcategoryId: Yup.string().required('Subcategory is Required'),
-        description2: Yup.string().required('Description is Required'),
-        allergenId: Yup.array().required('Please Select Allergen'),
-        dietaryId: Yup.array().required('Please Select  Dietary'),
-        lifestyleId: Yup.array().required('Please Select Lifestyle'),
-        cookingMethodId: Yup.array().required('Please Select CookingMethod'),
-        instructions: Yup.string().required('instructions is Required'),
+        // description2:Yup.string().required('Description is Required'),
+        // allergenId:Yup.array().required('Please Select Allergen'),
+        // dietaryId:Yup.array().required('Please Select  Dietary'),
+        // lifestyleId:Yup.array().required('Please Select Lifestyle'),
+        // cookingMethodId:Yup.array().required('Please Select CookingMethod'),
+        // instructions:Yup.string().required('instructions is Required'),
         customisable: Yup.boolean().oneOf([true, false]),
         createNewVersion: Yup.boolean().oneOf([true, false]),
-        ingredient: Yup.array()
-            .of(
-                Yup.object().shape({
-                    item: Yup.string().required("item required"),
-                    qty: Yup.string().required('required').matches(numRegExp, 'Enter Valid Number'),
-                    allergeies: Yup.array().required('Please Select Allergeies'),
-                })
-            ).required('Must have Items'),
-        caloriesAndMacros: Yup.string().required('Please Provide Calories And Macros Details'),
-        priceUnit: Yup.string().required('PriceUnit is Required'),
+        // ingredient:Yup.array()
+        // .of(
+        //     Yup.object().shape({
+        //         item:Yup.string().required("item required"),
+        //         qty:Yup.string().required('required').matches(numRegExp, 'Enter Valid Number'),
+        //         allergeies:Yup.array().required('Please Select Allergeies'),
+        //     })
+        // ).required('Must have Items'),
+        // caloriesAndMacros: Yup.string().required('Please Provide Calories And Macros Details'),
+        // priceUnit:Yup.string().required('PriceUnit is Required'),
 
     });
 
@@ -231,7 +327,6 @@ const UpdateEasyAddDishComp = () => {
             },
             caloriesAndMacros: fields.caloriesAndMacros,
         }
-        console.log(obj)
 
         dispatch(updateSelectedDiscData(discId, obj, history));
     }
@@ -255,9 +350,9 @@ const UpdateEasyAddDishComp = () => {
                             return (
                                 <Form>
                                     <React.Fragment>
-                                        {/* {JSON.stringify(values.description)} */}
+                                        {/* {JSON.stringify(values.caloriesAndMacros)} */}
                                         {/* || */}
-                                        {/* {JSON.stringify(dishesData)} */}
+                                        {/* {JSON.stringify( selectedDisc_data && selectedDisc_data[0].caloriesAndMacros&& selectedDisc_data[0].caloriesAndMacros._id)} */}
                                         {/* || */}
                                         {/* {JSON.stringify(categoryId)} */}
                                         <div className="row">
@@ -605,10 +700,10 @@ const UpdateEasyAddDishComp = () => {
                                                                                 <span className="d-flex align-items-center">
                                                                                     <span className="itemsplus-icon">+</span>
                                                                                     {addItem ?
-                                                                                        <button type="button" className="additems-btn brandon-Medium mr-3" onClick={() => { setAddItem(false) }}>Click to add item</button>
+                                                                                        <button type="button" className="additems-btn brandon-Medium" onClick={() => { setAddItem(false) }}>Click to Edit item</button>
                                                                                         :
                                                                                         <React.Fragment>
-                                                                                            <button type="button" className="additems-btn brandon-Medium mr-3" onClick={() => { push({ item: '', qty: '', allergeies: [], customisable: false }) }}>Click to add item</button>
+                                                                                            <button type="button" className="additems-btn  mr-3" onClick={() => { push({ item: '', qty: '', allergeies: [], customisable: false }) }}>Add item</button>
                                                                                             {/* <button onClick={() => {setAddItem(true)}}>save</button> */}
                                                                                             <button className="cancel-btn brandon-Medium" onClick={() => { setAddItem(true); setFieldValue("deleteIngredients", []); setFieldValue("ingredient", selectedDisc_data && selectedDisc_data[0].ingredientSection && selectedDisc_data[0].ingredientSection.dish_ingredients) }}>Cancel</button>
                                                                                         </React.Fragment>
@@ -840,6 +935,7 @@ const UpdateEasyAddDishComp = () => {
                                                 {touched.instructions && errors.instructions && <div className="error pink-txt f-11">{errors.instructions}</div>}
                                             </div>
                                         </div>
+                                        {/* </div> */}
                                         <div className="row">
                                             <div className="col-sm-12 d-flex align-items-center justify-content-end">
                                                 <div className="custom-control custom-checkbox pinkline-checkbox mr-1">
@@ -853,7 +949,7 @@ const UpdateEasyAddDishComp = () => {
                                                     {touched.createNewVersion && errors.createNewVersion && <div className="error pink-txt f-11">{errors.createNewVersion}</div>}
                                                 </div>
                                                 <button className="btn lightgraynoline-btn text-uppercase rounded-pill ml-5" type="reset" onClick={() => { handleCancleEdit(resetForm) }} >CANCEL</button>
-                                                <button className="btn pink-btn text-uppercase rounded-pill ml-3" type="submit" >Save</button>
+                                                <button className="btn pink-btn text-uppercase rounded-pill ml-3" type="submit" >Update</button>
                                             </div>
                                         </div>
                                     </React.Fragment>
