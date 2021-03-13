@@ -22,7 +22,7 @@ import { useDropzone } from "react-dropzone";
 
 
 
-const styleOf_currency = ["$", "a", "b"]
+const styleOf_currency = ["$"]
 const numRegExp = /^[+]?([0-9]+(?:[\.][0-9]*)?|\.[0-9]+)$/;
 
 const ManageEasyAddDishComp = () => {

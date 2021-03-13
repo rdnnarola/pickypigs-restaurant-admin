@@ -12,7 +12,7 @@ import { addSubMenuData, getSelectedSubMenuData, updateSelectedSubMenuData } fro
 import { getAllMenuData} from "../../redux/actions/menuAction";
 
 
-const alergy_information = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"];
+const days_information = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"];
 const styleOf_menu=["breakfast","lunch","dinner","dessert","buffet","drinks","nibble","setmenu"]
 
 const AddEditSubMenuModalComp = (props) => {
@@ -27,7 +27,7 @@ const AddEditSubMenuModalComp = (props) => {
         timeTo:null,
         type: "submenu",
         availability:[],
-        styleOfmenu:'',
+        styleOfmenu:[],
         parentMenu: '',
 
     }
@@ -37,7 +37,7 @@ const AddEditSubMenuModalComp = (props) => {
         timeFrom:Yup.date().nullable().required('Time Is Required'),
         timeTo:Yup.date().nullable().required('Time Is Required'),
         availability:Yup.array().required('Please Select Availablity'),
-        styleOfmenu:Yup.string().required('Please Select Menu Style'),
+        styleOfmenu:Yup.array().required('Please Select Menu Style'),
         parentMenu:Yup.string().required('Please Select Menu'),
 
     });
@@ -136,7 +136,7 @@ const AddEditSubMenuModalComp = (props) => {
                                         <div className="custom-drodown form-group ">
                                             <label className="gray-txt f-15">Availability</label>
                                             <CheckBoxAutoCompleteComp className="minwidth-260" placeholder={"Select"}  
-                                                name="availability" options={alergy_information} value={values.availability} 
+                                                name="availability" options={days_information} value={values.availability} 
                                                 onChangeData={value => setFieldValue("availability", value)}
                                             />
                                             {touched.availability && errors.availability && <div className="error pink-txt f-11">{errors.availability}</div>}
@@ -181,7 +181,11 @@ const AddEditSubMenuModalComp = (props) => {
                                     
                                         <div className="custom-drodown form-group ">
                                             <label className="gray-txt f-15">Style of Sub Menu</label>
-                                            <Field as="select" name="styleOfmenu" className="text-capitalize form-control lightgray-border selectdropdown-btn gray-txt f-15">
+                                            <CheckBoxAutoCompleteComp className="minwidth-260" placeholder={"Select"}  
+                                                name="styleOfmenu" options={styleOf_menu?styleOf_menu:[]} value={values.styleOfmenu} 
+                                                onChangeData={value => setFieldValue("styleOfmenu", value)}
+                                            />
+                                            {/* <Field as="select" name="styleOfmenu" className="text-capitalize form-control lightgray-border selectdropdown-btn gray-txt f-15">
                                                 <option value="">Select</option>
                                                 {styleOf_menu && styleOf_menu.map((data, index)=>{
                                                     return(
@@ -190,7 +194,7 @@ const AddEditSubMenuModalComp = (props) => {
                                                         </React.Fragment>
                                                     )
                                                 })}
-                                            </Field>
+                                            </Field> */}
                                             {touched.styleOfmenu && errors.styleOfmenu && <div className="error pink-txt f-11">{errors.styleOfmenu}</div>}
                                         </div>
                                     </div>

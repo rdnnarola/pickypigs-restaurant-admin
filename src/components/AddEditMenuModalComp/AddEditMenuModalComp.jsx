@@ -11,7 +11,7 @@ import moment from 'moment'
 import { addMenuData, getSelectedMenuData, updateSelectedMenuData } from "../../redux/actions/menuAction";
 
 
-const alergy_information = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"];
+const days_information = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"];
 const styleOf_menu=["breakfast","lunch","dinner","dessert","buffet","drinks","nibble","setmenu"]
 
 const AddEditMenuModalComp = (props) => {
@@ -27,7 +27,7 @@ const AddEditMenuModalComp = (props) => {
         timeTo:null,
         type:"menu",
         availability:[],
-        styleOfmenu:''
+        styleOfmenu:[],
     }
 
     const validationSchema  = Yup.object().shape({
@@ -35,7 +35,7 @@ const AddEditMenuModalComp = (props) => {
         timeFrom:Yup.date().nullable().required('Time Is Required'),
         timeTo:Yup.date().nullable().required('Time Is Required'),
         availability:Yup.array().required('Please Select Availablity'),
-        styleOfmenu:Yup.string().required('Please Select Menu Style'),
+        styleOfmenu:Yup.array().required('Please Select Menu Style'),
     });
 
     useEffect(() => {
@@ -100,6 +100,7 @@ const AddEditMenuModalComp = (props) => {
                             return (
                                 <Form>
                                     <div>
+                                        {/* {JSON.stringify(values)} */}
                                         <div className="form-group easydish-input dishname-input w-100 custom-lightinputbox">
                                             <label className="gray-txt f-15">Menu Name</label>
                                             <Field  name="name" placeholder="Enter here" className="form-control f-15" />
@@ -108,7 +109,7 @@ const AddEditMenuModalComp = (props) => {
                                         <div className="custom-drodown form-group ">
                                             <label className="gray-txt f-15">Availability</label>
                                             <CheckBoxAutoCompleteComp className="minwidth-260" placeholder={"Select"}  
-                                                name="availability" options={alergy_information} value={values.availability} 
+                                                name="availability" options={days_information} value={values.availability} 
                                                 onChangeData={value => setFieldValue("availability", value)}
                                             />
                                             {touched.availability && errors.availability && <div className="error pink-txt f-11">{errors.availability}</div>}
@@ -151,9 +152,13 @@ const AddEditMenuModalComp = (props) => {
                                             </div>
                                         </div>
                                     
-                                        <div className="custom-drodown form-group ">
+                                        <div className="custom-drodown form-group text-capitalize">
                                             <label className="gray-txt f-15">Style of Menu</label>
-                                            <Field as="select" name="styleOfmenu" className="text-capitalize form-control lightgray-border selectdropdown-btn gray-txt f-15">
+                                            <CheckBoxAutoCompleteComp className="minwidth-260 text-capitalize" placeholder={"Select"}  
+                                                name="styleOfmenu" options={styleOf_menu?styleOf_menu:[]} value={values.styleOfmenu} 
+                                                onChangeData={value => setFieldValue("styleOfmenu", value)}
+                                            />
+                                            {/* <Field as="select" name="styleOfmenu" className="text-capitalize form-control lightgray-border selectdropdown-btn gray-txt f-15">
                                                 <option value="">Select</option>
                                                 {styleOf_menu && styleOf_menu.map((data, index)=>{
                                                     return(
@@ -162,7 +167,7 @@ const AddEditMenuModalComp = (props) => {
                                                         </React.Fragment>
                                                     )
                                                 })}
-                                            </Field>
+                                            </Field> */}
                                             {touched.styleOfmenu && errors.styleOfmenu && <div className="error pink-txt f-11">{errors.styleOfmenu}</div>}
                                         </div>
                                     </div>

@@ -22,7 +22,7 @@ import moment from "moment";
 
 
 
-const styleOf_currency = ["$", "a", "b"]
+const styleOf_currency = ["$"]
 const numRegExp = /^[+]?([0-9]+(?:[\.][0-9]*)?|\.[0-9]+)$/;
 
 const UpdateEasyAddDishComp = () => {
@@ -257,7 +257,7 @@ const UpdateEasyAddDishComp = () => {
         },
        
         ingredient: selectedDisc_data && selectedDisc_data[0].ingredientSection && selectedDisc_data[0].ingredientSection.dish_ingredients ? selectedDisc_data[0].ingredientSection.dish_ingredients : [],
-        priceUnit: selectedDisc_data && selectedDisc_data[0].priceUnit ? selectedDisc_data[0].priceUnit : '',
+        priceUnit: selectedDisc_data && selectedDisc_data[0].priceUnit ? selectedDisc_data[0].priceUnit : '$',
         deleteIngredients: [],
         description: selectedDisc_data && selectedDisc_data[0].description ? selectedDisc_data[0].description : '',
         description2: selectedDisc_data && selectedDisc_data[0].description ? selectedDisc_data[0].description : '',
