@@ -1,13 +1,15 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { NavLink,useHistory } from "react-router-dom";
 import logo from "../../../assets/images/logo.svg";
 import searchicon_gray from "../../../assets/images/search-grey.svg";
 import notification_bell from "../../../assets/images/notification-bell.svg";
 import userimg from "../../../assets/images/user.png";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { logoutUser } from "../../../redux/actions/generalActions";
-
 import "./Header.scss";
+import moment from 'moment';
+import { getAllRestaurantDetail } from "../../../redux/actions/restaurantSettingAction";
+import { SERVER_URL } from '../../../shared/constant'
 
 const Header = () => {
     const dispatch = useDispatch();
@@ -18,6 +20,15 @@ const Header = () => {
         dispatch(logoutUser(history))
 
     }
+    useEffect(() => {
+        dispatch(getAllRestaurantDetail())
+    }, [dispatch]);
+
+    let Restaurant_Setting_Data = useSelector((state) => {
+        return state.restaurantSetting
+    });
+
+    let {restauraneSetting_Data} = Restaurant_Setting_Data;
     return (
         <>
             <nav className="navbar fixed-top navbar-expand-lg navbar-light bg-white navbar-admin p-0">
@@ -64,11 +75,20 @@ const Header = () => {
                         <div className="dropdown">
                             <button className="user-details d-flex align-items-center" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 <div className="user-img position-absolute">
-                                    <img src={userimg} className="img-fluid" alt="icon" />
+                                    {restauraneSetting_Data && restauraneSetting_Data.restaurantProfilePhoto ?
+                                        <img className="img-fluid rounded-circle" alt="icon" style={{width:40,height:40}}
+                                            src={`${SERVER_URL}/${restauraneSetting_Data && restauraneSetting_Data.restaurantProfilePhoto}`}  />
+                                        :
+                                        <img src={userimg} className="img-fluid rounded-circle" style={{width:40,height:40}} alt="icon" />
+                                    }
                                 </div>
                                 <div className="user-info">
-                                <p className="user-name mb-1">Andreas Brixen</p> 
-                                <p className="user-date mb-0">Wednesday 19, March 2020</p>
+                                {restauraneSetting_Data && restauraneSetting_Data.name ?
+                                    <p className="user-name mb-1">{restauraneSetting_Data && restauraneSetting_Data.name}</p> 
+                                        :
+                                    <p className="user-name mb-1">Unknown Restaurant</p> 
+                                }
+                                <p className="user-date mb-0">{moment().format('dddd Do , MMMM YYYY')}</p>
                                 </div>
                             </button>
                             <ul className="dropdown-menu w-100" aria-labelledby="navbarDropdown">
