@@ -16,9 +16,9 @@ const datas = [
 const CommonTableComp = () => {
     return (
         <>
-            <div className="row mt-4">
+            <div className="row mt-3 pt-1">
                 <div className="col-sm-12">
-                    <h1 className="table-heading brandon-Bold mb-3">Last 10 Orders</h1>
+                    <h1 className="table-heading brandon-Medium fw-600 mb-3">Last 10 Orders</h1>
                     <div className="table-responsive my_custom_table">
                         <table className="table table-striped table-main">
                             <thead>

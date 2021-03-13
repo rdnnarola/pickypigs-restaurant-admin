@@ -167,36 +167,36 @@ const UpdateEasyAddDishComp = () => {
         description2: selectedDisc_data && selectedDisc_data[0].description ? selectedDisc_data[0].description : '',
     }
 
-    const validationSchema  = Yup.object().shape({
-        name:Yup.string().required('Name is Required'),
-        makes:Yup.string().required('Serving is Required'),
-        price:Yup.string().required('Price is Required'),
-        grossProfit:Yup.string().required('Profit is Required'),
-        image:Yup.mixed().required('Image is Required'),
-        favorite:Yup.boolean().oneOf([true,false]),
-        new:Yup.boolean().oneOf([true,false]),
-        available:Yup.boolean().oneOf([true,false]),
-        menuId:Yup.array().required('Please Select Menu'),
-        categoryId:Yup.string().required('Category is Required'),
-        subcategoryId:Yup.string().required('Subcategory is Required'),
-        description2:Yup.string().required('Description is Required'),
-        allergenId:Yup.array().required('Please Select Allergen'),
-        dietaryId:Yup.array().required('Please Select  Dietary'),
-        lifestyleId:Yup.array().required('Please Select Lifestyle'),
-        cookingMethodId:Yup.array().required('Please Select CookingMethod'),
-        instructions:Yup.string().required('instructions is Required'),
-        customisable:Yup.boolean().oneOf([true,false]),
-        createNewVersion:Yup.boolean().oneOf([true,false]),
-        ingredient:Yup.array()
-        .of(
-            Yup.object().shape({
-                item:Yup.string().required("item required"),
-                qty:Yup.string().required('required').matches(numRegExp, 'Enter Valid Number'),
-                allergeies:Yup.array().required('Please Select Allergeies'),
-            })
-        ).required('Must have Items'),
+    const validationSchema = Yup.object().shape({
+        name: Yup.string().required('Name is Required'),
+        makes: Yup.string().required('Serving is Required'),
+        price: Yup.string().required('Price is Required'),
+        grossProfit: Yup.string().required('Profit is Required'),
+        image: Yup.mixed().required('Image is Required'),
+        favorite: Yup.boolean().oneOf([true, false]),
+        new: Yup.boolean().oneOf([true, false]),
+        available: Yup.boolean().oneOf([true, false]),
+        menuId: Yup.array().required('Please Select Menu'),
+        categoryId: Yup.string().required('Category is Required'),
+        subcategoryId: Yup.string().required('Subcategory is Required'),
+        description2: Yup.string().required('Description is Required'),
+        allergenId: Yup.array().required('Please Select Allergen'),
+        dietaryId: Yup.array().required('Please Select  Dietary'),
+        lifestyleId: Yup.array().required('Please Select Lifestyle'),
+        cookingMethodId: Yup.array().required('Please Select CookingMethod'),
+        instructions: Yup.string().required('instructions is Required'),
+        customisable: Yup.boolean().oneOf([true, false]),
+        createNewVersion: Yup.boolean().oneOf([true, false]),
+        ingredient: Yup.array()
+            .of(
+                Yup.object().shape({
+                    item: Yup.string().required("item required"),
+                    qty: Yup.string().required('required').matches(numRegExp, 'Enter Valid Number'),
+                    allergeies: Yup.array().required('Please Select Allergeies'),
+                })
+            ).required('Must have Items'),
         caloriesAndMacros: Yup.string().required('Please Provide Calories And Macros Details'),
-        priceUnit:Yup.string().required('PriceUnit is Required'),
+        priceUnit: Yup.string().required('PriceUnit is Required'),
 
     });
 
@@ -313,8 +313,8 @@ const UpdateEasyAddDishComp = () => {
                                                                         )
                                                                     })}
                                                                 </Field>
-                                                            |
-                                                            <Field name="price" type="number" placeholder="0.00" className="form-control border border-white" />
+                                                                <div className="line-style position-relative"></div>
+                                                                <Field name="price" type="number" placeholder="0.00" className="form-control border border-white" />
                                                             </div>
                                                             {touched.price && errors.price && <div className="error pink-txt f-11">{errors.price}</div>}
                                                             {touched.priceUnit && errors.priceUnit && <div className="error pink-txt f-11">{errors.priceUnit}</div>}
@@ -357,59 +357,59 @@ const UpdateEasyAddDishComp = () => {
                                                             onChangeData={(value)=> {setFieldValue("menuId", value)}}
                                                         />
                                                     </div> */}
-                                                    <div className="custom-drodown form-group mr-4 mb-0">
-                                                        <label className="gray-txt f-15">Menu</label>
-                                                        <CheckBoxAutoCompleteSecondComp 
-                                                            className="minwidth-260" 
-                                                            placeholder={"Select Menu"}
-                                                            options={menuData&&menuData.menuDetails?menuData.menuDetails:[]} 
-                                                            value={values.menuId} 
-                                                            onChangeData={(value)=>{setFieldValue("menuId",value);setFieldValue("categoryId",'');setFieldValue("subcategoryId",'');getCategoryAction(value);}}
-                                                        />
-                                                        {touched.menuId && errors.menuId && <div className="error pink-txt f-11">{errors.menuId}</div>}
-                                                    </div>
-                                                    <div className="custom-drodown form-group mr-4 mb-0">
-                                                        <label className="gray-txt f-15">Category</label>
-                                                        <Field as="select"  name="categoryId" onChange={(e)=>{setFieldValue("categoryId",e.target.value);getSubCategoryAction(e.target.value);setFieldValue("subcategoryId",'');}} className="form-control lightgray-border selectdropdown-btn minwidth-260">
-                                                            <option value="">Select</option>
-                                                            {values&&values.menuId&&values.menuId.length>0?
+                                                        <div className="custom-drodown form-group mr-5 mb-0">
+                                                            <label className="gray-txt f-15 brandon-Medium">Menu</label>
+                                                            <CheckBoxAutoCompleteSecondComp
+                                                                className="minwidth-260 brandon-Medium"
+                                                                placeholder={"Select Menu"}
+                                                                options={menuData && menuData.menuDetails ? menuData.menuDetails : []}
+                                                                value={values.menuId}
+                                                                onChangeData={(value) => { setFieldValue("menuId", value); setFieldValue("categoryId", ''); setFieldValue("subcategoryId", ''); getCategoryAction(value); }}
+                                                            />
+                                                            {touched.menuId && errors.menuId && <div className="error pink-txt f-11">{errors.menuId}</div>}
+                                                        </div>
+                                                        <div className="custom-drodown form-group mr-5 mb-0">
+                                                            <label className="gray-txt f-15 brandon-Medium">Category</label>
+                                                            <Field as="select" name="categoryId" onChange={(e) => { setFieldValue("categoryId", e.target.value); getSubCategoryAction(e.target.value); setFieldValue("subcategoryId", ''); }} className="brandon-Medium form-control lightgray-border selectdropdown-btn minwidth-260">
+                                                                <option value="">Select</option>
+                                                                {values && values.menuId && values.menuId.length > 0 ?
                                                                     <React.Fragment>
-                                                                        {categoryData && categoryData.map((data, index)=>{
-                                                                            return(
+                                                                        {categoryData && categoryData.map((data, index) => {
+                                                                            return (
                                                                                 <React.Fragment key={index}>
                                                                                     <option className="text-capitalize" value={data._id}>{data.name}</option>
                                                                                 </React.Fragment>
                                                                             )
                                                                         })}
                                                                     </React.Fragment>
-                                                                :
+                                                                    :
                                                                     null
-                                                            }
-                                                        </Field>
-                                                        {touched.categoryId && errors.categoryId && <div className="error pink-txt f-11">{errors.categoryId}</div>}
-                                                    </div>
-                                                    <div className="custom-drodown form-group mr-4 mb-0">
-                                                        <label  className="gray-txt f-15">Sub-Category</label>
-                                                        <Field as="select" name="subcategoryId" onChange={(e)=>{setFieldValue("subcategoryId",e.target.value);}} className="form-control lightgray-border selectdropdown-btn minwidth-260">
-                                                            <option value="">Select</option>
-                                                            { values&&values.categoryId?
+                                                                }
+                                                            </Field>
+                                                            {touched.categoryId && errors.categoryId && <div className="error pink-txt f-11">{errors.categoryId}</div>}
+                                                        </div>
+                                                        <div className="custom-drodown form-group mr-4 mb-0">
+                                                            <label className="gray-txt f-15 brandon-Medium">Sub-Category</label>
+                                                            <Field as="select" name="subcategoryId" onChange={(e) => { setFieldValue("subcategoryId", e.target.value); }} className="brandon-Medium form-control lightgray-border selectdropdown-btn minwidth-260">
+                                                                <option value="">Select</option>
+                                                                {values && values.categoryId ?
                                                                     <React.Fragment>
-                                                                        {subcategoryData && subcategoryData.map((data, index)=>{
-                                                                            return(
+                                                                        {subcategoryData && subcategoryData.map((data, index) => {
+                                                                            return (
                                                                                 <React.Fragment key={index}>
                                                                                     <option className="text-capitalize" value={data._id}>{data.name}</option>
                                                                                 </React.Fragment>
                                                                             )
                                                                         })}
                                                                     </React.Fragment>
-                                                                :
+                                                                    :
                                                                     null
-                                                            }
+                                                                }
 
-                                                        </Field>
-                                                        {touched.subcategoryId && errors.subcategoryId && <div className="error pink-txt f-11">{errors.subcategoryId}</div>}
-                                                    </div>
-                                                    {/* <div className="custom-drodown form-group mr-4 mb-0">
+                                                            </Field>
+                                                            {touched.subcategoryId && errors.subcategoryId && <div className="error pink-txt f-11">{errors.subcategoryId}</div>}
+                                                        </div>
+                                                        {/* <div className="custom-drodown form-group mr-4 mb-0">
                                                         <label className="gray-txt f-15">Category</label>
                                                         <select name="categoryId" onChange={handleManageAddDish} className="form-control lightgray-border selectdropdown-btn minwidth-260" aria-label="Default select example">
                                                             <option value="">Select</option>
@@ -471,7 +471,7 @@ const UpdateEasyAddDishComp = () => {
                                                                         // <img src="https://png.pngtree.com/png-clipart/20200225/original/pngtree-image-upload-icon-photo-upload-icon-png-image_5279795.jpg" className="img-fluid" width="150px" alt="image_upload" />
                                                                         <img src={uploadimg_icon} width="82px" height="82px" className="img-fluid mb-3" alt="image" />
                                                                     }
-                                                                    
+
                                                                     <span className="f-15 gray-txt brandon-Medium">Upload Image <br /> or drag and drop image here</span>
                                                                     <input
                                                                         type="file"
@@ -605,12 +605,12 @@ const UpdateEasyAddDishComp = () => {
                                                                                 <span className="d-flex align-items-center">
                                                                                     <span className="itemsplus-icon">+</span>
                                                                                     {addItem ?
-                                                                                        <button type="button" className="additems-btn brandon-Medium" onClick={() => { setAddItem(false) }}>Click to add item</button>
+                                                                                        <button type="button" className="additems-btn brandon-Medium mr-3" onClick={() => { setAddItem(false) }}>Click to add item</button>
                                                                                         :
                                                                                         <React.Fragment>
-                                                                                            <button type="button" className="additems-btn" onClick={() => { push({ item: '', qty: '', allergeies: [], customisable: false }) }}>Click to add item</button>
+                                                                                            <button type="button" className="additems-btn brandon-Medium mr-3" onClick={() => { push({ item: '', qty: '', allergeies: [], customisable: false }) }}>Click to add item</button>
                                                                                             {/* <button onClick={() => {setAddItem(true)}}>save</button> */}
-                                                                                            <button className="cancel-btn" onClick={() => { setAddItem(true); setFieldValue("deleteIngredients", []); setFieldValue("ingredient", selectedDisc_data && selectedDisc_data[0].ingredientSection && selectedDisc_data[0].ingredientSection.dish_ingredients) }}>Cancel</button>
+                                                                                            <button className="cancel-btn brandon-Medium" onClick={() => { setAddItem(true); setFieldValue("deleteIngredients", []); setFieldValue("ingredient", selectedDisc_data && selectedDisc_data[0].ingredientSection && selectedDisc_data[0].ingredientSection.dish_ingredients) }}>Cancel</button>
                                                                                         </React.Fragment>
                                                                                     }
                                                                                 </span>
@@ -818,26 +818,27 @@ const UpdateEasyAddDishComp = () => {
                                             </div>
                                         </div>
 
-                                    
-                                    <div className="row">
-                                        <div className="col-sm-12">
-                                            <CaloriesMacrosModalComp 
-                                                name="caloriesAndMacros"
-                                                onChangeData={(value)=> {setFieldValue("caloriesAndMacros",value);}}
-                                                value={values.caloriesAndMacros} 
-                                            />
-                                            {touched.caloriesAndMacros && errors.caloriesAndMacros && <div className="error pink-txt f-11">{errors.caloriesAndMacros}</div>}
-                                        </div>
-                                    </div>
-                                    <div className="row">
-                                        <div className="col-sm-12">
-                                            <div className="my_shadow mb-3 bg-white w-100">
-                                                <div className="d-flex justify-content-between align-items-center">
-                                                    <h2>INSTRUCTIONS</h2>
-                                                </div>
-                                                <Field component='textarea' rows='5' name="instructions" className="form-control add-description-textarea" placeholder="Type Here" />
+
+                                        <div className="row">
+                                            <div className="col-sm-12 mb-4 pb-2">
+                                                <CaloriesMacrosModalComp
+                                                    name="caloriesAndMacros"
+                                                    onChangeData={(value) => { setFieldValue("caloriesAndMacros", value); }}
+                                                    value={values.caloriesAndMacros}
+                                                />
+                                                {touched.caloriesAndMacros && errors.caloriesAndMacros && <div className="error pink-txt f-11">{errors.caloriesAndMacros}</div>}
                                             </div>
-                                            {touched.instructions && errors.instructions && <div className="error pink-txt f-11">{errors.instructions}</div>}
+                                        </div>
+                                        <div className="row">
+                                            <div className="col-sm-12 mb-4 pb-2">
+                                                <div className="my_shadow bg-white w-100 instructions-wrapper">
+                                                    <div className="d-flex justify-content-between align-items-center instructions-heading">
+                                                        <h2 className="text-uppercase f-14 brandon-Bold p-4">INSTRUCTIONS</h2>
+                                                    </div>
+                                                    <Field component='textarea' rows='5' name="instructions" className="form-control add-description-textarea" placeholder="Type Here" />
+                                                </div>
+                                                {touched.instructions && errors.instructions && <div className="error pink-txt f-11">{errors.instructions}</div>}
+                                            </div>
                                         </div>
                                         <div className="row">
                                             <div className="col-sm-12 d-flex align-items-center justify-content-end">
@@ -855,7 +856,6 @@ const UpdateEasyAddDishComp = () => {
                                                 <button className="btn pink-btn text-uppercase rounded-pill ml-3" type="submit" >Save</button>
                                             </div>
                                         </div>
-                                    </div>
                                     </React.Fragment>
                                 </Form>
                             );

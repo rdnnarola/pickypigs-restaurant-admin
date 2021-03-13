@@ -35,7 +35,7 @@ const DonutChart = (props) => {
                     <h5 className="chart-datalabel">
                         <span className="brandon-Bold">{props.length}</span>
                         <br />
-                        <small>{props.name}</small>
+                        <small className="brandon-Medium">{props.name}</small>
                     </h5>
                     <PieChart width={240} height={240}>
                         <Pie
@@ -59,7 +59,7 @@ const DonutChart = (props) => {
                         return(
                             <React.Fragment key={index}>
                                 <div className="d-flex justify-content-between ">
-                                    <p className="chartdata-count">{data.name}</p>  <p className="chartdata-count">{data.value}%</p>
+                                    <p className="chartdata-count brandon-Medium">{data.name}</p>  <p className="chartdata-count brandon-Medium">{data.value}%</p>
                                 </div>
                             </React.Fragment>
                         )

@@ -349,9 +349,9 @@ const CaloriesMacrosModalComp = (props) => {
                         <Modal.Title className="w-100">
                             <p className="d-flex align-items-center mb-0 rsd-icontext-content">
                                 <div className="d-flex align-items-center w-100">
-                                    <img src={nutritionFactsicon} alt="" className="img-fluid mr-2 position-absolute" />
+                                    <img src={nutritionFactsicon} alt="" className="img-fluid mr-2 position-absolute mt-4 pt-1" />
                                     <div className="d-flex align-items-center w-100 justify-content-between rsd-allergiesinfomodal-sub">
-                                        <span className="pl-4 ml-2 text-left rsd-allergiesinfomodal-name">Amount per serving<br></br><b>Calories & Macros</b></span>
+                                        <span className="text-left rsd-allergiesinfomodal-name brandon-Medium f-13">Amount per serving<br></br><b className="f-17 pl-4 d-block pt-1 ml-1">Calories & Macros</b></span>
                                         {/* <div className="mt-3"><span><b>
                                         <input name="myData"
                                         type="text"/>
@@ -366,9 +366,9 @@ const CaloriesMacrosModalComp = (props) => {
                             <Formik enableReinitialize={true} initialValues={initialValues2} validationSchema={validationSchema} onSubmit={onSubmit}>
                                 {({ errors, touched, resetForm, setFieldValue, handleChange, values }) => {
                                     return (
-                                        <Form>
+                                        <Form className="position-relative">
                                             <React.Fragment>
-                                                <div className="mt-3">
+                                                <div className="servingamount-input">
                                                     <div className="recipt-editwraper d-flex align-items-center justify-content-end input-dark">
                                                         <Field className="mg-input" name="total" placeholder="00.00" />
                                                     </div>
@@ -377,19 +377,17 @@ const CaloriesMacrosModalComp = (props) => {
                                                 <div>
                                                     <hr className="mt-0 mb-0"></hr>
                                                 </div>
-                                                <div className="total-fat d-flex justify-content-between flex-wrap mt-3">
+                                                <div className="total-fat d-flex justify-content-between flex-wrap mt-3 mb-2">
                                                     <p className="mb-1 brandon-Medium">Total Fat</p>
-                                                    <p scope="col" className="gray-txt fw-400 text-right pl-0 pr-0 pt-1 pb-1 border-top-0">
-                                                        <div className="recipt-editwraper d-flex align-items-center justify-content-end input-dark">
-                                                            <Field className="mg-input" name="fat.weight" placeholder="00.00" />
-                                                            <Field className="mg-input-txt" name="fat.fatUnit" readOnly={true} type="text" placeholder="mg" />
-                                                        </div>
-                                                        {touched.fat && touched.fat.weight && errors.fat && errors.fat.weight && <div className="error pink-txt f-11">{errors.fat && errors.fat.weight}</div>}
-                                                    </p>
+                                                    <div className="recipt-editwraper d-flex align-items-center justify-content-end input-dark">
+                                                        <Field className="mg-input" name="fat.weight" placeholder="00.00" />
+                                                        <Field className="mg-input-txt" name="fat.fatUnit" readOnly={true} type="text" placeholder="mg" />
+                                                    </div>
+                                                    {touched.fat && touched.fat.weight && errors.fat && errors.fat.weight && <div className="error pink-txt f-11">{errors.fat && errors.fat.weight}</div>}
                                                     {/* <p className="mb-1 brandon-Medium">20.84 g</p> */}
                                                 </div>
-                                                <div className="table-responsive rscategory-detail">
-                                                    <table className="table mb-4">
+                                                <div className="table-responsive rscategory-detail mb-2">
+                                                    <table className="table mb-4 pb-2">
                                                         <tbody>
                                                             <tr>
                                                                 <td scope="col" colSpan="3" className="gray-txt fw-400 text-right pl-0 pr-0 border-top-0 pt-1 pb-1 text-right">% Daily Values *</td>
@@ -491,7 +489,7 @@ const CaloriesMacrosModalComp = (props) => {
                                                                 </td>
                                                                 <td scope="col" className="gray-txt fw-400 text-right pl-0 pr-0 pt-2 pb-1">
                                                                     <div className="recipt-editwraper d-flex align-items-center justify-content-end input-dark">
-                                                                        <Field name="cholesterol.percentage" className="mg-input" placeholder="00.00" />%
+                                                                        <Field name="cholesterol.percentage" className="mg-input" placeholder="00.00" /><span className="dark-txt brandon-Medium">%</span>
                                                                     </div>
                                                                     {touched.cholesterol && touched.cholesterol.percentage && errors.cholesterol && errors.cholesterol.percentage && <div className="error pink-txt f-11">{errors.cholesterol && errors.cholesterol.percentage}</div>}
                                                                 </td>
@@ -507,7 +505,7 @@ const CaloriesMacrosModalComp = (props) => {
                                                                 </td>
                                                                 <td scope="col" className="gray-txt fw-400 text-right pl-0 pr-0 pt-2 pb-1">
                                                                     <div className="recipt-editwraper d-flex align-items-center justify-content-end input-dark">
-                                                                        <Field name="sodium.percentage" className="mg-input" placeholder="00.00" />%
+                                                                        <Field name="sodium.percentage" className="mg-input" placeholder="00.00" /><span className="dark-txt brandon-Medium">%</span>
                                                                     </div>
                                                                     {touched.sodium && touched.sodium.percentage && errors.sodium && errors.sodium.percentage && <div className="error pink-txt f-11">{errors.sodium && errors.sodium.percentage}</div>}
                                                                 </td>
@@ -523,7 +521,7 @@ const CaloriesMacrosModalComp = (props) => {
                                                                 </td>
                                                                 <td scope="col" className="gray-txt fw-400 text-right pl-0 pr-0 pt-2 pb-1">
                                                                     <div className="recipt-editwraper d-flex align-items-center justify-content-end input-dark">
-                                                                        <Field name="totalCarbohydrate.totalPercentage" className="mg-input" placeholder="00.00" />%
+                                                                        <Field name="totalCarbohydrate.totalPercentage" className="mg-input" placeholder="00.00" /><span className="dark-txt brandon-Medium">%</span>
                                                                     </div>
                                                                     {touched.totalCarbohydrate && touched.totalCarbohydrate.totalPercentage && errors.totalCarbohydrate && errors.totalCarbohydrate.totalPercentage && <div className="error pink-txt f-11">{errors.totalCarbohydrate && errors.totalCarbohydrate.totalPercentage}</div>}
                                                                 </td>
@@ -571,7 +569,7 @@ const CaloriesMacrosModalComp = (props) => {
                                                                 </td>
                                                                 <td scope="col" className="gray-txt fw-400 text-right pl-0 pr-0 pt-2 pb-1">
                                                                     <div className="recipt-editwraper d-flex align-items-center justify-content-end input-dark">
-                                                                        <Field name="protien.totalPercentage" className="mg-input" placeholder="00.00" />%
+                                                                        <Field name="protien.totalPercentage" className="mg-input" placeholder="00.00" /><span className="dark-txt brandon-Medium">%</span>
                                                                     </div>
                                                                     {touched.protien && touched.protien.totalPercentage && errors.protien && errors.protien.totalPercentage && <div className="error pink-txt f-11">{errors.protien && errors.protien.totalPercentage}</div>}
                                                                 </td>
@@ -677,14 +675,16 @@ const CaloriesMacrosModalComp = (props) => {
                                                     </table>
                                                 </div>
                                                 <div>
-                                                    <hr className="mt-0 mb-0"></hr>
+                                                    <hr className="mt-0 mb-0 border-style-dashed"></hr>
                                                 </div>
                                                 <div className="d-flex align-items-center justify-content-between mt-3">
-                                                    <p className="contributes-detailtxt gray-txt f-14">
-                                                        * The % Daily Value (DV) tells you how much a nutrient in a serving of food contributes to a daily diet. 2,000 calories a day is used for general nutrition advice.
+                                                    <p className="contributes-detailtxt gray-txt f-14 mb-1">
+                                                        * The % Daily Value (DV) tells you how much a nutrient <br /> in a serving of food contributes to a daily diet. 2,000 <br /> calories a day is used for general nutrition advice.
                                                     </p>
-                                                    <button className="btn lightgraynoline-btn text-uppercase rounded-pill" type="reset" onClick={() => { handleCancleEdit(resetForm); }}>cancle</button>
-                                                    <button className="btn pinkline-btn text-uppercase rounded-pill ml-3 min-width-120" type="submit">Save</button>
+                                                    <div>
+                                                        <button className="btn lightgraynoline-btn text-uppercase rounded-pill" type="reset" onClick={() => { handleCancleEdit(resetForm); }}>cancel</button>
+                                                        <button className="btn pinkline-btn text-uppercase rounded-pill ml-4 min-width-120" type="submit">Save</button>
+                                                    </div>
                                                 </div>
                                                 {/* {JSON.stringify(values)} */}
                                             </React.Fragment>

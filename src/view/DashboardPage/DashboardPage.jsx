@@ -20,20 +20,20 @@ const DashboardPage = () => {
             <div className="row">
                 <div className="col-sm-12">
                     <div className="page-heading brandon-Medium">
-                        <h4>Tuesday, 18 March 2020<small className="brandon-regular ml-3">7:45 PM</small></h4>
+                        <h4><span className="fw-600">Tuesday, 18 March 2020</span><small className="brandon-regular ml-3">7:45 PM</small></h4>
                     </div>
                 </div>
             </div>
 
 
-            <div className="row mt-5 pt-2 mb-5 pb-2">
+            <div className="row mt-5 pt-2 mb-5 pb-1">
                 <div className="col-md-12 col-lg-3 col-xl-3">
                     <p className="text-uppercase sub-heading brandon-Medium mb-5">Stats & Figures</p>
-                    <h5 className="brandon-regular stats-label">Dishes <span className="pink-txt">200</span></h5>
-                    <h5 className="brandon-regular stats-label">Amends <span className="pink-txt">180</span></h5>
-                    <h5 className="brandon-regular stats-label">Orders <span className="pink-txt">150</span></h5>
-                    <h5 className="brandon-regular stats-label">PP Users <span className="pink-txt">200</span></h5>
-                    <h5 className="brandon-regular stats-label">Top Dish Kina <span className="pink-txt">Kina Gyoza</span></h5>
+                    <h5 className="brandon-Medium stats-label">Dishes <span className="pink-txt">200</span></h5>
+                    <h5 className="brandon-Medium stats-label">Amends <span className="pink-txt">180</span></h5>
+                    <h5 className="brandon-Medium stats-label">Orders <span className="pink-txt">150</span></h5>
+                    <h5 className="brandon-Medium stats-label">PP Users <span className="pink-txt">200</span></h5>
+                    <h5 className="brandon-Medium stats-label">Top Dish Kina <span className="pink-txt">Kina Gyoza</span></h5>
                 </div>
                 <div className="col-sm-12 col-md-12 col-lg-9 col-xl-9">
                     <div className="text-right mb-5">

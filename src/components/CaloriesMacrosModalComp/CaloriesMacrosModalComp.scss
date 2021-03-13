@@ -1,5 +1,6 @@
 .rs-allergiesinfomodalbtn {
     max-width: 280px;
+
     .btn {
         background: #fff !important;
         box-shadow: 0px 2px 18px 0px #00000012 !important;
@@ -9,16 +10,19 @@
         padding: 10px 20px 20px;
         width: 100%;
         border-radius: 15px;
+
         .icontext-content {
             .rs-allergiesinfomodal-sub {
                 min-height: 48px;
                 max-height: 48px;
                 overflow: hidden;
+
                 .rs-allergiesinfomodal-name {
                     width: calc(100% - 20px);
                     word-break: break-all;
                     line-height: 1.25;
                 }
+
                 .modal-footer {
                     padding: 0px 26px 40px;
                 }
@@ -26,19 +30,25 @@
         }
     }
 }
+
 .rs-discallergiesinfomadel {
     border-radius: 10px;
+
     .modal-dialog {
         max-width: 700px;
+
         .modal-content {
             border: none;
             border-radius: 15px;
+
             .modal-header {
                 padding: 24px 29px 7px;
+
                 .modal-title {
                     font-size: 16px;
                     order: 2;
                 }
+
                 .close {
                     float: inherit !important;
                     margin-left: 0px !important;
@@ -52,29 +62,39 @@
                     height: 25px;
                     margin-right: 10px;
                     outline: none;
-                    
+
                     span {
                         font-size: 42px;
                         opacity: 1 !important;
                         color: #000 !important;
                         font-weight: 500;
                         line-height: 0;
-                      }
+                    }
                 }
             }
+
             .modal-body {
                 padding: 15px 29px 15px;
-                .rscategory-detail{
-                    .table{
-                        tbody{
-                            tr{
-                                td{
+                
+
+                .servingamount-input {
+                    position: absolute;
+                    right: 0;
+                    top: -2.5rem;
+                }
+
+                .rscategory-detail {
+                    .table {
+                        tbody {
+                            tr {
+                                td {
                                     font-size: 14px;
                                     border-top-style: dashed;
                                 }
                             }
                         }
                     }
+
                     .contributes-detailtxt {
                         font-size: 14px;
                         margin-top: 20px;
@@ -84,8 +104,8 @@
         }
     }
 
-  
-}  
+
+}
 
 .recipt-editwraper {
     .mg-input {
@@ -97,10 +117,12 @@
         font-size: 14px;
         color: #919191;
         outline: none;
-        &::placeholder{
+
+        &::placeholder {
             color: #919191;
         }
     }
+
     .mg-input-txt {
         width: 20px;
         padding: 0px;
@@ -108,9 +130,13 @@
         color: #919191;
         outline: none;
         text-align: right;
+        font-size: 14px;
     }
-    &.input-dark{
-        .mg-input, .mg-input-txt{
+
+    &.input-dark {
+
+        .mg-input,
+        .mg-input-txt {
             color: #232323;
             font-family: "Brandon Text Medium" !important;
         }
