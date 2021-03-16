@@ -23,7 +23,7 @@ import { useDropzone } from "react-dropzone";
 
 
 const styleOf_currency = ["$"]
-const numRegExp = /^[+]?([0-9]+(?:[\.][0-9]*)?|\.[0-9]+)$/;
+const numbRegs = /^[+]?([0-9]+(?:[\.][0-9]*)?|\.[0-9]+)$/;
 
 const ManageEasyAddDishComp = () => {
     const dispatch = useDispatch();
@@ -254,9 +254,9 @@ const ManageEasyAddDishComp = () => {
 
     const validationSchema = Yup.object().shape({
         name: Yup.string().required('Name is required'),
-        // makes: Yup.string().required('Serving is required'),//should be positive
-        price: Yup.string().required('Price is required'),
-        // grossProfit: Yup.string().required('Profit is required'),
+        makes: Yup.string().matches(numbRegs, "Invalid Serving"),   //should be positive
+        price: Yup.string().required('Price is required').matches(numbRegs, "Invalid Price"),
+        grossProfit: Yup.string().matches(numbRegs, "Invalid Profit"),
         // image: Yup.mixed().required('Image is required'),
         favorite: Yup.boolean().oneOf([true, false]),
         new: Yup.boolean().oneOf([true, false]),

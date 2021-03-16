@@ -1,5 +1,6 @@
 import Axios from './axios';
 import {setAlert} from './alertAction';
+import { logoutUser } from './generalActions';
 
 export const getAllCategoryData=(data)=>{
     return async(dispatch)=>{
@@ -19,6 +20,9 @@ export const getAllCategoryData=(data)=>{
           dispatch({type:"GET_ALLCATEGORY_FAILURE",payload:error});
          if (error.response) {
             dispatch(setAlert(`${error.response.data.message}`, 'error'));
+            if(error.response&&error.response.status==401){
+              dispatch(logoutUser())
+            }
           } else {
             dispatch(setAlert('Something Went wrong!', 'error'));
           }

@@ -8,6 +8,7 @@ import { getAllCuisineData, getAllRestaurantFeaturesData } from "../../redux/act
 
 const passwordRegExp = RegExp(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,24})/);
 const phoneRegex = RegExp(/^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/);
+const numbRegs=RegExp(/^[0-9]*$/);
 
 const RestaurantInfoFeatureComp = (props) => {
     let { averageCostOfTwoPerson, cardAccept, cashAccept, inclusiveTaxesAndCharges, cuisineType, restaurantFeaturesOptions, appliesOfRestaurant } = props.featuredata
@@ -80,8 +81,8 @@ const RestaurantInfoFeatureComp = (props) => {
     }
 
     const validationSchema = Yup.object().shape({
-        averageCostOfTwoPerson: Yup.string().required('Cost Per TWo Person is required'),
-        appliesOfRestaurant: Yup.array().required('Applies Of Restaurant is required'),
+        averageCostOfTwoPerson: Yup.string().matches(numbRegs, "Invalid Cost Per TWo Person"),
+        // appliesOfRestaurant: Yup.array().required('Applies Of Restaurant is required'),
 
     });
 

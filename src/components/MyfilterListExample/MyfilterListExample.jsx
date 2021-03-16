@@ -57,7 +57,7 @@ export default function MyfilterListExample(props) {
   if (typeof window !== 'undefined' && !loaded.current) {
     if (!document.querySelector('#google-maps')) {
       loadScript(
-        'https://maps.googleapis.com/maps/api/js?key=AIzaSyBWIIb5rlIPoxCKRCQlueENTkj2KcniU1I&libraries=places',
+        `https://maps.googleapis.com/maps/api/js?key==${API_KEY}&libraries=places`,
         document.querySelector('head'),
         'google-maps',
       );
