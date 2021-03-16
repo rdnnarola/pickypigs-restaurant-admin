@@ -1,0 +1,48 @@
+.subscription-wrapper{
+    max-width: 430px;
+    flex: 0 0 430px;
+
+    .subscription-block {
+        padding: 50px 40px 50px 50px;
+        height: 220px;
+
+        .viewtransaction-link{
+            .viewtransaction-label{
+                cursor: pointer;
+                color: #232323;
+                text-decoration: none;
+                line-height: 1;
+
+                label{
+                    cursor: pointer;
+                }
+
+                img{
+                    transform: rotate(270deg) translateY(0px);
+                    transition: all 0.25s;
+                }
+
+                &:hover{
+                    label{
+                        color: #cb007b;
+                    }
+                    img{
+                        filter: invert(20%) sepia(98%) saturate(3481%) hue-rotate(309deg) brightness(75%) contrast(118%);
+                        transform: rotate(270deg) translateY(-10px);
+                    }
+                }
+            }
+            .line-separate {
+                display: inline-block;
+                height: 40px;
+                width: 1px;
+                background: #E5E5E5;
+            }
+        }
+    }
+    &:last-child{
+        .subscription-block{
+            height: 200px;
+        }
+    }
+}
