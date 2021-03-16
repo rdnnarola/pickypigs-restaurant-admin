@@ -23,7 +23,7 @@ import moment from "moment";
 
 
 const styleOf_currency = ["$"]
-const numRegExp = /^[+]?([0-9]+(?:[\.][0-9]*)?|\.[0-9]+)$/;
+const numbRegs = /^[+]?([0-9]+(?:[\.][0-9]*)?|\.[0-9]+)$/;
 
 const UpdateEasyAddDishComp = () => {
     const params = useParams();
@@ -265,9 +265,9 @@ const UpdateEasyAddDishComp = () => {
 
     const validationSchema = Yup.object().shape({
         name: Yup.string().required('Name is Required'),
-        // makes:Yup.string().required('Serving is Required'),
-        price: Yup.string().required('Price is Required'),
-        // grossProfit:Yup.string().required('Profit is Required'),
+        makes: Yup.string().matches(numbRegs, "Invalid Serving"),//should be positive
+        price: Yup.string().required('Price is required').matches(numbRegs, "Invalid Price"),
+        grossProfit: Yup.string().matches(numbRegs, "Invalid Profit"),
         // image:Yup.mixed().required('Image is Required'),
         favorite: Yup.boolean().oneOf([true, false]),
         new: Yup.boolean().oneOf([true, false]),

@@ -1,5 +1,6 @@
 import Axios from './axios';
 import {setAlert} from './alertAction';
+import { logoutUser } from './generalActions';
 
 
 export const getAllSubMenuData=(data)=>{
@@ -20,6 +21,9 @@ export const getAllSubMenuData=(data)=>{
           dispatch({type:"GET_ALLSUBMENU_FAILURE",payload:error});
           if (error.response) {
             dispatch(setAlert(`${error.response.data.message}`, 'error'));
+            if(error.response&&error.response.status==401){
+              dispatch(logoutUser())
+            }
           } else {
             dispatch(setAlert('Something Went wrong!', 'error'));
           }

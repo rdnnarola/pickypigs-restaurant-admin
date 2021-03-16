@@ -1,5 +1,6 @@
 import Axios from './axios';
 import {setAlert} from './alertAction';
+import { logoutUser } from './generalActions';
 
 
 export const getAllMenuData=(data)=>{
@@ -19,6 +20,9 @@ export const getAllMenuData=(data)=>{
           dispatch({type:"GET_ALLMENU_FAILURE",payload:error});
           if (error.response) {
             dispatch(setAlert(`${error.response.data.message}`, 'error'));
+            if(error.response&&error.response.status==401){
+              dispatch(logoutUser())
+            }
           } else {
             dispatch(setAlert('Something Went wrong!', 'error'));
           }
@@ -51,6 +55,9 @@ export const getAllMenuData=(data)=>{
           dispatch({type:"ADD_MENU_FAILURE",payload:error});
           if (error.response) {
             dispatch(setAlert(`${error.response.data.message}`, 'error'));
+            if(error.response&&error.response.status==401){
+              dispatch(logoutUser())
+            }
           } else {
             dispatch(setAlert('Something Went wrong!', 'error'));
           }
@@ -68,6 +75,9 @@ export const getAllMenuData=(data)=>{
         }
         catch(error){
           dispatch({type:"GET_SELECTEDMENU_FAILURE",payload:error});
+          if(error.response&&error.response.status==401){
+            dispatch(logoutUser())
+          }
         }
     }
   };
@@ -110,6 +120,9 @@ export const updateMenuForm = (key , value) => {
           dispatch({type:"UPDATE_MENU_FAILURE",payload:error});
           if (error.response) {
             dispatch(setAlert(`${error.response.data.message}`, 'error'));
+            if(error.response&&error.response.status==401){
+              dispatch(logoutUser())
+            }
           } else {
             dispatch(setAlert('Something Went wrong!', 'error'));
           }
@@ -134,6 +147,9 @@ export const updateMenuForm = (key , value) => {
             dispatch({type:"DELETE_MENU_FAILURE",payload:error});
             if (error.response) {
               dispatch(setAlert(`${error.response.data.message}`, 'error'));
+              if(error.response&&error.response.status==401){
+                dispatch(logoutUser())
+              }
             } else {
               dispatch(setAlert('Something Went wrong!', 'error'));
             }
@@ -165,6 +181,9 @@ export const updateMenuForm = (key , value) => {
           dispatch({type:"HIDE_MENU_FAILURE",payload:error});
           if (error.response) {
             dispatch(setAlert(`${error.response.data.message}`, 'error'));
+            if(error.response&&error.response.status==401){
+              dispatch(logoutUser())
+            }
           } else {
             dispatch(setAlert('Something Went wrong!', 'error'));
           }

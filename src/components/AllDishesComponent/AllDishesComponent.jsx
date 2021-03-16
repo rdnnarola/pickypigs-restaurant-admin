@@ -20,8 +20,8 @@ const AllDishesComponent=()=>{
     const [dishesId,setDishesId]=useState('')
 
     useEffect(()=>{
-        dispatch(getAllDishesData({search:inputValue,start:0,category:categoryId,menu:menuId}));
-    },[dispatch,inputValue,menuId,categoryId]);
+        dispatch(getAllDishesData({search:inputValue,start:0,menu:menuId}));
+    },[dispatch,inputValue,menuId]);
 
     useEffect(()=>{
         dispatch(getAllMenuData({start:0,delete:0}));
@@ -35,26 +35,26 @@ const AllDishesComponent=()=>{
     let menuData = useSelector((state)=>{
         return state.menu.menu_Data
     });
-    let categoryData = useSelector((state)=>{
-        return state.category.selectedMenuCategoryList
-    });
+    // let categoryData = useSelector((state)=>{
+    //     return state.category.selectedMenuCategoryList
+    // });
     const handleMenuChange=(value)=>{
         setmenuId(value);
-        setCategoryId('')
-        if(value !==""){
-            dispatch(getCategoryListOfSelectedMenu({menuId:[value]}));
-        }else{
-            dispatch(getCategoryListOfSelectedMenu({menuId:[]}));
-        }
+        // setCategoryId('')
+        // if(value !==""){
+        //     dispatch(getCategoryListOfSelectedMenu({menuId:[value]}));
+        // }else{
+        //     dispatch(getCategoryListOfSelectedMenu({menuId:[]}));
+        // }
     }
    
-    const handleCategoryChange=(e)=>{
-        if(menuId !==""){
-            setCategoryId(e.target.value)
-        }else{
-            setCategoryId('')
-        }
-    }
+    // const handleCategoryChange=(e)=>{
+    //     if(menuId !==""){
+    //         setCategoryId(e.target.value)
+    //     }else{
+    //         setCategoryId('')
+    //     }
+    // }
     return(
         <>
             <section >
@@ -91,7 +91,7 @@ const AllDishesComponent=()=>{
                                                 :null}
                                         </select>
                                     </div>
-                                    <div className="custom-drodown form-group mr-4 mb-0">
+                                    {/* <div className="custom-drodown form-group mr-4 mb-0">
                                         <label className="gray-txt f-15">Category</label>
                                         <select onChange={handleCategoryChange} className="form-control lightgray-border selectdropdown-btn minwidth-260 text-capitalize" aria-label="Default select example">
                                             <option value="">Select</option>
@@ -112,7 +112,7 @@ const AllDishesComponent=()=>{
                                             }
                                             
                                         </select>
-                                    </div>
+                                    </div> */}
                                 </div>
                                 <Link to="/manage_dishes" className="btn pinkline-btn text-uppercase rounded-pill mr-3 w-170 f-15" style={{display:'flex',justifyContent:'center',alignItems:'center'}} ><span className="add-icon">Add Dish</span></Link>
                             </div>

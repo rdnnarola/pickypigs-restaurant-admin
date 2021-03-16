@@ -1,5 +1,6 @@
 import Axios from './axios';
 import {setAlert} from './alertAction';
+import { logoutUser } from './generalActions';
 
 
 export const getAllSubCategoryData=(data)=>{
@@ -19,6 +20,9 @@ export const getAllSubCategoryData=(data)=>{
           dispatch({type:"GET_ALLSUBCATEGORY_FAILURE",payload:error});
           if (error.response) {
             dispatch(setAlert(`${error.response.data.message}`, 'error'));
+            if(error.response&&error.response.status==401){
+              dispatch(logoutUser())
+            }
           } else {
             dispatch(setAlert('Something Went wrong!', 'error'));
           }
@@ -102,6 +106,7 @@ export const updateSubCategoryForm = (key , value) => {
           dispatch({type:"UPDATE_SUBCATEGORY_FAILURE",payload:error});
           if (error.response) {
             dispatch(setAlert(`${error.response.data.message}`, 'error'));
+            
           } else {
             dispatch(setAlert('Something Went wrong!', 'error'));
           }

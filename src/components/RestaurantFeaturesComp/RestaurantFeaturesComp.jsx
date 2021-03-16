@@ -11,6 +11,7 @@ import moment from 'moment'
 
 const phoneRegex = RegExp(/^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/);
 const urlRegex = RegExp(/(http(s)?:\/\/.)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/g);
+const numbRegs=RegExp(/^[0-9]*$/);
 
 const RestaurantFeaturesComp = (props) => {
     let { openingTimings, website, bookings, socialMedia } = props.detaildata
@@ -160,7 +161,7 @@ const RestaurantFeaturesComp = (props) => {
     const validationSchema = Yup.object().shape({
         timeArray: Yup.array().required('Please Select Timings'),
         // bookingsphoneNumber2: Yup.string().min(10, "Min 10 Digits").max(10, "Max 10 Digits").matches(phoneRegex, "Invalid Phone Number"),
-        // bookingsphoneNumber2: Yup.string(),
+        bookingsphoneNumber2: Yup.string().matches(numbRegs, "Invalid Phone Number"),
         bookingsemail2: Yup.string().email('Email must be a valid email'),
         bookingswebsiteUrl2: Yup.string().matches(urlRegex, "Enter A valid URL"),
         facebookUrl2: Yup.string().matches(urlRegex, "Enter A valid URL"),
