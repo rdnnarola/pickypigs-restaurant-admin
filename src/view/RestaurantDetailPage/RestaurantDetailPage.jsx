@@ -18,6 +18,7 @@ import moment from "moment";
 import { SERVER_URL, API_KEY } from '../../shared/constant'
 import RestaurantSettingImageGalleryComp from "../../components/RestaurantSettingImageGalleryComp/RestaurantSettingImageGalleryComp";
 import GoogleMapTestComp from "./GoogleMapTestComp/GoogleMapTestComp";
+import SettingSubscriptionComp from "../../components/SettingSubscriptionComp/SettingSubscriptionComp";
 
 
 const RestaurantDetailPage = () => {
@@ -84,6 +85,28 @@ const RestaurantDetailPage = () => {
         }
     }
 
+    useEffect(() => {
+        window.addEventListener('scroll', () => {
+            let ele = document.getElementById("asdawdfe")
+            if (window.scrollY > 300) {
+                ele && ele.classList.add("restaurent-details-scroll")
+            } else {
+                ele && ele.classList.remove("restaurent-details-scroll")
+            }
+        });
+    }, [window.scrollY])
+
+    useEffect(() => {
+        window.addEventListener('scroll', () => {
+            let ele = document.getElementById("sfafeafADW")
+            if (window.scrollY > 400) {
+                ele && ele.classList.add("rstab-scroll")
+            } else {
+                ele && ele.classList.remove("rstab-scroll")
+            }
+        });
+    }, [window.scrollY])
+
     return (
         <>
             <section className="RestaurantDetailPage">
@@ -93,7 +116,7 @@ const RestaurantDetailPage = () => {
                     null
                 }
                 <div className="row">
-                    <div className="col-sm-12">
+                    <div className="col-sm-12 mb-3">
                         <div className="user-banner-img position-relative">
                             {restauraneSetting_Data && restauraneSetting_Data.restaurantCoverPhoto ?
                                 <img loading="lazy" onLoad={() => { setImageLoading(true); }}
@@ -119,7 +142,7 @@ const RestaurantDetailPage = () => {
                         </form>
                     </div>
                     <div className="col-sm-12">
-                        <div className="restaurent-details-wrapper d-flex justify-content-between align-items-start flex-wrap">
+                        <div className="restaurent-details-wrapper d-flex justify-content-between align-items-start flex-wrap" id="asdawdfe">
                             <div className="restaurent-left-details d-flex align-items-start flex-wrap">
                                 <div className="userprofile-block">
                                     <div className="userprofile-select">
@@ -221,7 +244,7 @@ const RestaurantDetailPage = () => {
                 </div>
                 <div className="row mt-4">
                     <div className="col-sm-12">
-                        <div className="rstab-subhead d-flex justify-content-between align-items-center flex-wrap">
+                        <div className="rstab-subhead d-flex justify-content-between align-items-center flex-wrap" id="sfafeafADW">
                             <div className="rstab-lists d-flex flex-wrap align-items-center">
                                 <button className={`rstab-btn mr-5 brandon-regular ${tabs.tab1 ? 'active' : null}`} onClick={() => { setTabs({ tab1: true, tab2: false, tab3: false }) }}>Restaurant info </button>
                                 <button className={`rstab-btn mr-5 brandon-regular ${tabs.tab2 ? 'active' : null}`} onClick={() => { setTabs({ tab1: false, tab2: true, tab3: false }) }}>Restaurants</button>
@@ -259,15 +282,7 @@ const RestaurantDetailPage = () => {
                                 <section><RestaurantUserDetailComp /></section>
                                 :
                                 <section >
-                                    <div className="map-wrapper mb-1 mt-2" style={{ height: 350 }}>
-                                        {/* <GoogleMapTestComp
-                                                googleMapURL={`https://maps.googleapis.com/maps/api/js?key=${API_KEY}&v=3.exp&libraries=geometry,drawing,places`}
-                                                loadingElement={<div style={{ height: `100%` }} />}
-                                                containerElement={<div style={{ height: `100%` }} />}
-                                                mapElement={<div style={{ height: `100%` }} />}
-                                            /> */}
-                                    </div>
-
+                                    <SettingSubscriptionComp/>
 
                                 </section>
                         }

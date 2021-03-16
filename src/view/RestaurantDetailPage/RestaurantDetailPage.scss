@@ -1,7 +1,7 @@
 .RestaurantDetailPage {
     form {
         .fileUpload {
-            background:#404446;
+            background: #404446;
             border-radius: 15px;
             color: #fff;
             overflow: hidden;
@@ -32,15 +32,18 @@
                 height: 28px;
                 cursor: pointer;
             }
+
             span {
                 cursor: pointer;
             }
         }
     }
+
     .user-banner-img {
         height: 300px;
         border-radius: 15px;
         overflow: hidden;
+
         img {
             object-fit: cover;
             object-position: top center;
@@ -48,6 +51,7 @@
             height: 100%;
         }
     }
+
     .form-control-inputtext {
         padding-left: 0;
         border: none;
@@ -56,15 +60,20 @@
         box-shadow: none;
         outline: none;
     }
+
     .restaurent-details-wrapper {
+        transform: translateY(-1rem);
+
         .restaurent-left-details {
             max-width: calc(100% - 300px);
             width: 100%;
+
             .userprofile-block {
                 margin-top: -4rem;
                 margin-left: 30px;
                 position: absolute;
                 top: 0;
+
                 .userprofile-select {
                     max-width: 120px;
                     position: relative;
@@ -133,6 +142,7 @@
                     }
                 }
             }
+
             .restaurent-info {
                 max-width: calc(100% - 10px);
                 width: 100%;
@@ -151,6 +161,45 @@
                 }
             }
         }
+
+        &.restaurent-details-scroll {
+            align-items: center !important;
+            min-height: 140px;
+            border-bottom: 1px solid #E7E7E7;
+            position: fixed;
+            top: 80px;
+            width: calc(100% - 80px);
+            left: 80px;
+            background: #fff;
+            z-index: 1;
+            padding-right: 50px;
+            transform: translateY(0px);
+            transition: ease 0.5s;
+
+            .restaurent-left-details {
+                align-items: center !important;
+
+                .userprofile-block {
+                    top: inherit;
+                    margin-top: inherit;
+
+                    .userprofile-select {
+                        width: 100px;
+                        height: 100px;
+
+                        img {
+                            width: 100px;
+                            height: 100px;
+                        }
+                    }
+                }
+
+                .restaurent-info {
+                    padding-left: 9.5rem;
+                }
+
+            }
+        }
     }
 
     .rstab-subhead {
@@ -160,6 +209,7 @@
 
         .rstab-lists {
             min-height: 60px;
+
             .rstab-btn {
                 background: #fff;
                 border: none;
@@ -174,6 +224,7 @@
                 &.active {
                     color: #232323;
                     font-family: "Brandon Text Medium" !important;
+
                     &:after {
                         position: absolute;
                         bottom: -23px;
@@ -188,9 +239,25 @@
                 }
             }
         }
+
+        &.rstab-scroll {
+            border-bottom: 1px solid #E7E7E7;
+            position: fixed;
+            top: 220px;
+            width: calc(100% - 122px);
+            left: 122px;
+            background: #ffffff;
+            z-index: 1;
+            padding-right: 50px;
+            transform: translateY(0px);
+            transition: ease 0.5s;
+            box-shadow: none;
+        }
     }
+
     .about_section_style {
         padding: 30px 50px;
+
         .custom_edit_button {
             border: none;
             border-bottom: 1px solid #919191;
@@ -201,6 +268,7 @@
             padding: 0;
             outline: none;
         }
+
         .about_header {
             word-break: break-all;
             width: 100%;
