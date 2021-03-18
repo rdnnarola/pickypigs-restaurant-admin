@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { API_KEY,GOOGLE_MAP_API_URL,EDAMAM_APP_ID,EDAMAM_APP_KEY} from '../../shared/constant';
+import { API_KEY,GOOGLE_MAP_API_URL} from '../../shared/constant';
 import {setAlert} from './alertAction';
 
 
@@ -13,8 +13,15 @@ export const getLocationGeometryData = (position) =>  {
               "Content-Type":"application/json"
               }
           }
+          let instance = axios.create();
+          delete instance.defaults.headers.common['x-access-token'];
+
           let dataURL=`${GOOGLE_MAP_API_URL}?latlng=${position}&key=${API_KEY}`
-          let response = await axios.get(dataURL,config );
+          let response = await instance.get(dataURL,config);
+          // let response = await axios.get(dataURL,config, {transformRequest: (headers) => {
+          //                 delete headers.common['Authorization'];
+          //               }
+          //             });
           dispatch({type:"GET_LOCATIONDATA_SUCCESS",payload:response.data});
           dispatch(getCoordinateData(position))
           let pincode=response.data&&response.data.results[0].address_components&&response.data.results[0].address_components.filter(myallergy => myallergy.types.indexOf("postal_code") !== -1)
@@ -44,13 +51,19 @@ export const getLocationGeometryData = (position) =>  {
     return async(dispatch)=>{
       try{
         dispatch({type:"GET_GEOMETRYDATA_REQUEST"});
+        
         let config= {
           headers:{
-          "Content-Type":"application/json"
+          "Content-Type":"application/json",
+          'Access-Control-Allow-Origin' : '*',
           }
         }
-        let dataURL=`https://maps.googleapis.com/maps/api/place/details/json?place_id=${placeId}&fields=geometry&key=${API_KEY}`
-        let response =await axios.get(dataURL,config );
+        
+        let instance2 = axios.create()
+        delete instance2.defaults.headers.common['x-access-token'];  
+    
+        let dataURL=`https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/details/json?place_id=${placeId}&fields=geometry&key=${API_KEY}`
+        let response =await instance2.get(dataURL,config);
         dispatch({ type: "GET_GEOMETRYDATA_SUCCESS", payload:response.data,  });
         dispatch(getLocationGeometryData(`${response.data&&response.data.result.geometry&&response.data.result.geometry.location.lat},${response.data&&response.data.result.geometry&&response.data.result.geometry.location.lng}`))
 

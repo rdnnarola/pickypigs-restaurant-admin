@@ -17,7 +17,7 @@ function GoogleMapTestComp(props) {
   const [mySelectedCoordinate, setMySelectedCoordinate] = React.useState('');
   const dispatch=useDispatch();
   const refMap = useRef(null);
-  const [zoom, setZoom] = React.useState(15);
+  const [zoom, setZoom] = React.useState(16);
   const handleBoundsChanged = (props) => {
     const mapCenter = refMap.current.getCenter(); //get map center
     setCenter(mapCenter);
