@@ -61,11 +61,11 @@ function TermsAndConditionPage() {
                                 <p className="f-15 mb-2 font-weight-bold">
                                     Bullet points here:
                                 </p>
-                                <ul class="pl-3">
+                                <ul className="pl-3">
                                     {bullet_point&&bullet_point.map((data,index)=>{
                                         return(
                                             <React.Fragment key={index}>
-                                                 <li class="txt-lightgray f-15">
+                                                 <li className="txt-lightgray f-15">
                                                     <p>{data}</p>
                                                 </li>
                                             </React.Fragment>
@@ -101,11 +101,11 @@ function TermsAndConditionPage() {
                                 <p className="f-15 mb-2 font-weight-bold">
                                     Bullet points here:
                                 </p>
-                                <ul class="pl-3">
+                                <ul className="pl-3">
                                     {bullet_point&&bullet_point.map((data,index)=>{
                                         return(
                                             <React.Fragment key={index}>
-                                                 <li class="txt-lightgray f-15">
+                                                 <li className="txt-lightgray f-15">
                                                     <p>{data}</p>
                                                 </li>
                                             </React.Fragment>

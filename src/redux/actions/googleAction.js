@@ -4,7 +4,7 @@ import {setAlert} from './alertAction';
 
 
 export const getLocationGeometryData = (position) =>  {
-    console.log("Data: ", position);
+    // console.log("Data: ", position);
     return async(dispatch)=>{
       try{
           dispatch({type:"GET_LOCATIONDATA_REQUEST"});
@@ -47,7 +47,7 @@ export const getLocationGeometryData = (position) =>  {
 
 
   export const getLocationFromPlaceId = (placeId) =>  {
-    console.log("placeId: ", placeId);
+    // console.log("placeId: ", placeId);
     return async(dispatch)=>{
       try{
         dispatch({type:"GET_GEOMETRYDATA_REQUEST"});

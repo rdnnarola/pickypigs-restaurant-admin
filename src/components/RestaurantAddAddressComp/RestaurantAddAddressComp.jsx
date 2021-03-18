@@ -167,7 +167,7 @@ const RestaurantAddAddressComp = (props) => {
                                                                                 <p className="form-control-plaintext text-uppercase">-</p>
                                                                         :
                                                                             <React.Fragment>
-                                                                                <Field name="googleAddress" readOnly={true}  value={Restaurant_Location&&Restaurant_Location.location_data} placeholder="Enter Address here" className="form-control-inputtext form-control"/>
+                                                                                <Field name="googleAddress" readOnly={true}  value={Restaurant_Location&&Restaurant_Location.location_data?Restaurant_Location.location_data:''} placeholder="Enter Address here" className="form-control-inputtext form-control"/>
                                                                                 {touched.googleAddress && errors.googleAddress && <div className="error pink-txt f-11">{errors.googleAddress}</div>}
                                                                             </React.Fragment>
                                                                         }

@@ -40,13 +40,13 @@ const getMyLocation = () => {
   const location = window.navigator && window.navigator.geolocation
   if (location) {
     location.getCurrentPosition((position) => {
-      console.log('Lat => ', {
-        latitude: position.coords.latitude,
-        longitude: position.coords.longitude,
-      });
+      // console.log('Lat => ', {
+      //   latitude: position.coords.latitude,
+      //   longitude: position.coords.longitude,
+      // });
       setDefaultCenter({ lat: position.coords.latitude, lng: position.coords.longitude });
       setCenter({ lat: position.coords.latitude, lng: position.coords.longitude });
-      dispatch(getLocationGeometryData(` ${position.coords.latitude}, ${position.coords.longitude}` ))
+      dispatch(getLocationGeometryData(` ${position&&position.coords.latitude}, ${position&&position.coords.longitude}` ))
     })
   }
 }
@@ -55,7 +55,7 @@ const getMyLocation = () => {
 
   const onDragEnd=() => {
     const position = refMap.current.getCenter(); //get map center
-    console.log(position.toString());
+    // console.log(position.toString());
 
     if(position){
       dispatch(getLocationGeometryData(position.toString().replace(/[()]/g,'')))
@@ -80,7 +80,7 @@ const getMyLocation = () => {
           className="my_google_map"
         >
           <Marker position={center}/>
-        <button type="button" className="get_my_current_location"  onClick={()=>{getMyLocation();setZoom(15)}} >
+        <button type="button" className="get_my_current_location"  onClick={()=>{getMyLocation();}} >
           <img src={LocationIcon} className="img-fluid " width="30px" />
                     {/* {Restaurant_Location&&Restaurant_Location.location_data} */}
           </button>

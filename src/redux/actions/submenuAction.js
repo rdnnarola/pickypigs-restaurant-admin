@@ -4,7 +4,7 @@ import { logoutUser } from './generalActions';
 
 
 export const getAllSubMenuData=(data)=>{
-  console.log(data);
+  // console.log(data);
     return async(dispatch)=>{
         try{
             dispatch({type:"GET_ALLSUBMENU_REQUEST"});
