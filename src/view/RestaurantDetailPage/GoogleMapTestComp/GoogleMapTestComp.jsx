@@ -60,7 +60,7 @@ function getLocation() {
 }
 
 function showPosition(position) {
-      console.log(position.toString());
+      // console.log(position.toString());
       setDefaultCenter({ lat: position.coords.latitude, lng: position.coords.longitude });
       setCenter({ lat: position.coords.latitude, lng: position.coords.longitude });
       dispatch(getLocationGeometryData(` ${position&&position.coords.latitude}, ${position&&position.coords.longitude}` ))

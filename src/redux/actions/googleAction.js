@@ -61,7 +61,7 @@ export const getLocationGeometryData = (position) =>  {
         let instance2 = axios.create()
         delete instance2.defaults.headers.common['x-access-token'];  
     
-        let dataURL=`https://maps.googleapis.com/maps/api/place/details/json?place_id=${placeId}&fields=geometry&key=${API_KEY}`
+        let dataURL=`https://nameless-eyrie-30558.herokuapp.com/https://maps.googleapis.com/maps/api/place/details/json?place_id=${placeId}&fields=geometry&key=${API_KEY}`
         let response =await instance2.get(dataURL,config);
         dispatch({ type: "GET_GEOMETRYDATA_SUCCESS", payload:response.data,  });
         dispatch(getLocationGeometryData(`${response.data&&response.data.result.geometry&&response.data.result.geometry.location.lat},${response.data&&response.data.result.geometry&&response.data.result.geometry.location.lng}`))
