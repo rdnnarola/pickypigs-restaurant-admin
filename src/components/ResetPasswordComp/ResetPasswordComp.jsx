@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Field, Form, Formik } from 'formik';
 import * as Yup from 'yup';
 import { useDispatch, useSelector} from "react-redux";
@@ -40,6 +40,11 @@ const ResetPasswordComp = () => {
     const [confirmType, setConfirmType] = useState("password")
     const [error, setError] = useState(null)
 	let  mytoken  = params.token;
+
+    useEffect(()=>{
+        localStorage.removeItem('access_token');
+        localStorage.removeItem('role');
+    },[mytoken]);
 
    
     const handleSavePassword = (input) => {

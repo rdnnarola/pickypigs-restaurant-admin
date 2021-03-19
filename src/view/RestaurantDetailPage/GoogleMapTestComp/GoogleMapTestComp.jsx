@@ -31,27 +31,59 @@ useEffect(()=>{
     setDefaultCenter({ lat: array[0], lng: array[1] });
     setCenter({ lat: array[0], lng: array[1] });
   }else{
-    getMyLocation();
+    getLocation();
   }
 },[dispatch,props.coordinates])
 
 
-const getMyLocation = () => {
-  const location = window.navigator && window.navigator.geolocation
-  if (location) {
-    location.getCurrentPosition((position) => {
-      // console.log('Lat => ', {
-      //   latitude: position.coords.latitude,
-      //   longitude: position.coords.longitude,
-      // });
-      setDefaultCenter({ lat: position.coords.latitude, lng: position.coords.longitude });
-      setCenter({ lat: position.coords.latitude, lng: position.coords.longitude });
-      dispatch(getLocationGeometryData(` ${position&&position.coords.latitude}, ${position&&position.coords.longitude}` ))
-    })
+// const getMyLocation = () => {
+//   const location = window.navigator && window.navigator.geolocation
+//   if (location) {
+//     location.getCurrentPosition((position) => {
+//       // console.log('Lat => ', {
+//       //   latitude: position.coords.latitude,
+//       //   longitude: position.coords.longitude,
+//       // });
+//       setDefaultCenter({ lat: position.coords.latitude, lng: position.coords.longitude });
+//       setCenter({ lat: position.coords.latitude, lng: position.coords.longitude });
+//       dispatch(getLocationGeometryData(` ${position&&position.coords.latitude}, ${position&&position.coords.longitude}` ))
+//     })
+//   }
+// }
+
+function getLocation() {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(showPosition,showError);
+  } else { 
+    console.log("Geolocation is not supported by this browser.") ;
   }
 }
 
-
+function showPosition(position) {
+      console.log(position.toString());
+      setDefaultCenter({ lat: position.coords.latitude, lng: position.coords.longitude });
+      setCenter({ lat: position.coords.latitude, lng: position.coords.longitude });
+      dispatch(getLocationGeometryData(` ${position&&position.coords.latitude}, ${position&&position.coords.longitude}` ))
+}
+function showError(error) {
+      setDefaultCenter({ lat: 0, lng: 0 });
+      setCenter({ lat: 0, lng: 0 });
+      dispatch(getLocationGeometryData(` ${0}, ${0}` ))
+  switch(error.code) {
+    case error.PERMISSION_DENIED:
+      console.log("User denied the request for Geolocation.");
+      break;
+    case error.POSITION_UNAVAILABLE:
+      console.log("Location information is unavailable.");
+      break;
+    case error.TIMEOUT:
+      console.log("The request to get user location timed out.");
+      break;
+    case error.UNKNOWN_ERROR:
+      console.log("An unknown error occurred.");
+      break;
+  }
+}
 
   const onDragEnd=() => {
     const position = refMap.current.getCenter(); //get map center
@@ -80,7 +112,7 @@ const getMyLocation = () => {
           className="my_google_map"
         >
           <Marker position={center}/>
-        <button type="button" className="get_my_current_location"  onClick={()=>{getMyLocation();}} >
+        <button type="button" className="get_my_current_location"  onClick={()=>{getLocation();}} >
           <img src={LocationIcon} className="img-fluid " width="30px" />
                     {/* {Restaurant_Location&&Restaurant_Location.location_data} */}
           </button>
