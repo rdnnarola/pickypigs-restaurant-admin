@@ -9,7 +9,7 @@ import { getLocationGeometryData } from "../../../redux/actions/googleAction";
 import { useDispatch, useSelector } from "react-redux";
 import LocationIcon from '../../../assets/images/crosshair.svg'
 import './GoogleMapTestComp.scss'
-
+import {DEFAULT_LATITIDE,DEFAULT_LONGITUDE} from '../../../shared/constant'
 
 function GoogleMapTestComp(props) {
   const [center, setCenter] = useState({ lat:0, lng: 0});
@@ -66,9 +66,9 @@ function showPosition(position) {
       dispatch(getLocationGeometryData(` ${position&&position.coords.latitude}, ${position&&position.coords.longitude}` ))
 }
 function showError(error) {
-      setDefaultCenter({ lat: 0, lng: 0 });
-      setCenter({ lat: 0, lng: 0 });
-      dispatch(getLocationGeometryData(` ${0}, ${0}` ))
+      setDefaultCenter({ lat: DEFAULT_LATITIDE, lng: DEFAULT_LONGITUDE });
+      setCenter({ lat: DEFAULT_LATITIDE, lng: DEFAULT_LONGITUDE });
+      dispatch(getLocationGeometryData(` ${DEFAULT_LATITIDE}, ${DEFAULT_LONGITUDE}` ))
   switch(error.code) {
     case error.PERMISSION_DENIED:
       console.log("User denied the request for Geolocation.");

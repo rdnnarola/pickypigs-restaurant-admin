@@ -22,4 +22,6 @@ export const RESTAURANT_ADMIN_URL = `${window.location.host === "localhost:3001"
 
 export const SERVER_URL = "http://apps.narola.online:5003";
 
+export const DEFAULT_LATITIDE = 25.1943424;
 
+export const DEFAULT_LONGITUDE = 72.794112;
