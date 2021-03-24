@@ -24,6 +24,7 @@ import moment from "moment";
 
 const styleOf_currency = ["$"]
 const numbRegs = /^[+]?([0-9]+(?:[\.][0-9]*)?|\.[0-9]+)$/;
+const numRegExp = /^[+]?([0-9]+(?:[\.][0-9]*)?|\.[0-9]+)$/;
 
 const UpdateEasyAddDishComp = () => {
     const params = useParams();
@@ -53,6 +54,14 @@ const UpdateEasyAddDishComp = () => {
         return state.allergy
     });
     let { isLoading, allergy_Data, dietary_Data, lifestyle_Data, cooking_Data } = allAllergy_data;
+
+    useEffect(() => {
+        if (selectedDisc_data && selectedDisc_data[0].menuId !== "") {
+            dispatch(getCategoryListOfSelectedMenu({ menuId: selectedDisc_data && selectedDisc_data[0].menuId }));
+        } else {
+            dispatch(getCategoryListOfSelectedMenu({ menuId: [] }));
+        }
+    }, [dispatch, selectedDisc_data && selectedDisc_data[0].menuId]);
 
     const handleAlergy = (e, fieldValue, setFieldValue, fieldname) => {
         e.preventDefault();
@@ -139,6 +148,8 @@ const UpdateEasyAddDishComp = () => {
         return state.dishes.isLoading
     })
 
+    console.log(categoryData && categoryData.find(cat => cat._id === selectedDisc_data && selectedDisc_data[0].categoryId))
+
     const initialValues = {
         name: selectedDisc_data && selectedDisc_data[0].name ? selectedDisc_data[0].name : '',
         makes: selectedDisc_data && selectedDisc_data[0].makes ? selectedDisc_data[0].makes : '',
@@ -148,13 +159,17 @@ const UpdateEasyAddDishComp = () => {
         favorite: selectedDisc_data && selectedDisc_data[0].favorite ? selectedDisc_data[0].favorite : false,
         new: selectedDisc_data && selectedDisc_data[0].new ? selectedDisc_data[0].new : false,
         available: selectedDisc_data && selectedDisc_data[0].available ? selectedDisc_data[0].available : false,
-        menuId: selectedDisc_data && selectedDisc_data[0].menuId ? selectedDisc_data[0].menuId : [],
-        categoryId: selectedDisc_data && selectedDisc_data[0].categoryId ? selectedDisc_data[0].categoryId : '',
-        subcategoryId: selectedDisc_data && selectedDisc_data[0].subcategoryId ? selectedDisc_data[0].subcategoryId : '',
-        allergenId: selectedDisc_data && selectedDisc_data[0].allergenId ? selectedDisc_data[0].allergenId : [],
-        dietaryId: selectedDisc_data && selectedDisc_data[0].dietaryId ? selectedDisc_data[0].dietaryId : [],
-        lifestyleId: selectedDisc_data && selectedDisc_data[0].lifestyleId ? selectedDisc_data[0].lifestyleId : [],
-        cookingMethodId: selectedDisc_data && selectedDisc_data[0].cookingMethodId ? selectedDisc_data[0].cookingMethodId : [],
+        menuId: selectedDisc_data && selectedDisc_data[0].menuId ? selectedDisc_data && selectedDisc_data[0].menuId.filter( val => menuData && menuData.menuDetails&&(menuData.menuDetails.map(data=>data._id)).includes(val)): [],
+        categoryId:categoryData && categoryData.find(cat => cat._id === (selectedDisc_data && selectedDisc_data[0].categoryId))?selectedDisc_data && selectedDisc_data[0].categoryId:'',
+        subcategoryId:subcategoryData && subcategoryData.find(subcat => subcat._id === (selectedDisc_data && selectedDisc_data[0].subcategoryId))?selectedDisc_data && selectedDisc_data[0].subcategoryId:'',
+        // menuId: selectedDisc_data && selectedDisc_data[0].menuId ? selectedDisc_data[0].menuId : [],
+        // categoryId: selectedDisc_data && selectedDisc_data[0].categoryId ? selectedDisc_data[0].categoryId : '',
+        // subcategoryId: selectedDisc_data && selectedDisc_data[0].subcategoryId ? selectedDisc_data[0].subcategoryId : '',
+
+        allergenId: selectedDisc_data && selectedDisc_data[0].allergenId ? selectedDisc_data[0].allergenId.filter( val => allergy_Data && allergy_Data.data&&(allergy_Data.data.map(data=>data._id)).includes(val)) : [],
+        dietaryId: selectedDisc_data && selectedDisc_data[0].dietaryId ? selectedDisc_data[0].dietaryId.filter( val =>dietary_Data && dietary_Data.data&&(dietary_Data.data.map(data=>data._id)).includes(val)) : [],
+        lifestyleId: selectedDisc_data && selectedDisc_data[0].lifestyleId ? selectedDisc_data[0].lifestyleId.filter( val =>lifestyle_Data && lifestyle_Data.data&&(lifestyle_Data.data.map(data=>data._id)).includes(val)) : [],
+        cookingMethodId: selectedDisc_data && selectedDisc_data[0].cookingMethodId ? selectedDisc_data[0].cookingMethodId.filter( val =>cooking_Data && cooking_Data.data&&(cooking_Data.data.map(data=>data._id)).includes(val)) : [],
         instructions: selectedDisc_data && selectedDisc_data[0].instructions ? selectedDisc_data[0].instructions : '',
         customisable: selectedDisc_data && selectedDisc_data[0].customisable ? selectedDisc_data[0].customisable : false,
         createNewVersion: selectedDisc_data && selectedDisc_data[0].createNewVersion ? selectedDisc_data[0].createNewVersion : false,
@@ -350,7 +365,7 @@ const UpdateEasyAddDishComp = () => {
                             return (
                                 <Form>
                                     <React.Fragment>
-                                        {/* {JSON.stringify(values.caloriesAndMacros)} */}
+                                        {/* {JSON.stringify(values)} */}
                                         {/* || */}
                                         {/* {JSON.stringify( selectedDisc_data && selectedDisc_data[0].caloriesAndMacros&& selectedDisc_data[0].caloriesAndMacros._id)} */}
                                         {/* || */}
@@ -649,7 +664,8 @@ const UpdateEasyAddDishComp = () => {
                                                                                                         <td>
                                                                                                             <CheckBoxAutoCompleteThirdComp placeholder={"Allergy Values"}
                                                                                                                 options={allergy_Data && allergy_Data.data ? allergy_Data.data : []} name={`ingredient.${index}.allergeies`}
-                                                                                                                value={data.allergeies}
+                                                                                                                // value={data.allergeies}
+                                                                                                                value={data&&data.allergeies?data.allergeies.filter( val => allergy_Data && allergy_Data.data&&(allergy_Data.data.map(data=>data._id)).includes(val)):[]}
                                                                                                                 onChangeData={(value) => { setFieldValue(`ingredient.${index}.allergeies`, value) }}
                                                                                                             />
                                                                                                             <ErrorMessage className="pink-txt f-11" name={`ingredient.${index}.allergeies`} />

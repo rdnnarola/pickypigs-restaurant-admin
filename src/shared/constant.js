@@ -25,3 +25,5 @@ export const SERVER_URL = "http://apps.narola.online:5003";
 export const DEFAULT_LATITIDE = 25.1943424;
 
 export const DEFAULT_LONGITUDE = 72.794112;
+
+export const ADMIN_URL="http://restaurant.pickypigs.com";

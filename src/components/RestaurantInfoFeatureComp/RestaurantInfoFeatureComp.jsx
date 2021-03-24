@@ -73,8 +73,8 @@ const RestaurantInfoFeatureComp = (props) => {
         cardAccept: props.featuredata && props.featuredata.cardAccept ? cardAccept : false,
         cashAccept: props.featuredata && props.featuredata.cashAccept ? cashAccept : false,
         inclusiveTaxesAndCharges: props.featuredata && props.featuredata.inclusiveTaxesAndCharges ? inclusiveTaxesAndCharges : false,
-        cuisineType: props.featuredata && props.featuredata.cuisineType ? cuisineType : [],
-        restaurantFeaturesOptions: props.featuredata && props.featuredata.restaurantFeaturesOptions ? restaurantFeaturesOptions : [],
+        cuisineType: props.featuredata && props.featuredata.cuisineType ? props.featuredata.cuisineType.filter( val =>cuisine_Data && cuisine_Data.data&&(cuisine_Data.data.map(data=>data._id)).includes(val)) : [],
+        restaurantFeaturesOptions: props.featuredata && props.featuredata.restaurantFeaturesOptions ? props.featuredata.restaurantFeaturesOptions.filter( val =>restaurantFeatures_Data && restaurantFeatures_Data.data&&(restaurantFeatures_Data.data.map(data=>data._id)).includes(val)) : [],
         appliesOfRestaurant: props.featuredata && props.featuredata.appliesOfRestaurant ? appliesOfRestaurant : [],
         appliesOfRestaurant2: "",
 
