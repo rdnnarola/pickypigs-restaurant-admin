@@ -304,7 +304,7 @@ const RestaurantInfoFeatureComp = (props) => {
                                                             <div className="row mt-2">
                                                                 {editForm ?
                                                                     <div className="col-sm-12">
-                                                                        <h5 className="f-15 mb-4 brandon-Medium">Select which applies to your restaurant</h5>
+                                                                        <h5 className="f-15 mb-4 brandon-Medium">What is your restaurant Style</h5>
                                                                         {props.featuredata && props.featuredata.appliesOfRestaurant && props.featuredata.appliesOfRestaurant.length > 0 ?
                                                                             props.featuredata && props.featuredata.appliesOfRestaurant.map((data, index) => {
                                                                                 return (
@@ -320,7 +320,7 @@ const RestaurantInfoFeatureComp = (props) => {
                                                                     :
                                                                     <React.Fragment >
                                                                         <div className="col-sm-12">
-                                                                            <p className="f-15 mb-0">Select which applies to your restaurant</p>
+                                                                            <p className="f-15 mb-0">What is your restaurant Style</p>
                                                                             <div className="col-sm-12 col-md-12 col-lg-6 col-xl-6 position-relative mb-2 mt-2 pl-0 pr-0 selectapplies-wrapper custom-lightinputbox">
                                                                                 <Field name="appliesOfRestaurant2" placeholder="Enter here" className="form-control-input form-control position-relative" />
                                                                                 <button type="button"

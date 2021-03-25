@@ -943,11 +943,11 @@ const UpdateEasyAddDishComp = () => {
                                                     <label className="custom-control-label brandon-Medium" htmlFor="customisable">Customisable</label>
                                                     {touched.customisable && errors.customisable && <div className="error pink-txt f-11">{errors.customisable}</div>}
                                                 </div>
-                                                <div className="custom-control custom-checkbox pinkline-checkbox ml-4 mr-2">
+                                                {/* <div className="custom-control custom-checkbox pinkline-checkbox ml-4 mr-2">
                                                     <Field type="checkbox" name="createNewVersion" id="createNewVersion" className="custom-control-input" />
                                                     <label className="custom-control-label brandon-Medium" htmlFor="createNewVersion">Create New Version</label>
                                                     {touched.createNewVersion && errors.createNewVersion && <div className="error pink-txt f-11">{errors.createNewVersion}</div>}
-                                                </div>
+                                                </div> */}
                                                 <button className="btn lightgraynoline-btn text-uppercase rounded-pill ml-5" type="reset" onClick={() => { handleCancleEdit(resetForm) }} >CANCEL</button>
                                                 <button className="btn pink-btn text-uppercase rounded-pill ml-3" type="submit" >Update</button>
                                             </div>

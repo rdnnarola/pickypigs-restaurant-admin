@@ -93,43 +93,43 @@ const LoginPage = () => {
                                     </div>
                                     <div className="plan-listing">
                                         <ul className="mb-0">
-                                            <li class="d-flex align-items-center">
-                                                <p class="mb-0 f-15">Allergy Declaration</p>
+                                            <li className="d-flex align-items-center">
+                                                <p className="mb-0 f-15">Allergy Declaration</p>
                                             </li>
-                                            <li class="d-flex align-items-center">
-                                                <p class="mb-0 f-15">Integrated Menu Build</p>
+                                            <li className="d-flex align-items-center">
+                                                <p className="mb-0 f-15">Integrated Menu Build</p>
                                             </li>
-                                            <li class="d-flex align-items-center">
-                                                <p class="mb-0 f-15">Calories and Macro Calculator</p>
+                                            <li className="d-flex align-items-center">
+                                                <p className="mb-0 f-15">Calories and Macro Calculator</p>
                                             </li>
-                                            <li class="d-flex align-items-center">
-                                                <p class="mb-0 f-15">POS Integration</p>
+                                            <li className="d-flex align-items-center">
+                                                <p className="mb-0 f-15">POS Integration</p>
                                             </li>
-                                            <li class="d-flex align-items-center">
-                                                <p class="mb-0 f-15">Reports</p>
+                                            <li className="d-flex align-items-center">
+                                                <p className="mb-0 f-15">Reports</p>
                                             </li>
-                                            <li class="d-flex align-items-center">
-                                                <p class="mb-0 f-15">
+                                            <li className="d-flex align-items-center">
+                                                <p className="mb-0 f-15">
                                                     Multisite log ins
                                                     <br />
                                                     <span className="f-13">(£80 month for every additional site)</span>
                                                 </p>
                                             </li>
-                                            <li class="d-flex align-items-center">
-                                                <p class="mb-0 f-15">
+                                            <li className="d-flex align-items-center">
+                                                <p className="mb-0 f-15">
                                                     KDS Software
                                                     <br />
                                                     <span className="f-13">(£30 monthly for every additional)</span></p>
                                             </li>
-                                            <li class="d-flex align-items-center">
-                                                <p class="mb-0 f-15">
+                                            <li className="d-flex align-items-center">
+                                                <p className="mb-0 f-15">
                                                     Inhouse ordering software
                                                     <br />
                                                     <span className="f-13">(£30 monthly for every additional)</span>
                                                 </p>
                                             </li>
-                                            <li class="d-flex align-items-center">
-                                                <p class="mb-0 f-15">
+                                            <li className="d-flex align-items-center">
+                                                <p className="mb-0 f-15">
                                                     Set up support
                                                     <br />
                                                     <span className="f-13">(£ based on venue)</span>
@@ -149,31 +149,31 @@ const LoginPage = () => {
                                     </div>
                                     <div className="plan-listing">
                                         <ul className="mb-0">
-                                            <li class="d-flex align-items-center justify-content-center">
+                                            <li className="d-flex align-items-center justify-content-center">
                                                 <img src={tickimg} className="img-fluid" />
                                             </li>
-                                            <li class="d-flex align-items-center justify-content-center">
-                                                <p class="mb-0 f-15">Yes</p>
+                                            <li className="d-flex align-items-center justify-content-center">
+                                                <p className="mb-0 f-15">Yes</p>
                                             </li>
-                                            <li class="d-flex align-items-center justify-content-center">
-                                                <p class="mb-0 f-15">-</p>
+                                            <li className="d-flex align-items-center justify-content-center">
+                                                <p className="mb-0 f-15">-</p>
                                             </li>
-                                            <li class="d-flex align-items-center justify-content-center">
+                                            <li className="d-flex align-items-center justify-content-center">
                                                 <img src={tickimg} className="img-fluid" />
                                             </li>
-                                            <li class="d-flex align-items-center justify-content-center">
-                                                <p class="mb-0 f-15">-</p>
+                                            <li className="d-flex align-items-center justify-content-center">
+                                                <p className="mb-0 f-15">-</p>
                                             </li>
-                                            <li class="d-flex align-items-center justify-content-center">
+                                            <li className="d-flex align-items-center justify-content-center">
                                                 <img src={tickimg} className="img-fluid" />
                                             </li>
-                                            <li class="d-flex align-items-center justify-content-center">
+                                            <li className="d-flex align-items-center justify-content-center">
                                                 <img src={tickimg} className="img-fluid" />
                                             </li>
-                                            <li class="d-flex align-items-center justify-content-center">
+                                            <li className="d-flex align-items-center justify-content-center">
                                                 <img src={tickimg} className="img-fluid" />
                                             </li>
-                                            <li class="d-flex align-items-center justify-content-center">
+                                            <li className="d-flex align-items-center justify-content-center">
                                                 <img src={tickimg} className="img-fluid" />
                                             </li>
                                         </ul>
@@ -193,31 +193,31 @@ const LoginPage = () => {
                                     </div>
                                     <div className="plan-listing">
                                         <ul className="mb-0">
-                                            <li class="d-flex align-items-center justify-content-center">
+                                            <li className="d-flex align-items-center justify-content-center">
                                                 <img src={tickimg} className="img-fluid" />
                                             </li>
-                                            <li class="d-flex align-items-center justify-content-center">
-                                                <p class="mb-0 f-15">Yes</p>
+                                            <li className="d-flex align-items-center justify-content-center">
+                                                <p className="mb-0 f-15">Yes</p>
                                             </li>
-                                            <li class="d-flex align-items-center justify-content-center">
-                                                <p class="mb-0 f-15">-</p>
+                                            <li className="d-flex align-items-center justify-content-center">
+                                                <p className="mb-0 f-15">-</p>
                                             </li>
-                                            <li class="d-flex align-items-center justify-content-center">
+                                            <li className="d-flex align-items-center justify-content-center">
                                                 <img src={tickimg} className="img-fluid" />
                                             </li>
-                                            <li class="d-flex align-items-center justify-content-center">
-                                                <p class="mb-0 f-15">-</p>
+                                            <li className="d-flex align-items-center justify-content-center">
+                                                <p className="mb-0 f-15">-</p>
                                             </li>
-                                            <li class="d-flex align-items-center justify-content-center">
+                                            <li className="d-flex align-items-center justify-content-center">
                                                 <img src={tickimg} className="img-fluid" />
                                             </li>
-                                            <li class="d-flex align-items-center justify-content-center">
+                                            <li className="d-flex align-items-center justify-content-center">
                                                 <img src={tickimg} className="img-fluid" />
                                             </li>
-                                            <li class="d-flex align-items-center justify-content-center">
+                                            <li className="d-flex align-items-center justify-content-center">
                                                 <img src={tickimg} className="img-fluid" />
                                             </li>
-                                            <li class="d-flex align-items-center justify-content-center">
+                                            <li className="d-flex align-items-center justify-content-center">
                                                 <img src={tickimg} className="img-fluid" />
                                             </li>
                                         </ul>
@@ -237,31 +237,31 @@ const LoginPage = () => {
                                     </div>
                                     <div className="plan-listing">
                                         <ul className="mb-0">
-                                            <li class="d-flex align-items-center justify-content-center">
+                                            <li className="d-flex align-items-center justify-content-center">
                                                 <img src={tickimg} className="img-fluid" />
                                             </li>
-                                            <li class="d-flex align-items-center justify-content-center">
-                                                <p class="mb-0 f-15">Yes</p>
+                                            <li className="d-flex align-items-center justify-content-center">
+                                                <p className="mb-0 f-15">Yes</p>
                                             </li>
-                                            <li class="d-flex align-items-center justify-content-center">
-                                                <p class="mb-0 f-15">-</p>
+                                            <li className="d-flex align-items-center justify-content-center">
+                                                <p className="mb-0 f-15">-</p>
                                             </li>
-                                            <li class="d-flex align-items-center justify-content-center">
+                                            <li className="d-flex align-items-center justify-content-center">
                                                 <img src={tickimg} className="img-fluid" />
                                             </li>
-                                            <li class="d-flex align-items-center justify-content-center">
-                                                <p class="mb-0 f-15">-</p>
+                                            <li className="d-flex align-items-center justify-content-center">
+                                                <p className="mb-0 f-15">-</p>
                                             </li>
-                                            <li class="d-flex align-items-center justify-content-center">
+                                            <li className="d-flex align-items-center justify-content-center">
                                                 <img src={tickimg} className="img-fluid" />
                                             </li>
-                                            <li class="d-flex align-items-center justify-content-center">
+                                            <li className="d-flex align-items-center justify-content-center">
                                                 <img src={tickimg} className="img-fluid" />
                                             </li>
-                                            <li class="d-flex align-items-center justify-content-center">
+                                            <li className="d-flex align-items-center justify-content-center">
                                                 <img src={tickimg} className="img-fluid" />
                                             </li>
-                                            <li class="d-flex align-items-center justify-content-center">
+                                            <li className="d-flex align-items-center justify-content-center">
                                                 <img src={tickimg} className="img-fluid" />
                                             </li>
                                         </ul>
@@ -281,7 +281,7 @@ const LoginPage = () => {
                 <div className="container">
                     <div className="row">
                         <div className="col-sm-12">
-                            <div class="patternimg-wrapper">
+                            <div className="patternimg-wrapper">
                                 <img src={pattern_img} className="img-fluid" />
                             </div>
                         </div>

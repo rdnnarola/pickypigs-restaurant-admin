@@ -76,7 +76,7 @@ const HowPageAllegyDescComp = () => {
                                     {true ? <span className="arrow" ref={setArrowRef} /> : null}
 
                                     <React.Fragment>
-                                        <div class="bg-white allergens-modal">
+                                        <div className="bg-white allergens-modal">
                                             <div className="allergens-heading d-flex align-items-center justiy-content-between position-relative">
                                                 <div className="allergens-inner-head d-flex align-items-center">
                                                     <div className="allergens-icon mr-4 d-flex align-items-center justify-content-center">

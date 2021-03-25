@@ -313,7 +313,7 @@ const RestaurantFeaturesComp = (props) => {
                                                                     {editForm ?
                                                                         props.detaildata && props.detaildata.openingTimings && props.detaildata.openingTimings.time && props.detaildata.openingTimings.time.map((data, index) => {
                                                                             return (
-                                                                                <div>
+                                                                                <div key={index}>
                                                                                     { data.isSelected &&
 
                                                                                         <React.Fragment key={index}>
