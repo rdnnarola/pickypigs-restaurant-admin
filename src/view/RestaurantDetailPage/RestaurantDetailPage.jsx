@@ -154,13 +154,15 @@ const RestaurantDetailPage = () => {
                                         }
                                         <form>
                                             <div className="form-group">
-                                                <input
-                                                    type="file"
-                                                    accept="image/*"
-                                                    name="uploadedfile"
-                                                    className="form-control-file userprofile-control"
-                                                    onChange={profileImageUploadHandeler}
-                                                />
+                                                <div className="userprofile-btn">
+                                                    <input
+                                                        type="file"
+                                                        accept="image/*"
+                                                        name="uploadedfile"
+                                                        className="form-control-file userprofile-control"
+                                                        onChange={profileImageUploadHandeler}
+                                                    />
+                                                </div>
                                             </div>
                                         </form>
                                     </div>
@@ -282,7 +284,7 @@ const RestaurantDetailPage = () => {
                                 <section><RestaurantUserDetailComp /></section>
                                 :
                                 <section >
-                                    <SettingSubscriptionComp/>
+                                    <SettingSubscriptionComp />
 
                                 </section>
                         }
