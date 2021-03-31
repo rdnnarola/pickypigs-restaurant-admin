@@ -11,7 +11,7 @@ import { getAllMenuData } from "../../redux/actions/menuAction";
 import CheckBoxAutoCompleteSecondComp from "../CheckBoxAutoCompleteSecondComp/CheckBoxAutoCompleteSecondComp";
 import { getCategoryListOfSelectedMenu } from "../../redux/actions/categoryAction";
 import { getSubCategoryListOfSelectedCategory } from "../../redux/actions/subcategoryAction";
-import { Field, Form, Formik, ErrorMessage, FieldArray, getIn } from 'formik';
+import { Field, Form, Formik, ErrorMessage, FieldArray, useFormikContext,useField } from 'formik';
 import * as Yup from 'yup';
 import { getAllAllergyData, getAllDietaryData, getAllLifestyleData, getAllCookingData } from "../../redux/actions/allergyAction";
 import { SERVER_URL } from '../../shared/constant'
@@ -24,7 +24,45 @@ import moment from "moment";
 
 const styleOf_currency = ["$"]
 const numbRegs = /^[+]?([0-9]+(?:[\.][0-9]*)?|\.[0-9]+)$/;
-const numRegExp = /^[+]?([0-9]+(?:[\.][0-9]*)?|\.[0-9]+)$/;
+const numRegExp = /^[+]?[0-9]{0,3}$/;
+
+async function fetchNewTextC(ingredient) {
+    await new Promise((r) => setTimeout(r, 100));
+    return `${ingredient && ingredient.reduce((prev, next) => prev + next.qty, 0)}`;
+  }
+  
+  const MyField = (props) => {
+    const {
+      values: {ingredient},
+      setFieldValue,
+    } = useFormikContext(); 
+    const [field, meta] = useField(props);
+  
+    React.useEffect(() => {
+      let isCurrent = true;
+      // your business logic around when to fetch goes here.
+      if (ingredient&&ingredient.length>0) {
+        fetchNewTextC(ingredient).then((total) => {
+          if (!!isCurrent) {
+            // prevent setting old values
+            setFieldValue(props.name, total);
+          }
+        });
+      }else{
+        setFieldValue(props.name, 0);
+      }
+      return () => {
+        isCurrent = false;
+      };
+    }, [ingredient, setFieldValue, props.name]);
+  
+    return (
+      <>
+        <input disabled className="border-0 bg-transparent text-right brandon-Bold" {...props} {...field} />%
+        {!!meta.touched && !!meta.error && <div ><small className="pink-txt">{meta.error}</small></div>}
+      </>
+    );
+  };
 
 const UpdateEasyAddDishComp = () => {
     const params = useParams();
@@ -276,6 +314,7 @@ const UpdateEasyAddDishComp = () => {
         deleteIngredients: [],
         description: selectedDisc_data && selectedDisc_data[0].description ? selectedDisc_data[0].description : '',
         description2: selectedDisc_data && selectedDisc_data[0].description ? selectedDisc_data[0].description : '',
+        total:selectedDisc_data && selectedDisc_data[0].ingredientSection && selectedDisc_data[0].ingredientSection.total ? selectedDisc_data[0].ingredientSection.total :0,
     }
 
     const validationSchema = Yup.object().shape({
@@ -289,7 +328,7 @@ const UpdateEasyAddDishComp = () => {
         available: Yup.boolean().oneOf([true, false]),
         menuId: Yup.array().required('Please Select Menu'),
         categoryId: Yup.string().required('Category is Required'),
-        subcategoryId: Yup.string().required('Subcategory is Required'),
+        subcategoryId: Yup.string(),
         // description2:Yup.string().required('Description is Required'),
         // allergenId:Yup.array().required('Please Select Allergen'),
         // dietaryId:Yup.array().required('Please Select  Dietary'),
@@ -298,18 +337,22 @@ const UpdateEasyAddDishComp = () => {
         // instructions:Yup.string().required('instructions is Required'),
         customisable: Yup.boolean().oneOf([true, false]),
         createNewVersion: Yup.boolean().oneOf([true, false]),
-        // ingredient:Yup.array()
-        // .of(
-        //     Yup.object().shape({
-        //         item:Yup.string().required("item required"),
-        //         qty:Yup.string().required('required').matches(numRegExp, 'Enter Valid Number'),
-        //         allergeies:Yup.array().required('Please Select Allergeies'),
-        //     })
-        // ).required('Must have Items'),
+        ingredient:Yup.array()
+        .of(
+            Yup.object().shape({
+                item:Yup.string().required("Item required"),
+                qty:Yup.number().required('Quantity Required').min(0,'Value must not below 0').max(100,"Value must not exceed 100"),
+                allergeies:Yup.array().required('Please Select Allergeies'),
+            })
+        ),
+
         // caloriesAndMacros: Yup.string().required('Please Provide Calories And Macros Details'),
         // priceUnit:Yup.string().required('PriceUnit is Required'),
-
-    });
+        total:Yup.number().when("ingredient",{
+            is:(ingredient)=>ingredient.length>0,
+            then: Yup.number().min(100,'Total must not below 100%').max(100,"Total must not exceed 100%"),
+            otherwise: Yup.number().min(0,'Total must not below 0%').max(100,"Total must not exceed 100%")
+        }),    });
 
 
     const onSubmit = (fields) => {
@@ -336,7 +379,7 @@ const UpdateEasyAddDishComp = () => {
             customisable: fields.customisable,
             createNewVersion: fields.createNewVersion,
             ingredientSection: {
-                total: fields.ingredient && fields.ingredient.length >= 0 && fields.ingredient.reduce((prev, next) => prev + next.qty, 0),
+                total: fields.total,
                 ingredient: fields.ingredient,
                 deleteIngredients: fields.deleteIngredients,
             },
@@ -659,7 +702,7 @@ const UpdateEasyAddDishComp = () => {
                                                                                                     <tr>
                                                                                                         <td>
                                                                                                             <Field className="form-control" name={`ingredient.${index}.item`} placeholder="item" type="text" />
-                                                                                                            <ErrorMessage className="pink-txt f-11" name={`ingredient.${index}.item`} />
+                                                                                                            <ErrorMessage className="pink-txt f-11" name={`ingredient.${index}.item`} >{msg => <div><small className="pink-txt">{msg}</small></div>}</ErrorMessage>
                                                                                                         </td>
                                                                                                         <td>
                                                                                                             <CheckBoxAutoCompleteThirdComp placeholder={"Allergy Values"}
@@ -668,13 +711,16 @@ const UpdateEasyAddDishComp = () => {
                                                                                                                 value={data&&data.allergeies?data.allergeies.filter( val => allergy_Data && allergy_Data.data&&(allergy_Data.data.map(data=>data._id)).includes(val)):[]}
                                                                                                                 onChangeData={(value) => { setFieldValue(`ingredient.${index}.allergeies`, value) }}
                                                                                                             />
-                                                                                                            <ErrorMessage className="pink-txt f-11" name={`ingredient.${index}.allergeies`} />
+                                                                                                            <ErrorMessage className="pink-txt f-11" name={`ingredient.${index}.allergeies`} >{msg => <div><small className="pink-txt">{msg}</small></div>}</ErrorMessage>
 
                                                                                                         </td>
                                                                                                         <td className=""></td>
                                                                                                         <td>
-                                                                                                            <Field className="form-control" name={`ingredient.${index}.qty`} placeholder="Qty" type="number" />
-                                                                                                            <ErrorMessage className="pink-txt f-11" name={`ingredient.${index}.qty`} />
+                                                                                                            <div className="d-flex align-items-center justify-content-center">
+                                                                                                                <Field className="form-control" name={`ingredient.${index}.qty`} placeholder="Qty" type="number" />
+                                                                                                                <lable className="ml-2">%</lable>
+                                                                                                            </div>
+                                                                                                            <ErrorMessage className="pink-txt f-11" name={`ingredient.${index}.qty`} >{msg => <div><small className="pink-txt">{msg}</small></div>}</ErrorMessage>
                                                                                                         </td>
                                                                                                         <td className="text-center">
                                                                                                             <div className="custom-control custom-checkbox pink-checkbox pinkgray-checkbox-style">
@@ -727,8 +773,8 @@ const UpdateEasyAddDishComp = () => {
                                                                                 </span>
                                                                             </td>
                                                                             <td className=""></td>
-                                                                            <td className="text-right brandon-Medium">Estimated Cost</td>
-                                                                            <td className="text-right brandon-Bold">{values && values.ingredient && values.ingredient.reduce((prev, next) => prev + next.qty, 0)}%</td>
+                                                                            <td className="text-right brandon-Medium">Total</td>
+                                                                            <td className="text-right"><MyField name="total" /></td>
                                                                             <td className=""></td>
                                                                             <td className=""></td>
 

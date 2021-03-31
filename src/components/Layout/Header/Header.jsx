@@ -58,11 +58,11 @@ const Header = () => {
                     </ul>
                     
                     <div className="d-flex align-items-center nav-rigthcontent">
-                        <form className="form-inline my-2 my-lg-0 search-control position-relative mr-5">
+                        {/* <form className="form-inline my-2 my-lg-0 search-control position-relative mr-5">
                             <input className="form-control mr-sm-2 search-input" type="text" placeholder="Search" aria-label="Search" />
                             <img src={searchicon_gray} className="img-fluid search-icon" alt="icon" />
-                            {/* <button className="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button> */}
-                        </form>
+                            <button className="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                        </form> */}
                         {/* <button onMouseEnter={() => SetAddButton('+    ')} onMouseLeave={() => SetAddButton('')}
                             className="btn btn-outline-success my-2 my-sm-0 add-dish-btn mr-4" type="submit">{addButton}Add Dish</button> */}
                         <NavLink to="/manage_dishes" className="btn pinkline-btn text-uppercase rounded-pill mr-4 w-170 f-15" style={{display:'flex',justifyContent:'center',alignItems:'center'}} ><span className="add-icon">Add Dish</span></NavLink>
