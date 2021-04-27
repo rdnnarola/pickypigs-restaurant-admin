@@ -4,7 +4,7 @@ export const INVALID_CRED = "Invalid credential !"
 
 export const SECRET_KEY=  "shukrana_mushkurana"
 
-export const API_KEY = "AIzaSyCdBibDJ-tAcSo_MONBUz-cFR06F0kVtXI"
+export const API_KEY = "AIzaSyBgkTZ8lb9ZKj_DI7z7T9euwULgr5fDf1Q"
 
 export const GOOGLE_MAP_API_URL = "https://maps.googleapis.com/maps/api/geocode/json";
 

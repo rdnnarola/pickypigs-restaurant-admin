@@ -54,17 +54,17 @@ export default function MyfilterListExample(props) {
   const loaded = React.useRef(false);
   const [zzzz, setzzzz] = React.useState(true);
 
-  if (typeof window !== 'undefined' && !loaded.current) {
-    if (!document.querySelector('#google-maps')) {
-      loadScript(
-        `https://maps.googleapis.com/maps/api/js?key==${API_KEY}&libraries=places`,
-        document.querySelector('head'),
-        'google-maps',
-      );
-    }
+  // if (typeof window !== 'undefined' && !loaded.current) {
+  //   if (!document.querySelector('#google-maps')) {
+  //     loadScript(
+  //       `https://maps.googleapis.com/maps/api/js?key==${API_KEY}&libraries=places`,
+  //       document.querySelector('head'),
+  //       'google-maps',
+  //     );
+  //   }
 
-    loaded.current = true;
-  }
+  //   loaded.current = true;
+  // }
 
 
 
@@ -152,7 +152,7 @@ export default function MyfilterListExample(props) {
 
   React.useEffect(() => {
     if(value&&value.place_id){
-      dispatch(getLocationFromPlaceId(value&&value.place_id));
+      // dispatch(getLocationFromPlaceId(value&&value.place_id));
     }
   },[value])
 

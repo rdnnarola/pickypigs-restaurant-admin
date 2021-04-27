@@ -23,8 +23,8 @@ import moment from "moment";
 
 
 const styleOf_currency = ["$"]
-const numbRegs = /^[+]?([0-9]+(?:[\.][0-9]*)?|\.[0-9]+)$/;
-const numRegExp = /^[+]?[0-9]{0,3}$/;
+const numbRegs = RegExp(/^[+]?([0-9]+(?:[\.][0-9]*)?|\.[0-9]+)$/);
+const numRegExp = RegExp(/^[+]?[0-9]{0,3}$/);
 
 async function fetchNewTextC(ingredient) {
     await new Promise((r) => setTimeout(r, 100));

@@ -13,8 +13,8 @@ const CheckBoxAutoCompleteComp = ({ placeholder,clearAll, labelKey = "name", val
             placeholder={placeholder}
             numberDisplayed={2.5}
             options={options}
-            labelKey={labelKey}
-            valueKey={valueKey}
+            labelKey="label"
+            valueKey="value"
             multiple={true}
             includeFilter={false}
             includeSelectAll={false}
@@ -31,7 +31,7 @@ const CheckBoxAutoCompleteComp = ({ placeholder,clearAll, labelKey = "name", val
                 multiple,
             }) => {
                 return (
-                    <div className="filter-listcheck">
+                    <div key={item} className="filter-listcheck">
                         
                         {/* {isSelected?
                        <div className="clearall-link">
@@ -41,8 +41,8 @@ const CheckBoxAutoCompleteComp = ({ placeholder,clearAll, labelKey = "name", val
                    </div>
                         :null} */}
                         <Form>
-                            {['checkbox'].map((type,index) => (
-                                <div key={`custom-inline-${type}`} className="mb-2">
+                           
+                                <div className="mb-2">
                                     <Form.Check
                                         key={item[valueKey]} // required
                                         onChange={() => selectValue(item)}
@@ -55,7 +55,7 @@ const CheckBoxAutoCompleteComp = ({ placeholder,clearAll, labelKey = "name", val
                                         id={item}
                                     />
                                 </div>
-                            ))}
+                       
                         </Form>
                     </div>
                 );

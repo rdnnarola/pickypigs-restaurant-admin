@@ -179,7 +179,7 @@ const SignUpModalComp = (props) => {
                                                             <div className="error pink-txt f-11">{(touched.confirmPassword && errors.confirmPassword && errors.confirmPassword) || error}</div>
                                                         </div>
                                                         <div className="form-group">
-                                                            <button className="pinkline-btn signup-btn btn mt-4 w-100 text-uppercase border-radius-25" type="submit" disabled={isSubmitting}>
+                                                            <button className="pinkline-btn signup-btn btn mt-4 w-100 text-uppercase border-radius-25" type="submit" >
                                                                 Sign up
                                             </button>
                                                         </div>

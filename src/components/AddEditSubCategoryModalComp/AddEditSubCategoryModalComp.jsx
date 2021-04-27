@@ -38,12 +38,12 @@ const AddEditSubCategoryModalComp = (props) => {
 
     function createSubCategory(fields) {
         dispatch(addSubCategoryData(fields));
-        props.onHide();
+        // props.onHide();
     }
 
     function updateSubCategory(id,fields) {
         dispatch(updateSelectedSubCategoryData(id,fields));
-        props.onHide();
+        // props.onHide();
     }
     
     useEffect(() => {
@@ -96,6 +96,7 @@ const AddEditSubCategoryModalComp = (props) => {
                     <Modal
                         {...props}
                         backdrop="static"
+                        keyboard={false}
                         size="md"
                         aria-labelledby="contained-modal-title-vcenter"
                         className="mainmodal-wrapper"
@@ -109,7 +110,7 @@ const AddEditSubCategoryModalComp = (props) => {
                         <Modal.Body>
 
                             <Formik enableReinitialize={true} initialValues={isAddMode?initialValues:initialValues2} validationSchema={validationSchema} onSubmit={onSubmit}  >
-                                {({values, errors, touched, isSubmitting, setFieldValue,handleChange }) => {
+                                {({values, errors, touched, isSubmitting, setFieldValue,handleChange,setSubmitting }) => {
                                    
                                    
                                     return (
@@ -170,7 +171,7 @@ const AddEditSubCategoryModalComp = (props) => {
 
                                             <div className="border-top-0 pt-4 pb-4 d-flex justify-content-end">
                                                 <button className="btn lightgraynoline-btn text-uppercase border-radius-25 min-width-120" type="reset" onClick={props.onHide}>CANCEL</button>
-                                                <button className="btn pinkline-btn text-uppercase border-radius-25 min-width-120 ml-2" type="submit" disabled={isSubmitting}>{isAddMode?"ADD":"UPDATE"}</button>
+                                                <button className="btn pinkline-btn text-uppercase border-radius-25 min-width-120 ml-2" type="submit" >{isAddMode?"ADD":"UPDATE"}</button>
                                             </div>
                                         </Form>
                                     );

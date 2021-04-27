@@ -304,7 +304,7 @@ const RestaurantInfoFeatureComp = (props) => {
                                                             <div className="row mt-2">
                                                                 {editForm ?
                                                                     <div className="col-sm-12">
-                                                                        <h5 className="f-15 mb-4 brandon-Medium">What is your restaurant Style</h5>
+                                                                        <h5 className="f-15 mb-4 brandon-Medium">What other features does your venue have?</h5>
                                                                         {props.featuredata && props.featuredata.appliesOfRestaurant && props.featuredata.appliesOfRestaurant.length > 0 ?
                                                                             props.featuredata && props.featuredata.appliesOfRestaurant.map((data, index) => {
                                                                                 return (

@@ -26,8 +26,7 @@ const initialState = {
           return {
             ...state,
             isLoading:false,
-            location_data:payload.results[0].formatted_address,
-            address_Data:payload.results[0].address_components,
+            location_data:payload,
           };
   
           
@@ -69,8 +68,14 @@ const initialState = {
               loading: false,
               localityData:payload
           };   
-        //
-           
+         //GOOGLEaDDRESS
+         case "GET_GOOGLElOCATION_DATA":
+          return  {
+              ...state,
+              loading: false,
+              address_Data:payload
+          }; 
+
         case "GET_GEOMETRYDATA_REQUEST":
           return {
             ...state,

@@ -439,7 +439,7 @@ const RestaurantFeaturesComp = (props) => {
                                                                                                                     />
                                                                                                                 </MuiPickersUtilsProvider>
                                                                                                             </div>
-                                                                                                            {data.isSelected?
+                                                                                                            {/* {data.isSelected?
                                                                                                                 <div style={{position:'absolute',bottom:-22}}>
                                                                                                                     <small className="pink-txt">
                                                                                                                         {(moment(data.timeList && data.timeList[0].startTime, "HH:mm").isBefore(moment(data.timeList && data.timeList[0].endTime, "HH:mm")))?null:`Please Select End Time After ${!values.isTime24Hours?tConv24(data.timeList && data.timeList[0].startTime):data.timeList && data.timeList[0].startTime}`}
@@ -447,7 +447,7 @@ const RestaurantFeaturesComp = (props) => {
                                                                                                                 </div>
                                                                                                             :
                                                                                                                 null
-                                                                                                            }
+                                                                                                            } */}
                                                                                                         </div>
                                                                                                     </React.Fragment>
                                                                                                     {values.isMultiTime &&
@@ -488,7 +488,7 @@ const RestaurantFeaturesComp = (props) => {
                                                                                                                         />
                                                                                                                     </MuiPickersUtilsProvider>
                                                                                                                 </div>
-                                                                                                                {data.isSelected?
+                                                                                                                {/* {data.isSelected?
                                                                                                                     <div style={{position:'absolute',bottom:-22}}>
                                                                                                                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                                                                                                         <small className="pink-txt">
@@ -510,7 +510,7 @@ const RestaurantFeaturesComp = (props) => {
                                                                                                                     </div>
                                                                                                                 :
                                                                                                                     null
-                                                                                                                }
+                                                                                                                } */}
                                                                                                             </div>    
                                                                                                         </React.Fragment>
                                                                                                     }

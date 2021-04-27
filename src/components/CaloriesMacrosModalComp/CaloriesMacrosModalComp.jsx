@@ -3,12 +3,12 @@ import { Modal, Button, } from "react-bootstrap";
 import './CaloriesMacrosModalComp.scss';
 import nutritionFactsicon from "../../assets/images/NutritionFacts-icon.svg";
 import plusicon from "../../assets/images/plus-icon.svg";
-import { Field, Form, Formik, ErrorMessage, FieldArray } from 'formik';
-import rightarrow from "../../assets/images/right-arrow.svg";
+import { Field, Form, Formik, } from 'formik';
+// import rightarrow from "../../assets/images/right-arrow.svg";
 import * as Yup from 'yup';
 
 
-const numRegExp = /^[+]?([0-9]+(?:[\.][0-9]*)?|\.[0-9]+)$/;
+const numRegExp = RegExp(/^[+]?([0-9]+(?:[\.][0-9]*)?|\.[0-9]+)$/);
 const CaloriesMacrosModalComp = (props) => {
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
@@ -392,19 +392,19 @@ const CaloriesMacrosModalComp = (props) => {
                                                     <table className="table mb-4 pb-2">
                                                         <tbody>
                                                             <tr>
-                                                                <td scope="col" colSpan="3" className="gray-txt fw-400 text-right pl-0 pr-0 border-top-0 pt-1 pb-1 text-right">% Daily Values *</td>
+                                                                <td  colSpan="3" className="gray-txt fw-400 text-right pl-0 pr-0 border-top-0 pt-1 pb-1 text-right">% Daily Values *</td>
 
                                                             </tr>
                                                             <tr>
-                                                                <td scope="col" className="gray-txt fw-400 pl-0 pr-0 border-top-0 pt-1 pb-1 text-left">Total Fat</td>
-                                                                <td scope="col" className="gray-txt fw-400 text-right pl-0 pr-0 pt-1 pb-1 border-top-0">
+                                                                <td  className="gray-txt fw-400 pl-0 pr-0 border-top-0 pt-1 pb-1 text-left">Total Fat</td>
+                                                                <td  className="gray-txt fw-400 text-right pl-0 pr-0 pt-1 pb-1 border-top-0">
                                                                     <div className="recipt-editwraper d-flex align-items-center justify-content-end">
                                                                         <Field className="mg-input" name="totalFat.weight" placeholder="00.00" />
                                                                         <Field className="mg-input-txt" name="totalFat.weightUnit" readOnly={true} type="text" placeholder="mg" />
                                                                     </div>
                                                                     {touched.totalFat && touched.totalFat.weight && errors.totalFat && errors.totalFat.weight && <div className="error pink-txt f-11">{errors.totalFat && errors.totalFat.weight}</div>}
                                                                 </td>
-                                                                <td scope="col" className="gray-txt fw-400 text-right pl-0 pr-0 pt-1 pb-1 border-top-0">
+                                                                <td  className="gray-txt fw-400 text-right pl-0 pr-0 pt-1 pb-1 border-top-0">
                                                                     <div className="recipt-editwraper d-flex align-items-center justify-content-end">
                                                                         <Field name="totalFat.percentage" className="mg-input" placeholder="00.00" />%
                                                                     </div>
@@ -412,15 +412,15 @@ const CaloriesMacrosModalComp = (props) => {
                                                                 </td>
                                                             </tr>
                                                             <tr>
-                                                                <td scope="col" className="gray-txt fw-400 pl-0 pr-0 border-top-0 pt-1 pb-1 text-left">Saturated Fat</td>
-                                                                <td scope="col" className="gray-txt fw-400 text-right pl-0 pr-0 pt-1 pb-1 border-top-0">
+                                                                <td  className="gray-txt fw-400 pl-0 pr-0 border-top-0 pt-1 pb-1 text-left">Saturated Fat</td>
+                                                                <td  className="gray-txt fw-400 text-right pl-0 pr-0 pt-1 pb-1 border-top-0">
                                                                     <div className="recipt-editwraper d-flex align-items-center justify-content-end">
                                                                         <Field className="mg-input" name="saturatedFat.weight" placeholder="00.00" />
                                                                         <Field className="mg-input-txt" name="saturatedFat.weightUnit" readOnly={true} type="text" placeholder="mg" />
                                                                     </div>
                                                                     {touched.saturatedFat && touched.saturatedFat.weight && errors.saturatedFat && errors.saturatedFat.weight && <div className="error pink-txt f-11">{errors.saturatedFat && errors.saturatedFat.weight}</div>}
                                                                 </td>
-                                                                <td scope="col" className="gray-txt fw-400 text-right pl-0 pr-0 pt-1 pb-1 border-top-0">
+                                                                <td  className="gray-txt fw-400 text-right pl-0 pr-0 pt-1 pb-1 border-top-0">
                                                                     <div className="recipt-editwraper d-flex align-items-center justify-content-end">
                                                                         <Field name="saturatedFat.percentage" className="mg-input" placeholder="00.00" />%
                                                                     </div>
@@ -428,15 +428,15 @@ const CaloriesMacrosModalComp = (props) => {
                                                                 </td>
                                                             </tr>
                                                             <tr>
-                                                                <td scope="col" className="gray-txt fw-400 pl-0 pr-0 border-top-0 pt-1 pb-1 text-left">Trans Fat</td>
-                                                                <td scope="col" className="gray-txt fw-400 text-right pl-0 pr-0 pt-1 pb-1 border-top-0">
+                                                                <td  className="gray-txt fw-400 pl-0 pr-0 border-top-0 pt-1 pb-1 text-left">Trans Fat</td>
+                                                                <td  className="gray-txt fw-400 text-right pl-0 pr-0 pt-1 pb-1 border-top-0">
                                                                     <div className="recipt-editwraper d-flex align-items-center justify-content-end">
                                                                         <Field className="mg-input" name="transFat.weight" placeholder="00.00" />
                                                                         <Field className="mg-input-txt" name="transFat.weightUnit" readOnly={true} type="text" placeholder="mg" />
                                                                     </div>
                                                                     {touched.transFat && touched.transFat.weight && errors.transFat && errors.transFat.weight && <div className="error pink-txt f-11">{errors.transFat && errors.transFat.weight}</div>}
                                                                 </td>
-                                                                <td scope="col" className="gray-txt fw-400 text-right pl-0 pr-0 pt-1 pb-1 border-top-0">
+                                                                <td  className="gray-txt fw-400 text-right pl-0 pr-0 pt-1 pb-1 border-top-0">
                                                                     <div className="recipt-editwraper d-flex align-items-center justify-content-end">
                                                                         <Field name="transFat.percentage" className="mg-input" placeholder="00.00" />%
                                                                     </div>
@@ -444,15 +444,15 @@ const CaloriesMacrosModalComp = (props) => {
                                                                 </td>
                                                             </tr>
                                                             <tr>
-                                                                <td scope="col" className="gray-txt fw-400 pl-0 pr-0 border-top-0 pt-1 pb-1 text-left">Polyunsaturated Fat</td>
-                                                                <td scope="col" className="gray-txt fw-400 text-right pl-0 pr-0 pt-1 pb-1 border-top-0">
+                                                                <td  className="gray-txt fw-400 pl-0 pr-0 border-top-0 pt-1 pb-1 text-left">Polyunsaturated Fat</td>
+                                                                <td  className="gray-txt fw-400 text-right pl-0 pr-0 pt-1 pb-1 border-top-0">
                                                                     <div className="recipt-editwraper d-flex align-items-center justify-content-end">
                                                                         <Field className="mg-input" name="polyunsaturatedFat.weight" placeholder="00.00" />
                                                                         <Field className="mg-input-txt" name="polyunsaturatedFat.weightUnit" readOnly={true} type="text" placeholder="mg" />
                                                                     </div>
                                                                     {touched.polyunsaturatedFat && touched.polyunsaturatedFat.weight && errors.polyunsaturatedFat && errors.polyunsaturatedFat.weight && <div className="error pink-txt f-11">{errors.polyunsaturatedFat && errors.polyunsaturatedFat.weight}</div>}
                                                                 </td>
-                                                                <td scope="col" className="gray-txt fw-400 text-right pl-0 pr-0 pt-1 pb-1 border-top-0">
+                                                                <td  className="gray-txt fw-400 text-right pl-0 pr-0 pt-1 pb-1 border-top-0">
                                                                     <div className="recipt-editwraper d-flex align-items-center justify-content-end">
                                                                         <Field name="polyunsaturatedFat.percentage" className="mg-input" placeholder="00.00" />%
                                                                     </div>
@@ -460,15 +460,15 @@ const CaloriesMacrosModalComp = (props) => {
                                                                 </td>
                                                             </tr>
                                                             <tr>
-                                                                <td scope="col" className="gray-txt fw-400 pl-0 pr-0 border-top-0 pt-1 pb-1 text-left">Monounsaturated Fat</td>
-                                                                <td scope="col" className="gray-txt fw-400 text-right pl-0 pr-0 pt-1 pb-1 border-top-0">
+                                                                <td  className="gray-txt fw-400 pl-0 pr-0 border-top-0 pt-1 pb-1 text-left">Monounsaturated Fat</td>
+                                                                <td  className="gray-txt fw-400 text-right pl-0 pr-0 pt-1 pb-1 border-top-0">
                                                                     <div className="recipt-editwraper d-flex align-items-center justify-content-end">
                                                                         <Field className="mg-input" name="monounsaturatedFat.weight" placeholder="00.00" />
                                                                         <Field className="mg-input-txt" name="monounsaturatedFat.weightUnit" readOnly={true} type="text" placeholder="mg" />
                                                                     </div>
                                                                     {touched.monounsaturatedFat && touched.monounsaturatedFat.weight && errors.monounsaturatedFat && errors.monounsaturatedFat.weight && <div className="error pink-txt f-11">{errors.monounsaturatedFat && errors.monounsaturatedFat.weight}</div>}
                                                                 </td>
-                                                                <td scope="col" className="gray-txt fw-400 text-right pl-0 pr-0 pt-1 pb-1 border-top-0">
+                                                                <td  className="gray-txt fw-400 text-right pl-0 pr-0 pt-1 pb-1 border-top-0">
                                                                     <div className="recipt-editwraper d-flex align-items-center justify-content-end">
                                                                         <Field name="monounsaturatedFat.percentage" className="mg-input" placeholder="00.00" />%
                                                                     </div>
@@ -481,15 +481,15 @@ const CaloriesMacrosModalComp = (props) => {
                                                                 <td className="border-top-0 p-1"></td>
                                                             </tr>
                                                             <tr>
-                                                                <td scope="col" className="fw-400 pl-0 pr-0 text-left"><b>Cholesterol</b></td>
-                                                                <td scope="col" className="gray-txt fw-400 text-right pl-0 pr-0 pt-2 pb-2">
+                                                                <td  className="fw-400 pl-0 pr-0 text-left"><b>Cholesterol</b></td>
+                                                                <td  className="gray-txt fw-400 text-right pl-0 pr-0 pt-2 pb-2">
                                                                     <div className="recipt-editwraper d-flex align-items-center justify-content-end input-dark">
                                                                         <Field className="mg-input" name="cholesterol.weight" placeholder="00.00" />
                                                                         <Field className="mg-input-txt" name="cholesterol.weightUnit" readOnly={true} type="text" placeholder="mg" />
                                                                     </div>
                                                                     {touched.cholesterol && touched.cholesterol.weight && errors.cholesterol && errors.cholesterol.weight && <div className="error pink-txt f-11">{errors.cholesterol && errors.cholesterol.weight}</div>}
                                                                 </td>
-                                                                <td scope="col" className="gray-txt fw-400 text-right pl-0 pr-0 pt-2 pb-1">
+                                                                <td  className="gray-txt fw-400 text-right pl-0 pr-0 pt-2 pb-1">
                                                                     <div className="recipt-editwraper d-flex align-items-center justify-content-end input-dark">
                                                                         <Field name="cholesterol.percentage" className="mg-input" placeholder="00.00" /><span className="dark-txt brandon-Medium">%</span>
                                                                     </div>
@@ -497,15 +497,15 @@ const CaloriesMacrosModalComp = (props) => {
                                                                 </td>
                                                             </tr>
                                                             <tr>
-                                                                <td scope="col" className="fw-400 pl-0 pr-0 text-left"><b>Sodium</b></td>
-                                                                <td scope="col" className="gray-txt fw-400 text-right pl-0 pr-0 pt-2 pb-1">
+                                                                <td  className="fw-400 pl-0 pr-0 text-left"><b>Sodium</b></td>
+                                                                <td  className="gray-txt fw-400 text-right pl-0 pr-0 pt-2 pb-1">
                                                                     <div className="recipt-editwraper d-flex align-items-center justify-content-end input-dark">
                                                                         <Field className="mg-input" name="sodium.weight" placeholder="00.00" />
                                                                         <Field className="mg-input-txt" name="sodium.weightUnit" readOnly={true} type="text" placeholder="mg" />
                                                                     </div>
                                                                     {touched.sodium && touched.sodium.weight && errors.sodium && errors.sodium.weight && <div className="error pink-txt f-11">{errors.sodium && errors.sodium.weight}</div>}
                                                                 </td>
-                                                                <td scope="col" className="gray-txt fw-400 text-right pl-0 pr-0 pt-2 pb-1">
+                                                                <td  className="gray-txt fw-400 text-right pl-0 pr-0 pt-2 pb-1">
                                                                     <div className="recipt-editwraper d-flex align-items-center justify-content-end input-dark">
                                                                         <Field name="sodium.percentage" className="mg-input" placeholder="00.00" /><span className="dark-txt brandon-Medium">%</span>
                                                                     </div>
@@ -513,15 +513,15 @@ const CaloriesMacrosModalComp = (props) => {
                                                                 </td>
                                                             </tr>
                                                             <tr>
-                                                                <td scope="col" className="fw-400 pl-0 pr-0 text-left"><b>Total Carbohydrate</b></td>
-                                                                <td scope="col" className="gray-txt fw-400 text-right pl-0 pr-0 pt-2 pb-1">
+                                                                <td  className="fw-400 pl-0 pr-0 text-left"><b>Total Carbohydrate</b></td>
+                                                                <td  className="gray-txt fw-400 text-right pl-0 pr-0 pt-2 pb-1">
                                                                     <div className="recipt-editwraper d-flex align-items-center justify-content-end input-dark">
                                                                         <Field className="mg-input" name="totalCarbohydrate.totalWeight" placeholder="00.00" />
                                                                         <Field className="mg-input-txt" name="totalCarbohydrate.weightUnit" readOnly={true} type="text" placeholder="mg" />
                                                                     </div>
                                                                     {touched.totalCarbohydrate && touched.totalCarbohydrate.totalWeight && errors.totalCarbohydrate && errors.totalCarbohydrate.totalWeight && <div className="error pink-txt f-11">{errors.totalCarbohydrate && errors.totalCarbohydrate.totalWeight}</div>}
                                                                 </td>
-                                                                <td scope="col" className="gray-txt fw-400 text-right pl-0 pr-0 pt-2 pb-1">
+                                                                <td  className="gray-txt fw-400 text-right pl-0 pr-0 pt-2 pb-1">
                                                                     <div className="recipt-editwraper d-flex align-items-center justify-content-end input-dark">
                                                                         <Field name="totalCarbohydrate.totalPercentage" className="mg-input" placeholder="00.00" /><span className="dark-txt brandon-Medium">%</span>
                                                                     </div>
@@ -529,15 +529,15 @@ const CaloriesMacrosModalComp = (props) => {
                                                                 </td>
                                                             </tr>
                                                             <tr>
-                                                                <td scope="col" className="gray-txt fw-400 pl-0 pr-0 text-left pt-1 pb-1 border-top-0">Dietary Fiber</td>
-                                                                <td scope="col" className="gray-txt fw-400 text-right pl-0 pr-0 pt-1 pb-1 border-top-0">
+                                                                <td  className="gray-txt fw-400 pl-0 pr-0 text-left pt-1 pb-1 border-top-0">Dietary Fiber</td>
+                                                                <td  className="gray-txt fw-400 text-right pl-0 pr-0 pt-1 pb-1 border-top-0">
                                                                     <div className="recipt-editwraper d-flex align-items-center justify-content-end">
                                                                         <Field className="mg-input" name="dietaryFiber.weight" placeholder="00.00" />
                                                                         <Field className="mg-input-txt" name="dietaryFiber.weightUnit" readOnly={true} type="text" placeholder="mg" />
                                                                     </div>
                                                                     {touched.dietaryFiber && touched.dietaryFiber.weight && errors.dietaryFiber && errors.dietaryFiber.weight && <div className="error pink-txt f-11">{errors.dietaryFiber && errors.dietaryFiber.weight}</div>}
                                                                 </td>
-                                                                <td scope="col" className="gray-txt fw-400 text-right pl-0 pr-0 pt-1 pb-1 border-top-0">
+                                                                <td  className="gray-txt fw-400 text-right pl-0 pr-0 pt-1 pb-1 border-top-0">
                                                                     <div className="recipt-editwraper d-flex align-items-center justify-content-end">
                                                                         <Field name="dietaryFiber.percentage" className="mg-input" placeholder="00.00" />%
                                                                     </div>
@@ -545,15 +545,15 @@ const CaloriesMacrosModalComp = (props) => {
                                                                 </td>
                                                             </tr>
                                                             <tr>
-                                                                <td scope="col" className="gray-txt fw-400 pl-0 pr-0 border-top-0 pt-1 pb-1 text-left pb-3">Sugars</td>
-                                                                <td scope="col" className="gray-txt fw-400 text-right pl-0 pr-0 pt-1 pb-1 border-top-0">
+                                                                <td  className="gray-txt fw-400 pl-0 pr-0 border-top-0 pt-1 pb-1 text-left pb-3">Sugars</td>
+                                                                <td  className="gray-txt fw-400 text-right pl-0 pr-0 pt-1 pb-1 border-top-0">
                                                                     <div className="recipt-editwraper d-flex align-items-center justify-content-end">
                                                                         <Field className="mg-input" name="sugars.weight" placeholder="00.00" />
                                                                         <Field className="mg-input-txt" name="sugars.weightUnit" readOnly={true} type="text" placeholder="mg" />
                                                                     </div>
                                                                     {touched.sugars && touched.sugars.weight && errors.sugars && errors.sugars.weight && <div className="error pink-txt f-11">{errors.sugars && errors.sugars.weight}</div>}
                                                                 </td>
-                                                                <td scope="col" className="gray-txt fw-400 text-right pl-0 pr-0 pt-1 pb-1 border-top-0">
+                                                                <td  className="gray-txt fw-400 text-right pl-0 pr-0 pt-1 pb-1 border-top-0">
                                                                     <div className="recipt-editwraper d-flex align-items-center justify-content-end">
                                                                         <Field name="sugars.percentage" className="mg-input" placeholder="00.00" />%
                                                                     </div>
@@ -561,15 +561,15 @@ const CaloriesMacrosModalComp = (props) => {
                                                                 </td>
                                                             </tr>
                                                             <tr>
-                                                                <td scope="col" className="fw-400 pl-0 pr-0 text-left"><b>Protien</b></td>
-                                                                <td scope="col" className="gray-txt fw-400 text-right pl-0 pr-0 pt-2 pb-1">
+                                                                <td  className="fw-400 pl-0 pr-0 text-left"><b>Protien</b></td>
+                                                                <td  className="gray-txt fw-400 text-right pl-0 pr-0 pt-2 pb-1">
                                                                     <div className="recipt-editwraper d-flex align-items-center justify-content-end input-dark">
                                                                         <Field className="mg-input" name="protien.totalWeight" placeholder="00.00" />
                                                                         <Field className="mg-input-txt" name="protien.weightUnit" readOnly={true} type="text" placeholder="mg" />
                                                                     </div>
                                                                     {touched.protien && touched.protien.totalWeight && errors.protien && errors.protien.totalWeight && <div className="error pink-txt f-11">{errors.protien && errors.protien.totalWeight}</div>}
                                                                 </td>
-                                                                <td scope="col" className="gray-txt fw-400 text-right pl-0 pr-0 pt-2 pb-1">
+                                                                <td  className="gray-txt fw-400 text-right pl-0 pr-0 pt-2 pb-1">
                                                                     <div className="recipt-editwraper d-flex align-items-center justify-content-end input-dark">
                                                                         <Field name="protien.totalPercentage" className="mg-input" placeholder="00.00" /><span className="dark-txt brandon-Medium">%</span>
                                                                     </div>
@@ -577,15 +577,15 @@ const CaloriesMacrosModalComp = (props) => {
                                                                 </td>
                                                             </tr>
                                                             <tr>
-                                                                <td scope="col" className="gray-txt fw-400 pl-0 pr-0 text-left pt-1 pb-1 border-top-0">Vitamin D</td>
-                                                                <td scope="col" className="gray-txt fw-400 text-right pl-0 pr-0 pt-1 pb-1 border-top-0">
+                                                                <td  className="gray-txt fw-400 pl-0 pr-0 text-left pt-1 pb-1 border-top-0">Vitamin D</td>
+                                                                <td  className="gray-txt fw-400 text-right pl-0 pr-0 pt-1 pb-1 border-top-0">
                                                                     <div className="recipt-editwraper d-flex align-items-center justify-content-end">
                                                                         <Field className="mg-input" name="vitaminD.weight" placeholder="00.00" />
                                                                         <Field className="mg-input-txt" name="vitaminD.weightUnit" readOnly={true} type="text" placeholder="mg" />
                                                                     </div>
                                                                     {touched.vitaminD && touched.vitaminD.weight && errors.vitaminD && errors.vitaminD.weight && <div className="error pink-txt f-11">{errors.vitaminD && errors.vitaminD.weight}</div>}
                                                                 </td>
-                                                                <td scope="col" className="gray-txt fw-400 text-right pl-0 pr-0 pt-1 pb-1 border-top-0">
+                                                                <td  className="gray-txt fw-400 text-right pl-0 pr-0 pt-1 pb-1 border-top-0">
                                                                     <div className="recipt-editwraper d-flex align-items-center justify-content-end">
                                                                         <Field name="vitaminD.percentage" className="mg-input" placeholder="00.00" />%
                                                                     </div>
@@ -593,15 +593,15 @@ const CaloriesMacrosModalComp = (props) => {
                                                                 </td>
                                                             </tr>
                                                             <tr>
-                                                                <td scope="col" className="gray-txt fw-400 pl-0 pr-0 text-left pt-1 pb-1 border-top-0">Calcium</td>
-                                                                <td scope="col" className="gray-txt fw-400 text-right pl-0 pr-0 pt-1 pb-1 border-top-0">
+                                                                <td  className="gray-txt fw-400 pl-0 pr-0 text-left pt-1 pb-1 border-top-0">Calcium</td>
+                                                                <td  className="gray-txt fw-400 text-right pl-0 pr-0 pt-1 pb-1 border-top-0">
                                                                     <div className="recipt-editwraper d-flex align-items-center justify-content-end">
                                                                         <Field className="mg-input" name="calcium.weight" placeholder="00.00" />
                                                                         <Field className="mg-input-txt" name="calcium.weightUnit" readOnly={true} type="text" placeholder="mg" />
                                                                     </div>
                                                                     {touched.calcium && touched.calcium.weight && errors.calcium && errors.calcium.weight && <div className="error pink-txt f-11">{errors.calcium && errors.calcium.weight}</div>}
                                                                 </td>
-                                                                <td scope="col" className="gray-txt fw-400 text-right pl-0 pr-0 pt-1 pb-1 border-top-0">
+                                                                <td  className="gray-txt fw-400 text-right pl-0 pr-0 pt-1 pb-1 border-top-0">
                                                                     <div className="recipt-editwraper d-flex align-items-center justify-content-end">
                                                                         <Field name="calcium.percentage" className="mg-input" placeholder="00.00" />%
                                                                     </div>
@@ -609,15 +609,15 @@ const CaloriesMacrosModalComp = (props) => {
                                                                 </td>
                                                             </tr>
                                                             <tr>
-                                                                <td scope="col" className="gray-txt fw-400 pl-0 pr-0 text-left pt-1 pb-1 border-top-0">Iron</td>
-                                                                <td scope="col" className="gray-txt fw-400 text-right pl-0 pr-0 pt-1 pb-1 border-top-0">
+                                                                <td  className="gray-txt fw-400 pl-0 pr-0 text-left pt-1 pb-1 border-top-0">Iron</td>
+                                                                <td  className="gray-txt fw-400 text-right pl-0 pr-0 pt-1 pb-1 border-top-0">
                                                                     <div className="recipt-editwraper d-flex align-items-center justify-content-end">
                                                                         <Field className="mg-input" name="iron.weight" placeholder="00.00" />
                                                                         <Field className="mg-input-txt" name="iron.weightUnit" readOnly={true} type="text" placeholder="mg" />
                                                                     </div>
                                                                     {touched.iron && touched.iron.weight && errors.iron && errors.iron.weight && <div className="error pink-txt f-11">{errors.iron && errors.iron.weight}</div>}
                                                                 </td>
-                                                                <td scope="col" className="gray-txt fw-400 text-right pl-0 pr-0 pt-1 pb-1 border-top-0">
+                                                                <td  className="gray-txt fw-400 text-right pl-0 pr-0 pt-1 pb-1 border-top-0">
                                                                     <div className="recipt-editwraper d-flex align-items-center justify-content-end">
                                                                         <Field name="iron.percentage" className="mg-input" placeholder="00.00" />%
                                                                     </div>
@@ -625,15 +625,15 @@ const CaloriesMacrosModalComp = (props) => {
                                                                 </td>
                                                             </tr>
                                                             <tr>
-                                                                <td scope="col" className="gray-txt fw-400 pl-0 pr-0 text-left pt-1 pb-1 border-top-0">Potassium</td>
-                                                                <td scope="col" className="gray-txt fw-400 text-right pl-0 pr-0 pt-1 pb-1 border-top-0">
+                                                                <td  className="gray-txt fw-400 pl-0 pr-0 text-left pt-1 pb-1 border-top-0">Potassium</td>
+                                                                <td  className="gray-txt fw-400 text-right pl-0 pr-0 pt-1 pb-1 border-top-0">
                                                                     <div className="recipt-editwraper d-flex align-items-center justify-content-end">
                                                                         <Field className="mg-input" name="potassium.weight" placeholder="00.00" />
                                                                         <Field className="mg-input-txt" name="potassium.weightUnit" readOnly={true} type="text" placeholder="mg" />
                                                                     </div>
                                                                     {touched.potassium && touched.potassium.weight && errors.potassium && errors.potassium.weight && <div className="error pink-txt f-11">{errors.potassium && errors.potassium.weight}</div>}
                                                                 </td>
-                                                                <td scope="col" className="gray-txt fw-400 text-right pl-0 pr-0 pt-1 pb-1 border-top-0">
+                                                                <td  className="gray-txt fw-400 text-right pl-0 pr-0 pt-1 pb-1 border-top-0">
                                                                     <div className="recipt-editwraper d-flex align-items-center justify-content-end">
                                                                         <Field name="potassium.percentage" className="mg-input" placeholder="00.00" />%
                                                                     </div>
@@ -641,15 +641,15 @@ const CaloriesMacrosModalComp = (props) => {
                                                                 </td>
                                                             </tr>
                                                             <tr>
-                                                                <td scope="col" className="gray-txt fw-400 pl-0 pr-0 text-left pt-1 pb-1 border-top-0">Vitamin A</td>
-                                                                <td scope="col" className="gray-txt fw-400 text-right pl-0 pr-0 pt-1 pb-1 border-top-0">
+                                                                <td  className="gray-txt fw-400 pl-0 pr-0 text-left pt-1 pb-1 border-top-0">Vitamin A</td>
+                                                                <td  className="gray-txt fw-400 text-right pl-0 pr-0 pt-1 pb-1 border-top-0">
                                                                     <div className="recipt-editwraper d-flex align-items-center justify-content-end">
                                                                         <Field className="mg-input" name="vitaminA.weight" placeholder="00.00" />
                                                                         <Field className="mg-input-txt" name="vitaminA.weightUnit" readOnly={true} type="text" placeholder="mg" />
                                                                     </div>
                                                                     {touched.vitaminA && touched.vitaminA.weight && errors.vitaminA && errors.vitaminA.weight && <div className="error pink-txt f-11">{errors.vitaminA && errors.vitaminA.weight}</div>}
                                                                 </td>
-                                                                <td scope="col" className="gray-txt fw-400 text-right pl-0 pr-0 pt-1 pb-1 border-top-0">
+                                                                <td  className="gray-txt fw-400 text-right pl-0 pr-0 pt-1 pb-1 border-top-0">
                                                                     <div className="recipt-editwraper d-flex align-items-center justify-content-end">
                                                                         <Field name="vitaminA.percentage" className="mg-input" placeholder="00.00" />%
                                                                     </div>
@@ -657,8 +657,8 @@ const CaloriesMacrosModalComp = (props) => {
                                                                 </td>
                                                             </tr>
                                                             <tr>
-                                                                <td scope="col" className="gray-txt fw-400 pl-0 pr-0 text-left pt-1 pb-1 border-top-0">Vitamin C</td>
-                                                                <td scope="col" className="gray-txt fw-400 text-right pl-0 pr-0 pt-1 pb-1 border-top-0">
+                                                                <td  className="gray-txt fw-400 pl-0 pr-0 text-left pt-1 pb-1 border-top-0">Vitamin C</td>
+                                                                <td  className="gray-txt fw-400 text-right pl-0 pr-0 pt-1 pb-1 border-top-0">
                                                                     <div className="recipt-editwraper d-flex align-items-center justify-content-end">
                                                                         <Field className="mg-input" name="vitaminC.weight" placeholder="00.00" />
                                                                         <Field className="mg-input-txt" name="vitaminC.weightUnit" readOnly={true} type="text" placeholder="mg" />
@@ -666,7 +666,7 @@ const CaloriesMacrosModalComp = (props) => {
                                                                     {touched.vitaminC && touched.vitaminC.weight && errors.vitaminC && errors.vitaminC.weight && <div className="error pink-txt f-11">{errors.vitaminC && errors.vitaminC.weight}</div>}
 
                                                                 </td>
-                                                                <td scope="col" className="gray-txt fw-400 text-right pl-0 pr-0 pt-1 pb-1 border-top-0">
+                                                                <td  className="gray-txt fw-400 text-right pl-0 pr-0 pt-1 pb-1 border-top-0">
                                                                     <div className="recipt-editwraper d-flex align-items-center justify-content-end">
                                                                         <Field name="vitaminC.percentage" className="mg-input" placeholder="00.00" />%
                                                                     </div>

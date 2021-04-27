@@ -10,7 +10,7 @@ const DeleteMenuModalComp = (props) => {
   const dispatch=useDispatch();
     const handleDelete=()=>{
         dispatch(deleteSelectedMenuData(props.selectedid,props.showDeleted));
-        props.onHide();
+        // props.onHide();
     }
     return (
         <>

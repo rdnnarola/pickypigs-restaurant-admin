@@ -6,10 +6,23 @@ const initialState = {
     subCategory_Data:null,
     selectedSubCategory:{},
     selectedCategorySubcategoryList:null,
+    subCategoryModal:false,
+    deleteSubcategoryModal:false,
     };
     
     const subcategoryReducer = (state = initialState, { type, payload }) => {
       switch (type) {
+
+        case 'SET_SUBCATEGORY_MODAL':
+            return  { 
+              ...state, 
+              subCategoryModal:payload
+            };
+        case 'DELETE_SUBCATEGORY_MODAL':
+            return  { 
+              ...state, 
+              deleteSubcategoryModal:payload
+            };    
         
         case "GET_ALLSUBCATEGORY_REQUEST":
         case "ADD_SUBCATEGORY_REQUEST":

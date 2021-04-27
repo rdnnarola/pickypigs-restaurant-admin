@@ -9,7 +9,7 @@ const CustomLoadingComp=()=>{
             <div className=" d-flex flex-column h-100 loader-mainwrapper d-block align-items-center justify-content-center">
                     <div className="loader">
                         <div className="loader-logo ml-auto mr-auto">
-                            <img src={logo_loader} className="img-fluid" />
+                            <img src={logo_loader} className="img-fluid" loading="lazy" alt="picky_pigs_icon"/>
                         </div>
                         <div className="text-center mt-3">
                             <p className="text-white">Fuss Free Food</p>

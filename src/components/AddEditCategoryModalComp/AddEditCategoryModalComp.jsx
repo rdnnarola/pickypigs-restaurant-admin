@@ -58,12 +58,12 @@ const AddEditCategoryModalComp = (props) => {
 
     function createCategory(fields) {
         dispatch(addCategoryData(fields));
-        props.onHide();
+        // props.onHide();
     }
 
     function updateCategory(id,fields) {
         dispatch(updateSelectedCategoryData(id,fields));
-        props.onHide();
+        // props.onHide();
     }
 
     
@@ -118,7 +118,7 @@ const AddEditCategoryModalComp = (props) => {
                                     </div>
                                     <div className="border-top-0 pt-4 pb-4 d-flex justify-content-end">
                                         <button className="btn lightgraynoline-btn text-uppercase border-radius-25 min-width-120" type="reset" onClick={props.onHide}>CANCEL</button>
-                                        <button className="btn pinkline-btn text-uppercase border-radius-25 min-width-120 ml-2" type="submit" disabled={isSubmitting}>{isAddMode?"ADD":"UPDATE"}</button>
+                                        <button className="btn pinkline-btn text-uppercase border-radius-25 min-width-120 ml-2" type="submit" >{isAddMode?"ADD":"UPDATE"}</button>
                                     </div>
                                 </Form>
                             );

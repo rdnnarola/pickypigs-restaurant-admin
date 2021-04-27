@@ -3,6 +3,31 @@ import {setAlert} from './alertAction';
 import { logoutUser } from './generalActions';
 
 
+
+export const showAddUpdateMenuModal = (value) => {
+    
+  return async(dispatch)=>{
+    try{
+        await dispatch({type :"SHOW_ADDUPDATEMENU_MODAL" , payload :value });
+    }
+    catch(error){
+        console.error(error);
+    }
+  }
+};
+
+export const showDeleteMenuModal = (value) => {
+    
+  return async(dispatch)=>{
+    try{
+        await dispatch({type :"SHOW_DELETEMENU_MODAL" , payload :value });
+    }
+    catch(error){
+        console.error(error);
+    }
+  }
+};
+
 export const getAllMenuData=(data)=>{
     return async(dispatch)=>{
         try{
@@ -43,6 +68,7 @@ export const getAllMenuData=(data)=>{
             let dataURL=`/restaurant_admin/menus`
             let response = await Axios.post(dataURL,JSON.stringify(data),config );
             dispatch({type:"ADD_MENU_SUCCESS",payload:response.data});
+            dispatch(showAddUpdateMenuModal(false));
             if(showDeleted){
               dispatch(getAllMenuData());
             }else{
@@ -108,6 +134,7 @@ export const updateMenuForm = (key , value) => {
             let dataURL=`/restaurant_admin/menus/${menuId}`
             let response = await Axios.put(dataURL,JSON.stringify(data),config );
             dispatch({type:"UPDATE_MENU_SUCCESS",payload:response.data});
+            dispatch(showAddUpdateMenuModal(false));
             if(showDeleted){
               dispatch(getAllMenuData());
             }else{
@@ -136,6 +163,7 @@ export const updateMenuForm = (key , value) => {
             dispatch({type:"DELETE_MENU_REQUEST"});
             let response = await Axios.delete(`/restaurant_admin/menus/${selectedId}`)
             dispatch({type:"DELETE_MENU_SUCCESS",payload:response.data});
+            dispatch(showDeleteMenuModal(false));
             if(showDeleted){
               dispatch(getAllMenuData());
             }else{

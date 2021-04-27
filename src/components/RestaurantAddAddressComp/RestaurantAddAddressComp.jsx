@@ -4,10 +4,11 @@ import { Field, Form, Formik } from 'formik';
 import * as Yup from 'yup';
 import { useDispatch, useSelector } from "react-redux";
 import {updateRestaurantInfoDetail} from '../../redux/actions/restaurantSettingAction'
-import GoogleMapTestComp from "../../view/RestaurantDetailPage/GoogleMapTestComp/GoogleMapTestComp";
-import { SERVER_URL,API_KEY } from '../../shared/constant'
-import { getCoordinateData, getLocatityData, getPostalCodeData, getStreetNameData } from "../../redux/actions/googleAction";
+// import GoogleMapTestComp from "../../view/RestaurantDetailPage/GoogleMapTestComp/GoogleMapTestComp";
+// import { SERVER_URL,API_KEY } from '../../shared/constant'
+import { getCoordinateData, getGoogleAddressData, getLocatityData, getPostalCodeData, getStreetNameData } from "../../redux/actions/googleAction";
 import MyfilterListExample from "../MyfilterListExample/MyfilterListExample";
+import MyfilterListExampleCopy from "../MyfilterListExampleCopy/MyfilterListExampleCopy";
 // import {MyfilterListExample} from '../MyfilterListExample/MyfilterListExample'
 
 const RestaurantAddAddressComp = (props) => {
@@ -20,6 +21,7 @@ const RestaurantAddAddressComp = (props) => {
         dispatch(getPostalCodeData(props.addressdata&&props.addressdata.pincode))
         dispatch(getStreetNameData(props.addressdata&&props.addressdata.street))
         dispatch(getLocatityData(props.addressdata&&props.addressdata.locality))
+        dispatch(getGoogleAddressData(props.addressdata&&props.addressdata.googleAddress))
 
     },[dispatch]);
     
@@ -30,6 +32,7 @@ const RestaurantAddAddressComp = (props) => {
         dispatch(getPostalCodeData(props.addressdata&&props.addressdata.pincode))
         dispatch(getStreetNameData(props.addressdata&&props.addressdata.street))
         dispatch(getLocatityData(props.addressdata&&props.addressdata.locality))
+        dispatch(getGoogleAddressData(props.addressdata&&props.addressdata.googleAddress))
     }
 
     let Restaurant_Location = useSelector((state) => {
@@ -53,20 +56,22 @@ const RestaurantAddAddressComp = (props) => {
         myPincode:Restaurant_Location&&Restaurant_Location.postalcode?Restaurant_Location&&Restaurant_Location.postalcode:"",
         myStreet:Restaurant_Location&&Restaurant_Location.streetName?Restaurant_Location&&Restaurant_Location.streetName:"",
         myLocality:Restaurant_Location&&Restaurant_Location.localityData?Restaurant_Location&&Restaurant_Location.localityData:"",
+        myGoogleAddress:Restaurant_Location&&Restaurant_Location.address_Data?Restaurant_Location&&Restaurant_Location.address_Data:"",
 
     }
 
     const validationSchema  = Yup.object().shape({
         // street:Yup.string().required('street Name is required'),
         // locality:Yup.string().required('locality is required'),
-        myPincode:Yup.number().required('pincode is required'),
+        myPincode:Yup.number().required('Pincode is required. Please set a more precise location!'),
         addLocationMap:Yup.boolean().oneOf([true,false]),
         getDirectionOption:Yup.boolean().oneOf([true,false]),
         shareLocationOption:Yup.boolean().oneOf([true,false]),
         // coordinates:Yup.array().required('Please Select MapLocation'),
         googleAddress:Yup.string(),
-        myStreet:Yup.string().required('street Name is required'),
-        myLocality:Yup.string().required('street Name is required'),
+        myGoogleAddress:Yup.string(),
+        myStreet:Yup.string().required('Street Name is required. Please set a more precise location!'),
+        myLocality:Yup.string().required('Street Name is required. Please set a more precise location!'),
 
 
      });
@@ -80,7 +85,7 @@ const RestaurantAddAddressComp = (props) => {
             addLocationMap:fields.addLocationMap,
             getDirectionOption:fields.getDirectionOption,
             shareLocationOption:fields.shareLocationOption,
-            googleAddress:Restaurant_Location&&Restaurant_Location.location_data,
+            googleAddress:fields.myGoogleAddress,
             map: {
                 type:"point",
                 coordinates: Restaurant_Location&&Restaurant_Location.coordinate_data.split(',')
@@ -145,12 +150,14 @@ const RestaurantAddAddressComp = (props) => {
                                                             <div className="row  mb-4 mt-2">
                                                                 <div className="col-sm-12">
                                                                     <div className="rs-info-block">
-                                                                        <h5 className="accordion-label">Add a location</h5>
-                                                                       
+                                                                        <h5 className="accordion-label">Search Location</h5>
                                                                         <React.Fragment>
-                                                                            <MyfilterListExample coordinates={Restaurant_Location&&Restaurant_Location.coordinate_data}/>
-                                                                            {/* {Restaurant_Location&&Restaurant_Location.location_data} */}
+                                                                            <MyfilterListExampleCopy/>
                                                                         </React.Fragment>
+                                                                       
+                                                                        {/* <React.Fragment>
+                                                                            <MyfilterListExample coordinates={Restaurant_Location&&Restaurant_Location.coordinate_data}/>
+                                                                        </React.Fragment> */}
                                                                        
                                                                     </div>
                                                                 </div>
@@ -167,8 +174,8 @@ const RestaurantAddAddressComp = (props) => {
                                                                                 <p className="form-control-plaintext text-uppercase">-</p>
                                                                         :
                                                                             <React.Fragment>
-                                                                                <Field name="googleAddress" readOnly={true}  value={Restaurant_Location&&Restaurant_Location.location_data} placeholder="Enter Address here" className="form-control-inputtext form-control"/>
-                                                                                {touched.googleAddress && errors.googleAddress && <div className="error pink-txt f-11">{errors.googleAddress}</div>}
+                                                                                <Field name="myGoogleAddress" readOnly={true}  placeholder="Enter Address here" className="form-control-inputtext form-control"/>
+                                                                                {touched.myGoogleAddress && errors.myGoogleAddress && <div className="error pink-txt f-11">{errors.myGoogleAddress}</div>}
                                                                             </React.Fragment>
                                                                         }
                                                                     </div>
@@ -251,7 +258,32 @@ const RestaurantAddAddressComp = (props) => {
                                                                     </div>
                                                                 }
                                                             </div>
+                                                            
                                                             <div className="row" >
+                                                                {editForm?
+                                                                    null
+                                                                :
+                                                                    values.addLocationMap?
+                                                                        <React.Fragment>
+                                                                            {Restaurant_Location&&Restaurant_Location.coordinate_data&&
+                                                                                <div className="col-sm-12 mb-2" style={{height:350,width:'100%'}}>
+                                                                                    <iframe 
+                                                                                        style={{border:'none'}} 
+                                                                                        src={`http://maps.google.com/maps?q=${Restaurant_Location&&Restaurant_Location.coordinate_data}&z=16&output=embed`}
+                                                                                        height="300" 
+                                                                                        width="100%"
+                                                                                    >
+                                                                                    </iframe>
+                                                                                </div>
+                                                                            }
+                                                                        </React.Fragment>
+                                                                    :
+                                                                        null
+                                                                        
+                                                                    
+                                                                }
+                                                            </div>
+                                                            {/* <div className="row" >
                                                                 {editForm
                                                                         ?
                                                                         null
@@ -270,7 +302,7 @@ const RestaurantAddAddressComp = (props) => {
                                                                         />
                                                                     </div>
                                                                 }
-                                                            </div>
+                                                            </div> */}
                                                         </div>
                                                     </div>
                                                 </div>

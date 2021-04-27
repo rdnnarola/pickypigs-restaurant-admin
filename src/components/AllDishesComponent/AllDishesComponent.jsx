@@ -4,7 +4,7 @@ import { getAllDishesData } from "../../redux/actions/dishesAction";
 import moment from "moment";
 import './AllDishesComponent.scss';
 import { getAllMenuData } from "../../redux/actions/menuAction";
-import { getCategoryListOfSelectedMenu} from "../../redux/actions/categoryAction";
+// import { getCategoryListOfSelectedMenu} from "../../redux/actions/categoryAction";
 import { Link } from "react-router-dom";
 import DeleteDishesModalComp from "../DeleteDishesModalComp/DeleteDishesModalComp";
 
@@ -25,7 +25,7 @@ const AllDishesComponent=()=>{
 
     useEffect(()=>{
         dispatch(getAllMenuData({start:0,delete:0}));
-    },[]);
+    },[dispatch]);
 
     let dishesData = useSelector((state)=>{
         return state.dishes

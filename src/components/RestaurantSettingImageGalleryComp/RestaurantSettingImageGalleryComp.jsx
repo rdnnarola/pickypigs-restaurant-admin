@@ -109,7 +109,7 @@ const RestaurantSettingImageGalleryComp = (props) => {
                                                                                     className="form-control-file userprofile-control upload"
                                                                                     onChange={(e) => { galleryImageUploadHandeler(e, "Food") }}
                                                                                 />
-                                                                                <span className="brandon-Medium">Upload from your gallery</span>
+                                                                                <span className="brandon-Medium">Upload Image</span>
                                                                             </div>
                                                                         </div>
                                                                     </form>
@@ -169,7 +169,7 @@ const RestaurantSettingImageGalleryComp = (props) => {
                                                                                     multiple
                                                                                     onChange={(e) => { galleryImageUploadHandeler(e, "Ambience") }}
                                                                                 />
-                                                                                <span className="brandon-Medium">Upload from your desktop</span>
+                                                                                <span className="brandon-Medium">Upload Image</span>
                                                                             </div>
                                                                         </div>
                                                                     </form>

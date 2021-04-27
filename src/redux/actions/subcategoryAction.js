@@ -3,6 +3,32 @@ import {setAlert} from './alertAction';
 import { logoutUser } from './generalActions';
 
 
+
+export const setSubcategoryModal = (value) => {
+    
+  return async(dispatch)=>{
+    try{
+        await dispatch({type :"SET_SUBCATEGORY_MODAL" , payload :value });
+    }
+    catch(error){
+        console.error(error);
+    }
+  }
+};
+
+export const deleteSubcategoryModal = (value) => {
+    
+  return async(dispatch)=>{
+    try{
+        await dispatch({type :"DELETE_SUBCATEGORY_MODAL" , payload :value });
+    }
+    catch(error){
+        console.error(error);
+    }
+  }
+};
+
+
 export const getAllSubCategoryData=(data)=>{
     return async(dispatch)=>{
         try{
@@ -43,6 +69,7 @@ export const getAllSubCategoryData=(data)=>{
             let dataURL=`/restaurant_admin/subcategory`
             let response = await Axios.post(dataURL,JSON.stringify(data),config );
             dispatch({type:"ADD_SUBCATEGORY_SUCCESS",payload:response.data});
+            dispatch(setSubcategoryModal(false))
             dispatch(getAllSubCategoryData());
             dispatch(setAlert('Sub-Category Added Successfuly', 'success'));
 
@@ -98,6 +125,7 @@ export const updateSubCategoryForm = (key , value) => {
             let dataURL=`/restaurant_admin/subcategory/${subCategoryId}`
             let response = await Axios.put(dataURL,JSON.stringify(data),config );
             dispatch({type:"UPDATE_SUBCATEGORY_SUCCESS",payload:response.data});
+            dispatch(setSubcategoryModal(false))
             dispatch(getAllSubCategoryData());
             dispatch(setAlert('Sub-Category Updated Successfuly', 'success'));
 
@@ -120,6 +148,7 @@ export const updateSubCategoryForm = (key , value) => {
             dispatch({type:"DELETE_SUBCATEGORY_REQUEST"});
             let response = await Axios.delete(`/restaurant_admin/subcategory/${subCategoryId}`)
             dispatch({type:"DELETE_SUBCATEGORY_SUCCESS",payload:response.data});
+            dispatch(deleteSubcategoryModal(false))
             dispatch(getAllSubCategoryData());
             dispatch(setAlert('Sub-Category Deleted Successfuly', 'warning'));
 

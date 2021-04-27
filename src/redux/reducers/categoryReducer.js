@@ -5,11 +5,24 @@ const initialState = {
     errorMessage:'',
     category_Data:null,
     selectedCategory:{},
-    selectedMenuCategoryList:null
+    selectedMenuCategoryList:null,
+    showAddUpdateCategoryModalData:false,
+    showDeleteCategoryModalData:false,
     };
     
     const categoryReducer = (state = initialState, { type, payload }) => {
       switch (type) {
+
+        case 'SHOW_ADDUPDATECATEGORY_MODAL':
+            return  { 
+              ...state, 
+              showAddUpdateCategoryModalData:payload
+            };
+        case 'SHOW_DELETECATEGORY_MODAL':
+            return  { 
+              ...state, 
+              showDeleteCategoryModalData:payload
+            }; 
         
         case "GET_ALLCATEGORY_REQUEST":
         case "ADD_CATEGORY_REQUEST":

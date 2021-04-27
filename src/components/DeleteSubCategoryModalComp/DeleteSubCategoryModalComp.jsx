@@ -11,7 +11,7 @@ const DeleteSubCategoryModalComp = (props) => {
   const dispatch=useDispatch();
     const handleDelete=()=>{
         dispatch(deleteSelectedSubCategoryData(props.selectedid));
-        props.onHide();
+        // props.onHide();
     }
     return (
         <>

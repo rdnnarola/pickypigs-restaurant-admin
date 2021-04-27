@@ -1,0 +1,101 @@
+.myfilterlistexamplecopy-comp {
+  width: calc(100% - 0px);
+}
+.myfilterlistexamplecopy-comp .filterlis-location-input-wrapper .location-button button {
+  background: #fff;
+  border: none;
+  outline: none;
+}
+.myfilterlistexamplecopy-comp .filterlis-location-input-wrapper .location-button button img {
+  width: 15px;
+}
+.myfilterlistexamplecopy-comp .filterlis-location-input-wrapper form {
+  padding-left: 7px;
+  width: 100%;
+}
+.myfilterlistexamplecopy-comp .filterlis-location-input-wrapper form.location-form-input .MuiFormControl-root {
+  width: 100%;
+}
+.myfilterlistexamplecopy-comp .filterlis-location-input-wrapper form.location-form-input .MuiFormControl-root label {
+  color: #555555 !important;
+}
+.myfilterlistexamplecopy-comp .filterlis-location-input-wrapper form.location-form-input .MuiFormControl-root label.MuiInputLabel-formControl {
+  transform: translate(0, 10px) scale(1);
+  margin-bottom: 0px !important;
+}
+.myfilterlistexamplecopy-comp .filterlis-location-input-wrapper form.location-form-input .MuiFormControl-root label.MuiInputLabel-shrink {
+  transform: translate(0, -7.5px) scale(0.75);
+}
+.myfilterlistexamplecopy-comp .filterlis-location-input-wrapper form.location-form-input .MuiFormControl-root .MuiInputBase-root.MuiInputBase-formControl.MuiInput-formControl {
+  margin-top: 0px;
+}
+.myfilterlistexamplecopy-comp .filterlis-location-input-wrapper .MuiInput-underline:before,
+.myfilterlistexamplecopy-comp .filterlis-location-input-wrapper .MuiInput-underline:after {
+  display: none;
+}
+.myfilterlistexamplecopy-comp .filterlis-location-input-wrapper .MuiInputBase-input {
+  background-repeat: no-repeat;
+  background-size: 10px auto;
+  background-position: calc(100% - 6px) 15px;
+  background-image: url("../../assets//images/mobile_imgs/down_arrow_gray.svg");
+  font-size: 15px !important;
+  color: #232323 !important;
+  font-family: "Brandon Text Medium" !important;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  white-space: normal;
+  word-break: break-word;
+  padding-right: 20px;
+}
+
+.pac-card {
+  margin: 10px 10px 0 0;
+  border-radius: 2px 0 0 2px;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  outline: none;
+  box-shadow: none;
+  background-color: #fff;
+  font-family: Roboto;
+}
+
+.pac-container {
+  margin: 5px 10px 0 0;
+  background-color: #ffffff;
+  box-sizing: border-box;
+  border-radius: 10px;
+  box-shadow: 0 2px 2px rgba(173, 173, 173, 0.062);
+  min-width: 450px;
+  max-height: 250px;
+  overflow-y: scroll;
+}
+
+.pac-item {
+  display: block;
+  padding-left: 70px;
+  padding-bottom: 10px;
+  border: none;
+  min-height: 65px;
+}
+
+.pac-item-query {
+  display: flex;
+  align-items: center;
+  font-size: 16px;
+  line-height: 20px;
+  padding-top: 10px;
+}
+
+.pac-icon {
+  position: absolute;
+  left: 10px;
+  background-image: url("../../assets//images/nearlocaion-icon.svg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 55px;
+  height: 55px;
+}

@@ -9,6 +9,7 @@ import * as Yup from 'yup';
 import CheckBoxAutoCompleteComp from "../CheckBoxAutoCompleteComp/CheckBoxAutoCompleteComp";
 import moment from 'moment'
 import { addMenuData, getSelectedMenuData, updateSelectedMenuData } from "../../redux/actions/menuAction";
+import DaySelectorCheckBoxAutoCompleteComp from "../DaySelectorCheckBoxAutoCompleteComp/DaySelectorCheckBoxAutoCompleteComp";
 
 
 const days_information = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"];
@@ -52,7 +53,7 @@ const AddEditMenuModalComp = (props) => {
 
     let initialValues2={
         name:menuData.name,
-        timeFrom:`Thu Dec 31 2020 ${menuData.timeFrom} `,
+        timeFrom:`${moment(menuData.timeFrom, "HH:mm")} `, 
         timeTo:`Thu Dec 31 2020 ${menuData.timeTo} `,
         type:menuData.type,
         availability:menuData.availability,
@@ -71,12 +72,12 @@ const AddEditMenuModalComp = (props) => {
     function createMenuRequest(fields) {
       
         dispatch(addMenuData({...fields,timeFrom:moment(fields.timeFrom).format( 'HH:mm'),timeTo:moment(fields.timeTo).format( 'HH:mm')},props.showDeleted));
-        props.onHide();
+        // props.onHide();
     }
 
     function updateMenuRequest(id,fields) {
         dispatch(updateSelectedMenuData(id,{...fields,timeFrom:moment(fields.timeFrom).format( 'HH:mm'),timeTo:moment(fields.timeTo).format( 'HH:mm')},props.showDeleted));
-        props.onHide();
+        // props.onHide();
     }
 
     return (
@@ -108,7 +109,7 @@ const AddEditMenuModalComp = (props) => {
                                         </div>
                                         <div className="custom-drodown form-group ">
                                             <label className="gray-txt f-15">Availability</label>
-                                            <CheckBoxAutoCompleteComp className="minwidth-260" placeholder={"Select"}  
+                                            <DaySelectorCheckBoxAutoCompleteComp className="minwidth-260" placeholder={"Select"}  
                                                 name="availability" options={days_information} value={values.availability} 
                                                 onChangeData={value => setFieldValue("availability", value)}
                                             />

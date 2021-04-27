@@ -15,7 +15,7 @@ import { getAllRestaurantDetail, updateRestaurantAbout, updateRestaurantCoverIma
 import { useHistory } from "react-router-dom";
 import CustomLoadingComp from "../../components/CustomLoadingComp/CustomLoadingComp";
 import moment from "moment";
-import { SERVER_URL, API_KEY } from '../../shared/constant'
+import { SERVER_URL } from '../../shared/constant'
 import RestaurantSettingImageGalleryComp from "../../components/RestaurantSettingImageGalleryComp/RestaurantSettingImageGalleryComp";
 import GoogleMapTestComp from "./GoogleMapTestComp/GoogleMapTestComp";
 import SettingSubscriptionComp from "../../components/SettingSubscriptionComp/SettingSubscriptionComp";

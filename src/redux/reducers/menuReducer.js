@@ -5,10 +5,23 @@ const initialState = {
     errorMessage:'',
     menu_Data:null,
     selectedMenu:{},
+    showAddUpdateMenuModalData:false,
+    showDeleteMenuModalData:false,
     };
     
     const menuReducer = (state = initialState, { type, payload }) => {
       switch (type) {
+
+        case 'SHOW_ADDUPDATEMENU_MODAL':
+            return  { 
+              ...state, 
+              showAddUpdateMenuModalData:payload
+            };
+        case 'SHOW_DELETEMENU_MODAL':
+            return  { 
+              ...state, 
+              showDeleteMenuModalData:payload
+            }; 
         
         case "GET_ALLMENU_REQUEST":
         case "ADD_MENU_REQUEST":

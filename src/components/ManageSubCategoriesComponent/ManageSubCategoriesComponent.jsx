@@ -1,7 +1,7 @@
 import React,{useState,useEffect} from "react";
 import {useDispatch,useSelector} from "react-redux";
 import moment from "moment";
-import {getAllSubCategoryData,hideSelectedSubCategoryData,duplicateSelectedSubCategoryData} from "../../redux/actions/subcategoryAction";
+import {getAllSubCategoryData,hideSelectedSubCategoryData,duplicateSelectedSubCategoryData, setSubcategoryModal, deleteSubcategoryModal} from "../../redux/actions/subcategoryAction";
 import AddEditSubCategoryModalComp from "../AddEditSubCategoryModalComp/AddEditSubCategoryModalComp";
 import './ManageSubCategoriesComponent.scss';
 import DeleteSubCategoryModalComp from "../DeleteSubCategoryModalComp/DeleteSubCategoryModalComp";
@@ -10,8 +10,8 @@ import DeleteSubCategoryModalComp from "../DeleteSubCategoryModalComp/DeleteSubC
 const ManageSubCategoriesComponent = () => {
     const dispatch=useDispatch();
 
-    const [addSubCategoryModalShow, setAddSubCategoryModalShow] = React.useState(false);
-    const [deleteModalShow, setDeleteModalShow] = React.useState(false);
+    // const [addSubCategoryModalShow, setAddSubCategoryModalShow] = React.useState(false);
+    // const [deleteModalShow, setDeleteModalShow] = React.useState(false);
     const [inputValue,setInputValue]=useState("");
     const [subCategoryId,setSubCategoryId]=useState('')
 
@@ -23,6 +23,9 @@ const ManageSubCategoriesComponent = () => {
         return state.subcategory
     });
     let {isLoading,subCategory_Data}=subCategoryData;
+
+    const subModalShow = useSelector(state => state.subcategory.subCategoryModal)
+    const deleteModalShow = useSelector(state => state.subcategory.deleteSubcategoryModal)
 
     return (
         <>
@@ -41,10 +44,10 @@ const ManageSubCategoriesComponent = () => {
                                 <input className="form-control" type="text" onChange={(e)=>{setInputValue(e.target.value)}} placeholder="Search" />
                             </div>
                         </div>
-                        <button className="btn pinkline-btn text-uppercase rounded-pill mr-3 f-15" onClick={() => {setAddSubCategoryModalShow(true);setSubCategoryId(null)}}><span className="add-icon">Add New</span></button>
+                        <button className="btn pinkline-btn text-uppercase rounded-pill mr-3 f-15" onClick={() => {dispatch(setSubcategoryModal(true));setSubCategoryId(null)}}><span className="add-icon">Add New</span></button>
                     </div>
                     <div>
-                        <AddEditSubCategoryModalComp show={addSubCategoryModalShow} onHide={() => setAddSubCategoryModalShow(false)}  mydata={subCategory_Data&&subCategory_Data.menuDetails} subcategoryid={subCategoryId}/>
+                        <AddEditSubCategoryModalComp show={subModalShow} onHide={() => dispatch(setSubcategoryModal(false))}  mydata={subCategory_Data&&subCategory_Data.menuDetails} subcategoryid={subCategoryId}/>
                     </div>
                 </div>
             </div>
@@ -98,8 +101,8 @@ const ManageSubCategoriesComponent = () => {
                                                                     Action
                                                                 </button>
                                                                 <ul className="dropdown-menu actiondropdown-list" aria-labelledby="dropdownMenuButton">
-                                                                    <li><button className="dropdown-item" onClick={() => {setAddSubCategoryModalShow(true);setSubCategoryId(data._id)}} >Update</button></li>
-                                                                    <li><button className="dropdown-item" onClick={() => {setDeleteModalShow(true);setSubCategoryId(data._id)}}>Delete</button></li>
+                                                                    <li><button className="dropdown-item" onClick={() => {dispatch(setSubcategoryModal(true));setSubCategoryId(data._id)}} >Update</button></li>
+                                                                    <li><button className="dropdown-item" onClick={() => {dispatch(deleteSubcategoryModal(true));setSubCategoryId(data._id)}}>Delete</button></li>
                                                                     <li><button className="dropdown-item" onClick={()=>{dispatch(hideSelectedSubCategoryData(data._id,{isActive:!data.isActive}))}}>{data.isActive?"Hide":"UnHide"}</button></li>
                                                                     <li><button className="dropdown-item" onClick={()=>{dispatch(duplicateSelectedSubCategoryData(data._id))}}>Duplicate</button></li>
                                                                 </ul>
@@ -122,7 +125,7 @@ const ManageSubCategoriesComponent = () => {
                         }
                     </tbody>
                 </table>
-                <DeleteSubCategoryModalComp show={deleteModalShow} onHide={() => setDeleteModalShow(false)}  selectedid={subCategoryId}/>
+                <DeleteSubCategoryModalComp show={deleteModalShow} onHide={() => dispatch(deleteSubcategoryModal(false))}  selectedid={subCategoryId}/>
             </div>
 
         </>

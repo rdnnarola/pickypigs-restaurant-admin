@@ -180,7 +180,7 @@ const ManageEasyAddDishComp = () => {
         image: '',
         favorite: false,
         new: false,
-        available: false,
+        available: true,
         menuId: [],
         categoryId: '',
         subcategoryId: '',

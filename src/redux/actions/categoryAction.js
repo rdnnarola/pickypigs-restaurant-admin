@@ -2,6 +2,31 @@ import Axios from './axios';
 import {setAlert} from './alertAction';
 import { logoutUser } from './generalActions';
 
+
+export const showAddUpdateCategoryModal = (value) => {
+    
+  return async(dispatch)=>{
+    try{
+        await dispatch({type :"SHOW_ADDUPDATECATEGORY_MODAL" , payload :value });
+    }
+    catch(error){
+        console.error(error);
+    }
+  }
+};
+
+export const showDeleteCategoryModal = (value) => {
+    
+  return async(dispatch)=>{
+    try{
+        await dispatch({type :"SHOW_DELETECATEGORY_MODAL" , payload :value });
+    }
+    catch(error){
+        console.error(error);
+    }
+  }
+};
+
 export const getAllCategoryData=(data)=>{
     return async(dispatch)=>{
         try{
@@ -44,6 +69,7 @@ export const getAllCategoryData=(data)=>{
             let dataURL=`/restaurant_admin/category`
             let response = await Axios.post(dataURL,JSON.stringify(data),config );
             dispatch({type:"ADD_CATEGORY_SUCCESS",payload:response.data});
+            dispatch(showAddUpdateCategoryModal(false))
             dispatch(getAllCategoryData());
             dispatch(setAlert('Category Added Successfuly', 'success'));
 
@@ -98,8 +124,9 @@ export const updateCategoryForm = (key , value) => {
             let dataURL=`/restaurant_admin/category/${categoryId}`
             let response = await Axios.put(dataURL,JSON.stringify(data),config );
             dispatch({type:"UPDATE_CATEGORY_SUCCESS",payload:response.data});
-            await dispatch(getAllCategoryData());
-            await dispatch(setAlert('Category Updated Successfuly', 'success'));
+            dispatch(showAddUpdateCategoryModal(false))
+            dispatch(getAllCategoryData());
+            dispatch(setAlert('Category Updated Successfuly', 'success'));
 
         }
         catch(error){
@@ -120,6 +147,7 @@ export const updateCategoryForm = (key , value) => {
             let response = await Axios.delete(`/restaurant_admin/category/${categoryId}`)
             dispatch({type:"DELETE_CATEGORY_SUCCESS",payload:response.data});
             dispatch(setAlert('Category Deleted Successfuly', 'warning'));
+            dispatch(showDeleteCategoryModal(false))
             dispatch(getAllCategoryData());
         }
         catch(error){
