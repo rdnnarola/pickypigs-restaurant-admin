@@ -8,6 +8,8 @@ const initialState = {
     selectedMenuCategoryList:null,
     showAddUpdateCategoryModalData:false,
     showDeleteCategoryModalData:false,
+
+    getSingleCategoryLoading:false,
     };
     
     const categoryReducer = (state = initialState, { type, payload }) => {
@@ -97,7 +99,7 @@ const initialState = {
         case "UPDATE_CATEGORY_FAILURE":  
         case "DELETE_CATEGORY_FAILURE": 
         case "HIDE_CATEGORY_FAILURE": 
-        case "DELETE_CATEGORY_FAILURE": 
+        case "GET_MENUCATEGORYLIST_FAILURE": 
         case "DUPLICATE_CATEGORY_FAILURE":    
             return {
                 ...state,

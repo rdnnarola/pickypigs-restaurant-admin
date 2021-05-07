@@ -6,6 +6,7 @@ const initialState = {
     dishes_Data:null,
     selected_Disc:null,
 
+    updateDishAvailablityLoading:false,
     };
     
     const dishesReducer = (state = initialState, { type, payload }) => {
@@ -62,7 +63,22 @@ const initialState = {
                 errorMessage:payload
             };
   
-    
+        case "UPDATE_SELECTEDDISHAVAILABLITY_REQUEST":
+            return {
+                ...state,
+                updateDishAvailablityLoading :true,
+            };
+        case "UPDATE_SELECTEDDISHAVAILABLITY_SUCCESS":            
+            return{
+                ...state,
+                updateDishAvailablityLoading:false
+            }   
+        case "UPDATE_SELECTEDDISHAVAILABLITY_FAILURE":            
+            return{
+                ...state,
+                updateDishAvailablityLoading:false,
+                errorMessage:payload
+            }      
 
         default:
           return state;

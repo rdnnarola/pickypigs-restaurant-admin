@@ -243,6 +243,9 @@ export const updateMenuForm = (key , value) => {
           dispatch({type:"DUPLICATE_MENU_FAILURE",payload:error});
           if (error.response) {
             dispatch(setAlert(`${error.response.data.message}`, 'error'));
+            if(error.response&&error.response.status==401){
+              dispatch(logoutUser())
+            }
           } else {
             dispatch(setAlert('Something Went wrong!', 'error'));
           }
@@ -275,6 +278,9 @@ export const updateMenuForm = (key , value) => {
           dispatch({type:"REDO_MENU_FAILURE",payload:error});
           if (error.response) {
             dispatch(setAlert(`${error.response.data.message}`, 'error'));
+            if(error.response&&error.response.status==401){
+              dispatch(logoutUser())
+            }
           } else {
             dispatch(setAlert('Something Went wrong!', 'error'));
           }
@@ -284,4 +290,24 @@ export const updateMenuForm = (key , value) => {
 
   
 
-  
+  export const getSelectedMenuDishData=(menuId)=>{
+    return async(dispatch)=>{
+        try{
+            dispatch({type:"GET_SELECTEDMENUDISH_REQUEST"});
+            
+            let response = await Axios.get(`/restaurant_admin/menus/menu_detail/${menuId}`)
+            dispatch({type:"GET_SELECTEDMENUDISH_SUCCESS",payload:response.data});
+        }
+        catch(error){
+          dispatch({type:"GET_SELECTEDMENUDISH_FAILURE",payload:error});
+          if (error.response) {
+            dispatch(setAlert(`${error.response.data.message}`, 'error'));
+            if(error.response&&error.response.status==401){
+              dispatch(logoutUser())
+            }
+          } else {
+            dispatch(setAlert('Something Went wrong!', 'error'));
+          }
+        }
+    }
+  };

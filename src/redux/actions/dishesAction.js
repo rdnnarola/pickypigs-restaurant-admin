@@ -80,6 +80,9 @@ export const getAllDishesData=(data)=>{
           dispatch({type:"ADD_DISHES_FAILURE",payload:error});
           if (error.response) {
             dispatch(setAlert(`${error.response.data.message}`, 'error'));
+            if(error.response&&error.response.status==401){
+              dispatch(logoutUser())
+            }
           } else {
             dispatch(setAlert('Something Went wrong!', 'error'));
           }
@@ -98,6 +101,9 @@ export const getAllDishesData=(data)=>{
         }
         catch(error){
           dispatch({type:"GET_SELECTEDDISC_FAILURE",payload:error});
+          if(error.response&&error.response.status==401){
+            dispatch(logoutUser())
+          }
         }
     }
   };
@@ -116,6 +122,9 @@ export const getAllDishesData=(data)=>{
             dispatch({type:"DELETE_DISHES_FAILURE",payload:error});
             if (error.response) {
               dispatch(setAlert(`${error.response.data.message}`, 'error'));
+              if(error.response&&error.response.status==401){
+                dispatch(logoutUser())
+              }
             } else {
               dispatch(setAlert('Something went wrong!', 'error'));
             }
@@ -174,6 +183,42 @@ export const getAllDishesData=(data)=>{
           dispatch({type:"UPDATE_DISC_FAILURE",payload:error});
           if (error.response) {
             dispatch(setAlert(`${error.response.data.message}`, 'error'));
+            if(error.response&&error.response.status==401){
+              dispatch(logoutUser())
+            }
+          } else {
+            dispatch(setAlert('Something Went wrong!', 'error'));
+          }
+        }
+    }
+  };
+
+
+
+
+  export const updateSelectedDishAvailablity=(dishId,data)=>{
+    return async(dispatch)=>{
+        try{
+            dispatch({type:"UPDATE_SELECTEDDISHAVAILABLITY_REQUEST"});
+            let config= {
+                headers:{
+                 "Content-Type":"application/json"
+                 }
+             }
+            let dataURL=`/restaurant_admin/dish/dish_availablity/${dishId}`
+            let response = await Axios.put(dataURL,JSON.stringify(data),config );
+            dispatch({type:"UPDATE_SELECTEDDISHAVAILABLITY_SUCCESS",payload:response.data});
+            dispatch(setAlert('Dish Availablity Updated Successfuly', 'success'));
+
+        }
+        catch(error){
+          dispatch({type:"UPDATE_SELECTEDDISHAVAILABLITY_FAILURE",payload:error});
+          if (error.response) {
+            dispatch(setAlert(`${error.response.data.message}`, 'error'));
+            if(error.response&&error.response.status==401){
+              dispatch(logoutUser())
+            }
+            
           } else {
             dispatch(setAlert('Something Went wrong!', 'error'));
           }

@@ -93,13 +93,13 @@ const UpdateEasyAddDishComp = () => {
     });
     let { isLoading, allergy_Data, dietary_Data, lifestyle_Data, cooking_Data } = allAllergy_data;
 
-    useEffect(() => {
-        if (selectedDisc_data && selectedDisc_data[0].menuId !== "") {
-            dispatch(getCategoryListOfSelectedMenu({ menuId: selectedDisc_data && selectedDisc_data[0].menuId }));
-        } else {
-            dispatch(getCategoryListOfSelectedMenu({ menuId: [] }));
-        }
-    }, [dispatch, selectedDisc_data && selectedDisc_data[0].menuId]);
+    // useEffect(() => {
+    //     if (selectedDisc_data && selectedDisc_data[0].menuId !== "") {
+    //         dispatch(getCategoryListOfSelectedMenu({ menuId: selectedDisc_data && selectedDisc_data[0].menuId }));
+    //     } else {
+    //         dispatch(getCategoryListOfSelectedMenu({ menuId: [] }));
+    //     }
+    // }, [dispatch, selectedDisc_data && selectedDisc_data[0].menuId]);
 
     const handleAlergy = (e, fieldValue, setFieldValue, fieldname) => {
         e.preventDefault();
@@ -134,7 +134,7 @@ const UpdateEasyAddDishComp = () => {
 
     //--------- Getting All Category Data -------//
     const getCategoryAction = (data) => {
-        if (data && data.length > 0 !== "") {
+        if (data && data.length > 0 ) {
             dispatch(getCategoryListOfSelectedMenu({ menuId: data }));
 
         } else {
@@ -186,7 +186,8 @@ const UpdateEasyAddDishComp = () => {
         return state.dishes.isLoading
     })
 
-    console.log(categoryData && categoryData.find(cat => cat._id === selectedDisc_data && selectedDisc_data[0].categoryId))
+    // console.log(categoryData && categoryData.find(cat => cat._id === selectedDisc_data && selectedDisc_data[0].categoryId))
+    console.log(selectedDisc_data && selectedDisc_data[0].menuId.filter( val => menuData && menuData.menuDetails&&(menuData.menuDetails.map(data=>data._id)).includes(val)))
 
     const initialValues = {
         name: selectedDisc_data && selectedDisc_data[0].name ? selectedDisc_data[0].name : '',
@@ -197,9 +198,11 @@ const UpdateEasyAddDishComp = () => {
         favorite: selectedDisc_data && selectedDisc_data[0].favorite ? selectedDisc_data[0].favorite : false,
         new: selectedDisc_data && selectedDisc_data[0].new ? selectedDisc_data[0].new : false,
         available: selectedDisc_data && selectedDisc_data[0].available ? selectedDisc_data[0].available : false,
+      
         menuId: selectedDisc_data && selectedDisc_data[0].menuId ? selectedDisc_data && selectedDisc_data[0].menuId.filter( val => menuData && menuData.menuDetails&&(menuData.menuDetails.map(data=>data._id)).includes(val)): [],
-        categoryId:categoryData && categoryData.find(cat => cat._id === (selectedDisc_data && selectedDisc_data[0].categoryId))?selectedDisc_data && selectedDisc_data[0].categoryId:'',
-        subcategoryId:subcategoryData && subcategoryData.find(subcat => subcat._id === (selectedDisc_data && selectedDisc_data[0].subcategoryId))?selectedDisc_data && selectedDisc_data[0].subcategoryId:'',
+        categoryId:categoryData && categoryData.find(cat => cat._id == selectedDisc_data && selectedDisc_data[0].categoryId)?selectedDisc_data && selectedDisc_data[0].categoryId:'',
+        subcategoryId:subcategoryData && subcategoryData.find(subcat => subcat._id == selectedDisc_data && selectedDisc_data[0].subcategoryId) ?selectedDisc_data && selectedDisc_data[0].subcategoryId:'',
+       
         // menuId: selectedDisc_data && selectedDisc_data[0].menuId ? selectedDisc_data[0].menuId : [],
         // categoryId: selectedDisc_data && selectedDisc_data[0].categoryId ? selectedDisc_data[0].categoryId : '',
         // subcategoryId: selectedDisc_data && selectedDisc_data[0].subcategoryId ? selectedDisc_data[0].subcategoryId : '',
@@ -342,7 +345,9 @@ const UpdateEasyAddDishComp = () => {
             Yup.object().shape({
                 item:Yup.string().required("Item required"),
                 qty:Yup.number().required('Quantity Required').min(0,'Value must not below 0').max(100,"Value must not exceed 100"),
-                allergeies:Yup.array().required('Please Select Allergeies'),
+                // allergeies:Yup.array().required('Please Select Allergeies'),
+                allergeies:Yup.array(),
+
             })
         ),
 
@@ -408,7 +413,7 @@ const UpdateEasyAddDishComp = () => {
                             return (
                                 <Form>
                                     <React.Fragment>
-                                        {/* {JSON.stringify(values)} */}
+                                        {/* {JSON.stringify(values.menuId)} */}
                                         {/* || */}
                                         {/* {JSON.stringify( selectedDisc_data && selectedDisc_data[0].caloriesAndMacros&& selectedDisc_data[0].caloriesAndMacros._id)} */}
                                         {/* || */}
@@ -429,15 +434,19 @@ const UpdateEasyAddDishComp = () => {
                                         <div>
                                             <div className="row mt-4 pt-1">
                                                 <div className="col-md-9">
-                                                    <div className="row">
-                                                        <div className="col-sm-12">
-                                                            <p className="mb-4">
-                                                                <span className="recipe-msg brandon-Medium">
-                                                                    This recipe does not contain its dietary preferences and lifestyle choices. Consider updating before adding to a dish
-                                                            </span>
-                                                            </p>
+                                                    { values.allergenId.length<=0 || values.dietaryId.length<=0 || values.lifestyleId.length<=0?
+                                                        <div className="row">
+                                                            <div className="col-sm-12">
+                                                                <p className="mb-4">
+                                                                    <span className="recipe-msg brandon-Medium">
+                                                                        This recipe does not contain its {values.allergenId.length<=0 && "allergen preferences"} {values.dietaryId.length<=0 && ", dietary preferences"}  {values.lifestyleId.length<=0 && " and lifestyle choices"}. Consider updating before adding to a dish
+                                                                </span>
+                                                                </p>
+                                                            </div>
                                                         </div>
-                                                    </div>
+                                                    :
+                                                        null
+                                                    }
                                                     <div className="row mb-4">
                                                         <div className="col-md-4 form-group mb-0 easydish-input dishname-input">
                                                             <label className="gray-txt f-15 brandon-Medium">Dish name</label>
@@ -515,9 +524,10 @@ const UpdateEasyAddDishComp = () => {
                                                             <CheckBoxAutoCompleteSecondComp
                                                                 className="minwidth-260 brandon-Medium"
                                                                 placeholder={"Select Menu"}
+                                                                name="menuId" 
                                                                 options={menuData && menuData.menuDetails ? menuData.menuDetails : []}
                                                                 value={values.menuId}
-                                                                onChangeData={(value) => { setFieldValue("menuId", value); setFieldValue("categoryId", ''); setFieldValue("subcategoryId", ''); getCategoryAction(value); }}
+                                                                onChangeData={(data) => { setFieldValue("menuId", data); setFieldValue("categoryId", ''); setFieldValue("subcategoryId", ''); getCategoryAction(data); }}
                                                             />
                                                             {touched.menuId && errors.menuId && <div className="error pink-txt f-11">{errors.menuId}</div>}
                                                         </div>
@@ -527,13 +537,17 @@ const UpdateEasyAddDishComp = () => {
                                                                 <option value="">Select</option>
                                                                 {values && values.menuId && values.menuId.length > 0 ?
                                                                     <React.Fragment>
-                                                                        {categoryData && categoryData.map((data, index) => {
-                                                                            return (
-                                                                                <React.Fragment key={index}>
-                                                                                    <option className="text-capitalize" value={data._id}>{data.name}</option>
-                                                                                </React.Fragment>
-                                                                            )
-                                                                        })}
+                                                                        {categoryData&&categoryData.length>0?
+                                                                            categoryData && categoryData.map((data, index) => {
+                                                                                return (
+                                                                                    <React.Fragment key={index}>
+                                                                                        <option className="text-capitalize" value={data._id}>{data.name}</option>
+                                                                                    </React.Fragment>
+                                                                                )
+                                                                            })
+                                                                        :
+                                                                            null
+                                                                        }
                                                                     </React.Fragment>
                                                                     :
                                                                     null
@@ -633,7 +647,6 @@ const UpdateEasyAddDishComp = () => {
                                                                         className="form-control-file userprofile-control upload"
                                                                         // onChange={(e)=>{galleryImageUploadHandeler(e,values.image,setFieldValue,"image")}}
                                                                         onChange={(e) => { setFieldValue("image", e.target.files[0]) }}
-                                                                        onCan
                                                                     />
 
                                                                     {/* <br></br>
@@ -660,8 +673,7 @@ const UpdateEasyAddDishComp = () => {
                                                                             <td className=""></td>
                                                                             <th className="brandon-Bold text-right" scope="col">QTY</th>
                                                                             <th className="brandon-Bold text-center" scope="col">CUSTOMISABLE</th>
-                                                                            <th className="brandon-Bold text-right" scope="col">Action</th>
-
+                                                                            {!addItem&& (<th className="brandon-Bold text-right" scope="col">Action</th>)}
                                                                         </tr>
                                                                     </thead>
                                                                     <tbody>
@@ -675,15 +687,19 @@ const UpdateEasyAddDishComp = () => {
                                                                                                 <React.Fragment key={index}>
                                                                                                     <tr >
                                                                                                         <td>{data.item}</td>
-                                                                                                        <td className="">
-                                                                                                            {data.allergenlist && data.allergenlist.map((data, index) => {
-                                                                                                                return (
-                                                                                                                    <React.Fragment key={index}>
-                                                                                                                        {(index ? ' , ' : '') + data.name}
-                                                                                                                    </React.Fragment>
-                                                                                                                )
-                                                                                                            })}
-                                                                                                        </td>
+                                                                                                        {data.allergenlist && data.allergenlist.length>0?
+                                                                                                            <td className="">
+                                                                                                                {data.allergenlist && data.allergenlist.map((data, index) => {
+                                                                                                                    return (
+                                                                                                                        <React.Fragment key={index}>
+                                                                                                                            {(index ? ' , ' : '') + data.name}
+                                                                                                                        </React.Fragment>
+                                                                                                                    )
+                                                                                                                })}
+                                                                                                            </td>
+                                                                                                        :
+                                                                                                            <td>-</td>
+                                                                                                        }
                                                                                                         <td className=""></td>
 
                                                                                                         <td className="text-right">{data.qty} %</td>
@@ -693,7 +709,8 @@ const UpdateEasyAddDishComp = () => {
                                                                                                                 <label className="custom-control-label" htmlFor={index}></label>
                                                                                                             </div>
                                                                                                         </td>
-                                                                                                        <td className="text-right"></td>
+                                                                                                        {!addItem&& (<td className="text-right"></td>)}
+                                                                                                        
                                                                                                     </tr>
                                                                                                 </React.Fragment>
 
@@ -776,8 +793,8 @@ const UpdateEasyAddDishComp = () => {
                                                                             <td className="text-right brandon-Medium">Total</td>
                                                                             <td className="text-right"><MyField name="total" /></td>
                                                                             <td className=""></td>
-                                                                            <td className=""></td>
-
+                                                                            
+                                                                            {!addItem&& (<td className=""></td>)}
                                                                         </tr>
                                                                     </tfoot>
                                                                 </table>

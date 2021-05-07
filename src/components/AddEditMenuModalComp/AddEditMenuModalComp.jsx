@@ -10,7 +10,7 @@ import CheckBoxAutoCompleteComp from "../CheckBoxAutoCompleteComp/CheckBoxAutoCo
 import moment from 'moment'
 import { addMenuData, getSelectedMenuData, updateSelectedMenuData } from "../../redux/actions/menuAction";
 import DaySelectorCheckBoxAutoCompleteComp from "../DaySelectorCheckBoxAutoCompleteComp/DaySelectorCheckBoxAutoCompleteComp";
-
+import LoadingComponentMini from '../LoadingComponentMini/LoadingComponentMini';
 
 const days_information = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"];
 const styleOf_menu=["breakfast","lunch","dinner","dessert","buffet","drinks","nibble","setmenu"]
@@ -50,7 +50,9 @@ const AddEditMenuModalComp = (props) => {
     let menuData = useSelector((state)=>{
         return state.menu.selectedMenu
     });
-
+    let menuDataLoading = useSelector((state)=>{
+        return state.menu.isLoading
+    });
     let initialValues2={
         name:menuData.name,
         timeFrom:`${moment(menuData.timeFrom, "HH:mm")} `, 
@@ -96,6 +98,11 @@ const AddEditMenuModalComp = (props) => {
                             </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
+                    {menuDataLoading&&menuDataLoading?
+                        <LoadingComponentMini/>
+                    :
+                        null
+                    }  
                     <Formik enableReinitialize={true} initialValues={isAddMode?initialValues:initialValues2} validationSchema={validationSchema} onSubmit={onSubmit} >
                         {({ errors, touched,values, isSubmitting, setFieldValue,handleChange }) => {
                             return (
@@ -172,6 +179,7 @@ const AddEditMenuModalComp = (props) => {
                                             {touched.styleOfmenu && errors.styleOfmenu && <div className="error pink-txt f-11">{errors.styleOfmenu}</div>}
                                         </div>
                                     </div>
+                                   
                                     <div className="border-top-0 pt-4 pb-4 d-flex justify-content-end">
                                         <button className="btn lightgraynoline-btn text-uppercase border-radius-25 min-width-120" type="reset" onClick={props.onHide}>CANCEL</button>
                                         <button className="btn pinkline-btn text-uppercase border-radius-25 min-width-120 ml-2" type="submit">{isAddMode?"ADD":"UPDATE"}</button>
@@ -180,7 +188,7 @@ const AddEditMenuModalComp = (props) => {
                             );
                         }}
                     </Formik>
-                                    
+                       
                         {/* <Formik
                             initialValues={{ name: '', availability:[],
                            

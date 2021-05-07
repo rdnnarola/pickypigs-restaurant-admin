@@ -21,7 +21,7 @@ const UpdateEasyAddDishComp = lazy(() => import("./components/UpdateEasyAddDishC
 export const routesCode = [
     { path: "/dashboard", exact: true, component:DashboardPage },
     { path: "/", exact: true, component:RestaurantDetailPage },
-    { path: "/breakfast_menu", exact: true, component: BreakfastMenuComponent },
+    { path: "/menu/:menuId", exact: true, component: BreakfastMenuComponent },
     { path: "/manage_menu", exact: true, component: ManageMenuComponent },
     { path: "/manage_submenu", exact: true, component: ManageSubMenuComponent },
     { path: "/manage_categories", exact: true, component: ManageCategoriesComponent },

@@ -55,6 +55,9 @@ export const getAllSubMenuData=(data)=>{
           dispatch({type:"ADD_SUBMENU_FAILURE",payload:error});
           if (error.response) {
             dispatch(setAlert(`${error.response.data.message}`, 'error'));
+            if(error.response&&error.response.status==401){
+              dispatch(logoutUser())
+            }
           } else {
             dispatch(setAlert('Something Went wrong!', 'error'));
           }
@@ -72,6 +75,9 @@ export const getAllSubMenuData=(data)=>{
         }
         catch(error){
           dispatch({type:"GET_SELECTEDSUBMENU_FAILURE",payload:error});
+          if(error.response&&error.response.status==401){
+            dispatch(logoutUser())
+          }
         }
     }
   };
@@ -112,6 +118,9 @@ export const updateSubMenuForm = (key , value) => {
           dispatch({type:"UPDATE_SUBMENU_FAILURE",payload:error});
           if (error.response) {
             dispatch(setAlert(`${error.response.data.message}`, 'error'));
+            if(error.response&&error.response.status==401){
+              dispatch(logoutUser())
+            }
           } else {
             dispatch(setAlert('Something Went wrong!', 'error'));
           }
@@ -137,6 +146,9 @@ export const updateSubMenuForm = (key , value) => {
             dispatch({type:"DELETE_SUBMENU_FAILURE",payload:error});
             if (error.response) {
               dispatch(setAlert(`${error.response.data.message}`, 'error'));
+              if(error.response&&error.response.status==401){
+                dispatch(logoutUser())
+              }
             } else {
               dispatch(setAlert('Something Went wrong!', 'error'));
             }
@@ -168,6 +180,9 @@ export const updateSubMenuForm = (key , value) => {
           dispatch({type:"HIDE_SUBMENU_FAILURE",payload:error});
           if (error.response) {
             dispatch(setAlert(`${error.response.data.message}`, 'error'));
+            if(error.response&&error.response.status==401){
+              dispatch(logoutUser())
+            }
           } else {
             dispatch(setAlert('Something Went wrong!', 'error'));
           }
@@ -199,6 +214,9 @@ export const updateSubMenuForm = (key , value) => {
           dispatch({type:"DUPLICATE_SUBMENU_FAILURE",payload:error});
           if (error.response) {
             dispatch(setAlert(`${error.response.data.message}`, 'error'));
+            if(error.response&&error.response.status==401){
+              dispatch(logoutUser())
+            }
           } else {
             dispatch(setAlert('Something Went wrong!', 'error'));
           }

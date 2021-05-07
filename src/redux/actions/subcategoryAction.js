@@ -79,6 +79,9 @@ export const getAllSubCategoryData=(data)=>{
           dispatch({type:"ADD_SUBCATEGORY_FAILURE",payload:error});
           if (error.response) {
             dispatch(setAlert(`${error.response.data.message}`, 'error'));
+            if(error.response&&error.response.status==401){
+              dispatch(logoutUser())
+            }
           } else {
             dispatch(setAlert('Something Went wrong!', 'error'));
           }
@@ -134,6 +137,9 @@ export const updateSubCategoryForm = (key , value) => {
           dispatch({type:"UPDATE_SUBCATEGORY_FAILURE",payload:error});
           if (error.response) {
             dispatch(setAlert(`${error.response.data.message}`, 'error'));
+            if(error.response&&error.response.status==401){
+              dispatch(logoutUser())
+            }
             
           } else {
             dispatch(setAlert('Something Went wrong!', 'error'));
@@ -157,6 +163,9 @@ export const updateSubCategoryForm = (key , value) => {
             dispatch({type:"DELETE_SUBCATEGORY_FAILURE",payload:error});
             if (error.response) {
               dispatch(setAlert(`${error.response.data.message}`, 'error'));
+              if(error.response&&error.response.status==401){
+                dispatch(logoutUser())
+              }
             } else {
               dispatch(setAlert('Something Went wrong!', 'error'));
             }
@@ -179,6 +188,9 @@ export const updateSubCategoryForm = (key , value) => {
         }
         catch(error){
           dispatch({type:"GET_SELECTEDSUBCATEGORYLIST_FAILURE",payload:error});
+          if(error.response&&error.response.status==401){
+            dispatch(logoutUser())
+          }
         }
     }
   };
@@ -206,6 +218,9 @@ export const updateSubCategoryForm = (key , value) => {
           dispatch({type:"HIDE_SUBCATEGORY_FAILURE",payload:error});
           if (error.response) {
             dispatch(setAlert(`${error.response.data.message}`, 'error'));
+            if(error.response&&error.response.status==401){
+              dispatch(logoutUser())
+            }
           } else {
             dispatch(setAlert('Something Went wrong!', 'error'));
           }
@@ -234,6 +249,9 @@ export const updateSubCategoryForm = (key , value) => {
           dispatch({type:"DUPLICATE_SUBCATEGORY_FAILURE",payload:error});
           if (error.response) {
             dispatch(setAlert(`${error.response.data.message}`, 'error'));
+            if(error.response&&error.response.status==401){
+              dispatch(logoutUser())
+            }
           } else {
             dispatch(setAlert('Something Went wrong!', 'error'));
           }

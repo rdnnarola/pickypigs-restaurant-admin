@@ -117,7 +117,7 @@ const ManageEasyAddDishComp = () => {
     //--------- Getting All Menu Data Ends -------//
 
     const getCategoryAction = (data) => {
-        if (data && data.length > 0 !== "") {
+        if (data && data.length > 0 ) {
             dispatch(getCategoryListOfSelectedMenu({ menuId: data }));
 
         } else {
@@ -317,7 +317,9 @@ const ManageEasyAddDishComp = () => {
                 Yup.object().shape({
                     item: Yup.string().required("Item Required"),
                     qty:Yup.number().required('Quantity Required').min(0,'Value must not below 0').max(100,"Value must not exceed 100"),
-                    allergeies: Yup.array().required('Please Select allergeies'),
+                    // allergeies: Yup.array().required('Please Select allergeies'),
+                    allergeies:Yup.array(),
+
                 })
             ),
         // caloriesAndMacros: Yup.string().required('Please Provide Calories And Macros Details'),
@@ -404,15 +406,20 @@ const ManageEasyAddDishComp = () => {
                                         <div>
                                             <div className="row mt-4 pt-1">
                                                 <div className="col-md-9">
-                                                    <div className="row">
-                                                        <div className="col-sm-12">
-                                                            <p className="mb-4">
-                                                                <span className="recipe-msg brandon-Medium">
-                                                                    This recipe does not contain its dietary preferences and lifestyle choices. Consider updating before adding to a dish
-                                                            </span>
-                                                            </p>
+                                                    { values.allergenId.length<=0 || values.dietaryId.length<=0 || values.lifestyleId.length<=0?
+                                                        <div className="row">
+                                                            <div className="col-sm-12">
+                                                                <p className="mb-4">
+                                                                    <span className="recipe-msg brandon-Medium">
+                                                                        This recipe does not contain its {values.allergenId.length<=0 && "allergen preferences"} {values.dietaryId.length<=0 && ", dietary preferences"}  {values.lifestyleId.length<=0 && " and lifestyle choices"}. Consider updating before adding to a dish
+                                                                </span>
+                                                                </p>
+                                                            </div>
                                                         </div>
-                                                    </div>
+                                                    :
+                                                        null
+                                                    }
+                                                    
                                                     <div className="row mb-4">
                                                         <div className="col-md-4 form-group mb-0 easydish-input dishname-input">
                                                             <label className="gray-txt f-15 brandon-Medium">Dish name</label>
@@ -629,8 +636,7 @@ const ManageEasyAddDishComp = () => {
                                                                             <td className=""></td>
                                                                             <th className="brandon-Bold text-right" scope="col">QTY</th>
                                                                             <th className="brandon-Bold text-center" scope="col">CUSTOMISABLE</th>
-                                                                            <th className="brandon-Bold text-right" scope="col">Action</th>
-
+                                                                            {values.ingredient && values.ingredient.length > 0&& (<th className="brandon-Bold text-right" scope="col">Action</th>)}
                                                                         </tr>
                                                                     </thead>
                                                                     <tbody>
@@ -701,8 +707,8 @@ const ManageEasyAddDishComp = () => {
                                                                             <td className="text-right brandon-Medium">Total</td>
                                                                             <td className="text-right"><MyField name="total" /></td>
                                                                             <td className=""></td>
-                                                                            <td className=""></td>
-
+                                                                            {/* <td className=""></td> */}
+                                                                            {values.ingredient && values.ingredient.length > 0&& (<td className=""></td>)}
                                                                         </tr>
                                                                     </tfoot>
                                                                 </table>

@@ -78,6 +78,9 @@ export const getAllCategoryData=(data)=>{
           dispatch({type:"ADD_CATEGORY_FAILURE",payload:error});
           if (error.response) {
             dispatch(setAlert(`${error.response.data.message}`, 'error'));
+            if(error.response&&error.response.status==401){
+              dispatch(logoutUser())
+            }
           } else {
             dispatch(setAlert('Something Went wrong!', 'error'));
           }
@@ -95,6 +98,9 @@ export const getAllCategoryData=(data)=>{
         }
         catch(error){
           dispatch({type:"GET_SELECTEDCATEGORY_FAILURE",payload:error});
+          if(error.response&&error.response.status==401){
+            dispatch(logoutUser())
+          }
         }
     }
   };
@@ -133,6 +139,9 @@ export const updateCategoryForm = (key , value) => {
           dispatch({type:"UPDATE_CATEGORY_FAILURE",payload:error});
           if (error.response) {
             dispatch(setAlert(`${error.response.data.message}`, 'error'));
+            if(error.response&&error.response.status==401){
+              dispatch(logoutUser())
+            }
           } else {
             dispatch(setAlert('Something Went wrong!', 'error'));
           }
@@ -154,6 +163,9 @@ export const updateCategoryForm = (key , value) => {
             dispatch({type:"DELETE_CATEGORY_FAILURE",payload:error});
             if (error.response) {
               dispatch(setAlert(`${error.response.data.message}`, 'error'));
+              if(error.response&&error.response.status==401){
+                dispatch(logoutUser())
+              }
             } else {
               dispatch(setAlert('Something Went wrong!', 'error'));
             }
@@ -176,6 +188,9 @@ export const updateCategoryForm = (key , value) => {
         }
         catch(error){
           dispatch({type:"GET_MENUCATEGORYLIST_FAILURE",payload:error});
+          if(error.response&&error.response.status==401){
+            dispatch(logoutUser())
+          }
         }
     }
   };

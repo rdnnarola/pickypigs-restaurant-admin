@@ -13,7 +13,7 @@ export default function MyfilterListExampleCopy() {
   
 
   useEffect(() => {
-    if(inputValue.length>0&&inputValue.length<2){
+    if(inputValue&&inputValue.length>0&&inputValue&&inputValue.length<2){
       if(!initiate){
         initAutocomplete();
         // console.log("initAutocomplete")
@@ -126,6 +126,7 @@ export default function MyfilterListExampleCopy() {
         autocomplete_results.style.display = 'none';
       }
     }, 1500));
+    
   }
 
   

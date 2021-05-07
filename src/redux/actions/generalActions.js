@@ -68,7 +68,7 @@ export const getLogin=(token,history)=>{
   }
 };
 
-export const logoutUser=(history)=>{
+export const logoutUser=()=>{
   return async(dispatch)=>{
       try{
           await dispatch({type:"LOGOUT_ADMIN_REQUEST"});

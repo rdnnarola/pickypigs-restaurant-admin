@@ -102,9 +102,9 @@ const ManageSubCategoriesComponent = () => {
                                                                 </button>
                                                                 <ul className="dropdown-menu actiondropdown-list" aria-labelledby="dropdownMenuButton">
                                                                     <li><button className="dropdown-item" onClick={() => {dispatch(setSubcategoryModal(true));setSubCategoryId(data._id)}} >Update</button></li>
-                                                                    <li><button className="dropdown-item" onClick={() => {dispatch(deleteSubcategoryModal(true));setSubCategoryId(data._id)}}>Delete</button></li>
-                                                                    <li><button className="dropdown-item" onClick={()=>{dispatch(hideSelectedSubCategoryData(data._id,{isActive:!data.isActive}))}}>{data.isActive?"Hide":"UnHide"}</button></li>
                                                                     <li><button className="dropdown-item" onClick={()=>{dispatch(duplicateSelectedSubCategoryData(data._id))}}>Duplicate</button></li>
+                                                                    <li><button className="dropdown-item" onClick={()=>{dispatch(hideSelectedSubCategoryData(data._id,{isActive:!data.isActive}))}}>{data.isActive?"Hide":"UnHide"}</button></li>
+                                                                    <li><button className="dropdown-item" onClick={() => {dispatch(deleteSubcategoryModal(true));setSubCategoryId(data._id)}}>Delete</button></li>
                                                                 </ul>
                                                             </div>
                                                         </td>

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./RestaurantDetailPage.scss";
-import restaurant_banner from "../../assets/images/restaurant-banner.jpg";
-import dishimg1 from "../../assets/images/dishimg1.jpg";
+import restaurant_banner from "../../assets/images/dummy_img.jpg";
+import dishimg1 from "../../assets/images/dummy_img.jpg";
 import RestaurantInfoComp from "../../components/RestaurantInfoComp/RestaurantInfoComp";
 import RestaurantFeaturesComp from "../../components/RestaurantFeaturesComp/RestaurantFeaturesComp";
 import RestaurantUserDetailComp from "../../components/RestaurantUserDetailComp/RestaurantUserDetailComp";
@@ -19,6 +19,7 @@ import { SERVER_URL } from '../../shared/constant'
 import RestaurantSettingImageGalleryComp from "../../components/RestaurantSettingImageGalleryComp/RestaurantSettingImageGalleryComp";
 import GoogleMapTestComp from "./GoogleMapTestComp/GoogleMapTestComp";
 import SettingSubscriptionComp from "../../components/SettingSubscriptionComp/SettingSubscriptionComp";
+import NoDataFoundPage from "../NoDataFoundPage/NoDataFoundPage";
 
 
 const RestaurantDetailPage = () => {
@@ -122,7 +123,7 @@ const RestaurantDetailPage = () => {
                                 <img loading="lazy" onLoad={() => { setImageLoading(true); }}
                                     src={`${SERVER_URL}/${restauraneSetting_Data && restauraneSetting_Data.restaurantCoverPhoto}`} alt={"restaurant_banner"} className="w-100 img-fluid bg-white " />
                                 :
-                                <img src={restaurant_banner} alt={"restaurant_banner"} className="w-100 img-fluid bg-white " />
+                                <img src={restaurant_banner} alt={"restaurant_banner"} className="w-100 img-fluid bg-white " style={{objectPosition:'center'}}/>
                             }
 
                         </div>
@@ -256,28 +257,34 @@ const RestaurantDetailPage = () => {
                         <br></br>
                         {tabs.tab1 ?
                             <div>
-                                {restauraneSetting_Data &&
-                                    <RestaurantInfoComp infodata={restauraneSetting_Data && restauraneSetting_Data.info ? restauraneSetting_Data && restauraneSetting_Data.info : {}} />
-                                }
+                                {restauraneSetting_Data?
+                                    <React.Fragment>
+                                        {restauraneSetting_Data &&
+                                            <RestaurantInfoComp infodata={restauraneSetting_Data && restauraneSetting_Data.info ? restauraneSetting_Data && restauraneSetting_Data.info : {}} />
+                                        }
 
-                                {restauraneSetting_Data &&
-                                    <RestaurantSecurityComp securitydata={restauraneSetting_Data && restauraneSetting_Data.security ? restauraneSetting_Data && restauraneSetting_Data.security : {}} />
-                                }
+                                        {restauraneSetting_Data &&
+                                            <RestaurantSecurityComp securitydata={restauraneSetting_Data && restauraneSetting_Data.security ? restauraneSetting_Data && restauraneSetting_Data.security : {}} />
+                                        }
 
-                                {restauraneSetting_Data &&
-                                    <RestaurantAddAddressComp addressdata={restauraneSetting_Data && restauraneSetting_Data.address ? restauraneSetting_Data && restauraneSetting_Data.address : {}} />
-                                }
+                                        {restauraneSetting_Data &&
+                                            <RestaurantAddAddressComp addressdata={restauraneSetting_Data && restauraneSetting_Data.address ? restauraneSetting_Data && restauraneSetting_Data.address : {}} />
+                                        }
 
-                                {restauraneSetting_Data &&
-                                    <RestaurantFeaturesComp detaildata={restauraneSetting_Data && restauraneSetting_Data.restaurantDetails ? restauraneSetting_Data && restauraneSetting_Data.restaurantDetails : {}} />
+                                        {restauraneSetting_Data &&
+                                            <RestaurantFeaturesComp detaildata={restauraneSetting_Data && restauraneSetting_Data.restaurantDetails ? restauraneSetting_Data && restauraneSetting_Data.restaurantDetails : {}} />
+                                        }
+                                        {restauraneSetting_Data &&
+                                            <RestaurantInfoFeatureComp featuredata={restauraneSetting_Data && restauraneSetting_Data.restaurantFeatures ? restauraneSetting_Data && restauraneSetting_Data.restaurantFeatures : {}} />
+                                        }
+                                        {restauraneSetting_Data &&
+                                            <RestaurantSettingImageGalleryComp gallerydata={restauraneSetting_Data && restauraneSetting_Data.restaurantGalleries ? restauraneSetting_Data && restauraneSetting_Data.restaurantGalleries : {}} />
+                                        }
+                                        {/* <RestaurantMoreInfoComp /> */}
+                                    </React.Fragment>
+                                :
+                                    <NoDataFoundPage/>
                                 }
-                                {restauraneSetting_Data &&
-                                    <RestaurantInfoFeatureComp featuredata={restauraneSetting_Data && restauraneSetting_Data.restaurantFeatures ? restauraneSetting_Data && restauraneSetting_Data.restaurantFeatures : {}} />
-                                }
-                                {restauraneSetting_Data &&
-                                    <RestaurantSettingImageGalleryComp gallerydata={restauraneSetting_Data && restauraneSetting_Data.restaurantGalleries ? restauraneSetting_Data && restauraneSetting_Data.restaurantGalleries : {}} />
-                                }
-                                {/* <RestaurantMoreInfoComp /> */}
                             </div>
                             :
                             tabs.tab2 ?

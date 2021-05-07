@@ -7,6 +7,7 @@ const initialState = {
     selectedMenu:{},
     showAddUpdateMenuModalData:false,
     showDeleteMenuModalData:false,
+    selectedMenuDishData:null,
     };
     
     const menuReducer = (state = initialState, { type, payload }) => {
@@ -31,6 +32,7 @@ const initialState = {
         case "HIDE_MENU_REQUEST":
         case "DUPLICATE_MENU_REQUEST":
         case "REDO_MENU_REQUEST":
+        case "GET_SELECTEDMENUDISH_REQUEST":    
             return {
                 ...state,
                 isLoading :true,
@@ -88,7 +90,13 @@ const initialState = {
             return{
                 ...state,
                 isLoading:false,
-            };             
+            }; 
+        case "GET_SELECTEDMENUDISH_SUCCESS":
+            return{
+                ...state,
+                isLoading:false,
+                selectedMenuDishData:payload.menu,
+            };                 
              
         case "GET_ALLMENU_FAILURE":
         case "ADD_MENU_FAILURE":
@@ -98,6 +106,7 @@ const initialState = {
         case "HIDE_MENU_FAILURE": 
         case "DUPLICATE_MENU_FAILURE": 
         case "REDO_MENU_FAILURE": 
+        case "GET_SELECTEDMENUDISH_FAILURE": 
             return {
                 ...state,
                 isLoading:false,

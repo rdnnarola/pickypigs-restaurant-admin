@@ -6,12 +6,8 @@ import DeleteMenuModalComp from "../DeleteMenuModalComp/DeleteMenuModalComp";
 import moment from "moment";
 import './ManageMenuComponent.scss';
 import daycalculate from "../FormikExample/daycalculate";
+import { NavLink } from 'react-router-dom';
 
-const datas1 = [
-    { menu: "Breakfast", day: "Everyday", time: "7:30 AM - 10:00 AM ", available: "Yes", total_item: "13", modified: "2:45 PM" },
-    { menu: "Lunch", day: "Everyday", time: "12:30 PM - 2:00 PM", available: "Yes", total_item: "27", modified: "Yesterday, 11:25 AM" },
-    { menu: "Dinner", day: "Everyday", time: "7:30 PM - 10:00 PM ", available: "Yes", total_item: "32", modified: "2:45 PM" },
-]
 
 const ManageMenuComponent = () => {
     const dispatch=useDispatch();
@@ -54,8 +50,11 @@ const ManageMenuComponent = () => {
         return ts;
       };
 
+      
+
     return (
         <>
+            <section className="ManageMenuComponent-comp">
             <div className="row">
                 <div className="col-sm-12">
                     <div className="page-heading brandon-Medium">
@@ -119,31 +118,35 @@ const ManageMenuComponent = () => {
                                                 {menu_Data&& menu_Data.menuDetails.map((data, index) => {
                                                     return (
                                                         <React.Fragment key={index}>
-                                                            <tr className={`${!data.isActive&&"bg-warning"}`}>
-                                                                <td className="text-capitalize">{data.name}</td>
-                                                                <td className="">{data.availability?daycalculate(data.availability):"-"}</td>
-                                                                <td className="">{tConv24(data.timeFrom)} - {tConv24(data.timeTo)}</td>
-                                                                <td className="">{data.available?"Yes":"No"}</td>
-                                                                <td className="">{data.dishesDetail.length}</td>
-                                                                <td className="">{data.updatedAt ?moment(data.updatedAt).format(" Do MMMM, YYYY"): "-" }</td>
-                                                                <td className="pt-0 pb-0">
-                                                                    <div className="dropdown">
-                                                                        <button className="btn btn-secondary dropdown-toggle actiondropdown-btn" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-                                                                            Action
-                                                                        </button>
-                                                                        <ul className="dropdown-menu actiondropdown-list" aria-labelledby="dropdownMenuButton">
-                                                                            <li><button className="dropdown-item" onClick={() => {dispatch(showAddUpdateMenuModal(true));setMenuId(data._id)}} >Update</button></li>
-                                                                            {data.isDeleted===0?
-                                                                                <li><button className="dropdown-item" onClick={() => {dispatch(showDeleteMenuModal(true));setMenuId(data._id)}}>Delete</button></li>
-                                                                            :
-                                                                                <li><button className="dropdown-item" onClick={()=>{dispatch(redoSelectedMenuData(data._id,showDeleted))}}>Restore Menu</button></li>
-                                                                            }
-                                                                            <li><button className="dropdown-item" onClick={()=>{dispatch(hideSelectedMenuData(data._id,{isActive:!data.isActive},showDeleted))}}>{data.isActive?"Hide":"UnHide"}</button></li>
-                                                                            <li><button className="dropdown-item" onClick={()=>{dispatch(duplicateSelectedMenuData(data._id,{},showDeleted))}}>Duplicate</button></li>
-                                                                        </ul>
-                                                                    </div>
-                                                                </td>
-                                                            </tr>
+                                                                <tr className={`${!data.isActive&&"my_custom_bg"}`}>
+                                                                    <td className="text-capitalize">
+                                                                        {data.name}
+                                                                    </td>
+                                                                    <td className="">{data.availability?daycalculate(data.availability):"-"}</td>
+                                                                    <td className="">{tConv24(data.timeFrom)} - {tConv24(data.timeTo)}</td>
+                                                                    <td className="">{data.available?"Yes":"No"}</td>
+                                                                    <td className="">{data.dishesDetail.length}</td>
+                                                                    <td className="">{data.updatedAt ?moment(data.updatedAt).format(" Do MMMM, YYYY"): "-" }</td>
+                                                                    <td className="pt-0 pb-0">
+                                                                        <div className="dropdown">
+                                                                            <button className="btn btn-secondary dropdown-toggle actiondropdown-btn" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                                                                                Action
+                                                                            </button>
+                                                                            <ul className="dropdown-menu actiondropdown-list" aria-labelledby="dropdownMenuButton">
+                                                                                <li><NavLink className="dropdown-item" to={'/menu/'+data._id} >View</NavLink></li>
+                                                                                <li><button className="dropdown-item" onClick={() => {dispatch(showAddUpdateMenuModal(true));setMenuId(data._id)}} >Update</button></li>
+                                                                                <li><button className="dropdown-item" onClick={()=>{dispatch(duplicateSelectedMenuData(data._id,{},showDeleted))}}>Duplicate</button></li>
+                                                                                <li><button className="dropdown-item" onClick={()=>{dispatch(hideSelectedMenuData(data._id,{isActive:!data.isActive},showDeleted))}}>{data.isActive?"Hide":"UnHide"}</button></li>
+                                                                                {data.isDeleted===0?
+                                                                                    <li><button className="dropdown-item" onClick={() => {dispatch(showDeleteMenuModal(true));setMenuId(data._id)}}>Delete</button></li>
+                                                                                :
+                                                                                    <li><button className="dropdown-item" onClick={()=>{dispatch(redoSelectedMenuData(data._id,showDeleted))}}>Restore Menu</button></li>
+                                                                                }
+                                                                            </ul>
+                                                                        </div>
+                                                                    </td>
+
+                                                                </tr>
                                                         </React.Fragment>
                                                     )
                                                 })}
@@ -165,6 +168,7 @@ const ManageMenuComponent = () => {
                     </div>
                 </div>
             </div>
+            </section>
         </>
     )
 }

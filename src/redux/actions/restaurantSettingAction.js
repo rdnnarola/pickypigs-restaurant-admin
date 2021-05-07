@@ -50,6 +50,9 @@ export const getAllRestaurantDetail=()=>{
           dispatch({type:"UPDATE_RESTAURANTINFO_FAILURE",payload:error});
           if (error.response) {
             dispatch(setAlert(`${error.response.data.message}`, 'error'));
+            if(error.response&&error.response.status==401){
+              dispatch(logoutUser())
+            }
           } else {
             dispatch(setAlert('Something Went wrong!', 'error'));
           }
@@ -104,6 +107,9 @@ export const updateRestaurantProfileImage=(image)=>{
         dispatch({type:"UPDATE_RESTAURANTPROFILEIMAGE_FAILURE",payload:error});
         if (error.response) {
           dispatch(setAlert(`${error.response.data.message}`, 'error'));
+          if(error.response&&error.response.status==401){
+            dispatch(logoutUser())
+          }
         } else {
           dispatch(setAlert('Something Went wrong!', 'error'));
         }
@@ -134,6 +140,9 @@ export const updateRestaurantCoverImage=(image)=>{
         dispatch({type:"UPDATE_RESTAURANTCOVERIMAGE_FAILURE",payload:error});
         if (error.response) {
           dispatch(setAlert(`${error.response.data.message}`, 'error'));
+          if(error.response&&error.response.status==401){
+            dispatch(logoutUser())
+          }
         } else {
           dispatch(setAlert('Something Went wrong!', 'error'));
         }
@@ -170,6 +179,9 @@ export const uploadRestaurantGalleryImage=(image,type)=>{
         dispatch({type:"UPLOAD_RESTAURANTGALLERYIMAGE_FAILURE",payload:error});
         if (error.response) {
           dispatch(setAlert(`${error.response.data.message}`, 'error'));
+          if(error.response&&error.response.status==401){
+            dispatch(logoutUser())
+          }
         } else {
           dispatch(setAlert('Something Went wrong!', 'error'));
         }
@@ -197,6 +209,9 @@ export const deleteRestaurantGalleryImage=(data)=>{
         dispatch({type:"DELETE_RESTAURANTGALLERYIMAGE_FAILURE",payload:error});
         if (error.response) {
           dispatch(setAlert(`${error.response.data.message}`, 'error'));
+          if(error.response&&error.response.status==401){
+            dispatch(logoutUser())
+          }
         } else {
           dispatch(setAlert('Something Went wrong!', 'error'));
         }

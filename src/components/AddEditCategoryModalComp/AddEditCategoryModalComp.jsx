@@ -6,6 +6,7 @@ import { Modal, Button } from 'react-bootstrap';
 import { addCategoryData,getSelectedCategoryData,updateSelectedCategoryData} from "../../redux/actions/categoryAction";
 import { getAllMenuData} from "../../redux/actions/menuAction";
 import './AddEditCategoryModalComp.scss';
+import LoadingComponentMini from '../LoadingComponentMini/LoadingComponentMini';
 
 const AddEditCategoryModalComp = (props) => {
     const dispatch=useDispatch();
@@ -33,7 +34,11 @@ const AddEditCategoryModalComp = (props) => {
 
     let selectedCategoryData = useSelector((state)=>{
         return state.category.selectedCategory
+    });
+    let CategoryDataLoading = useSelector((state)=>{
+        return state.category.isLoading
     });   
+
     let menuData = useSelector((state)=>{
         return state.menu.menu_Data
     });
@@ -86,10 +91,15 @@ const AddEditCategoryModalComp = (props) => {
             >
                 <Modal.Header className="align-items-center">
                     <Modal.Title className="brandon-Medium" id="contained-modal-title-vcenter">
-                        Add / Edit Category{JSON.stringify( menuData && menuData.menuDetails.find(o => o._id === selectedCategoryData&&selectedCategoryData.menuId))}
+                        Add / Edit Category
                     </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
+                    {CategoryDataLoading&&CategoryDataLoading?
+                        <LoadingComponentMini/>
+                    :
+                        null
+                    }
                     <Formik enableReinitialize={true} initialValues={isAddMode?initialValues:initialValues2} validationSchema={validationSchema} onSubmit={onSubmit} >
                         {({ errors, touched, isSubmitting, setFieldValue,handleChange }) => {
                             return (
