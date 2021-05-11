@@ -86,7 +86,7 @@ const ManageSubCategoriesComponent = () => {
                                         {subCategory_Data && subCategory_Data.menuDetails.map((data, index) => {
                                             return (
                                                 <React.Fragment key={index}>
-                                                    <tr className={`${!data.isActive&&"bg-warning"}`}>
+                                                    <tr  className={`${!data.isActive&&"my_custom_bg_hide"}`}>
                                                         <td className="text-capitalize">{data.name}</td>
                                                         <td>&nbsp;</td>
                                                         <td>&nbsp;</td>
@@ -96,7 +96,7 @@ const ManageSubCategoriesComponent = () => {
                                                         <td>{data.dishesDetail.length}</td>
                                                         <td>{data.updatedAt ?moment(data.updatedAt).format(" Do MMMM, YYYY"): "-"}</td>
                                                         <td className="pt-0 pb-0">
-                                                            <div className="dropdown">
+                                                            <div className="">
                                                                 <button className="btn btn-secondary dropdown-toggle actiondropdown-btn" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
                                                                     Action
                                                                 </button>

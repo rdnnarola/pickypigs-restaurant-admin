@@ -185,6 +185,9 @@ body {
 .error_boundary_img{
     height: calc(100vh - 200px);
 }
+.my_custom_bg_hide{
+    background-color: #8c8c8c47 !important;
+}
 @media screen and (min-width: 1200px) {
     .container {
         max-width: 1170px !important;

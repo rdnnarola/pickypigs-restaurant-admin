@@ -173,7 +173,7 @@ const AllDishesComponent=()=>{
                                                                 {/* <td>{data.menuDetail&&data.menuDetail.length}</td> */}
                                                                 <td>{data.updatedAt ?moment(data.updatedAt).format(" Do MMMM, YYYY"): "-" }</td>
                                                                 <td className="pt-0 pb-0">
-                                                                    <div className="dropdown">
+                                                                    <div className="">
                                                                         <button className="btn btn-secondary dropdown-toggle actiondropdown-btn" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
                                                                         Action
                                                                         </button>
