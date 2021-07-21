@@ -1,6 +1,6 @@
 import React,{useState,useEffect} from "react";
 import { useDispatch,useSelector } from "react-redux";
-import { getAllDishesData } from "../../redux/actions/dishesAction";
+import { duplicateSelectedDishData, getAllDishesData, hideSelectedDishData } from "../../redux/actions/dishesAction";
 import moment from "moment";
 import './AllDishesComponent.scss';
 import { getAllMenuData } from "../../redux/actions/menuAction";
@@ -151,8 +151,8 @@ const AllDishesComponent=()=>{
                                                 {dishes_Data && dishes_Data.dishDetails.map((data, index) => {
                                                     return (
                                                         <React.Fragment key={index}>
-                                                            <tr >
-                                                                <td>{data.name}</td>
+                                                            <tr className={`${!data.isActive&&"my_custom_bg_hide"}`}>
+                                                                <td className="text-capitalize">{data.name}</td>
                                                                 <td>&nbsp;</td>
                                                                 <td>
                                                                     {data.allergensDetail&&data.allergensDetail.length>0?
@@ -180,6 +180,8 @@ const AllDishesComponent=()=>{
                                                                         <ul className="dropdown-menu actiondropdown-list" aria-labelledby="dropdownMenuButton">
                                                                             <li><Link type="button" className="dropdown-item" to={'/manage_dishes/' + data._id} >Update</Link></li>
                                                                             <li><button className="dropdown-item" onClick={() => {setDeleteModalShow(true);setDishesId(data._id)}}>Delete</button></li>
+                                                                            <li><button className="dropdown-item" onClick={()=>{dispatch(duplicateSelectedDishData(data._id,{}))}}>Duplicate</button></li>
+                                                                            <li><button className="dropdown-item" onClick={()=>{dispatch(hideSelectedDishData(data._id,{isActive:!data.isActive}))}}>{data.isActive?"Hide":"UnHide"}</button></li>
                                                                         </ul>
                                                                     </div>
                                                                 </td>

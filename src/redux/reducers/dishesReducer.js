@@ -17,6 +17,8 @@ const initialState = {
         case "GET_SELECTEDDISC_REQUEST":
         case "UPDATE_DISC_REQUEST":
         case "DELETE_DISHES_REQUEST":
+        case "HIDE_DISH_REQUEST":
+        case "DUPLICATE_DISH_REQUEST":
             return {
                 ...state,
                 isLoading :true,
@@ -51,12 +53,24 @@ const initialState = {
                 ...state,
                 isLoading:false
             } 
+        case "HIDE_DISH_SUCCESS":
+            return{
+                ...state,
+                isLoading:false,
+            };    
+        case "DUPLICATE_DISH_SUCCESS":
+            return{
+                ...state,
+                isLoading:false,
+            };     
             
         case "GET_ALLDISHES_FAILURE":
         case "ADD_DISHES_FAILURE":
         case "GET_SELECTEDDISC_FAILURE":  
         case "UPDATE_DISC_FAILURE":  
         case "DELETE_DISHES_FAILURE": 
+        case "HIDE_DISH_FAILURE": 
+        case "DUPLICATE_DISH_FAILURE": 
             return {
                 ...state,
                 isLoading:false,

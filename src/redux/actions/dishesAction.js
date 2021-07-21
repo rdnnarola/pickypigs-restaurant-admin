@@ -225,3 +225,64 @@ export const getAllDishesData=(data)=>{
         }
     }
   };
+
+
+  export const hideSelectedDishData=(selectedId,data)=>{
+    return async(dispatch)=>{
+        try{
+            dispatch({type:"HIDE_DISH_REQUEST"});
+            let config= {
+                headers:{
+                 "Content-Type":"application/json"
+                 }
+             }
+            let dataURL=`/restaurant_admin/dish/active_inactive/${selectedId}`
+            let response = await Axios.put(dataURL,JSON.stringify(data),config );
+            dispatch({type:"HIDE_DISH_SUCCESS",payload:response.data});
+            dispatch(getAllDishesData());
+            dispatch(setAlert(`Dish ${data.isActive?"UnHide":"Hide"} Successfuly`, 'success'));
+
+        }
+        catch(error){
+          dispatch({type:"HIDE_DISH_FAILURE",payload:error});
+          if (error.response) {
+            dispatch(setAlert(`${error.response.data.message}`, 'error'));
+            if(error.response&&error.response.status==401){
+              dispatch(logoutUser())
+            }
+          } else {
+            dispatch(setAlert('Something Went wrong!', 'error'));
+          }
+        }
+    }
+  };
+
+  export const duplicateSelectedDishData=(selectedId,data)=>{
+    return async(dispatch)=>{
+        try{
+            dispatch({type:"DUPLICATE_DISH_REQUEST"});
+            let config= {
+                headers:{
+                 "Content-Type":"application/json"
+                 }
+             }
+            let dataURL=`/restaurant_admin/dish/duplicate/${selectedId}`
+            let response = await Axios.put(dataURL,JSON.stringify(data),config );
+            dispatch({type:"DUPLICATE_DISH_SUCCESS",payload:response.data});
+            dispatch(getAllDishesData());
+            dispatch(setAlert('Dish Duplicated Successfuly', 'success'));
+
+        }
+        catch(error){
+          dispatch({type:"DUPLICATE_DISH_FAILURE",payload:error});
+          if (error.response) {
+            dispatch(setAlert(`${error.response.data.message}`, 'error'));
+            if(error.response&&error.response.status==401){
+              dispatch(logoutUser())
+            }
+          } else {
+            dispatch(setAlert('Something Went wrong!', 'error'));
+          }
+        }
+    }
+  };

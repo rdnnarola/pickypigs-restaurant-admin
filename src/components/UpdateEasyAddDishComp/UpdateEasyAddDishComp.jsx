@@ -147,7 +147,7 @@ const UpdateEasyAddDishComp = () => {
         } else {
             dispatch(getCategoryListOfSelectedMenu({ menuId: [] }));
         }
-    }, [dispatch, selectedDisc_data && selectedDisc_data[0].menuId]);
+    }, [dispatch, ]);
 
     let categoryData = useSelector((state) => {
         return state.category.selectedMenuCategoryList
@@ -187,8 +187,9 @@ const UpdateEasyAddDishComp = () => {
     })
 
     // console.log(categoryData && categoryData.find(cat => cat._id === selectedDisc_data && selectedDisc_data[0].categoryId))
-    console.log(selectedDisc_data && selectedDisc_data[0].menuId.filter( val => menuData && menuData.menuDetails&&(menuData.menuDetails.map(data=>data._id)).includes(val)))
-
+    // console.log(selectedDisc_data && selectedDisc_data[0].menuId.filter( val => menuData && menuData.menuDetails&&(menuData.menuDetails.map(data=>data._id)).includes(val)))
+    // console.log(categoryData && categoryData.find(cat => cat._id == `${selectedDisc_data && selectedDisc_data[0].categoryId}`) )
+    
     const initialValues = {
         name: selectedDisc_data && selectedDisc_data[0].name ? selectedDisc_data[0].name : '',
         makes: selectedDisc_data && selectedDisc_data[0].makes ? selectedDisc_data[0].makes : '',
@@ -200,8 +201,8 @@ const UpdateEasyAddDishComp = () => {
         available: selectedDisc_data && selectedDisc_data[0].available ? selectedDisc_data[0].available : false,
       
         menuId: selectedDisc_data && selectedDisc_data[0].menuId ? selectedDisc_data && selectedDisc_data[0].menuId.filter( val => menuData && menuData.menuDetails&&(menuData.menuDetails.map(data=>data._id)).includes(val)): [],
-        categoryId:categoryData && categoryData.find(cat => cat._id == selectedDisc_data && selectedDisc_data[0].categoryId)?selectedDisc_data && selectedDisc_data[0].categoryId:'',
-        subcategoryId:subcategoryData && subcategoryData.find(subcat => subcat._id == selectedDisc_data && selectedDisc_data[0].subcategoryId) ?selectedDisc_data && selectedDisc_data[0].subcategoryId:'',
+        categoryId:categoryData && categoryData.find(cat => cat._id == `${selectedDisc_data && selectedDisc_data[0].categoryId}`)?selectedDisc_data && selectedDisc_data[0].categoryId:'',
+        subcategoryId:subcategoryData && subcategoryData.find(subcat => subcat._id == `${selectedDisc_data && selectedDisc_data[0].subcategoryId}`) ?selectedDisc_data && selectedDisc_data[0].subcategoryId:'',
        
         // menuId: selectedDisc_data && selectedDisc_data[0].menuId ? selectedDisc_data[0].menuId : [],
         // categoryId: selectedDisc_data && selectedDisc_data[0].categoryId ? selectedDisc_data[0].categoryId : '',

@@ -3,6 +3,8 @@ import { NavLink } from "react-router-dom";
 import manageicon from "../../../assets/images/manage-icon.svg";
 import menu_icon from "../../../assets/images/menus_icon.svg";
 import category_icon from "../../../assets/images/categories_icon.svg";
+import dish_icon from "../../../assets/images/dish_icon.svg";
+
 import setting_icon from "../../../assets/images/Settings_icon.svg";
 import pinkrightarrow from "../../../assets/images/pink-rightarrow.svg";
 import './SideMenu.scss';
@@ -63,7 +65,7 @@ const SideMenu = () => {
                         </div>
                         <div className="menu-list d-flex align-items-center">
                             <div className="menu-icon">
-                                <img src={category_icon} className="img-fluid" alt="icon"  />
+                                <img src={dish_icon} className="img-fluid"  width="25px" alt="icon"  />
                             </div>
                             <NavLink to="/all_dishes" className="btn btn-none text-primary menu-name">Manage Dishes</NavLink>
                         </div>
