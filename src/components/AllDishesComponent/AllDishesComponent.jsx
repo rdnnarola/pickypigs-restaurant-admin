@@ -23,6 +23,10 @@ const AllDishesComponent = () => {
   const [dishesId, setDishesId] = useState("");
   const [showHide, setShowHide] = useState(false);
 
+  //   useEffect(() => {
+  //     dispatch(getAllDishesData({ search: inputValue, start: 0, menu: menuId }));
+  //   }, [menuId]);
+
   useEffect(() => {
     if (showHide) {
       dispatch(
@@ -33,7 +37,7 @@ const AllDishesComponent = () => {
         getAllDisheshData({
           search: inputValue,
           start: 0,
-          type: "dish",
+          menu: menuId,
           isActive: true,
         })
       );
@@ -47,7 +51,14 @@ const AllDishesComponent = () => {
   let dishesData = useSelector((state) => {
     return state.dishes;
   });
+
   let { isLoading, dishes_Data } = dishesData;
+
+  const filteredDishesh =
+    dishes_Data &&
+    dishes_Data.dishDetails.filter((item) => {
+      return item.isActive;
+    });
 
   let menuData = useSelector((state) => {
     return state.menu.menu_Data;
@@ -135,7 +146,7 @@ const AllDishesComponent = () => {
                       onChange={(e) => {
                         setShowHide(e.target.checked);
                       }}
-                      className="custom-control-input"
+                      className="custom-control-input showhide-check"
                       id="customCheck1"
                     />
                     <label
@@ -223,9 +234,9 @@ const AllDishesComponent = () => {
                   <React.Fragment>
                     {dishes_Data && dishes_Data.dishDetails.length > 0 ? (
                       <React.Fragment>
-                        {dishes_Data &&
-                          dishes_Data.dishDetails.map((data, index) => {
-                            return (
+                        {!showHide
+                          ? filteredDishesh &&
+                            filteredDishesh.map((data, index) => (
                               <React.Fragment key={index}>
                                 <tr
                                   className={`${
@@ -334,8 +345,118 @@ const AllDishesComponent = () => {
                                   </td>
                                 </tr>
                               </React.Fragment>
-                            );
-                          })}
+                            ))
+                          : dishes_Data &&
+                            dishes_Data.dishDetails.map((data, index) => (
+                              <React.Fragment key={index}>
+                                <tr
+                                  className={`${
+                                    !data.isActive && "my_custom_bg_hide"
+                                  }`}
+                                >
+                                  <td className="text-capitalize">
+                                    {data.name}
+                                  </td>
+                                  <td>&nbsp;</td>
+                                  <td>
+                                    {data.allergensDetail &&
+                                    data.allergensDetail.length > 0 ? (
+                                      <React.Fragment>
+                                        {data.allergensDetail &&
+                                          data.allergensDetail.map(
+                                            (data, index) => {
+                                              return (
+                                                <React.Fragment key={index}>
+                                                  {(index ? " , " : "") +
+                                                    data.name}
+                                                </React.Fragment>
+                                              );
+                                            }
+                                          )}
+                                      </React.Fragment>
+                                    ) : (
+                                      "Na"
+                                    )}
+                                  </td>
+                                  <td>{data.available ? "Yes" : "No"}</td>
+                                  {/* <td>{data.menuDetail&&data.menuDetail.length}</td> */}
+                                  <td>
+                                    {data.updatedAt
+                                      ? moment(data.updatedAt).format(
+                                          " Do MMMM, YYYY"
+                                        )
+                                      : "-"}
+                                  </td>
+                                  <td className="pt-0 pb-0">
+                                    <div className="">
+                                      <button
+                                        className="btn btn-secondary dropdown-toggle actiondropdown-btn"
+                                        type="button"
+                                        id="dropdownMenuButton"
+                                        data-bs-toggle="dropdown"
+                                        aria-expanded="false"
+                                      >
+                                        Action
+                                      </button>
+                                      <ul
+                                        className="dropdown-menu actiondropdown-list"
+                                        aria-labelledby="dropdownMenuButton"
+                                      >
+                                        <li>
+                                          <Link
+                                            type="button"
+                                            className="dropdown-item"
+                                            to={"/manage_dishes/" + data._id}
+                                          >
+                                            Update
+                                          </Link>
+                                        </li>
+                                        <li>
+                                          <button
+                                            className="dropdown-item"
+                                            onClick={() => {
+                                              setDeleteModalShow(true);
+                                              setDishesId(data._id);
+                                            }}
+                                          >
+                                            Delete
+                                          </button>
+                                        </li>
+                                        <li>
+                                          <button
+                                            className="dropdown-item"
+                                            onClick={() => {
+                                              dispatch(
+                                                duplicateSelectedDishData(
+                                                  data._id,
+                                                  {}
+                                                )
+                                              );
+                                            }}
+                                          >
+                                            Duplicate
+                                          </button>
+                                        </li>
+                                        <li>
+                                          <button
+                                            className="dropdown-item"
+                                            onClick={() => {
+                                              dispatch(
+                                                hideSelectedDishData(data._id, {
+                                                  isActive: !data.isActive,
+                                                })
+                                              );
+                                            }}
+                                          >
+                                            {data.isActive ? "Hide" : "UnHide"}
+                                          </button>
+                                        </li>
+                                      </ul>
+                                    </div>
+                                  </td>
+                                </tr>
+                              </React.Fragment>
+                            ))}
                       </React.Fragment>
                     ) : (
                       <React.Fragment>

@@ -18,7 +18,13 @@ const dishesReducer = (state = initialState, { type, payload }) => {
     case "GET_ALLDISH_REQUEST":
       return {
         ...state,
-        isLoading: true,
+        // isLoading: true,
+      };
+    case "GET_ALLDISH_SUCCESS":
+      return {
+        ...state,
+        isLoading: false,
+        dishes_Data: payload,
       };
     case "DUPLICATE_DISH_REQUEST":
       return {

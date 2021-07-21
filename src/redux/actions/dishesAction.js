@@ -41,7 +41,7 @@ export const getAllDisheshData = (data) => {
       let dataURL = `/restaurant_admin/dish/list`;
       let response = await Axios.post(
         dataURL,
-        JSON.stringify({ ...data, type: "dish" }),
+        JSON.stringify({ ...data }),
         config
       );
       dispatch({ type: "GET_ALLDISH_SUCCESS", payload: response.data });
