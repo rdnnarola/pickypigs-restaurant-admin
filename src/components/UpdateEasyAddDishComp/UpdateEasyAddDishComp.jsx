@@ -101,20 +101,13 @@ const UpdateEasyAddDishComp = () => {
 
   const [enableFlag, setEnableFlag] = useState(true);
 
-  const handleLoad = () => {
-    console.log("on load worked =>");
-    // setEnableFlag(true);
-    dispatch(getSelectedDiscData(discId));
-  };
-  window.addEventListener("load", handleLoad);
+  let selectedDisc_data = useSelector((state) => {
+    return state.dishes.selected_Disc;
+  });
 
   useEffect(() => {
     dispatch(getSelectedDiscData(discId));
   }, [dispatch, discId]);
-
-  let selectedDisc_data = useSelector((state) => {
-    return state.dishes.selected_Disc;
-  });
 
   useEffect(() => {
     dispatch(getAllAllergyData());
@@ -181,7 +174,7 @@ const UpdateEasyAddDishComp = () => {
     }
   };
   useEffect(() => {
-    if (selectedDisc_data && selectedDisc_data[0].menuId !== "") {
+    if (selectedDisc_data && selectedDisc_data[0].menuId.length) {
       dispatch(
         getCategoryListOfSelectedMenu({
           menuId: selectedDisc_data && selectedDisc_data[0].menuId,
@@ -190,11 +183,12 @@ const UpdateEasyAddDishComp = () => {
     } else {
       dispatch(getCategoryListOfSelectedMenu({ menuId: [] }));
     }
-  }, [dispatch]);
+  }, [selectedDisc_data]);
 
   let categoryData = useSelector((state) => {
     return state.category.selectedMenuCategoryList;
   });
+
   //--------- Getting All Category Data Ends -------//
 
   //--------- Getting All Sub-Category Data -------//
@@ -233,10 +227,6 @@ const UpdateEasyAddDishComp = () => {
   let myLoading = useSelector((state) => {
     return state.dishes.isLoading;
   });
-
-  // console.log(categoryData && categoryData.find(cat => cat._id === selectedDisc_data && selectedDisc_data[0].categoryId))
-  // console.log(selectedDisc_data && selectedDisc_data[0].menuId.filter( val => menuData && menuData.menuDetails&&(menuData.menuDetails.map(data=>data._id)).includes(val)))
-  // console.log(categoryData && categoryData.find(cat => cat._id == `${selectedDisc_data && selectedDisc_data[0].categoryId}`) )
 
   const initialValues = {
     name:
@@ -580,9 +570,6 @@ const UpdateEasyAddDishComp = () => {
               handleChange,
               values,
             }) => {
-              console.log("values.menuId =>", values.menuId);
-              console.log("values.categoryId =>", values.categoryId);
-              console.log("values.subcategoryId =>", values.subcategoryId);
               return (
                 <Form>
                   <React.Fragment>
@@ -839,6 +826,7 @@ const UpdateEasyAddDishComp = () => {
                               <Field
                                 as="select"
                                 name="categoryId"
+                                // value={categoryData && categoryData[0]}
                                 onChange={(e) => {
                                   setFieldValue("categoryId", e.target.value);
                                   getSubCategoryAction(e.target.value);
