@@ -139,14 +139,14 @@ const AllDishesComponent = () => {
                     </select>
                   </div>
                   {/* Show hide / unHide checkbox  */}
-                  <div className="custom-control custom-checkbox pink-checkbox">
+                  <div className="custom-control custom-checkbox pink-checkbox showhide-check">
                     <input
                       type="checkbox"
                       checked={showHide}
                       onChange={(e) => {
                         setShowHide(e.target.checked);
                       }}
-                      className="custom-control-input showhide-check"
+                      className="custom-control-input"
                       id="customCheck1"
                     />
                     <label
