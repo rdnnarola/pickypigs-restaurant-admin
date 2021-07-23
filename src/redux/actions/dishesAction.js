@@ -19,7 +19,7 @@ export const getAllDishesData = (data) => {
       dispatch({ type: "GET_ALLDISHES_FAILURE", payload: error });
       if (error.response) {
         dispatch(setAlert(`${error.response.data.message}`, "error"));
-        if (error.response && error.response.status == 401) {
+        if (error.response && error.response.status === 401) {
           dispatch(logoutUser());
         }
       } else {
@@ -49,7 +49,7 @@ export const getAllDisheshData = (data) => {
       dispatch({ type: "GET_ALLDISH_FAILURE", payload: error });
       if (error.response) {
         dispatch(setAlert(`${error.response.data.message}`, "error"));
-        if (error.response && error.response.status == 401) {
+        if (error.response && error.response.status === 401) {
           dispatch(logoutUser());
         }
       } else {
@@ -113,7 +113,7 @@ export const addDishesData = (data, history) => {
       dispatch({ type: "ADD_DISHES_FAILURE", payload: error });
       if (error.response) {
         dispatch(setAlert(`${error.response.data.message}`, "error"));
-        if (error.response && error.response.status == 401) {
+        if (error.response && error.response.status === 401) {
           dispatch(logoutUser());
         }
       } else {
@@ -132,7 +132,7 @@ export const getSelectedDiscData = (selectedId) => {
       dispatch({ type: "GET_SELECTEDDISC_SUCCESS", payload: response.data });
     } catch (error) {
       dispatch({ type: "GET_SELECTEDDISC_FAILURE", payload: error });
-      if (error.response && error.response.status == 401) {
+      if (error.response && error.response.status === 401) {
         dispatch(logoutUser());
       }
     }
@@ -151,7 +151,7 @@ export const deleteSelectedDishesData = (selectedId) => {
       dispatch({ type: "DELETE_DISHES_FAILURE", payload: error });
       if (error.response) {
         dispatch(setAlert(`${error.response.data.message}`, "error"));
-        if (error.response && error.response.status == 401) {
+        if (error.response && error.response.status === 401) {
           dispatch(logoutUser());
         }
       } else {
@@ -218,7 +218,7 @@ export const updateSelectedDiscData = (selectedId, data, history) => {
       dispatch({ type: "UPDATE_DISC_FAILURE", payload: error });
       if (error.response) {
         dispatch(setAlert(`${error.response.data.message}`, "error"));
-        if (error.response && error.response.status == 401) {
+        if (error.response && error.response.status === 401) {
           dispatch(logoutUser());
         }
       } else {
@@ -251,7 +251,7 @@ export const updateSelectedDishAvailablity = (dishId, data) => {
       });
       if (error.response) {
         dispatch(setAlert(`${error.response.data.message}`, "error"));
-        if (error.response && error.response.status == 401) {
+        if (error.response && error.response.status === 401) {
           dispatch(logoutUser());
         }
       } else {
@@ -284,7 +284,7 @@ export const hideSelectedDishData = (selectedId, data) => {
       dispatch({ type: "HIDE_DISH_FAILURE", payload: error });
       if (error.response) {
         dispatch(setAlert(`${error.response.data.message}`, "error"));
-        if (error.response && error.response.status == 401) {
+        if (error.response && error.response.status === 401) {
           dispatch(logoutUser());
         }
       } else {
@@ -312,7 +312,7 @@ export const duplicateSelectedDishData = (selectedId, data) => {
       dispatch({ type: "DUPLICATE_DISH_FAILURE", payload: error });
       if (error.response) {
         dispatch(setAlert(`${error.response.data.message}`, "error"));
-        if (error.response && error.response.status == 401) {
+        if (error.response && error.response.status === 401) {
           dispatch(logoutUser());
         }
       } else {

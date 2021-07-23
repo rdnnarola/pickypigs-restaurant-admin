@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import "./UpdateEasyAddDishComp.scss";
-import Nonveg_icon from "../../assets/images/filterfeature/Nonveg_icon.svg";
+// import Nonveg_icon from "../../assets/images/filterfeature/Nonveg_icon.svg";
 import CaloriesMacrosModalComp from "../CaloriesMacrosModalComp/CaloriesMacrosModalComp";
-import CheckBoxAutoCompleteComp from "../CheckBoxAutoCompleteComp/CheckBoxAutoCompleteComp";
-import { JsonWebTokenError } from "jsonwebtoken";
+// import CheckBoxAutoCompleteComp from "../CheckBoxAutoCompleteComp/CheckBoxAutoCompleteComp";
+// import { JsonWebTokenError } from "jsonwebtoken";
 import {
   updateSelectedDiscData,
   getSelectedDiscData,
@@ -37,8 +37,9 @@ import CustomLoadingComp from "../CustomLoadingComp/CustomLoadingComp";
 import moment from "moment";
 
 const styleOf_currency = ["$"];
+// eslint-disable-next-line
 const numbRegs = RegExp(/^[+]?([0-9]+(?:[\.][0-9]*)?|\.[0-9]+)$/);
-const numRegExp = RegExp(/^[+]?[0-9]{0,3}$/);
+// const numRegExp = RegExp(/^[+]?[0-9]{0,3}$/);
 
 async function fetchNewTextC(ingredient) {
   await new Promise((r) => setTimeout(r, 100));
@@ -95,7 +96,6 @@ const UpdateEasyAddDishComp = () => {
   let discId = params.id;
   const dispatch = useDispatch();
   const history = useHistory();
-  const [myData, setMyData] = useState([]);
   const [descModal, setDescModal] = useState(false);
   const [addItem, setAddItem] = useState(true);
 
@@ -144,17 +144,17 @@ const UpdateEasyAddDishComp = () => {
       setFieldValue(fieldname, [...fieldValue, e.target.id]);
     }
   };
-  const galleryImageUploadHandeler = (
-    e,
-    fieldValue,
-    setFieldValue,
-    fieldname
-  ) => {
-    e.preventDefault();
-    if (e.target.files[0]) {
-      setFieldValue(fieldname, e.target.files[0]);
-    }
-  };
+  // const galleryImageUploadHandeler = (
+  //   e,
+  //   fieldValue,
+  //   setFieldValue,
+  //   fieldname
+  // ) => {
+  //   e.preventDefault();
+  //   if (e.target.files[0]) {
+  //     setFieldValue(fieldname, e.target.files[0]);
+  //   }
+  // };
   //--------- Getting All Menu Data -------//
   useEffect(() => {
     dispatch(getAllMenuData({ start: 0, delete: 0 }));
@@ -183,6 +183,7 @@ const UpdateEasyAddDishComp = () => {
     } else {
       dispatch(getCategoryListOfSelectedMenu({ menuId: [] }));
     }
+    // eslint-disable-next-line
   }, [selectedDisc_data]);
 
   let categoryData = useSelector((state) => {
@@ -213,6 +214,7 @@ const UpdateEasyAddDishComp = () => {
         getSubCategoryListOfSelectedCategory("5fb6137b358d872b7cce1404")
       );
     }
+    // eslint-disable-next-line
   }, [dispatch, selectedDisc_data && selectedDisc_data[0].categoryId]);
 
   let subcategoryData = useSelector((state) => {
@@ -276,7 +278,7 @@ const UpdateEasyAddDishComp = () => {
       categoryData &&
       categoryData.find(
         (cat) =>
-          cat._id == `${selectedDisc_data && selectedDisc_data[0].categoryId}`
+          cat._id === `${selectedDisc_data && selectedDisc_data[0].categoryId}`
       )
         ? selectedDisc_data && selectedDisc_data[0].categoryId
         : "",
@@ -284,7 +286,7 @@ const UpdateEasyAddDishComp = () => {
       subcategoryData &&
       subcategoryData.find(
         (subcat) =>
-          subcat._id ==
+          subcat._id ===
           `${selectedDisc_data && selectedDisc_data[0].subcategoryId}`
       )
         ? selectedDisc_data && selectedDisc_data[0].subcategoryId
@@ -1024,7 +1026,7 @@ const UpdateEasyAddDishComp = () => {
                                         width="82px"
                                         height="82px"
                                         className="img-fluid mb-3"
-                                        alt="image"
+                                        alt="img"
                                       />
                                     )
                                   ) : (
@@ -1034,7 +1036,7 @@ const UpdateEasyAddDishComp = () => {
                                       width="82px"
                                       height="82px"
                                       className="img-fluid mb-3"
-                                      alt="image"
+                                      alt="img"
                                     />
                                   )}
 
@@ -1471,6 +1473,7 @@ const UpdateEasyAddDishComp = () => {
                                                 <img
                                                   src={`${SERVER_URL}/${data.image}`}
                                                   className="img-fluid"
+                                                  alt="img-fluid"
                                                 />
                                               </div>
                                               <span

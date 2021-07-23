@@ -1,178 +1,224 @@
 import React, { useEffect, useState } from "react";
-import { Field, Form, Formik } from 'formik';
-import * as Yup from 'yup';
-import { useDispatch, useSelector} from "react-redux";
+import { Field, Form, Formik } from "formik";
+import * as Yup from "yup";
+import { useDispatch, useSelector } from "react-redux";
 import showpassword from "../../assets/images/eye_icon.svg";
-import {resetPassword } from "../../redux/actions/generalActions";
-import './ResetPasswordComp.scss';
+import { resetPassword } from "../../redux/actions/generalActions";
+import "./ResetPasswordComp.scss";
 import { useHistory, useParams } from "react-router-dom";
 import CustomLoadingComp from "../CustomLoadingComp/CustomLoadingComp";
 
-
-const phoneRegExp = /^(?=.*\d)(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
-const passwordRegExp = RegExp(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,24})/);
+// const phoneRegExp = /^(?=.*\d)(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
+const passwordRegExp = RegExp(
+  /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,24})/
+);
 
 const validationSchemaForLogin = Yup.object().shape({
-    newPassword: Yup
-        .string()
-        .label('Password')
-        .required('Password Required')
-        .min(8, 'Seems a bit short(Min 8 characters)...')
-        .max(24, 'Please try a shorter password(Max 24 characters)...).')
-        .matches(passwordRegExp, 'Password should Have 1 Uppercase,1 Lowercase,1 digit,1 special characte'),
-    
-    confirmPassword: Yup
-        .string()
-        .required()
-        .label('Confirm password')
-        .test('passwords-match', 'Passwords Must Match', function(value) {
-        return this.parent.newPassword === value;
-        }),
-         
+  newPassword: Yup.string()
+    .label("Password")
+    .required("Password Required")
+    .min(8, "Seems a bit short(Min 8 characters)...")
+    .max(24, "Please try a shorter password(Max 24 characters)...).")
+    .matches(
+      passwordRegExp,
+      "Password should Have 1 Uppercase,1 Lowercase,1 digit,1 special characte"
+    ),
+
+  confirmPassword: Yup.string()
+    .required()
+    .label("Confirm password")
+    .test("passwords-match", "Passwords Must Match", function (value) {
+      return this.parent.newPassword === value;
+    }),
 });
 
 const ResetPasswordComp = () => {
+  const dispatch = useDispatch();
+  const params = useParams();
+  const history = useHistory();
+  const [type, setType] = useState("password");
+  const [confirmType, setConfirmType] = useState("password");
+  // eslint-disable-next-line
+  const [error, setError] = useState(null);
+  let mytoken = params.token;
 
-    const dispatch = useDispatch();
-    const params=useParams();
-    const history = useHistory();
-    const [type, setType] = useState("password")
-    const [confirmType, setConfirmType] = useState("password")
-    const [error, setError] = useState(null)
-	let  mytoken  = params.token;
+  useEffect(() => {
+    localStorage.removeItem("access_token");
+    localStorage.removeItem("role");
+  }, [mytoken]);
 
-    useEffect(()=>{
-        localStorage.removeItem('access_token');
-        localStorage.removeItem('role');
-    },[mytoken]);
+  const handleSavePassword = (input) => {
+    let obj = {
+      token: mytoken,
+      newPassword: input.newPassword,
+      confirmPassword: input.confirmPassword,
+    };
+    dispatch(resetPassword(obj, history));
+  };
 
-   
-    const handleSavePassword = (input) => {
-        let obj = {
-            token:mytoken,
-            newPassword: input.newPassword,
-            confirmPassword: input.confirmPassword
-        }
-        dispatch(resetPassword(obj, history))
+  const handlePassword = () => {
+    if (type === "password") {
+      setType("text");
+    } else {
+      setType("password");
     }
+  };
 
-   
-    const handlePassword = () => {
-        if (type === "password") {
-            setType("text")
-        } else {
-            setType("password")
-        }
+  const handleConfirmPassword = () => {
+    if (confirmType === "password") {
+      setConfirmType("text");
+    } else {
+      setConfirmType("password");
     }
-   
-    const handleConfirmPassword=()=>{
-        if (confirmType === "password") {
-            setConfirmType("text")
-        } else {
-            setConfirmType("password")
-        }
-    }
-    let loading = useSelector((state)=>{
-        return state.general.isLoading
-    });
+  };
+  let loading = useSelector((state) => {
+    return state.general.isLoading;
+  });
 
-    return (
-        <>
-            
-            <section>
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <div className="row justify-content-between">
-                <div className="col-sm-12 col-md-6 col-lg-6 col-xl-6">
-                    <div className="signin-left pt-4 mt-2">
-                        <h1 className="brandon-Bold">
-                            THE ULTIMATE
-                        <br />
-                        FOOD FINDING
-                        <br />
-                        APPLICATION
-                    </h1>
-                        <p className="f-15">bridging the gap between you and your perfect guest. Your allergy, calorie,macro and digital menu solution.</p>
-                        <p className="f-15 mb-4">Digital menus personalised by allergy requirements, dietary preferences and lifestyle choices. Let your customer easily discover your venue and dishes, in a safe, transparent and accessible way. Support your teams and guests in making the best choices in what and where they do or don't want to eat.</p>
-                      
-                    </div>
-                </div>
-                <div className="col-md-6">
-                    <div className="signin-form">
-                        
-                        <div>
-                        <h5 className="text-center signindash-heading brandon-Bold mb-4">RESET PASSWORD</h5>
-                        <Formik
-                            initialValues={{ newPassword: '',confirmPassword:'' }}
-                            validationSchema={validationSchemaForLogin}
-                            onSubmit={(values) => {
-                                console.log('values => ', values);
-                                handleSavePassword(values)
-                            }}
-                        >
-                            {({
-                                values, errors, touched, handleChange, handleBlur, isSubmitting,
-                                /* and other goodies */
-                            }) => (
-                                <Form>
-                                    <div className="row">
-                                        <div className="col-sm-12">
-                                            
-                                            <div className="form-group position-relative">
-                                                <Field type={type} name="newPassword" placeholder="New Password" className="form-control signup-input"
-                                                />
-                                                <div className={`showpassword-block ${type=== "password"?null:"show"}`} id="newPassword" onClick={() => handlePassword()}>
-                                                    <img src={showpassword} className="img-fluid" alt="showpassword" />
-                                                </div>
-                                                <div className="error pink-txt f-11">{(touched.newPassword && errors.newPassword && errors.newPassword) || error}</div>
-                                            </div>
-                                            <div className="form-group position-relative">
-                                                <Field type={confirmType} name="confirmPassword" placeholder="Confirm new password" className="form-control signup-input"
-                                                />
-                                                <div className={`showpassword-block ${confirmType=== "password"?null:"show"}`} id="confirmPassword" onClick={handleConfirmPassword}>
-                                                    <img src={showpassword} className="img-fluid" alt="showpassword" />
-                                                </div>
-                                                <div className="error pink-txt f-11">{(touched.confirmPassword && errors.confirmPassword && errors.confirmPassword) || error}</div>
-                                            </div>
-                                            
-                                            <div className="form-group text-center">
-                                                <button className="min-width-270 pinkline-btn signup-btn btn mt-4 text-uppercase rounded-pill" type="submit" >
-                                                    Save Password
-                                                </button>
-                                                <React.Fragment>
-                                                    {loading&&loading?
-                                                        <CustomLoadingComp/>
-                                                    :
-                                                        null
-                                                    }
-                                                </React.Fragment>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                </Form>
-                            )}
-                        </Formik>
-                        </div>
-                      
-                   
-                    </div>
-                </div>
+  return (
+    <>
+      <section>
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <div className="row justify-content-between">
+          <div className="col-sm-12 col-md-6 col-lg-6 col-xl-6">
+            <div className="signin-left pt-4 mt-2">
+              <h1 className="brandon-Bold">
+                THE ULTIMATE
+                <br />
+                FOOD FINDING
+                <br />
+                APPLICATION
+              </h1>
+              <p className="f-15">
+                bridging the gap between you and your perfect guest. Your
+                allergy, calorie,macro and digital menu solution.
+              </p>
+              <p className="f-15 mb-4">
+                Digital menus personalised by allergy requirements, dietary
+                preferences and lifestyle choices. Let your customer easily
+                discover your venue and dishes, in a safe, transparent and
+                accessible way. Support your teams and guests in making the best
+                choices in what and where they do or don't want to eat.
+              </p>
             </div>
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            </section>
-           
-        </>
-    )
-}
+          </div>
+          <div className="col-md-6">
+            <div className="signin-form">
+              <div>
+                <h5 className="text-center signindash-heading brandon-Bold mb-4">
+                  RESET PASSWORD
+                </h5>
+                <Formik
+                  initialValues={{ newPassword: "", confirmPassword: "" }}
+                  validationSchema={validationSchemaForLogin}
+                  onSubmit={(values) => {
+                    console.log("values => ", values);
+                    handleSavePassword(values);
+                  }}
+                >
+                  {({
+                    values,
+                    errors,
+                    touched,
+                    handleChange,
+                    handleBlur,
+                    isSubmitting,
+                    /* and other goodies */
+                  }) => (
+                    <Form>
+                      <div className="row">
+                        <div className="col-sm-12">
+                          <div className="form-group position-relative">
+                            <Field
+                              type={type}
+                              name="newPassword"
+                              placeholder="New Password"
+                              className="form-control signup-input"
+                            />
+                            <div
+                              className={`showpassword-block ${
+                                type === "password" ? null : "show"
+                              }`}
+                              id="newPassword"
+                              onClick={() => handlePassword()}
+                            >
+                              <img
+                                src={showpassword}
+                                className="img-fluid"
+                                alt="showpassword"
+                              />
+                            </div>
+                            <div className="error pink-txt f-11">
+                              {(touched.newPassword &&
+                                errors.newPassword &&
+                                errors.newPassword) ||
+                                error}
+                            </div>
+                          </div>
+                          <div className="form-group position-relative">
+                            <Field
+                              type={confirmType}
+                              name="confirmPassword"
+                              placeholder="Confirm new password"
+                              className="form-control signup-input"
+                            />
+                            <div
+                              className={`showpassword-block ${
+                                confirmType === "password" ? null : "show"
+                              }`}
+                              id="confirmPassword"
+                              onClick={handleConfirmPassword}
+                            >
+                              <img
+                                src={showpassword}
+                                className="img-fluid"
+                                alt="showpassword"
+                              />
+                            </div>
+                            <div className="error pink-txt f-11">
+                              {(touched.confirmPassword &&
+                                errors.confirmPassword &&
+                                errors.confirmPassword) ||
+                                error}
+                            </div>
+                          </div>
+
+                          <div className="form-group text-center">
+                            <button
+                              className="min-width-270 pinkline-btn signup-btn btn mt-4 text-uppercase rounded-pill"
+                              type="submit"
+                            >
+                              Save Password
+                            </button>
+                            <React.Fragment>
+                              {loading && loading ? (
+                                <CustomLoadingComp />
+                              ) : null}
+                            </React.Fragment>
+                          </div>
+                        </div>
+                      </div>
+                    </Form>
+                  )}
+                </Formik>
+              </div>
+            </div>
+          </div>
+        </div>
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+      </section>
+    </>
+  );
+};
 
 export default ResetPasswordComp;

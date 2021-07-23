@@ -1,34 +1,43 @@
-import React,{lazy,Suspense } from 'react';
-import { Route, Switch } from "react-router-dom"
-import './App.css';
-import Routes from './routes';
-import PrivateRoute from './PrivateRoute';
-import PublicRoute from './PublicRoute';
-import AlertSystemPage from './view/AlertSystemPage/AlertSystemPage'
-import LoadonTop from './components/LoadonTop';
-import TokenVerificationPage from './view/TokenVerificationPage';
-import ErrorBoundary from './view/ErrorBoundary';
+import React, { lazy, Suspense } from "react";
+import { Route, Switch } from "react-router-dom";
+import "./App.css";
+import Routes from "./routes";
+import PrivateRoute from "./PrivateRoute";
+import AlertSystemPage from "./view/AlertSystemPage/AlertSystemPage";
+import LoadonTop from "./components/LoadonTop";
+import TokenVerificationPage from "./view/TokenVerificationPage";
+import ErrorBoundary from "./view/ErrorBoundary";
 
-const LoginPage = lazy(() => import('./view/LoginPage/LoginPage'));
-const ResetPasswordPage = lazy(() => import('./view/ResetPasswordPage/ResetPasswordPage'));
+// const LoginPage = lazy(() => import('./view/LoginPage/LoginPage'));
+const ResetPasswordPage = lazy(() =>
+  import("./view/ResetPasswordPage/ResetPasswordPage")
+);
 // const Signup = lazy(() => import('./view/Signup/Signup'));
-const TheWhoPage = lazy(() => import("./view/TheWhoPage/TheWhoPage"));
-const TheFaqPage = lazy(() => import("./view/TheFaqPage/TheFaqPage.jsx"));
-const TermsAndConditionPage = lazy(() => import("./view/TermsAndConditionPage/TermsAndConditionPage.jsx"));
-const HowItWorksPage = lazy(() => import("./view/HowItWorksPage/HowItWorksPage.jsx"));
+// const TheWhoPage = lazy(() => import("./view/TheWhoPage/TheWhoPage"));
+// const TheFaqPage = lazy(() => import("./view/TheFaqPage/TheFaqPage.jsx"));
+// const TermsAndConditionPage = lazy(() => import("./view/TermsAndConditionPage/TermsAndConditionPage.jsx"));
+// const HowItWorksPage = lazy(() => import("./view/HowItWorksPage/HowItWorksPage.jsx"));
 
 function App() {
   return (
     <React.Fragment>
       <ErrorBoundary>
         <Suspense fallback={<div></div>}>
-            <div>
-              <AlertSystemPage/>
-            </div>
-            <LoadonTop/>
-          <Switch> 
-            <Route exact path="/reset_password/:token" render={(props) => <ResetPasswordPage {...props} />} />
-            <Route exact path="/login/:logintoken" render={(props) => <TokenVerificationPage {...props} />} />
+          <div>
+            <AlertSystemPage />
+          </div>
+          <LoadonTop />
+          <Switch>
+            <Route
+              exact
+              path="/reset_password/:token"
+              render={(props) => <ResetPasswordPage {...props} />}
+            />
+            <Route
+              exact
+              path="/login/:logintoken"
+              render={(props) => <TokenVerificationPage {...props} />}
+            />
             {/* <Route exact path="/home" render={(props) => <LoginPage {...props} />} /> */}
 
             {/* <Route exact path="/who" render={(props) => <TheWhoPage {...props} />} />

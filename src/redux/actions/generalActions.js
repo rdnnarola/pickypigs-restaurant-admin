@@ -1,9 +1,7 @@
-import Axios from './axios';
+import Axios from "./axios";
 import axios from "axios";
-import {setAlert} from './alertAction';
-import {RESTAURANT_ADMIN_URL} from '../../shared/constant';
-
-
+import { setAlert } from "./alertAction";
+import { RESTAURANT_ADMIN_URL } from "../../shared/constant";
 
 // export const getLogin=(data,history)=>{
 //   return async(dispatch)=>{
@@ -29,109 +27,101 @@ import {RESTAURANT_ADMIN_URL} from '../../shared/constant';
 //   }
 // };
 
-export const getLogin=(token,history)=>{
-  return async(dispatch)=>{
-      try{
-          dispatch({type:"GET_LOGIN_REQUEST"});
-          let config= {
-              headers:{
-               "Content-Type":"application/json",
-               }
-           }
-          const mytoken = token;
-          if (mytoken) axios.defaults.headers.common = { "x-access-token": mytoken };
-          let dataURL=`/restaurant_admin/domain_change_verification`
-          let response = await Axios.post(dataURL,config );
-          if(response&&response.status==200){
-            dispatch({type:"GET_LOGIN_SUCCESS",payload:mytoken});
-            dispatch(setAlert('LogIn Success', 'success'));
-            history.push('/');
-          }else{
-            window.open(
-              `${RESTAURANT_ADMIN_URL}`,
-              '_self', // <- This is what makes it open in a new window.
-              'replace=true'
-            )
-          }
-        
-          
-      }
-      catch(error){
-        dispatch({type:"GET_LOGIN_FAILURE",payload:error});
-        dispatch(setAlert('Wrong Credential', 'error'));
-        { window.open(
+export const getLogin = (token, history) => {
+  return async (dispatch) => {
+    try {
+      dispatch({ type: "GET_LOGIN_REQUEST" });
+      let config = {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      };
+      const mytoken = token;
+      if (mytoken)
+        axios.defaults.headers.common = { "x-access-token": mytoken };
+      let dataURL = `/restaurant_admin/domain_change_verification`;
+      let response = await Axios.post(dataURL, config);
+      if (response && response.status === 200) {
+        dispatch({ type: "GET_LOGIN_SUCCESS", payload: mytoken });
+        dispatch(setAlert("LogIn Success", "success"));
+        history.push("/");
+      } else {
+        window.open(
           `${RESTAURANT_ADMIN_URL}`,
-          '_self', // <- This is what makes it open in a new window.
-          'replace=true'
-        )}
+          "_self", // <- This is what makes it open in a new window.
+          "replace=true"
+        );
       }
-  }
+    } catch (error) {
+      dispatch({ type: "GET_LOGIN_FAILURE", payload: error });
+      dispatch(setAlert("Wrong Credential", "error"));
+      window.open(
+        `${RESTAURANT_ADMIN_URL}`,
+        "_self", // <- This is what makes it open in a new window.
+        "replace=true"
+      );
+    }
+  };
 };
 
-export const logoutUser=()=>{
-  return async(dispatch)=>{
-      try{
-          await dispatch({type:"LOGOUT_ADMIN_REQUEST"});
+export const logoutUser = () => {
+  return async (dispatch) => {
+    try {
+      await dispatch({ type: "LOGOUT_ADMIN_REQUEST" });
 
-          dispatch({type:"LOGOUT_ADMIN_SUCCESS"});
-          dispatch(setAlert('LogOut Success', 'success'));
-          window.open(
-            `${RESTAURANT_ADMIN_URL}`,
-            '_self', // <- This is what makes it open in a new window.
-            'replace=true'
-          );
-          // history.push('/home') ;
-
-      }
-      catch(error){
-        dispatch({type:"LOGOUT_ADMIN_FAILURE"});
-        dispatch(setAlert('Something Wrong', 'error'));
-
-      }
-  }
-}
-
-
-export const forgotPassword=(data)=>{
-  return async(dispatch)=>{
-      try{
-          dispatch({type:"FORGOT_PASSWORD_REQUEST"});
-          let config= {
-              headers:{
-               "Content-Type":"application/json"
-               }
-           }
-          let dataURL=`/auth/forgot_password`
-          let response = await Axios.post(dataURL,JSON.stringify(data),config );
-          dispatch({type:"FORGOT_PASSWORD_SUCCESS",payload:response.data});
-          dispatch(setAlert(`${response.data.message}`, 'success'));
-      }
-      catch(error){
-        dispatch({type:"FORGOT_PASSWORD_FAILURE",payload:error});
-        dispatch(setAlert('Something Went Wrong', 'error'));
-      }
-  }
+      dispatch({ type: "LOGOUT_ADMIN_SUCCESS" });
+      dispatch(setAlert("LogOut Success", "success"));
+      window.open(
+        `${RESTAURANT_ADMIN_URL}`,
+        "_self", // <- This is what makes it open in a new window.
+        "replace=true"
+      );
+      // history.push('/home') ;
+    } catch (error) {
+      dispatch({ type: "LOGOUT_ADMIN_FAILURE" });
+      dispatch(setAlert("Something Wrong", "error"));
+    }
+  };
 };
 
-export const resetPassword=(data,history)=>{
+export const forgotPassword = (data) => {
+  return async (dispatch) => {
+    try {
+      dispatch({ type: "FORGOT_PASSWORD_REQUEST" });
+      let config = {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      };
+      let dataURL = `/auth/forgot_password`;
+      let response = await Axios.post(dataURL, JSON.stringify(data), config);
+      dispatch({ type: "FORGOT_PASSWORD_SUCCESS", payload: response.data });
+      dispatch(setAlert(`${response.data.message}`, "success"));
+    } catch (error) {
+      dispatch({ type: "FORGOT_PASSWORD_FAILURE", payload: error });
+      dispatch(setAlert("Something Went Wrong", "error"));
+    }
+  };
+};
+
+export const resetPassword = (data, history) => {
   console.log(data);
-  return async(dispatch)=>{
-      try{
-          dispatch({type:"RESET_PASSWORD_REQUEST"});
-          let config= {
-              headers:{
-               "Content-Type":"application/json"
-               }
-           }
-          let dataURL=`/auth/reset_password`
-          let response = await Axios.post(dataURL,JSON.stringify(data),config );
-          dispatch({type:"RESET_PASSWORD_SUCCESS",payload:response.data});
-          dispatch(setAlert(`${response.data.message}`, 'success'));
-          history.push('/');
-      }
-      catch(error){
-        dispatch({type:"RESET_PASSWORD_FAILURE",payload:error});
-        dispatch(setAlert(`${error.response.data.message}`, 'error'));
-      }
-  }
+  return async (dispatch) => {
+    try {
+      dispatch({ type: "RESET_PASSWORD_REQUEST" });
+      let config = {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      };
+      let dataURL = `/auth/reset_password`;
+      let response = await Axios.post(dataURL, JSON.stringify(data), config);
+      dispatch({ type: "RESET_PASSWORD_SUCCESS", payload: response.data });
+      dispatch(setAlert(`${response.data.message}`, "success"));
+      history.push("/");
+    } catch (error) {
+      dispatch({ type: "RESET_PASSWORD_FAILURE", payload: error });
+      dispatch(setAlert(`${error.response.data.message}`, "error"));
+    }
+  };
 };
