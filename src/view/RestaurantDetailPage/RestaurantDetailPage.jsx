@@ -314,7 +314,7 @@ const RestaurantDetailPage = () => {
             <h5 className="about_header mb-0 f-15 text-uppercase gray-txt brandon-Medium">
               ABOUT
             </h5>
-            {editForm ? (
+            {editForm && (
               <button
                 className="custom_edit_button brandon-Medium"
                 type="button"
@@ -324,23 +324,6 @@ const RestaurantDetailPage = () => {
               >
                 EDIT
               </button>
-            ) : (
-              <div className="d-flex justify-content-between align-items-center ">
-                <button
-                  className="btn lightgraynoline-btn min-width-120 border-radius-25 text-uppercase f-15"
-                  type="reset"
-                  onClick={handleAboutCancl}
-                >
-                  cancel
-                </button>
-                <button
-                  className="btn pinkline-btn min-width-120 border-radius-25 ml-4 text-uppercase f-15"
-                  type="submit"
-                  onClick={handleAboutSubmit}
-                >
-                  Save
-                </button>
-              </div>
             )}
           </div>
           <div className="row">
@@ -370,6 +353,24 @@ const RestaurantDetailPage = () => {
               />
               {/* {touched.street && errors.street && <div className="error pink-txt f-11">{errors.street}</div>} */}
             </React.Fragment>
+          )}
+          {!editForm && (
+            <div className="save_cancel_btn">
+              <button
+                className="btn lightgraynoline-btn min-width-120 border-radius-25 text-uppercase f-15"
+                type="reset"
+                onClick={handleAboutCancl}
+              >
+                cancel
+              </button>
+              <button
+                className="btn pinkline-btn min-width-120 border-radius-25 ml-4 text-uppercase f-15"
+                type="submit"
+                onClick={handleAboutSubmit}
+              >
+                Save
+              </button>
+            </div>
           )}
         </div>
         <div className="row mt-4">

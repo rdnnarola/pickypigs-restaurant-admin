@@ -328,7 +328,7 @@ const RestaurantFeaturesComp = (props) => {
                                 )}
                               </div>
                             </div>
-                            {editForm ? (
+                            {editForm && (
                               <button
                                 className="custom_edit_button mr-5 brandon-Medium"
                                 type="button"
@@ -338,24 +338,6 @@ const RestaurantFeaturesComp = (props) => {
                               >
                                 EDIT
                               </button>
-                            ) : (
-                              <div className="d-flex justify-content-between align-items-center ">
-                                <button
-                                  className="btn lightgraynoline-btn min-width-120 border-radius-25 text-uppercase f-15"
-                                  type="reset"
-                                  onClick={() => {
-                                    handleCancleEdit(resetForm);
-                                  }}
-                                >
-                                  cancel
-                                </button>
-                                <button
-                                  className="btn pinkline-btn min-width-120 border-radius-25 ml-4 text-uppercase f-15"
-                                  type="submit"
-                                >
-                                  Save
-                                </button>
-                              </div>
                             )}
                           </div>
                           <div
@@ -1836,6 +1818,25 @@ const RestaurantFeaturesComp = (props) => {
                             </div>
                           </div>
                         </div>
+                        {!editForm && (
+                          <div className="save_cancel_btn">
+                            <button
+                              className="btn lightgraynoline-btn min-width-120 border-radius-25 text-uppercase f-15"
+                              type="reset"
+                              onClick={() => {
+                                handleCancleEdit(resetForm);
+                              }}
+                            >
+                              cancel
+                            </button>
+                            <button
+                              className="btn pinkline-btn min-width-120 border-radius-25 ml-4 text-uppercase f-15"
+                              type="submit"
+                            >
+                              Save
+                            </button>
+                          </div>
+                        )}
                       </div>
                     </div>
                   </div>
