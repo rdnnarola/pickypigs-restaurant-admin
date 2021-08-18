@@ -215,7 +215,7 @@ const AllDishesComponent = () => {
                   <th className="brandon-Bold " scope="col">
                     LATEST MODIFIED
                   </th>
-                  <th className="brandon-Bold text-right" scope="col">
+                  <th className="brandon-Bold " scope="col">
                     Actions
                   </th>
                 </tr>
