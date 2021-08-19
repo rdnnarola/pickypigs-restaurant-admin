@@ -19,8 +19,6 @@ const RestaurantInfoFeatureComp = (props) => {
     cardAccept,
     cashAccept,
     inclusiveTaxesAndCharges,
-    cuisineType,
-    restaurantFeaturesOptions,
     appliesOfRestaurant,
   } = props.featuredata;
   const dispatch = useDispatch();
@@ -33,7 +31,7 @@ const RestaurantInfoFeatureComp = (props) => {
   let allAllergy_data = useSelector((state) => {
     return state.allergy;
   });
-  let { isLoading, restaurantFeatures_Data, cuisine_Data } = allAllergy_data;
+  let { restaurantFeatures_Data, cuisine_Data } = allAllergy_data;
 
   const handleRestaurant = (e, restaurant, setFieldValue) => {
     e.preventDefault();

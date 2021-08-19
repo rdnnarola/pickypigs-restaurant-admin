@@ -8,16 +8,14 @@ import showpassword from "../../assets/images/eye_icon.svg";
 
 // eslint-disable-next-line
 const passwordRegExp = RegExp(
+  // eslint-disable-next-line no-useless-escape
   /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,24})/
 );
 
 const RestaurantSecurityComp = (props) => {
   // eslint-disable-next-line
-  let {
-    password,
-    twoFactorAuthenticationPhoneNumber,
-    twoFactorAuthenticationEmail,
-  } = props.securitydata;
+  let { twoFactorAuthenticationPhoneNumber, twoFactorAuthenticationEmail } =
+    props.securitydata;
   const dispatch = useDispatch();
   const [editForm, setEditForm] = useState(true);
   const [type, setType] = useState("password");

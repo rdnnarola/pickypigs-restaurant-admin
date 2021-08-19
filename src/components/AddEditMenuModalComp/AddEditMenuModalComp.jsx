@@ -1,172 +1,262 @@
-import React,{useState,useEffect} from "react";
-import './AddEditMenuModalComp.scss';
-import { Modal, Button } from 'react-bootstrap';
-import {useDispatch,useSelector} from "react-redux";
-import MomentUtils from '@date-io/moment';
-import {MuiPickersUtilsProvider,KeyboardTimePicker} from '@material-ui/pickers';
-import { Field, Form, Formik } from 'formik';
-import * as Yup from 'yup';
+import React, { useEffect } from "react";
+import "./AddEditMenuModalComp.scss";
+import { Modal } from "react-bootstrap";
+import { useDispatch, useSelector } from "react-redux";
+import MomentUtils from "@date-io/moment";
+import {
+  MuiPickersUtilsProvider,
+  KeyboardTimePicker,
+} from "@material-ui/pickers";
+import { Field, Form, Formik } from "formik";
+import * as Yup from "yup";
 import CheckBoxAutoCompleteComp from "../CheckBoxAutoCompleteComp/CheckBoxAutoCompleteComp";
-import moment from 'moment'
-import { addMenuData, getSelectedMenuData, updateSelectedMenuData } from "../../redux/actions/menuAction";
+import moment from "moment";
+import {
+  addMenuData,
+  getSelectedMenuData,
+  updateSelectedMenuData,
+} from "../../redux/actions/menuAction";
 import DaySelectorCheckBoxAutoCompleteComp from "../DaySelectorCheckBoxAutoCompleteComp/DaySelectorCheckBoxAutoCompleteComp";
-import LoadingComponentMini from '../LoadingComponentMini/LoadingComponentMini';
+import LoadingComponentMini from "../LoadingComponentMini/LoadingComponentMini";
 
-const days_information = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"];
-const styleOf_menu=["breakfast","lunch","dinner","dessert","buffet","drinks","nibble","setmenu"]
+const days_information = [
+  "Monday",
+  "Tuesday",
+  "Wednesday",
+  "Thursday",
+  "Friday",
+  "Saturday",
+  "Sunday",
+];
+const styleOf_menu = [
+  "breakfast",
+  "lunch",
+  "dinner",
+  "dessert",
+  "buffet",
+  "drinks",
+  "nibble",
+  "setmenu",
+];
 
 const AddEditMenuModalComp = (props) => {
-    const [selectedDate, handleDateChange] = useState(new Date());
+  const dispatch = useDispatch();
+  let id = props.menuid && props.menuid;
+  let isAddMode = !id;
 
-    const dispatch=useDispatch();
-    let id  = props.menuid&&props.menuid;
-    let isAddMode = !id;
+  const initialValues = {
+    name: "",
+    timeFrom: null,
+    timeTo: null,
+    type: "menu",
+    availability: [],
+    styleOfmenu: [],
+  };
 
-    const initialValues = {
-        name:'',
-        timeFrom:null,
-        timeTo:null,
-        type:"menu",
-        availability:[],
-        styleOfmenu:[],
+  const validationSchema = Yup.object().shape({
+    name: Yup.string().required("Name is required"),
+    timeFrom: Yup.date().nullable().required("Time Is Required"),
+    timeTo: Yup.date().nullable().required("Time Is Required"),
+    availability: Yup.array().required("Please Select Availablity"),
+    styleOfmenu: Yup.array().required("Please Select Menu Style"),
+  });
+
+  useEffect(() => {
+    if (props.show) {
+      if (!isAddMode) {
+        dispatch(getSelectedMenuData(props.menuid));
+      }
     }
+    // eslint-disable-next-line
+  }, [dispatch, props.show, props.menuid]);
 
-    const validationSchema  = Yup.object().shape({
-        name:Yup.string().required('Name is required'),
-        timeFrom:Yup.date().nullable().required('Time Is Required'),
-        timeTo:Yup.date().nullable().required('Time Is Required'),
-        availability:Yup.array().required('Please Select Availablity'),
-        styleOfmenu:Yup.array().required('Please Select Menu Style'),
-    });
+  let menuData = useSelector((state) => {
+    return state.menu.selectedMenu;
+  });
+  let menuDataLoading = useSelector((state) => {
+    return state.menu.isLoading;
+  });
+  let initialValues2 = {
+    name: menuData.name,
+    timeFrom: `${moment(menuData.timeFrom, "HH:mm")} `,
+    timeTo: `Thu Dec 31 2020 ${menuData.timeTo} `,
+    type: menuData.type,
+    availability: menuData.availability,
+    styleOfmenu: menuData.styleOfmenu,
+  };
 
-    useEffect(() => {
-        if (props.show) {
-            if (!isAddMode) {
-                dispatch(getSelectedMenuData(props.menuid));
-            }
-        }
-    }, [dispatch,props.show,props.menuid]);
-
-    let menuData = useSelector((state)=>{
-        return state.menu.selectedMenu
-    });
-    let menuDataLoading = useSelector((state)=>{
-        return state.menu.isLoading
-    });
-    let initialValues2={
-        name:menuData.name,
-        timeFrom:`${moment(menuData.timeFrom, "HH:mm")} `, 
-        timeTo:`Thu Dec 31 2020 ${menuData.timeTo} `,
-        type:menuData.type,
-        availability:menuData.availability,
-        styleOfmenu:menuData.styleOfmenu
+  const onSubmit = (fields, { setStatus }) => {
+    setStatus();
+    if (isAddMode) {
+      createMenuRequest(fields);
+    } else {
+      updateMenuRequest(id, fields);
     }
+  };
 
-    const onSubmit=(fields, { setStatus })=>{
-        setStatus();
-        if (isAddMode) {
-            createMenuRequest(fields);
-        } else {
-            updateMenuRequest(id,fields,);
-        }
-    }
+  function createMenuRequest(fields) {
+    dispatch(
+      addMenuData(
+        {
+          ...fields,
+          timeFrom: moment(fields.timeFrom).format("HH:mm"),
+          timeTo: moment(fields.timeTo).format("HH:mm"),
+        },
+        props.showDeleted
+      )
+    );
+    // props.onHide();
+  }
 
-    function createMenuRequest(fields) {
-      
-        dispatch(addMenuData({...fields,timeFrom:moment(fields.timeFrom).format( 'HH:mm'),timeTo:moment(fields.timeTo).format( 'HH:mm')},props.showDeleted));
-        // props.onHide();
-    }
+  function updateMenuRequest(id, fields) {
+    dispatch(
+      updateSelectedMenuData(
+        id,
+        {
+          ...fields,
+          timeFrom: moment(fields.timeFrom).format("HH:mm"),
+          timeTo: moment(fields.timeTo).format("HH:mm"),
+        },
+        props.showDeleted
+      )
+    );
+    // props.onHide();
+  }
 
-    function updateMenuRequest(id,fields) {
-        dispatch(updateSelectedMenuData(id,{...fields,timeFrom:moment(fields.timeFrom).format( 'HH:mm'),timeTo:moment(fields.timeTo).format( 'HH:mm')},props.showDeleted));
-        // props.onHide();
-    }
+  return (
+    <>
+      <Modal
+        {...props}
+        backdrop="static"
+        size="md"
+        aria-labelledby="contained-modal-title-vcenter"
+        centered
+        className="mainmodal-wrapper"
+      >
+        <Modal.Header className="align-items-center">
+          <Modal.Title
+            className="brandon-Medium"
+            id="contained-modal-title-vcenter"
+          >
+            Add / Edit Menu
+          </Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          {menuDataLoading && menuDataLoading ? <LoadingComponentMini /> : null}
+          <Formik
+            enableReinitialize={true}
+            initialValues={isAddMode ? initialValues : initialValues2}
+            validationSchema={validationSchema}
+            onSubmit={onSubmit}
+          >
+            {({
+              errors,
+              touched,
+              values,
+              isSubmitting,
+              setFieldValue,
+              handleChange,
+            }) => {
+              return (
+                <Form>
+                  <div>
+                    {/* {JSON.stringify(values)} */}
+                    <div className="form-group easydish-input dishname-input w-100 custom-lightinputbox">
+                      <label className="gray-txt f-15">Menu Name</label>
+                      <Field
+                        name="name"
+                        placeholder="Enter here"
+                        className="form-control f-15"
+                      />
+                      {touched.name && errors.name && (
+                        <div className="error pink-txt f-11">{errors.name}</div>
+                      )}
+                    </div>
+                    <div className="custom-drodown form-group ">
+                      <label className="gray-txt f-15">Availability</label>
+                      <DaySelectorCheckBoxAutoCompleteComp
+                        className="minwidth-260"
+                        placeholder={"Select"}
+                        name="availability"
+                        options={days_information}
+                        value={values.availability}
+                        onChangeData={(value) =>
+                          setFieldValue("availability", value)
+                        }
+                      />
+                      {touched.availability && errors.availability && (
+                        <div className="error pink-txt f-11">
+                          {errors.availability}
+                        </div>
+                      )}
+                    </div>
+                    <div>
+                      <label className="gray-txt f-15">Time</label>
+                      <div className="row">
+                        <div className="col-sm-6">
+                          <div className="custom-timepicker form-group ">
+                            <MuiPickersUtilsProvider utils={MomentUtils}>
+                              <KeyboardTimePicker
+                                id="from-time-picker1"
+                                placeholder="From"
+                                inputVariant="outlined"
+                                mask="__:__ _M"
+                                value={values.timeFrom}
+                                onChange={(date) =>
+                                  setFieldValue("timeFrom", date, false)
+                                }
+                                KeyboardButtonProps={{
+                                  "aria-label": "change time",
+                                }}
+                              />
+                            </MuiPickersUtilsProvider>
+                            {touched.timeFrom && errors.timeFrom && (
+                              <div className="error pink-txt f-11">
+                                {errors.timeFrom}
+                              </div>
+                            )}
+                          </div>
+                        </div>
+                        <div className="col-sm-6">
+                          <div className="custom-timepicker form-group ">
+                            <MuiPickersUtilsProvider utils={MomentUtils}>
+                              <KeyboardTimePicker
+                                id="to-time-pickera2"
+                                placeholder="To"
+                                inputVariant="outlined"
+                                value={values.timeTo}
+                                mask="__:__ _M"
+                                onChange={(value) =>
+                                  setFieldValue("timeTo", value)
+                                }
+                                KeyboardButtonProps={{
+                                  "aria-label": "change time",
+                                }}
+                              />
+                            </MuiPickersUtilsProvider>
+                            {touched.timeTo && errors.timeTo && (
+                              <div className="error pink-txt f-11">
+                                {errors.timeTo}
+                              </div>
+                            )}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
 
-    return (
-        <>
-            <Modal
-                {...props}
-                backdrop="static"
-                size="md"
-                aria-labelledby="contained-modal-title-vcenter"
-                centered
-                className="mainmodal-wrapper"
-            >
-                <Modal.Header className="align-items-center">
-                    <Modal.Title className="brandon-Medium" id="contained-modal-title-vcenter">
-                        Add / Edit Menu
-                            </Modal.Title>
-                </Modal.Header>
-                <Modal.Body>
-                    {menuDataLoading&&menuDataLoading?
-                        <LoadingComponentMini/>
-                    :
-                        null
-                    }  
-                    <Formik enableReinitialize={true} initialValues={isAddMode?initialValues:initialValues2} validationSchema={validationSchema} onSubmit={onSubmit} >
-                        {({ errors, touched,values, isSubmitting, setFieldValue,handleChange }) => {
-                            return (
-                                <Form>
-                                    <div>
-                                        {/* {JSON.stringify(values)} */}
-                                        <div className="form-group easydish-input dishname-input w-100 custom-lightinputbox">
-                                            <label className="gray-txt f-15">Menu Name</label>
-                                            <Field  name="name" placeholder="Enter here" className="form-control f-15" />
-                                            {touched.name && errors.name && <div className="error pink-txt f-11">{errors.name}</div>}
-                                        </div>
-                                        <div className="custom-drodown form-group ">
-                                            <label className="gray-txt f-15">Availability</label>
-                                            <DaySelectorCheckBoxAutoCompleteComp className="minwidth-260" placeholder={"Select"}  
-                                                name="availability" options={days_information} value={values.availability} 
-                                                onChangeData={value => setFieldValue("availability", value)}
-                                            />
-                                            {touched.availability && errors.availability && <div className="error pink-txt f-11">{errors.availability}</div>}
-                                        </div>
-                                        <div>
-                                            <label className="gray-txt f-15">Time</label>
-                                            <div className="row">
-                                                <div className="col-sm-6">
-                                                    <div className="custom-timepicker form-group ">
-                                                        <MuiPickersUtilsProvider utils={MomentUtils}>
-                                                            <KeyboardTimePicker
-                                                                id="from-time-picker1" placeholder="From"
-                                                                inputVariant="outlined"
-                                                                mask="__:__ _M" value={values.timeFrom}
-                                                                onChange={date  => setFieldValue("timeFrom", date,false)}
-                                                                KeyboardButtonProps={{
-                                                                    'aria-label': 'change time',
-                                                                }}
-                                                            />
-                                                        </MuiPickersUtilsProvider>
-                                                        {touched.timeFrom && errors.timeFrom && <div className="error pink-txt f-11">{errors.timeFrom}</div>}
-                                                    </div>
-                                                </div>
-                                                <div className="col-sm-6">
-                                                    <div className="custom-timepicker form-group ">
-                                                        <MuiPickersUtilsProvider utils={MomentUtils}>
-                                                            <KeyboardTimePicker
-                                                                id="to-time-pickera2" placeholder="To" 
-                                                                inputVariant="outlined"
-                                                                value={values.timeTo}  mask="__:__ _M"
-                                                                onChange={value => setFieldValue("timeTo", value)}
-                                                                KeyboardButtonProps={{
-                                                                    'aria-label': 'change time',
-                                                                }}
-                                                            />
-                                                        </MuiPickersUtilsProvider>
-                                                        {touched.timeTo && errors.timeTo && <div className="error pink-txt f-11">{errors.timeTo}</div>}
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    
-                                        <div className="custom-drodown form-group text-capitalize">
-                                            <label className="gray-txt f-15">Style of Menu</label>
-                                            <CheckBoxAutoCompleteComp className="minwidth-260 text-capitalize" placeholder={"Select"}  
-                                                name="styleOfmenu" options={styleOf_menu?styleOf_menu:[]} value={values.styleOfmenu} 
-                                                onChangeData={value => setFieldValue("styleOfmenu", value)}
-                                            />
-                                            {/* <Field as="select" name="styleOfmenu" className="text-capitalize form-control lightgray-border selectdropdown-btn gray-txt f-15">
+                    <div className="custom-drodown form-group text-capitalize">
+                      <label className="gray-txt f-15">Style of Menu</label>
+                      <CheckBoxAutoCompleteComp
+                        className="minwidth-260 text-capitalize"
+                        placeholder={"Select"}
+                        name="styleOfmenu"
+                        options={styleOf_menu ? styleOf_menu : []}
+                        value={values.styleOfmenu}
+                        onChangeData={(value) =>
+                          setFieldValue("styleOfmenu", value)
+                        }
+                      />
+                      {/* <Field as="select" name="styleOfmenu" className="text-capitalize form-control lightgray-border selectdropdown-btn gray-txt f-15">
                                                 <option value="">Select</option>
                                                 {styleOf_menu && styleOf_menu.map((data, index)=>{
                                                     return(
@@ -176,20 +266,35 @@ const AddEditMenuModalComp = (props) => {
                                                     )
                                                 })}
                                             </Field> */}
-                                            {touched.styleOfmenu && errors.styleOfmenu && <div className="error pink-txt f-11">{errors.styleOfmenu}</div>}
-                                        </div>
-                                    </div>
-                                   
-                                    <div className="border-top-0 pt-4 pb-4 d-flex justify-content-end">
-                                        <button className="btn lightgraynoline-btn text-uppercase border-radius-25 min-width-120" type="reset" onClick={props.onHide}>CANCEL</button>
-                                        <button className="btn pinkline-btn text-uppercase border-radius-25 min-width-120 ml-2" type="submit">{isAddMode?"ADD":"UPDATE"}</button>
-                                    </div>
-                                </Form>
-                            );
-                        }}
-                    </Formik>
-                       
-                        {/* <Formik
+                      {touched.styleOfmenu && errors.styleOfmenu && (
+                        <div className="error pink-txt f-11">
+                          {errors.styleOfmenu}
+                        </div>
+                      )}
+                    </div>
+                  </div>
+
+                  <div className="border-top-0 pt-4 pb-4 d-flex justify-content-end">
+                    <button
+                      className="btn lightgraynoline-btn text-uppercase border-radius-25 min-width-120"
+                      type="reset"
+                      onClick={props.onHide}
+                    >
+                      CANCEL
+                    </button>
+                    <button
+                      className="btn pinkline-btn text-uppercase border-radius-25 min-width-120 ml-2"
+                      type="submit"
+                    >
+                      {isAddMode ? "ADD" : "UPDATE"}
+                    </button>
+                  </div>
+                </Form>
+              );
+            }}
+          </Formik>
+
+          {/* <Formik
                             initialValues={{ name: '', availability:[],
                            
                             timeFrom:"2020-12-31T11:00:00.320Z",timeTo:new Date(),styleOfmenu:'' }}
@@ -279,14 +384,10 @@ const AddEditMenuModalComp = (props) => {
                                 </Form>
                             )}
                         </Formik> */}
-                    
-
-                </Modal.Body>
-              
-            </Modal>
-
-        </>
-    )
-}
+        </Modal.Body>
+      </Modal>
+    </>
+  );
+};
 
 export default AddEditMenuModalComp;

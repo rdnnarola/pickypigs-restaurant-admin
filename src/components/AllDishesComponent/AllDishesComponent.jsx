@@ -17,7 +17,6 @@ const AllDishesComponent = () => {
   const dispatch = useDispatch();
   const [inputValue, setInputValue] = useState("");
   const [menuId, setmenuId] = useState("");
-  const [categoryId, setCategoryId] = useState("");
 
   const [deleteModalShow, setDeleteModalShow] = React.useState(false);
   const [dishesId, setDishesId] = useState("");

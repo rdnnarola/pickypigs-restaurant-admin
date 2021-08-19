@@ -10,6 +10,7 @@ import CustomLoadingComp from "../CustomLoadingComp/CustomLoadingComp";
 
 // const phoneRegExp = /^(?=.*\d)(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
 const passwordRegExp = RegExp(
+  // eslint-disable-next-line no-useless-escape
   /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,24})/
 );
 

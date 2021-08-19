@@ -34,6 +34,7 @@ import CustomLoadingComp from "../CustomLoadingComp/CustomLoadingComp";
 // import { useDropzone } from "react-dropzone";
 
 const styleOf_currency = ["$"];
+// eslint-disable-next-line no-useless-escape
 const numbRegs = /^[+]?([0-9]+(?:[\.][0-9]*)?|\.[0-9]+)$/;
 // const numRegExp = /^[+]?[0-9]{0,3}$/;
 

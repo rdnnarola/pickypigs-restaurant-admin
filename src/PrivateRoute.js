@@ -1,6 +1,6 @@
 import React from "react";
-import { Route, Redirect } from "react-router-dom";
-import {RESTAURANT_ADMIN_URL} from './shared/constant';
+import { Route } from "react-router-dom";
+import { RESTAURANT_ADMIN_URL } from "./shared/constant";
 
 export default function PrivateRoute({ children, ...rest }) {
   const token = !!localStorage.getItem("access_token");
@@ -13,25 +13,24 @@ export default function PrivateRoute({ children, ...rest }) {
     <Route
       {...rest}
       render={({ location }) =>
-        token && role === "restaurant_admin"? (
+        token && role === "restaurant_admin" ? (
           children
         ) : (
           <React.Fragment>
-          {/* <Redirect
+            {/* <Redirect
             to={{
               pathname: "/home",
               state: { from: location },
             }}
           /> */}
-          { window.open(
-            `${RESTAURANT_ADMIN_URL}`,
-            '_self', // <- This is what makes it open in a new window.
-            'replace=true'
-          )}
+            {window.open(
+              `${RESTAURANT_ADMIN_URL}`,
+              "_self", // <- This is what makes it open in a new window.
+              "replace=true"
+            )}
           </React.Fragment>
         )
       }
     />
   );
 }
-
