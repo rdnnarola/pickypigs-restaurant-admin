@@ -27,10 +27,10 @@ import {
   getAllLifestyleData,
   getAllCookingData,
 } from "../../redux/actions/allergyAction";
-import { SERVER_URL } from "../../shared/constant";
 import CheckBoxAutoCompleteThirdComp from "../CheckBoxAutoCompleteThirdComp/CheckBoxAutoCompleteThirdComp";
 import uploadimg_icon from "../../assets/images/uploadimg-icon.svg";
 import CustomLoadingComp from "../CustomLoadingComp/CustomLoadingComp";
+import Card from "../Card";
 // import { useDropzone } from "react-dropzone";
 
 const styleOf_currency = ["$"];
@@ -1128,40 +1128,25 @@ const ManageEasyAddDishComp = () => {
                                     allergy_Data.data.map((data, index) => {
                                       return (
                                         <React.Fragment key={index}>
-                                          <React.Fragment>
-                                            <button
-                                              id={data._id}
-                                              onClick={(e) => {
-                                                handleAlergy(
-                                                  e,
-                                                  values.allergenId,
-                                                  setFieldValue,
-                                                  "allergenId"
-                                                );
-                                              }}
-                                              type="button"
-                                              className={`allergen-btn d-flex flex-column justify-content-center mr-4 mb-4 p-0 align-items-center ${
-                                                values.allergenId &&
-                                                values.allergenId.indexOf(
-                                                  data._id
-                                                ) !== -1 &&
-                                                "active"
-                                              }`}
-                                            >
-                                              <div className="allergen-icon d-flex align-items-center justify-content-center mb-2">
-                                                <img
-                                                  src={`${SERVER_URL}/${data.image}`}
-                                                  className="img-fluid"
-                                                  alt="img-fluid"
-                                                />
-                                              </div>
-                                              <span
-                                                className={`mb-0 f-12 txt-lightgray brandon-Medium`}
-                                              >
-                                                {data.name}
-                                              </span>
-                                            </button>
-                                          </React.Fragment>
+                                          <div
+                                            onClick={(e) => {
+                                              handleAlergy(
+                                                e,
+                                                values.allergenId,
+                                                setFieldValue,
+                                                "allergenId"
+                                              );
+                                            }}
+                                            className={`allergen-btn d-flex flex-column justify-content-center mr-4 mb-4 p-0 align-items-center ${
+                                              values.allergenId &&
+                                              values.allergenId.indexOf(
+                                                data._id
+                                              ) !== -1 &&
+                                              "active"
+                                            }`}
+                                          >
+                                            <Card data={data} index={index} />
+                                          </div>
                                         </React.Fragment>
                                       );
                                     })}
@@ -1202,35 +1187,31 @@ const ManageEasyAddDishComp = () => {
                             dietary_Data.data &&
                             dietary_Data.data.length > 0 ? (
                               <React.Fragment>
-                                <div className="dietary-wrapper d-flex flex-wrap">
+                                <div className="allergen-btn-wrapper d-flex align-items-start flex-wrap">
                                   {dietary_Data &&
                                     dietary_Data.data &&
                                     dietary_Data.data.map((data, index) => {
                                       return (
                                         <React.Fragment key={index}>
-                                          <React.Fragment>
-                                            <button
-                                              id={data._id}
-                                              type="button"
-                                              onClick={(e) => {
-                                                handleAlergy(
-                                                  e,
-                                                  values.dietaryId,
-                                                  setFieldValue,
-                                                  "dietaryId"
-                                                );
-                                              }}
-                                              className={`tags-btn mr-4 mb-4 brandon-Medium ${
-                                                values.dietaryId &&
-                                                values.dietaryId.indexOf(
-                                                  data._id
-                                                ) !== -1 &&
-                                                "active"
-                                              }`}
-                                            >
-                                              {data.name}
-                                            </button>
-                                          </React.Fragment>
+                                          <div
+                                            onClick={(e) => {
+                                              handleAlergy(
+                                                e,
+                                                values.dietaryId,
+                                                setFieldValue,
+                                                "dietaryId"
+                                              );
+                                            }}
+                                            className={`allergen-btn d-flex flex-column justify-content-center mr-4 mb-4 p-0 align-items-center ${
+                                              values.dietaryId &&
+                                              values.dietaryId.indexOf(
+                                                data._id
+                                              ) !== -1 &&
+                                              "active"
+                                            }`}
+                                          >
+                                            <Card data={data} index={index} />
+                                          </div>
                                         </React.Fragment>
                                       );
                                     })}
@@ -1272,16 +1253,14 @@ const ManageEasyAddDishComp = () => {
                             lifestyle_Data.data &&
                             lifestyle_Data.data.length > 0 ? (
                               <React.Fragment>
-                                <div className="lifestyle-wrapper d-flex flex-wrap">
+                                <div className="allergen-btn-wrapper align-items-start d-flex flex-wrap">
                                   {lifestyle_Data &&
                                     lifestyle_Data.data &&
                                     lifestyle_Data.data.map((data, index) => {
                                       return (
                                         <React.Fragment key={index}>
                                           <React.Fragment>
-                                            <button
-                                              id={data._id}
-                                              type="button"
+                                            <div
                                               onClick={(e) => {
                                                 handleAlergy(
                                                   e,
@@ -1290,7 +1269,7 @@ const ManageEasyAddDishComp = () => {
                                                   "lifestyleId"
                                                 );
                                               }}
-                                              className={`tags-btn mr-4 mb-4 brandon-Medium ${
+                                              className={`allergen-btn d-flex flex-column justify-content-center mr-4 mb-4 p-0 align-items-center ${
                                                 values.lifestyleId &&
                                                 values.lifestyleId.indexOf(
                                                   data._id
@@ -1298,8 +1277,8 @@ const ManageEasyAddDishComp = () => {
                                                 "active"
                                               }`}
                                             >
-                                              {data.name}
-                                            </button>
+                                              <Card data={data} index={index} />
+                                            </div>
                                           </React.Fragment>
                                         </React.Fragment>
                                       );
@@ -1342,16 +1321,14 @@ const ManageEasyAddDishComp = () => {
                             cooking_Data.data &&
                             cooking_Data.data.length > 0 ? (
                               <React.Fragment>
-                                <div className="lifestyle-wrapper d-flex flex-wrap">
+                                <div className="allergen-btn-wrapper align-items-start d-flex flex-wrap">
                                   {cooking_Data &&
                                     cooking_Data.data &&
                                     cooking_Data.data.map((data, index) => {
                                       return (
                                         <React.Fragment key={index}>
                                           <React.Fragment>
-                                            <button
-                                              id={data._id}
-                                              type="button"
+                                            <div
                                               onClick={(e) => {
                                                 handleAlergy(
                                                   e,
@@ -1360,7 +1337,7 @@ const ManageEasyAddDishComp = () => {
                                                   "cookingMethodId"
                                                 );
                                               }}
-                                              className={`tags-btn mr-4 mb-4 brandon-Medium ${
+                                              className={`allergen-btn d-flex flex-column justify-content-center mr-4 mb-4 p-0 align-items-center ${
                                                 values.cookingMethodId &&
                                                 values.cookingMethodId.indexOf(
                                                   data._id
@@ -1368,8 +1345,8 @@ const ManageEasyAddDishComp = () => {
                                                 "active"
                                               }`}
                                             >
-                                              {data.name}
-                                            </button>
+                                              <Card data={data} index={index} />
+                                            </div>
                                           </React.Fragment>
                                         </React.Fragment>
                                       );

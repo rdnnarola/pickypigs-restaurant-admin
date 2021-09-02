@@ -8,7 +8,7 @@ import {
   getAllCuisineData,
   getAllRestaurantFeaturesData,
 } from "../../redux/actions/allergyAction";
-
+import { SERVER_URL } from "../../shared/constant";
 // const passwordRegExp = RegExp(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,24})/);
 // const phoneRegex = RegExp(/^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/);
 const numbRegs = RegExp(/^[0-9]*$/);
@@ -423,7 +423,7 @@ const RestaurantInfoFeatureComp = (props) => {
                                     Select Restaurant Features from below
                                     options
                                   </p>
-                                  <div className="option-tag-main d-flex flex-wrap">
+                                  <div className="allergen-btn-wrapper d-flex align-items-start flex-wrap">
                                     {restaurantFeatures_Data &&
                                       restaurantFeatures_Data.data &&
                                       restaurantFeatures_Data.data.map(
@@ -435,7 +435,7 @@ const RestaurantInfoFeatureComp = (props) => {
                                                   <button
                                                     id={data._id}
                                                     type="button"
-                                                    className={`option-tag mr-4 mb-4 ${
+                                                    className={`allergen-btn d-flex flex-column justify-content-center mr-4 mb-4 p-0 align-items-center ${
                                                       props.featuredata &&
                                                       props.featuredata
                                                         .restaurantFeaturesOptions &&
@@ -445,7 +445,18 @@ const RestaurantInfoFeatureComp = (props) => {
                                                       "active"
                                                     }`}
                                                   >
-                                                    {data.name}
+                                                    <div className="allergen-icon d-flex align-items-center justify-content-center mb-2">
+                                                      <img
+                                                        src={`${SERVER_URL}/${data.image}`}
+                                                        className="img-fluid"
+                                                        alt="img-fluid"
+                                                      />
+                                                    </div>
+                                                    <span
+                                                      className={`mb-0 f-12 txt-lightgray brandon-Medium`}
+                                                    >
+                                                      {data.name}
+                                                    </span>
                                                   </button>
                                                 </React.Fragment>
                                               ) : (
@@ -460,7 +471,7 @@ const RestaurantInfoFeatureComp = (props) => {
                                                         setFieldValue
                                                       );
                                                     }}
-                                                    className={`option-tag mr-4 mb-4 ${
+                                                    className={`allergen-btn d-flex flex-column justify-content-center mr-4 mb-4 p-0 align-items-center ${
                                                       values.restaurantFeaturesOptions &&
                                                       values.restaurantFeaturesOptions.indexOf(
                                                         data._id
@@ -468,7 +479,18 @@ const RestaurantInfoFeatureComp = (props) => {
                                                       "active"
                                                     }`}
                                                   >
-                                                    {data.name}
+                                                    <div className="allergen-icon d-flex align-items-center justify-content-center mb-2">
+                                                      <img
+                                                        src={`${SERVER_URL}/${data.image}`}
+                                                        className="img-fluid"
+                                                        alt="img-fluid"
+                                                      />
+                                                    </div>
+                                                    <span
+                                                      className={`mb-0 f-12 txt-lightgray brandon-Medium`}
+                                                    >
+                                                      {data.name}
+                                                    </span>
                                                   </button>
                                                 </React.Fragment>
                                               )}
