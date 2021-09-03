@@ -96,6 +96,7 @@ export const forgotPassword = (data) => {
       let dataURL = `/auth/forgot_password`;
       let response = await Axios.post(dataURL, JSON.stringify(data), config);
       dispatch({ type: "FORGOT_PASSWORD_SUCCESS", payload: response.data });
+
       dispatch(setAlert(`${response.data.message}`, "success"));
     } catch (error) {
       dispatch({ type: "FORGOT_PASSWORD_FAILURE", payload: error });
@@ -117,7 +118,9 @@ export const resetPassword = (data, history) => {
       let dataURL = `/auth/reset_password`;
       let response = await Axios.post(dataURL, JSON.stringify(data), config);
       dispatch({ type: "RESET_PASSWORD_SUCCESS", payload: response.data });
+
       dispatch(setAlert(`${response.data.message}`, "success"));
+
       history.push("/");
     } catch (error) {
       dispatch({ type: "RESET_PASSWORD_FAILURE", payload: error });
