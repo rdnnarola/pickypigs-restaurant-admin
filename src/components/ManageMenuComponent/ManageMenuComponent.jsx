@@ -38,7 +38,7 @@ const ManageMenuComponent = () => {
         return state.menu
     });
 
-    let {isLoading,menu_Data}=menuData;
+    let {isLoading,menu_Data,selectedMenuDishData}=menuData;
     
     function tConv24(time24) {
         var ts = time24;

@@ -26,6 +26,7 @@ const BreakfastMenuComponent = () => {
     return state.menu.selectedMenuDishData;
   });
 
+
   let myLoading = useSelector((state) => {
     return state.menu.isLoading;
   });
@@ -153,6 +154,7 @@ const BreakfastMenuComponent = () => {
                                                   data2.dishes &&
                                                   data2.dishes.map(
                                                     (data3, index3) => {
+                                                    
                                                       return (
                                                         <React.Fragment
                                                           key={index3}
@@ -216,6 +218,7 @@ const BreakfastMenuComponent = () => {
                                                                 : "-"}
                                                             </td>
                                                             <td className="text-center">
+                                                              
                                                               <div className="custom-control custom-checkbox pink-checkbox">
                                                                 <input
                                                                   type="checkbox"
@@ -239,6 +242,7 @@ const BreakfastMenuComponent = () => {
                                                                   defaultChecked={
                                                                     data3.available
                                                                   }
+                                                                  value={data3.available}
                                                                 />
                                                                 <label
                                                                   className="custom-control-label"
@@ -429,6 +433,7 @@ const BreakfastMenuComponent = () => {
                                                                             defaultChecked={
                                                                               data3.available
                                                                             }
+                                                                            checked={data3.available}
                                                                           />
                                                                           <label
                                                                             className="custom-control-label"

@@ -9,7 +9,7 @@ const initialState = {
 
 const dishesReducer = (state = initialState, { type, payload }) => {
   switch (type) {
-    case "GET_ALLDISHES_REQUEST":
+  
     case "ADD_DISHES_REQUEST":
     case "GET_SELECTEDDISC_REQUEST":
     case "UPDATE_DISC_REQUEST":
@@ -18,7 +18,7 @@ const dishesReducer = (state = initialState, { type, payload }) => {
     case "GET_ALLDISH_REQUEST":
       return {
         ...state,
-        // isLoading: true,
+        isLoading: true,
       };
     case "GET_ALLDISH_SUCCESS":
       return {
@@ -26,6 +26,11 @@ const dishesReducer = (state = initialState, { type, payload }) => {
         isLoading: false,
         dishes_Data: payload,
       };
+      case "GET_ALLDISH_FAILURE":
+        return {
+          ...state,
+          isLoading: false,
+        };
     case "DUPLICATE_DISH_REQUEST":
       return {
         ...state,
