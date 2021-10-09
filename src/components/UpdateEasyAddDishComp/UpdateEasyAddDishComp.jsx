@@ -1523,7 +1523,7 @@ const UpdateEasyAddDishComp = () => {
                             dietary_Data.data &&
                             dietary_Data.data.length > 0 ? (
                               <React.Fragment>
-                                <div className="dietary-wrapper d-flex flex-wrap">
+                                <div className="allergen-btn-wrapper d-flex align-items-start flex-wrap">
                                   {dietary_Data &&
                                     dietary_Data.data &&
                                     dietary_Data.data.map((data, index) => {
@@ -1541,7 +1541,7 @@ const UpdateEasyAddDishComp = () => {
                                                   "dietaryId"
                                                 );
                                               }}
-                                              className={`tags-btn mr-4 mb-4 brandon-Medium ${
+                                              className={`allergen-btn d-flex flex-column justify-content-center mr-4 mb-4 p-0 align-items-center ${
                                                 values.dietaryId &&
                                                 values.dietaryId.indexOf(
                                                   data._id
@@ -1549,7 +1549,18 @@ const UpdateEasyAddDishComp = () => {
                                                 "active"
                                               }`}
                                             >
-                                              {data.name}
+                                               <div className="allergen-icon d-flex align-items-center justify-content-center mb-2">
+                                                <img
+                                                  src={`${SERVER_URL}/${data.image}`}
+                                                  className="img-fluid"
+                                                  alt="img-fluid"
+                                                />
+                                              </div>
+                                              <span
+                                                className={`mb-0 f-12 txt-lightgray brandon-Medium`}
+                                              >
+                                                {data.name}
+                                              </span>
                                             </button>
                                           </React.Fragment>
                                         </React.Fragment>
@@ -1593,7 +1604,7 @@ const UpdateEasyAddDishComp = () => {
                             lifestyle_Data.data &&
                             lifestyle_Data.data.length > 0 ? (
                               <React.Fragment>
-                                <div className="lifestyle-wrapper d-flex flex-wrap">
+                                <div className="allergen-btn-wrapper d-flex align-items-start flex-wrap">
                                   {lifestyle_Data &&
                                     lifestyle_Data.data &&
                                     lifestyle_Data.data.map((data, index) => {
@@ -1611,7 +1622,7 @@ const UpdateEasyAddDishComp = () => {
                                                   "lifestyleId"
                                                 );
                                               }}
-                                              className={`tags-btn mr-4 mb-4 brandon-Medium ${
+                                              className={`allergen-btn d-flex flex-column justify-content-center mr-4 mb-4 p-0 align-items-center ${
                                                 values.lifestyleId &&
                                                 values.lifestyleId.indexOf(
                                                   data._id
@@ -1619,7 +1630,18 @@ const UpdateEasyAddDishComp = () => {
                                                 "active"
                                               }`}
                                             >
-                                              {data.name}
+                                              <div className="allergen-icon d-flex align-items-center justify-content-center mb-2">
+                                                <img
+                                                  src={`${SERVER_URL}/${data.image}`}
+                                                  className="img-fluid"
+                                                  alt="img-fluid"
+                                                />
+                                              </div>
+                                              <span
+                                                className={`mb-0 f-12 txt-lightgray brandon-Medium`}
+                                              >
+                                                {data.name}
+                                              </span>
                                             </button>
                                           </React.Fragment>
                                         </React.Fragment>
@@ -1662,7 +1684,7 @@ const UpdateEasyAddDishComp = () => {
                             cooking_Data.data &&
                             cooking_Data.data.length > 0 ? (
                               <React.Fragment>
-                                <div className="lifestyle-wrapper d-flex flex-wrap">
+                                <div className="allergen-btn-wrapper d-flex align-items-start flex-wrap">
                                   {cooking_Data &&
                                     cooking_Data.data &&
                                     cooking_Data.data.map((data, index) => {
@@ -1680,7 +1702,7 @@ const UpdateEasyAddDishComp = () => {
                                                   "cookingMethodId"
                                                 );
                                               }}
-                                              className={`tags-btn mr-4 mb-4 brandon-Medium ${
+                                              className={`allergen-btn d-flex flex-column justify-content-center mr-4 mb-4 p-0 align-items-center ${
                                                 values.cookingMethodId &&
                                                 values.cookingMethodId.indexOf(
                                                   data._id
@@ -1688,7 +1710,18 @@ const UpdateEasyAddDishComp = () => {
                                                 "active"
                                               }`}
                                             >
-                                              {data.name}
+                                              <div className="allergen-icon d-flex align-items-center justify-content-center mb-2">
+                                                <img
+                                                  src={`${SERVER_URL}/${data.image}`}
+                                                  className="img-fluid"
+                                                  alt="img-fluid"
+                                                />
+                                              </div>
+                                              <span
+                                                className={`mb-0 f-12 txt-lightgray brandon-Medium`}
+                                              >
+                                                {data.name}
+                                              </span>
                                             </button>
                                           </React.Fragment>
                                         </React.Fragment>

@@ -441,7 +441,7 @@ const RestaurantAddAddressComp = (props) => {
                                         >
                                           <iframe
                                             style={{ border: "none" }}
-                                            src={`http://maps.google.com/maps?q=${
+                                            src={`https://maps.google.com/maps?q=${
                                               Restaurant_Location &&
                                               Restaurant_Location.coordinate_data
                                             }&z=16&output=embed`}
